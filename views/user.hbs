@@ -1,0 +1,20 @@
+<div align='center'><h1>Главная страница персонажа <i><font color='red'>{{users.name}}</font></i></h1>
+
+    {{#if users.avatarURL}}
+        <div align="center">
+        <img src="/{{users.avatarURL}}" width="255" alt="Нет изображения">
+        </div>
+    {{else}}
+        <div align="center"><h1><font color='red'>У пользователя нет аватарки</font></h1></div>
+    {{/if}}
+
+    <h2>Его возраст <i><font color='red'>{{users.age}}</font></i></h2>
+    <br><br>
+
+    <a href="/edit/{{users.id}}">
+        <button><h3>Редактировать пользователя</h3></button>
+    </a><br><br>
+    <form action="/delete/{{users.id}}" method="POST">
+        <input type="submit" value="Удалить пользователя">
+    </form>
+</div>

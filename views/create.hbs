@@ -1,0 +1,17 @@
+<div align='center'>
+    <h1>Создание пользователя</h1>
+
+    <form method="POST" action="/create" enctype="multipart/form-data">
+    
+        <label>Имя</label><br>
+        <input name="name" width="150"><br><br>
+    
+        <label>Возраст</label><br>
+        <input name="age" type="number" min="1" max="110" width="150"><br><br><br>
+
+        <label>Аватар пользователя</label><br><br>
+        <input type="file" name="avatarURL" >
+
+        <input type="submit" value="Отправить">
+    </form>
+</div>

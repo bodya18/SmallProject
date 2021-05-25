@@ -1,0 +1,28 @@
+<div align='center'>
+    <h1>Список пользователей</h1>
+
+    <table border="1">
+        <tr align="center">
+            <th></th>
+            <th></th>
+            <th>Name<a href="/sort/up/name"><button>&uArr;</button></a><a href="/sort/down/name"><button>&dArr;</button></a></th>
+            <th>Age<a href="/sort/up/age"><button>&uArr;</button></a><a href="/sort/down/age"><button>&dArr;</button></a></th>
+            <th>Id<a href="/sort/up/id"><button>&uArr;</button></a><a href="/sort/down/id"><button>&dArr;</button></a></th>
+            <th>Время регистрации<a href="/sort/up/time"><button>&uArr;</button></a><a href="/sort/down/time"><button>&dArr;</button></a></th>
+        </tr>
+        {{#each users}}
+            <tr align="center">
+                {{#if this.avatarURL}}
+                    <td><img src="/{{this.avatarURL}}" width="60" alt="Нет изображения"></td>
+                {{else}}
+                    <td>Нет аватара</td>
+                {{/if}}
+                <td><a href="/user/{{this.id}}"><button>Детальнее</button></a></td>
+                <td width="150">{{this.name}}</td>
+                <td width="100">{{this.age}}</td>
+                <td width='300'>{{this.id}}</td>
+                <td>{{this.time}}</td>
+            </tr>
+        {{/each}}
+    </table>
+</div>
