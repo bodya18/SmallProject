@@ -12,12 +12,18 @@ class User{
 
     edit() {
         try{
-            pool.query('Select avatarURL from users where id=?', [this.id], (err, data) =>{
-                if(err) return console.log(err)
-                if(data[0].avatarURL !== null)
-                    fs.unlinkSync('/home/victor/NodeJsProjects/SmallProject/'+data[0].avatarURL)
-            })
-            pool.query('update users set name=?, age=?, time=?, avatarURL=? where id=?', [this.name, this.age, this.time, this.avatarURL, this.id])
+            if(this.avatarURL){
+                pool.query('Select avatarURL from users where id=?', [this.id], (err, data) =>{
+                    if(err) return console.log(err)
+                    if(data[0].avatarURL !== null)
+                        fs.unlinkSync('/home/victor/NodeJsProjects/SmallProject/'+data[0].avatarURL)
+                })
+                pool.query('update users set name=?, age=?, time=?, avatarURL=? where id=?', [this.name, this.age, this.time, this.avatarURL, this.id])
+            }
+            else{
+                pool.query('update users set name=?, age=?, time=? where id=?', [this.name, this.age, this.time, this.id])
+            }
+            
         }
         catch (e){
             console.log(e)
