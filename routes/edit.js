@@ -3,28 +3,25 @@ const router = Router()
 const multer  = require("multer");
 const pool = require('../middleware/pool')
 const urlencodedParser = require('../middleware/urlencodedParser')
+const User = require('../models/user')
 
 const upload = multer({dest:"images"});
 
 router.post('/', urlencodedParser, upload.single("avatarURL"), function (req, res) {
     if(!req.body) return res.sendStatus(400)
-    const name = req.body.name
-    const age = req.body.age
     const id = req.body.id
-    const time = new Date()
-    try{
-        const avatarURL = req.file.path
-        pool.query('update users set name=?, age=?, time=?, avatarURL=? where id=?', [name, age, time, avatarURL, id], (err, data) => {
-            if(err) return console.log(err)
-            res.redirect(`/user/${id}`)
-        })
+
+    try {
+        const user = new User(req.body.name, req.body.age, req.file.path, id)
+        user.edit()
+    } catch {
+        const user = new User(req.body.name, req.body.age, null, id)
+        user.edit()
     }
-    catch{
-        pool.query('update users set name=?, age=?, time=? where id=?', [name, age, time, id], (err, data) => {
-            if(err) return console.log(err)
-            res.redirect(`/user/${id}`)
-        })
+    function redirect() {
+        res.redirect(`/user/${id}`)
     }
+    setTimeout(redirect, 200)
 })
 
 router.get('/:id', (req,res) => {

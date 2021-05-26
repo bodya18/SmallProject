@@ -3,7 +3,7 @@ const router = Router()
 const multer  = require("multer");
 const { v4: uuidv4 } = require('uuid');
 const urlencodedParser = require('../middleware/urlencodedParser')
-const pool = require('../middleware/pool')
+const User = require('../models/user')
 
 const upload = multer({dest:"images"});
 
@@ -13,26 +13,20 @@ router.get('/', (req,res) => {
     })
 })
 
-router.post('/', urlencodedParser, upload.single("avatarURL"), (req,res) => {
+router.post('/', urlencodedParser, upload.single("avatarURL"), async (req,res) => {
     if(!req.body) return res.sendStatus(400)
-    const name = req.body.name
-    const age = req.body.age
     const id = uuidv4()
-    const time = new Date()
-    try{
-        const avatarURL = req.file.path
-        pool.query('Insert into users (name, age, id, time, avatarURL) values (?, ?, ?, ?, ?)', [name, age, id, time, avatarURL], (err, data) => {
-            if(err) return console.log(err)
-            res.redirect(`/user/${id}`)
-        })
+    try {
+        const user = new User(req.body.name, req.body.age, req.file.path, id)
+        user.create()
+    } catch {
+        const user = new User(req.body.name, req.body.age, null, id)
+        user.create()
     }
-    catch{
-        pool.query('Insert into users (name, age, id, time) values (?, ?, ?, ?)', [name, age, id, time], (err, data) => {
-            if(err) return console.log(err)
-            res.redirect(`/user/${id}`)
-        })
+    function redirect() {
+        res.redirect(`/user/${id}`)
     }
-
+    setTimeout(redirect, 200)
     
 })
 

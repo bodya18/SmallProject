@@ -1,12 +1,14 @@
 const {Router} =require('express')
 const router = Router()
-const pool = require('../middleware/pool')
+const User = require('../models/user')
 
 router.post('/:id', (req,res)=>{
     const id = req.params.id
-    pool.query('delete from users where id=?', [id], (err, data) => {
-        if (err) return console.log(err)
+    const user = new User(null, null, null, id)
+    user.delete()
+    function redirect() {
         res.redirect('/')
-    })
+    }
+    setTimeout(redirect, 200)
 })
 module.exports = router
