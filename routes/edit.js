@@ -11,6 +11,9 @@ router.post('/', urlencodedParser, upload.single("avatarURL"), function (req, re
     if(!req.body) return res.sendStatus(400)
     const id = req.body.id
 
+    if(req.body.name.length < 3){
+       return res.redirect(`/edit/${id}`)
+    }
     try {
         const user = new User(req.body.name, req.body.age, req.file.path, id)
         user.edit()

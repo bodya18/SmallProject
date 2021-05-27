@@ -13,9 +13,9 @@
         {{#each users}}
             <tr align="center">
                 {{#if this.avatarURL}}
-                    <td><img src="/{{this.avatarURL}}" width="60" alt="Нет изображения"></td>
+                    <td><img src="/{{this.avatarURL}}" width="60" ></td>
                 {{else}}
-                    <td>Нет аватара</td>
+                    <td><img src="/images/no_avatar.png" width="60"></td>
                 {{/if}}
                 <td><a href="/user/{{this.id}}"><button>Детальнее</button></a></td>
                 <td width="150">{{this.name}}</td>

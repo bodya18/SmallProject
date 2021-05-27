@@ -6,6 +6,7 @@ const deleteRouter = require('./routes/delete')
 const editRouter = require('./routes/edit')
 const sortRouter = require('./routes/sort')
 const userRouter = require('./routes/user')
+const errorHandler = require('./middleware/error')
 const app = express()
 
 const hbs = exphbs.create({
@@ -27,6 +28,8 @@ app.use('/delete', deleteRouter)
 app.use('/edit', editRouter)
 app.use('/user', userRouter)
 
+
+app.use(errorHandler)
 
 app.listen(3000, () => {
     console.log('Server is waiting connections')

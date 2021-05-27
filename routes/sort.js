@@ -1,7 +1,6 @@
 const {Router} =require('express')
 const router = Router()
 const pool = require('../middleware/pool')
-
 router.get('/up/:what', (req,res) => {
     const what = req.params.what
     pool.query(`SELECT * FROM users ORDER BY ${what}`,  (err, data) =>{

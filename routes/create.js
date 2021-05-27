@@ -16,6 +16,10 @@ router.get('/', (req,res) => {
 router.post('/', urlencodedParser, upload.single("avatarURL"), async (req,res) => {
     if(!req.body) return res.sendStatus(400)
     const id = uuidv4()
+    
+    if(req.body.name.length < 3)
+        return res.redirect(`/create`)
+
     try {
         const user = new User(req.body.name, req.body.age, req.file.path, id)
         user.create()
