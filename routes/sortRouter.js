@@ -1,6 +1,6 @@
 const {Router} =require('express')
 const router = Router()
-const sortController = require('../controllers/sort')
+const sortController = require('../controllers/sortController')
 
 
 router.get('/up/:what', sortController.up)

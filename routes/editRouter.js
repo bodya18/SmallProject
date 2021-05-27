@@ -2,7 +2,7 @@ const {Router} = require('express')
 const router = Router()
 const multer  = require("multer");
 const urlencodedParser = require('../middleware/urlencodedParser')
-const editController = require('../controllers/edit')
+const editController = require('../controllers/editController')
 
 const upload = multer({dest:"images"});
 
