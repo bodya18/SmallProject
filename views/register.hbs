@@ -1,0 +1,24 @@
+<div align='center'>
+    <h1>Создание пользователя</h1>
+    {{#if error}}
+        <p><font color='red'>{{error}}</font></p>
+    {{/if}}
+    <form method="POST" action="/register">
+        <label>Адрес эл. почты</label><br>
+        <input name="email" type="email" width="150"><br><br>
+
+        <label>Имя</label><br>
+        <input name="name" width="150"><br><br>
+    
+        <label>Возраст</label><br>
+        <input name="age" type="number" min="1" max="110" width="150"><br><br>
+        
+        <label>Пароль</label><br>
+        <input name="password" type="password" min="1" max="32" width="150"><br><br>
+        
+        <label>Пароль еще раз</label><br>
+        <input name="repeat" type="password" min="1" max="32" width="150"><br><br><br>
+
+        <input type="submit" value="Отправить">
+    </form>
+</div>

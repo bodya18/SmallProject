@@ -2,7 +2,9 @@ const pool = require('../middleware/pool')
 const fs = require('fs')
 
 class User{
-    constructor(name, age, avatarURL, id){
+    constructor(password, email, name, age, avatarURL, id){
+        this.password = password
+        this.email = email
         this.name = name
         this.age = age
         this.avatarURL = avatarURL
@@ -32,7 +34,7 @@ class User{
 
     create() {
         try{
-            pool.query('Insert into users (name, age, id, time, avatarURL) values (?, ?, ?, ?, ?)', [this.name, this.age, this.id, this.time, this.avatarURL])
+            pool.query('Insert into users (password, email, name, age, id, time, avatarURL) values (?, ?, ?, ?, ?, ?, ?)', [this.password, this.email, this.name, this.age, this.id, this.time, this.avatarURL])
         }
         catch (e){
             console.log(e)
@@ -45,6 +47,7 @@ class User{
                 if(data[0].avatarURL !== null)
                     fs.unlinkSync('/home/victor/NodeJsProjects/SmallProject/'+data[0].avatarURL)
             })
+
             pool.query('delete from users where id=?', [this.id])
 
         } catch (e) {

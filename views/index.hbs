@@ -5,6 +5,7 @@
         <tr align="center">
             <th></th>
             <th></th>
+            <th>Email<a href="/sort/up/email"><button>&uArr;</button></a><a href="/sort/down/email"><button>&dArr;</button></a></th>
             <th>Name<a href="/sort/up/name"><button>&uArr;</button></a><a href="/sort/down/name"><button>&dArr;</button></a></th>
             <th>Age<a href="/sort/up/age"><button>&uArr;</button></a><a href="/sort/down/age"><button>&dArr;</button></a></th>
             <th>Id<a href="/sort/up/id"><button>&uArr;</button></a><a href="/sort/down/id"><button>&dArr;</button></a></th>
@@ -18,6 +19,7 @@
                     <td><img src="/images/no_avatar.png" width="60"></td>
                 {{/if}}
                 <td><a href="/user/{{this.id}}"><button>Детальнее</button></a></td>
+                <td width="150">{{this.email}}</td>
                 <td width="150">{{this.name}}</td>
                 <td width="100">{{this.age}}</td>
                 <td width='300'>{{this.id}}</td>

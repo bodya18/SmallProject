@@ -6,7 +6,9 @@ exports.GetUser = (req,res) => {
         if (err) return console.log(err)
         res.render('user.hbs', {
             users: data[0], 
-            title: 'Профиль'
+            title: 'Профиль',
+            thisUserId: id
         })
     })
 }
+ 

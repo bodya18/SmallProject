@@ -1,17 +1,24 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const session = require('express-session')
+var SessionStore = require('express-mysql-session');
+const flash = require('connect-flash')
 const indexRouter = require('./routes/indexRouter')
-const createRouter = require('./routes/createRouter')
 const deleteRouter = require('./routes/deleteRouter')
 const editRouter = require('./routes/editRouter')
 const sortRouter = require('./routes/sortRouter')
 const userRouter = require('./routes/profileRouter')
+const loginRouter = require('./routes/loginRouter')
+const registerRouter = require('./routes/registerRouter')
+const logoutRouter = require('./routes/logoutRouter')
 const errorHandler = require('./middleware/error')
+const varMiddleware = require('./middleware/variables')
 const app = express()
 
 const hbs = exphbs.create({
     defaultLayout: 'main',
-    extname: 'hbs'
+    extname: 'hbs',
+    helpers: require('./utils/hbs-helper')
 })
 
 app.engine('hbs', hbs.engine)
@@ -20,13 +27,31 @@ app.set('views', 'views')
 
 app.use(express.static(__dirname))
 
+var options = {
+    host: 'localhost',
+    user: 'root',
+    password: 'ZAQwsxz1.',
+    database: 'usersdb'
+}
+
+app.use(session({
+    secret: 'some secret value',
+    resave: false,
+    saveUninitialized: false,
+    store: new SessionStore(options)
+}))
+
+app.use(flash())
+app.use(varMiddleware)
 
 app.use('/', indexRouter)
 app.use('/sort', sortRouter)
-app.use('/create', createRouter)
 app.use('/delete', deleteRouter)
 app.use('/edit', editRouter)
 app.use('/user', userRouter)
+app.use('/login', loginRouter)
+app.use('/register', registerRouter)
+app.use('/logout', logoutRouter)
 
 
 app.use(errorHandler)

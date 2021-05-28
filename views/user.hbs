@@ -11,10 +11,14 @@
     <h2>Его возраст <i><font color='red'>{{users.age}}</font></i></h2>
     <br><br>
 
+    <h2>Его email <i><font color='red'>{{users.email}}</font></i></h2>
+    <br><br>
+    {{#ifeq thisUserId userId}}
     <a href="/edit/{{users.id}}">
         <button><h3>Редактировать пользователя</h3></button>
     </a><br><br>
     <form action="/delete/{{users.id}}" method="POST">
         <input type="submit" value="Удалить пользователя">
     </form>
+    {{/ifeq}}
 </div>
