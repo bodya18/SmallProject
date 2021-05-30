@@ -4,10 +4,15 @@ const pool = require('../middleware/pool')
 const bcrypt = require('bcryptjs')
 
 exports.GetRegister = (req,res) => {
-    res.render('register.hbs', {
-        title: 'Регистрация',
-        error: req.flash('error')
-    })
+    if(req.session.isAuthenticated)
+        return res.redirect('/')
+    else{
+        res.render('register.hbs', {
+            title: 'Регистрация',
+            error: req.flash('error')
+        })
+    }
+    
 }
 
 exports.registerLogic = (req,res) => {

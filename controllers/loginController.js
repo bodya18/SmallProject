@@ -3,10 +3,15 @@ const pool = require('../middleware/pool')
 const bcrypt = require('bcryptjs')
 
 exports.GetLogin = (req,res) => {
-    res.render('login.hbs', {
-        title: 'Вход',
-        error: req.flash('error')
-    })
+    if(req.session.isAuthenticated)
+        return res.redirect('/')
+    else{
+        res.render('login.hbs', {
+            title: 'Вход',
+            error: req.flash('error')
+        })
+    }
+    
 }
 
 exports.loginLogic = (req,res) => {

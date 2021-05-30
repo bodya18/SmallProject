@@ -24,11 +24,15 @@ exports.EditPost = function (req, res) {
 
 exports.GetEditUser = (req,res) => {
     const id = req.params.id
-    pool.query('Select * from users where id=?', [id], (err,data) =>{
-        if (err) return console.log(err)
-        res.render('edit.hbs', {
-            users: data[0], 
-            title: 'Редактирование пользователя'
+    if(req.session.userIden === id){
+        pool.query('Select * from users where id=?', [id], (err,data) =>{
+            if (err) return console.log(err)
+            res.render('edit.hbs', {
+                users: data[0], 
+                title: 'Редактирование пользователя'
+            })
         })
-    })
+    }
+    else
+        return res.redirect('/')
 }
