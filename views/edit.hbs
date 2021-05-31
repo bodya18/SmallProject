@@ -1,10 +1,14 @@
 <div align='center'>
     <h1>Редактирование пользователя</h1>
+    {{#if error}}
+        <p><font color='red'>{{error}}</font></p>
+    {{/if}}
     <form action="/edit" method="POST" enctype="multipart/form-data">
 
         <input type="hidden" name="email" value="{{users.email}}">
         <input type="hidden" name="id" value="{{users.id}}">
         <input type="hidden" name="time" value="{{users.time}}">
+        
 
         <label for="name">Имя</label><br>
         <input name="name" value="{{users.name}}" style="width: 150"><br><br>
@@ -13,8 +17,7 @@
         <input name="age" type="number" min="1" max="110" value="{{users.age}}" style="min-width: 300px"><br><br><br>
 
         <label>Аватар пользователя</label><br><br>
-        <input type="file" name="avatarURL" class="upl">
-        
+        <input type="file" name="avatarURL">
         <input type="submit" value="Отправить" />
     </form>
 </div>
