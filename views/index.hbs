@@ -2,7 +2,7 @@
     <h1>Список пользователей</h1>
 
     <table border="1">
-        <tr align="center">
+        <tr align="center">     
             <th></th>
             <th></th>
             <th>Email<a href="/sort/up/email"><button>&uArr;</button></a><a href="/sort/down/email"><button>&dArr;</button></a></th>
@@ -12,13 +12,17 @@
             <th>Время регистрации<a href="/sort/up/time"><button>&uArr;</button></a><a href="/sort/down/time"><button>&dArr;</button></a></th>
         </tr>
         {{#each users}}
-            <tr align="center">
+            <tr align="center">  
                 {{#if this.avatarURL}}
                     <td><img src="/{{this.avatarURL}}" width="60" ></td>
                 {{else}}
                     <td><img src="/images/no_avatar.png" width="60"></td>
-                {{/if}}
-                <td><a href="/user/{{this.id}}"><button>Детальнее</button></a></td>
+                {{/if}} 
+                {{#ifeq this.id @root.userId}}
+                    <td><a href="/user/{{this.id}}"><button>Редактировать</button></a></td>   
+                {{else}}
+                    <td><a href="/user/{{this.id}}"><button>Детальнее</button></a></td>
+                {{/ifeq}}
                 <td width="150">{{this.email}}</td>
                 <td width="150">{{this.name}}</td>
                 <td width="100">{{this.age}}</td>

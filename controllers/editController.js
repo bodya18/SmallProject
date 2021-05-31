@@ -1,6 +1,6 @@
 const pool = require('../middleware/pool')
 const User = require('../models/user')
-
+const file = require('../middleware/file')
 
 exports.EditPost = function (req, res) {
     if(!req.body) return res.sendStatus(400)
@@ -11,7 +11,7 @@ exports.EditPost = function (req, res) {
         req.flash('error', 'Имя должно быть длиннее 2-х символов')
         return res.redirect(`/edit/${id}`)
     }
-    if(!filedata){
+    if((!filedata) && (file.inFile === true)){
         req.flash('error', 'Аватар пользователя должен быть фотографией')
         return res.redirect(`/edit/${id}`)
 
@@ -27,7 +27,7 @@ exports.EditPost = function (req, res) {
             res.redirect(`/user/${id}`)
         }
         setTimeout(redirect, 200)
-
+        file.inFile = false
 }
 
 exports.GetEditUser = (req,res) => {
