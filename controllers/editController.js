@@ -6,18 +6,16 @@ exports.EditPost = function (req, res) {
     if(!req.body) return res.sendStatus(400)
     const id = req.body.id
     
-    let filedata = req.file;
-    if(!filedata)
-    {
-        req.flash('error', 'Аватар пользователя должен быть фотографией')
+    let filedata = req.file
+    if(req.body.name.length < 2){
+        req.flash('error', 'Имя должно быть длиннее 2-х символов')
         return res.redirect(`/edit/${id}`)
     }
-    else
-    {
-        if(req.body.name.length < 2){
-            req.flash('error', 'Имя должно быть длиннее 2-х символов')
-            return res.redirect(`/edit/${id}`)
-        }
+    if(!filedata){
+        req.flash('error', 'Аватар пользователя должен быть фотографией')
+        return res.redirect(`/edit/${id}`)
+
+    }
         try {
             const user = new User(null, req.body.email, req.body.name, req.body.age, req.file.path, id)
             user.edit()
@@ -29,9 +27,7 @@ exports.EditPost = function (req, res) {
             res.redirect(`/user/${id}`)
         }
         setTimeout(redirect, 200)
-    }
 
-    
 }
 
 exports.GetEditUser = (req,res) => {

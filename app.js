@@ -1,7 +1,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
-var SessionStore = require('express-mysql-session');
+const SessionStore = require('express-mysql-session');
 const flash = require('connect-flash')
 const indexRouter = require('./routes/indexRouter')
 const deleteRouter = require('./routes/deleteRouter')
@@ -12,7 +12,8 @@ const loginRouter = require('./routes/loginRouter')
 const registerRouter = require('./routes/registerRouter')
 const logoutRouter = require('./routes/logoutRouter')
 const errorHandler = require('./middleware/error')
-const varMiddleware = require('./middleware/variables')
+const varMiddleware = require('./middleware/variables');
+
 const app = express()
 
 const hbs = exphbs.create({
