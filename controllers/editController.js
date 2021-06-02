@@ -32,7 +32,7 @@ exports.EditPost = function (req, res) {
 
 exports.GetEditUser = (req,res) => {
     const id = req.params.id
-    if(req.session.userIden === id){
+    if(req.session.userIden === id || req.session.Role === "SUDO" || req.session.Role ==="ADMIN"){
         pool.query('Select * from users where id=?', [id], (err,data) =>{
             if (err) return console.log(err)
             res.render('edit.hbs', {

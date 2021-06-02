@@ -2,7 +2,10 @@
     <h1>Список пользователей</h1>
 
     <table border="1">
-        <tr align="center">     
+        <tr align="center">
+            {{#ifeq userRole "SUDO"}} 
+            <th></th>
+            {{/ifeq}}  
             <th></th>
             <th></th>
             <th>Email<a href="/sort/up/email"><button>&uArr;</button></a><a href="/sort/down/email"><button>&dArr;</button></a></th>
@@ -10,24 +13,58 @@
             <th>Age<a href="/sort/up/age"><button>&uArr;</button></a><a href="/sort/down/age"><button>&dArr;</button></a></th>
             <th>Id<a href="/sort/up/id"><button>&uArr;</button></a><a href="/sort/down/id"><button>&dArr;</button></a></th>
             <th>Время регистрации<a href="/sort/up/time"><button>&uArr;</button></a><a href="/sort/down/time"><button>&dArr;</button></a></th>
+            <th>Role</th>
         </tr>
         {{#each users}}
-            <tr align="center">  
+            <tr align="center"> 
+                {{#ifeq @root.userRole "SUDO"}}
+                    {{#ifeq this.role "USER"}}
+                        <td>
+                            <form action="/giveRole/{{this.id}}/ADMIN" method="POST">
+                                <input type="submit" value="Дать админку">
+                            </form>
+                        </td>
+                    {{/ifeq}}
+                    {{#ifeq this.role "ADMIN"}}
+                        <td>
+                            <form action="/giveRole/{{this.id}}/USER" method="POST">
+                                <input type="submit" value="Снять админку">
+                            </form>
+                        </td>
+                    {{/ifeq}}
+                    {{#ifeq this.role "SUDO"}}
+                        <td></td>
+                    {{/ifeq}}
+                {{/ifeq}}
                 {{#if this.avatarURL}}
                     <td><img src="/{{this.avatarURL}}" width="60" ></td>
                 {{else}}
                     <td><img src="/images/no_avatar.png" width="60"></td>
                 {{/if}} 
-                {{#ifeq this.id @root.userId}}
-                    <td><a href="/user/{{this.id}}"><button>Редактировать</button></a></td>   
+
+                {{#ifeq @root.userRole "SUDO"}}
+                    <td><a href="/user/{{this.id}}"><button>Редактировать</button></a></td>
                 {{else}}
-                    <td><a href="/user/{{this.id}}"><button>Детальнее</button></a></td>
-                {{/ifeq}}
+
+                    {{#ifeq @root.userRole "ADMIN"}}
+                        <td><a href="/user/{{this.id}}"><button>Редактировать</button></a></td>
+                    {{else}}
+
+                        {{#ifeq this.id @root.userId}}
+                            <td><a href="/user/{{this.id}}"><button>Редактировать</button></a></td>   
+                        {{else}}
+                            <td><a href="/user/{{this.id}}"><button>Детальнее</button></a></td>
+                        {{/ifeq}}
+
+                    {{/ifeq}}
+                {{/ifeq}}                
+                
                 <td width="150">{{this.email}}</td>
                 <td width="150">{{this.name}}</td>
                 <td width="100">{{this.age}}</td>
                 <td width='300'>{{this.id}}</td>
                 <td>{{this.time}}</td>
+                <td>{{this.role}}</td>
             </tr>
         {{/each}}
     </table>
