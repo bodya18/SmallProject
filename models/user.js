@@ -18,7 +18,7 @@ class User{
                 pool.query('Select avatarURL from users where id=?', [this.id], (err, data) =>{
                     if(err) return console.log(err)
                     if(data[0].avatarURL !== null)
-                        fs.unlinkSync('/home/victor/NodeJsProjects/SmallProject/'+data[0].avatarURL)
+                        fs.unlinkSync('/home/bogdan/NodeJsProjects/SmallProject/'+data[0].avatarURL)
                 })
                 pool.query('update users set name=?, age=?, time=?, avatarURL=? where id=?', [this.name, this.age, this.time, this.avatarURL, this.id])
             }
@@ -45,7 +45,7 @@ class User{
             pool.query('Select avatarURL from users where id=?', [this.id], (err, data) =>{
                 if(err) return console.log(err)
                 if(data[0].avatarURL !== null)
-                    fs.unlinkSync('/home/victor/NodeJsProjects/SmallProject/'+data[0].avatarURL)
+                    fs.unlinkSync('/home/bogdan/NodeJsProjects/SmallProject/'+data[0].avatarURL)
             })
 
             pool.query('delete from users where id=?', [this.id])
