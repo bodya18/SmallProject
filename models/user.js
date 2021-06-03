@@ -54,14 +54,6 @@ class User{
             console.log(e)
         }
     }
-
-    giveRole(role){
-        try {
-            pool.query('update users set role=? where id=?', [role, this.id])
-        } catch (e) {
-            console.log(e)
-        }
-}
 }
 
 module.exports = User

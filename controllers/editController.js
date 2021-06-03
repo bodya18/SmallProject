@@ -23,16 +23,13 @@ exports.EditPost = function (req, res) {
             const user = new User(null, req.body.email, req.body.name, req.body.age, null, id)
             user.edit()
         }
-        function redirect() {
             res.redirect(`/user/${id}`)
-        }
-        setTimeout(redirect, 200)
         file.inFile = false
 }
 
 exports.GetEditUser = (req,res) => {
     const id = req.params.id
-    if(req.session.userIden === id || req.session.Role === "SUDO" || req.session.Role ==="ADMIN"){
+    if(req.session.userIden === id){
         pool.query('Select * from users where id=?', [id], (err,data) =>{
             if (err) return console.log(err)
             res.render('edit.hbs', {

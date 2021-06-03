@@ -11,7 +11,7 @@ const userRouter = require('./routes/profileRouter')
 const loginRouter = require('./routes/loginRouter')
 const registerRouter = require('./routes/registerRouter')
 const logoutRouter = require('./routes/logoutRouter')
-const giveRoleRouter = require('./routes/giveRoleRouter')
+const ruleRouter = require('./routes/ruleRouter')
 const errorHandler = require('./middleware/error')
 const varMiddleware = require('./middleware/variables')
 
@@ -53,7 +53,7 @@ app.use('/user', userRouter)
 app.use('/login', loginRouter)
 app.use('/register', registerRouter)
 app.use('/logout', logoutRouter)
-app.use('/giveRole', giveRoleRouter)
+app.use('/rules', ruleRouter)
 
 app.use(errorHandler)
 

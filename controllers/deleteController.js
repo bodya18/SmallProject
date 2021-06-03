@@ -7,11 +7,6 @@ exports.deleteUser = (req,res)=>{
         user.delete()
         return res.redirect('/logout')
     }
-    if(req.session.Role === "SUDO"){
-        const user = new User(null, null ,null, null, null, id)
-        user.delete()
-        return res.redirect('/')
-    }
     else
         return res.redirect('/')
     

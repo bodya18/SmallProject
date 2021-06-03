@@ -1,0 +1,67 @@
+<div align='center'>
+    <h1>Роли</h1>
+    
+    <table width="99%">
+        <tr>   
+            <th width="40%" align="center">
+                <h3>Выдать</h3>Пользователю
+                <form action="/rules/give" method="POST">
+                    
+                    <select name="selectNameId">
+                        {{#each users}}
+                            <option value="{{this.id}}">{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                    роль
+
+                    <select name="selectRuleId">
+                        {{#each rules}}
+                            <option value="{{this.id}}">{{this.rule}}</option>
+                        {{/each}}
+                    </select>
+                    <input type="submit" value="Добавить">
+                </form>
+
+            </th>
+            
+            
+            <th width="30%" align="center">
+                {{#if error}}
+                    <p><font color='red'>{{error}}</font></p>
+                {{/if}}
+                <form action="/rules/new" method="POST">
+                    <label><b>Новая роль</b></label><br>
+                    <input name="rule" type="text" width="150"><br><br>
+                    <input type="submit" value="Добавить">
+                </form>
+
+            </th>
+            
+            
+            <th align="center">
+                <table border="1">
+                    <tr align="center">
+                        <td></td>
+                        <td width='100'><h3>Роль</h3></td>
+                        <td width='50'><h3>Id</h3></td>
+                    </tr>
+                    {{#each rules}}
+                        <tr align="center">
+                            <td>
+                                <form action="/rules/delete/{{this.id}}" method="POST">
+                                    <button type="submit">Удалить роль</button>
+                                </form>
+                            </td>
+                            <td><h3>{{this.rule}}</h3></td>
+                            <td><h3>{{this.id}}</h3></td>
+                        </tr>
+                    {{/each}}
+                </table>
+            </th>
+        
+        
+        </tr> 
+    
+    </table>
+
+</div>
