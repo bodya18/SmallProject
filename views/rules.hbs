@@ -63,5 +63,18 @@
         </tr> 
     
     </table>
-
+<table border="1">
+    <tr>
+        <td width='50'><h3>Id</h3></td>
+        <td width='100'><h3>Роль</h3></td>
+        <td width='100'><h3>Name</h3></td>
+    </tr>
+    {{#each rules_users}}
+        <tr align="center">
+            <td><h3>{{this.id}}</h3></td>
+            <td><h3>{{this.ruleId}}</h3></td>
+            <td><h3>{{this.userId}}</h3></td>
+        </tr>
+    {{/each}}
+</table>
 </div>

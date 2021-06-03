@@ -15,18 +15,22 @@ exports.CreateRule = function (req, res) {
 }
 
 exports.GetForm = (req,res) => {
-    pool.query('Select * from Rules', (err,data) =>{
+    pool.query('Select * from Rule_User', (err,data) =>{
         if (err) return console.log(err)
-        pool.query('Select * from users', (err, user) =>{
+        pool.query('Select * from Rules', (err,rule) =>{
             if (err) return console.log(err)
-            res.render('rules.hbs', {
-                rules: data, 
-                users: user,
-                title: 'Роли',
-                error: req.flash('error')
+            pool.query('Select * from users', (err, user) =>{
+                if (err) return console.log(err)
+                res.render('rules.hbs', {
+                    rules: rule, 
+                    users: user,
+                    rules_users: data,
+                    title: 'Роли',
+                    error: req.flash('error')
+                })
             })
+            
         })
-        
     })
 }
 
@@ -41,7 +45,7 @@ exports.DeleteRule = (req,res) => {
 exports.GiveRule = (req, res) =>{
     const user = req.body.selectNameId
     const rule = req.body.selectRuleId
-    console.log(user)
-    console.log(rule)
+    const Role = new Rule()
+    Role.AddRuleToUser(user,rule)
     return res.redirect('/rules') 
 }

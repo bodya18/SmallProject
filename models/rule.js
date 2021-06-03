@@ -22,6 +22,16 @@ class Rule{
         }
     }
 
+    AddRuleToUser(userId, ruleId){
+        try {
+            console.log(ruleId)
+            console.log(userId)
+            pool.query('Insert into Rule_User (ruleId, userId) values (?, ?)', [ruleId, userId])
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
 }
 
 module.exports = Rule
