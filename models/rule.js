@@ -15,7 +15,6 @@ class Rule{
     }
     delete(id){
         try {
-            console.log(id)
             pool.query('delete from Rules where id=?', [id])
         } catch (e) {
             console.log(e)
@@ -24,9 +23,40 @@ class Rule{
 
     AddRuleToUser(userId, ruleId){
         try {
-            console.log(ruleId)
-            console.log(userId)
             pool.query('Insert into Rule_User (ruleId, userId) values (?, ?)', [ruleId, userId])
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    deleteFromUser(id){
+        try {
+            pool.query('delete from Rule_User where id=?', [id])
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    GivePermission(permissionId, ruleId){
+        try {
+            pool.query('Insert into Rule_Permission (ruleId, permissionId) values (?, ?)', [ruleId, permissionId])
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    CreatePermission(permission) {
+        try{
+            pool.query('Insert into Permissions (permission) values (?)', [permission])
+        }
+        catch (e){
+            console.log(e)
+        }
+    }
+
+    DeletePermissionFromRule(id){
+        try {
+            pool.query('delete from Rule_Permission where id=?', [id])
         } catch (e) {
             console.log(e)
         }
