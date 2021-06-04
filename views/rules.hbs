@@ -44,7 +44,6 @@
                     <tr align="center">
                         <td></td>
                         <td width='100'><h3>Роль</h3></td>
-                        <td width='50'><h3>Id</h3></td>
                     </tr>
                     {{#each rules}}
                         <tr align="center">
@@ -54,7 +53,6 @@
                                 </form>
                             </td>
                             <td><h3>{{this.rule}}</h3></td>
-                            <td><h3>{{this.id}}</h3></td>
                         </tr>
                     {{/each}}
                 </table>
@@ -100,7 +98,6 @@
                     <caption>Список Разрешений</caption>
                     <tr align="center">
                         <td width='50'></td>
-                        <td width='50'><h3>Id</h3></td>
                         <td width='100'><h3>Разрешение</h3></td>
                     </tr>
                     {{#each permissions}}        
@@ -110,7 +107,6 @@
                                     <button type="submit">Удалить разрешение</button>
                                 </form>
                             </td>
-                            <td><h3>{{this.id}}</h3></td>
                             <td><h3>{{this.permission}}</h3></td>
                         </tr>
                     {{/each}}
@@ -123,7 +119,6 @@
                     <caption>Связь роли и разрешения</caption>
                     <tr align="center">
                         <td width='50'></td>
-                        <td width='50'><h3>Id</h3></td>
                         <td width='100'><h3>Роль</h3></td>
                         <td width='100'><h3>Разрешение</h3></td>
                     </tr>
@@ -131,10 +126,9 @@
                         <tr align="center">
                             <td>
                                 <form action="/rules/deleteFromRule/{{this.id}}" method="POST">
-                                    <button type="submit">Удалить разрешение</button>
+                                    <button type="submit">Удалить связь</button>
                                 </form>
                             </td>
-                            <td><h3>{{this.id}}</h3></td>
                             <td><h3>{{this.rule}}</h3></td>
                             <td><h3>{{this.permission}}</h3></td>
                         </tr>
@@ -148,7 +142,6 @@
                     <caption>Связь Роли и Имени</caption>
                     <tr align="center">
                         <td width='50'></td>
-                        <td width='50'><h3>Id</h3></td>
                         <td width='100'><h3>Роль</h3></td>
                         <td width='100'><h3>Имя</h3></td>
                     </tr>
@@ -156,10 +149,9 @@
                         <tr align="center">
                             <td>
                                 <form action="/rules/deleteFromUser/{{this.id}}" method="POST">
-                                    <button type="submit">Удалить роль</button>
+                                    <button type="submit">Удалить связь</button>
                                 </form>
                             </td>
-                            <td><h3>{{this.id}}</h3></td>
                             <td><h3>{{this.rule}}</h3></td>
                             <td><h3>{{this.name}}</h3></td>
                         </tr>

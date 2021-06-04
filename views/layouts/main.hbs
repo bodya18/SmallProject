@@ -11,14 +11,19 @@
         <div align='right'>
 
             {{#if isAuth}}
-            
-            <a href="/rules"><button><h2>Роли</h2></button></a>
-            <a href="/"><button><h2>Список пользователей</h2></button></a>
-            <a href="/logout"><button><h2>Выйти</h2></button></a>
+
+                {{#each permissionsList}}
+                    {{#ifeq this 'GIVE'}}
+                        <a href="/rules"><button><h2>Роли</h2></button></a>
+                    {{/ifeq}}
+                {{/each}}
+
+                <a href="/"><button><h2>Список пользователей</h2></button></a>
+                <a href="/logout"><button><h2>Выйти</h2></button></a>
 
             {{else}}            
-            <a href="/register"><button><h2>Регистрация</h2></button></a>
-            <a href="/login"><button><h2>Войти</h2></button></a>
+                <a href="/register"><button><h2>Регистрация</h2></button></a>
+                <a href="/login"><button><h2>Войти</h2></button></a>
             {{/if}}
 
         </div>

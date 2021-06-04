@@ -41,6 +41,16 @@ exports.loginLogic = (req,res) => {
                 req.session.user = user
                 req.session.isAuthenticated = true
                 req.session.userIden = id
+                pool.query(`Select DISTINCT Permissions.permission
+                from Rules, Permissions, users, Rule_Permission, Rule_User 
+                where Rule_Permission.ruleId = Rules.id AND Rule_Permission.permissionId = Permissions.id AND Rule_User.userId = users.id AND Rule_User.ruleId = Rules.id AND users.id = ?`,[id], (err, data) =>{
+                    if (err) return console.log(err)
+                    req.session.Perm = []
+                    for(let i = 0;i<data.length;i++){
+                        req.session.Perm[i] = data[i].permission
+                    }
+                    
+                })
                 req.session.save(err =>{
                     if(err){
                         throw err
