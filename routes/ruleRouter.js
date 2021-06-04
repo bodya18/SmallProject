@@ -12,5 +12,6 @@ router.post('/deleteRule/:id', urlencodedParser, auth, ruleController.DeleteRule
 router.post('/deleteFromUser/:id', urlencodedParser, auth, ruleController.DeleteRuleFromUser)
 router.post('/deleteFromRule/:id', urlencodedParser, auth, ruleController.DeletePermissionFromUser)
 router.post('/givePermission', urlencodedParser, auth, ruleController.GivePermission)
+router.post('/deletePermission/:id', urlencodedParser, auth, ruleController.DeletePermission)
 
 module.exports = router

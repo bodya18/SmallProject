@@ -62,6 +62,13 @@ class Rule{
         }
     }
 
+    DeletePermission(id){
+        try {
+            pool.query('delete from Permissions where id=?', [id])
+        } catch (e) {
+            console.log(e)
+        }
+    }
 }
 
 module.exports = Rule

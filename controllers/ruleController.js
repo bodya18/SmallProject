@@ -57,7 +57,7 @@ exports.GiveRule = (req, res) =>{
     const user = req.body.selectNameId
     const rule = req.body.selectRuleId
     const Role = new Rule()
-    Role.AddRuleToUser(user,rule)
+    Role.AddRuleToUser(user, rule)
     return res.redirect('/rules') 
 }
 
@@ -95,4 +95,11 @@ exports.DeletePermissionFromUser = (req, res) =>{
     const Role = new Rule()
     Role.DeletePermissionFromRule(id)
     return res.redirect('/rules') 
+}
+
+exports.DeletePermission = (req,res) => {
+    const id = req.params.id
+    const rule = new Rule()   
+    rule.DeletePermission(id)
+    return res.redirect('/rules')
 }

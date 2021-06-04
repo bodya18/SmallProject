@@ -1,7 +1,7 @@
 <div align='center'>
     <h1>Роли</h1>
     
-    <table border="1" width="99%">
+    <table width="99%">
         <tr>   
             <th width="30%" align="center">
                 <h3>Выдать</h3>
@@ -40,6 +40,7 @@
             
             <th width="30%" align="center">
                 <table border="1">
+                    <caption>Список Ролей</caption>
                     <tr align="center">
                         <td></td>
                         <td width='100'><h3>Роль</h3></td>
@@ -96,6 +97,30 @@
             
             <th align="center">
                 <table border="1">
+                    <caption>Список Разрешений</caption>
+                    <tr align="center">
+                        <td width='50'></td>
+                        <td width='50'><h3>Id</h3></td>
+                        <td width='100'><h3>Разрешение</h3></td>
+                    </tr>
+                    {{#each permissions}}        
+                        <tr align="center">
+                            <td>
+                                <form action="/rules/deletePermission/{{this.id}}" method="POST">
+                                    <button type="submit">Удалить разрешение</button>
+                                </form>
+                            </td>
+                            <td><h3>{{this.id}}</h3></td>
+                            <td><h3>{{this.permission}}</h3></td>
+                        </tr>
+                    {{/each}}
+                </table>
+            </th>
+        </tr>
+        <tr>
+            <th align="center">
+                <table border="1">
+                    <caption>Связь роли и разрешения</caption>
                     <tr align="center">
                         <td width='50'></td>
                         <td width='50'><h3>Id</h3></td>
@@ -116,20 +141,16 @@
                     {{/each}}
                 </table>
             </th>
-        </tr>
-        <tr>
-            <th align="center">
-
-            </th>
             
             
             <th align="center">
                 <table border="1">
+                    <caption>Связь Роли и Имени</caption>
                     <tr align="center">
                         <td width='50'></td>
                         <td width='50'><h3>Id</h3></td>
                         <td width='100'><h3>Роль</h3></td>
-                        <td width='100'><h3>Name</h3></td>
+                        <td width='100'><h3>Имя</h3></td>
                     </tr>
                     {{#each rules_users}}        
                         <tr align="center">
@@ -149,10 +170,11 @@
             
             <th align="center">
                 <table border="1">
+                    <caption>Разрешение Роль Имя</caption>
                     <tr align="center">
                         <td width='50'><h3>Разрешение</h3></td>
                         <td width='100'><h3>Роль</h3></td>
-                        <td width='100'><h3>Name</h3></td>
+                        <td width='100'><h3>Имя</h3></td>
                     </tr>
                     {{#each data}}        
                         <tr align="center">
