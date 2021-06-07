@@ -4,7 +4,9 @@ const urlencodedParser = require('../middleware/urlencodedParser')
 const auth = require('../middleware/auth')
 const ruleController = require('../controllers/ruleController')
 
-router.get('/', auth, ruleController.GetForm)
+router.get('/role', auth, ruleController.GetRoles)
+router.get('/permission', auth, ruleController.GetPermissions)
+router.get('/', auth, ruleController.GetAllConnection)
 
 router.post('/newRole', urlencodedParser, auth, ruleController.CreateRule)
 router.post('/newPermission', urlencodedParser, auth, ruleController.CreatePermission)

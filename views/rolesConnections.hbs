@@ -1,0 +1,67 @@
+<a href="/rules/role"><button><h2>Создание роли</h2></button></a>
+<a href="/rules/permission"><button><h2>Создание разрешения</h2></button></a>
+<a href="/rules"><button><h2>Просмотр связей</h2></button></a>
+
+<div align='center'>
+    <table width='99%'>
+        <td align="center">
+            <table border="1">
+                <caption>Связь роли и разрешения</caption>
+                <tr align="center">
+                    <td width='50'></td>
+                    <td width='100'><h3>Роль</h3></td>
+                    <td width='100'><h3>Разрешение</h3></td>
+                </tr>
+                {{#each rules_permissions}}        
+                    <tr align="center">
+                        <td>
+                            <form action="/rules/deleteFromRule/{{this.id}}" method="POST">
+                                <button type="submit">Удалить связь</button>
+                            </form>
+                        </td>
+                        <td><h3>{{this.rule}}</h3></td>
+                        <td><h3>{{this.permission}}</h3></td>
+                    </tr>
+                {{/each}}
+            </table>
+        </td>
+        <td align="center">
+            <table border="1">
+                <caption>Связь Роли и Имени</caption>
+                <tr align="center">
+                    <td width='50'></td>
+                    <td width='100'><h3>Роль</h3></td>
+                    <td width='100'><h3>Имя</h3></td>
+                </tr>
+                {{#each rules_users}}        
+                    <tr align="center">
+                        <td>
+                            <form action="/rules/deleteFromUser/{{this.id}}" method="POST">
+                                <button type="submit">Удалить связь</button>
+                            </form>
+                        </td>
+                        <td><h3>{{this.rule}}</h3></td>
+                        <td><h3>{{this.name}}</h3></td>
+                    </tr>
+                {{/each}}
+            </table>
+        </td>
+        <td align="center">
+            <table border="1">
+                <caption>Разрешение Роль Имя</caption>
+                <tr align="center">
+                    <td width='50'><h3>Разрешение</h3></td>
+                    <td width='100'><h3>Роль</h3></td>
+                    <td width='100'><h3>Имя</h3></td>
+                </tr>
+                {{#each data}}        
+                    <tr align="center">
+                        <td><h3>{{this.permission}}</h3></td>
+                        <td><h3>{{this.rule}}</h3></td>
+                        <td><h3>{{this.name}}</h3></td>
+                    </tr>
+                {{/each}}
+            </table>  
+        </td>
+    </table>
+</div>

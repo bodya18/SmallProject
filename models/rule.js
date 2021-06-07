@@ -15,7 +15,10 @@ class Rule{
     }
     delete(id){
         try {
-            pool.query('delete from Rules where id=?', [id])
+            pool.query('select * from Rule_User where ruleId=?', [id], (err,data) =>{
+                if (!data[0])
+                    pool.query('delete from Rules where id=?', [id])
+            })
         } catch (e) {
             console.log(e)
         }
@@ -64,7 +67,11 @@ class Rule{
 
     DeletePermission(id){
         try {
-            pool.query('delete from Permissions where id=?', [id])
+            pool.query('select * from Rule_Permission where permissionId=?', [id], (err,data) =>{
+                if (!data[0])
+                    pool.query('delete from Permissions where id=?', [id])
+            })
+            
         } catch (e) {
             console.log(e)
         }

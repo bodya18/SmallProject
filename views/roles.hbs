@@ -1,0 +1,57 @@
+<a href="/rules/role"><button><h2>Создание роли</h2></button></a>
+<a href="/rules/permission"><button><h2>Создание разрешения</h2></button></a>
+<a href="/rules"><button><h2>Просмотр связей</h2></button></a>
+
+<table width="99%">
+    <td align="center">
+        {{#if errorRole}}
+            <p><font color='red'>{{errorRole}}</font></p>
+        {{/if}}
+        <form action="/rules/newRole" method="POST">
+            <label><b>Новая роль</b></label><br>
+            <input name="rule" type="text" width="150"><br><br>
+            <input type="submit" value="Добавить">
+        </form>
+    </td>
+    <td align="center">
+        <h3>Выдать</h3>
+        <form action="/rules/give" method="POST">
+            Пользователю
+            <select name="selectNameId">
+                {{#each users}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+            роль
+
+            <select name="selectRuleId">
+                {{#each rules}}
+                    <option value="{{this.id}}">{{this.rule}}</option>
+                {{/each}}
+            </select>
+            <input type="submit" value="Добавить">
+        </form>
+    </td>
+    <td align="center">
+        {{#if errorRoleDel}}
+            <p><font color='red'>{{errorRoleDel}}</font></p>
+        {{/if}}
+        <table border="1">
+            <caption>Список Ролей</caption>
+            <tr align="center">
+                <td></td>
+                <td width='100'><h3>Роль</h3></td>
+            </tr>
+            {{#each rules}}
+                <tr align="center">
+                    <td>
+                        <form action="/rules/deleteRule/{{this.id}}" method="POST">
+                            <button type="submit">Удалить роль</button>
+                        </form>
+                    </td>
+                    <td><h3>{{this.rule}}</h3></td>
+                </tr>
+            {{/each}}
+        </table>
+    </td>
+</table>

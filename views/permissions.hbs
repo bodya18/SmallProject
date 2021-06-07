@@ -1,0 +1,53 @@
+<a href="/rules/role"><button><h2>Создание роли</h2></button></a>
+<a href="/rules/permission"><button><h2>Создание разрешения</h2></button></a>
+<a href="/rules"><button><h2>Просмотр связей</h2></button></a>
+
+<table width="99%">
+    <td align="center">
+        {{#if errorPermission}}
+            <p><font color='red'>{{errorPermission}}</font></p>
+        {{/if}}
+        <form action="/rules/newPermission" method="POST">
+            <label><b>Новое разрешение</b></label><br>
+            <input name="NewPermission" type="text" width="150"><br><br>
+            <input type="submit" value="Добавить">
+        </form>
+    </td>
+    <td align="center">
+        <h3>Выдать</h3>
+        <form action="/rules/givePermission" method="POST">
+            Рарешение
+            <select name="selectPermissionId">
+                {{#each permissions}}
+                    <option value="{{this.id}}">{{this.permission}}</option>
+                {{/each}}
+            </select>
+            роли
+            <select name="PermSelectRuleId">
+                {{#each rules}}
+                    <option value="{{this.id}}">{{this.rule}}</option>
+                {{/each}}
+            </select>
+            <input type="submit" value="Добавить">
+        </form>
+    </td>
+    <td align="center">
+        <table border="1">
+            <caption>Список Разрешений</caption>
+            <tr align="center">
+                <td width='50'></td>
+                <td width='100'><h3>Разрешение</h3></td>
+            </tr>
+            {{#each permissions}}        
+                <tr align="center">
+                    <td>
+                        <form action="/rules/deletePermission/{{this.id}}" method="POST">
+                            <button type="submit">Удалить разрешение</button>
+                        </form>
+                    </td>
+                    <td><h3>{{this.permission}}</h3></td>
+                </tr>
+            {{/each}}
+        </table>
+    </td>
+</table>
