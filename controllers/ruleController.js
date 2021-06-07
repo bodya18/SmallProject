@@ -18,8 +18,7 @@ exports.GetRoles = (req,res) => {
                     rules: rule, 
                     users: user,
                     title: 'Создание роли',
-                    errorRole: req.flash('errorRole'),
-                    errorRoleDel: req.flash('errorRoleDel')
+                    error: req.flash('error')
                 })
             })
         })
@@ -46,7 +45,7 @@ exports.GetPermissions = (req,res) => {
                     rules: rule, 
                     permissions: permission, 
                     title: 'Создание разрешения',
-                    errorPermission: req.flash('errorPermission')
+                    error: req.flash('error')
                 })
             })
         })
@@ -91,7 +90,7 @@ exports.CreateRule = function (req, res) {
     Rol = req.body.rule
     if(Rol.length<3)
     {
-        req.flash('errorRole', 'Роль должна быть больше 2 символов')
+        req.flash('error', 'Роль должна быть больше 2 символов')
         return res.redirect(`/rules/role`)
     }
     const rule = new Rule(Rol)
@@ -103,11 +102,6 @@ exports.DeleteRule = (req,res) => {
     const id = req.params.id
     const rule = new Rule()   
     rule.delete(id)
-    pool.query('select * from Rules where id=?', [id], (err, data) =>{
-        if(data){
-            req.flash('errorRoleDel', 'Удалите все связи ролей с польователем и разрешением')
-        }
-    })
     return res.redirect('/rules/role')
 }
 
@@ -139,9 +133,8 @@ exports.GivePermission = (req, res) =>{
 exports.CreatePermission = function (req, res) {
     if(!req.body) return res.sendStatus(400)
     Permission = req.body.NewPermission
-    if(Permission.length<3)
-    {
-        req.flash('errorPermission', 'Разрешение должно быть больше 2 символов')
+    if(Permission.length<3){
+        req.flash('error', 'Разрешение должно быть больше 2 символов')
         return res.redirect(`/rules/permission`)
     }
     const perm = new Rule()
@@ -160,10 +153,5 @@ exports.DeletePermission = (req,res) => {
     const id = req.params.id
     const rule = new Rule()   
     rule.DeletePermission(id)
-    pool.query('select * from Permissions where id=?', [id], (err, data) =>{
-        if(data){
-            req.flash('errorPermission', 'Удалите все связи разрешения с ролями')
-        }
-    })
-    return res.redirect('/rules/permission')
+    return res.redirect(`/rules/permission`)
 }

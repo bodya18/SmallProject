@@ -4,8 +4,8 @@
 
 <table width="99%">
     <td align="center">
-        {{#if errorRole}}
-            <p><font color='red'>{{errorRole}}</font></p>
+        {{#if error}}
+            <p><font color='red'>{{error}}</font></p>
         {{/if}}
         <form action="/rules/newRole" method="POST">
             <label><b>Новая роль</b></label><br>
@@ -33,9 +33,6 @@
         </form>
     </td>
     <td align="center">
-        {{#if errorRoleDel}}
-            <p><font color='red'>{{errorRoleDel}}</font></p>
-        {{/if}}
         <table border="1">
             <caption>Список Ролей</caption>
             <tr align="center">
