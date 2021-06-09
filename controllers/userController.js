@@ -1,13 +1,12 @@
-const User = require('../models/user')
+const RBAC = require('../service/RBAC_Service')
 
 exports.GetUser = async (req,res) => {
-    const id = req.params.id
-    const user = new User
-    const temp = await user.getById(id)
+    const rbac = new RBAC
+    const UserData = await rbac.user.GetUser(req.params.id)
     res.render('user.hbs', {
-        users: temp, 
+        users: UserData, 
         title: 'Профиль',
-        thisUserId: id
+        thisUserId: req.params.id
     })
 }
  

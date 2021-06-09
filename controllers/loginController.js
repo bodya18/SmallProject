@@ -17,7 +17,7 @@ exports.GetLogin = (req,res) => {
 exports.loginLogic = async(req,res) => {
     if(!req.body) return res.sendStatus(400)
     
-    pool.query('select password, email, name, age, avatarURL, id FROM users WHERE email = ?', [req.body.email])
+    pool.query('select * FROM users WHERE email = ?', [req.body.email])
         .then(async (data) =>{
             if(!data[0][0]){
                 req.flash('error', 'Данного email не существует')

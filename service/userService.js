@@ -78,6 +78,11 @@ class User{
         return await user.SelectOrderBy(what, desc)
     }
 
+    async GetUser(id){
+        const user = new UserModel
+        return await user.getById(id)
+    }
+
 }
 
 module.exports = User
