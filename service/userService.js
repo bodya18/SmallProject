@@ -1,5 +1,7 @@
 const UserModel = require('../models/user')
 const file = require('../middleware/file')
+const bcrypt = require('bcryptjs');
+const RuleModel = require('../models/rule');
 
 class User{
 
@@ -81,6 +83,36 @@ class User{
     async GetUser(id){
         const user = new UserModel
         return await user.getById(id)
+    }
+
+    async loginLogic(email, passwordBody){
+        var user = new UserModel
+        const data = await user.SelectWhere('email', email)
+        
+        if(!data)
+            return {isAuth: false, error: 'Данного email не существует'}
+        else {
+            const password = data.password
+            const id = data.id
+            const email = data.email
+            const name = data.name
+            const age = data.age
+            const avatarURL = data.avatarURL
+            const areSame = await bcrypt.compare(passwordBody, password)
+            if(!areSame)
+                return {isAuth: false, error: 'Неверный пароль'}
+            var user = new UserModel(password, email, name, age, avatarURL, id)
+            const rule = new RuleModel
+            const permissions = await rule.ShowAllPermissions(id)
+
+            return {
+                isAuth: true,
+                user: user,
+                isAuthenticated: true,
+                userIden: id,
+                Perm: permissions
+            }
+        }
     }
 
 }

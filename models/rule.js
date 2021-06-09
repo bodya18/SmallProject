@@ -75,6 +75,22 @@ class Rule{
                 console.log(e);
             })
     }
+
+    async ShowAllPermissions(id){
+        var temp = []
+        await pool.query(`Select DISTINCT Permissions.permission
+        from Rules, Permissions, users, Rule_Permission, Rule_User 
+        where Rule_Permission.ruleId = Rules.id AND Rule_Permission.permissionId = Permissions.id AND Rule_User.userId = users.id AND Rule_User.ruleId = Rules.id AND users.id = ?`,[id])
+                .then(data => {
+                    for(let i = 0;i<data[0].length;i++){
+                        temp[i] = data[0][i].permission
+                    }
+                })
+                .catch(e=>{
+                    return console.log(e)
+                })
+        return temp;
+    }
 }
 
 module.exports = Rule

@@ -80,6 +80,20 @@ class User{
         return temp;
     }
     
+    async SelectWhere(what, how){
+        var temp
+        await pool.query(`SELECT * FROM users where ${what} = ?`, [how])
+            .then(data =>{
+                console.log(data[0]);
+                temp = data[0][0]
+            })
+            .catch(e =>{
+                return console.log(e)
+            })
+            console.log(temp);
+        return temp;
+    }
+
 }
 
 module.exports = User
