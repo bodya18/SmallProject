@@ -1,6 +1,7 @@
 const pool = require('../middleware/pool')
 const User = require('../models/user')
 const file = require('../middleware/file')
+const RBAC = require('../service/RBAC_Service')
 
 exports.EditPost = function (req, res) {
     if(!req.body) return res.sendStatus(400)
@@ -27,40 +28,17 @@ exports.EditPost = function (req, res) {
         file.inFile = false
 }
 
-exports.GetEditUser = (req,res) => {
-    const id = req.params.id
-    var is=false
-    
-    if(req.session.userIden === id){
-        pool.query('Select * from users where id=?', [id], (err,data) =>{
-            if (err) return console.log(err)
-            res.render('edit.hbs', {
-                users: data[0], 
-                title: 'Редактирование пользователя',
-                error: req.flash('error')
-            })
-        })
-    }
-    else{
-        for (let i = 0; i < req.session.Perm.length; i++) {
-            if (req.session.Perm[i] === "EDIT") {
-                is=true
-                break;
-            }
-        }
-        if(is){
-            pool.query('Select * from users where id=?', [id], (err,data) =>{
-                if (err) return console.log(err)
-                res.render('edit.hbs', {
-                    users: data[0], 
-                    title: 'Редактирование пользователя',
-                    error: req.flash('error')
-                })
-            })
-        }
-        else{
-            return res.redirect('/')
-        }
-    }
-        
+exports.GetEditUser = async (req,res) => {
+
+    const rbac = new RBAC
+    const UserData = await rbac.user.GetPermEditUsers(req.params.id, req.session.userIden, req.session.Perm);
+    console.log(UserData);
+    if (UserData.perm === false)
+        return res.redirect('/')
+    res.render('edit.hbs', {
+        users: UserData.data, 
+        title: 'Редактирование пользователя',
+        error: req.flash('error')
+    })
+
 }

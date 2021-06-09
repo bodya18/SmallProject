@@ -10,18 +10,24 @@ exports.GetRoles = (req,res) => {
         }
     }
     if(is){
-        pool.query('Select * from Rules', (err,rule) =>{
-            if (err) return console.log(err)
-            pool.query('Select * from users', (err, user) =>{
-                if (err) return console.log(err)
-                res.render('roles.hbs', {
-                    rules: rule, 
-                    users: user,
-                    title: 'Создание роли',
-                    error: req.flash('error')
-                })
+        pool.query('Select * from Rules')
+            .then(rule => {
+                pool.query('Select * from users')
+                    .then(user => {
+                        res.render('roles.hbs', {
+                            rules: rule[0], 
+                            users: user[0],
+                            title: 'Создание роли',
+                            error: req.flash('error')
+                        })
+                    })
+                    .catch(e =>{
+                        return console.log(e);
+                    })
             })
-        })
+            .catch(e =>{
+                return console.log(e);
+            })
     }else{
         return res.redirect('/')
     }
@@ -37,18 +43,24 @@ exports.GetPermissions = (req,res) => {
         }
     }
     if(is){
-        pool.query('Select * from Permissions', (err, permission) =>{
-            if (err) return console.log(err)
-            pool.query('Select * from Rules', (err,rule) =>{
-                if (err) return console.log(err)
-                res.render('permissions.hbs', {
-                    rules: rule, 
-                    permissions: permission, 
-                    title: 'Создание разрешения',
-                    error: req.flash('error')
-                })
+        pool.query('Select * from Permissions')
+            .then(permission =>{
+                pool.query('Select * from Rules')
+                    .then(rule =>{
+                        res.render('permissions.hbs', {
+                            rules: rule[0], 
+                            permissions: permission[0], 
+                            title: 'Создание разрешения',
+                            error: req.flash('error')
+                        })
+                    })
+                    .catch(e =>{
+                        return console.log(e);
+                    })
             })
-        })
+            .catch(e =>{
+                return console.log(e);
+            })
     }else{
         return res.redirect('/')
     }
@@ -64,21 +76,30 @@ exports.GetAllConnection = (req,res) => {
         }
     }
     if(is){
-        pool.query('Select Rules.rule, Permissions.permission, users.name from Rules, Permissions, users, Rule_Permission, Rule_User where Rule_Permission.ruleId = Rules.id AND Rule_Permission.permissionId = Permissions.id AND Rule_User.userId = users.id AND Rule_User.ruleId = Rules.id', (err, Alldata) =>{
-            if (err) return console.log(err)
-            pool.query('Select Rules.rule, Permissions.permission, Rule_Permission.id from Rules, Permissions, Rule_Permission where Rule_Permission.ruleId = Rules.id AND Rule_Permission.permissionId = Permissions.id', (err, rule_permission) =>{
-                if (err) return console.log(err)
-                pool.query("Select users.name, Rules.rule, Rule_User.id from users, Rule_User, Rules where Rule_User.userId = users.id AND Rule_User.ruleId = Rules.id", (err,data) =>{
-                    if (err) return console.log(err)
-                    res.render('rolesConnections.hbs', {
-                        rules_users: data,
-                        data: Alldata,
-                        rules_permissions: rule_permission,
-                        title: 'Просмотр связей'
+        pool.query('Select Rules.rule, Permissions.permission, users.name from Rules, Permissions, users, Rule_Permission, Rule_User where Rule_Permission.ruleId = Rules.id AND Rule_Permission.permissionId = Permissions.id AND Rule_User.userId = users.id AND Rule_User.ruleId = Rules.id')
+            .then(Alldata =>{
+                pool.query('Select Rules.rule, Permissions.permission, Rule_Permission.id from Rules, Permissions, Rule_Permission where Rule_Permission.ruleId = Rules.id AND Rule_Permission.permissionId = Permissions.id')
+                    .then(rule_permission =>{
+                        pool.query("Select users.name, Rules.rule, Rule_User.id from users, Rule_User, Rules where Rule_User.userId = users.id AND Rule_User.ruleId = Rules.id")
+                            .then(data =>{
+                                res.render('rolesConnections.hbs', {
+                                    rules_users: data[0],
+                                    data: Alldata[0],
+                                    rules_permissions: rule_permission[0],
+                                    title: 'Просмотр связей'
+                                })
+                            })
+                            .catch(e =>{
+                                return console.log(e);
+                            })
                     })
-                })
+                    .catch(e =>{
+                        return console.log(e);
+                    })
             })
-        })
+            .catch(e =>{
+                return console.log(e);
+            })
     }else{
         return res.redirect('/')
     }

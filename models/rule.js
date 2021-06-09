@@ -14,14 +14,14 @@ class Rule{
         }
     }
     delete(id){
-        try {
-            pool.query('select * from Rule_User where ruleId=?', [id], (err,data) =>{
-                if (!data[0])
+        pool.query('select * from Rule_User where ruleId=?', [id])
+            .then(data =>{
+                if (!data[0][0])
                     pool.query('delete from Rules where id=?', [id])
             })
-        } catch (e) {
-            console.log(e)
-        }
+            .catch (e => {
+                console.log(e)
+            })
     }
 
     AddRuleToUser(userId, ruleId){
@@ -66,15 +66,14 @@ class Rule{
     }
 
     DeletePermission(id){
-        try {
-            pool.query('select * from Rule_Permission where permissionId=?', [id], (err,data) =>{
-                if (!data[0])
+        pool.query('select * from Rule_Permission where permissionId=?', [id])
+            .then(data=>{
+                if (!data[0][0])
                     pool.query('delete from Permissions where id=?', [id])
             })
-            
-        } catch (e) {
-            console.log(e)
-        }
+            .catch(e => {
+                console.log(e);
+            })
     }
 }
 

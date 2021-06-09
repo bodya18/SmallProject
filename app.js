@@ -14,6 +14,7 @@ const logoutRouter = require('./routes/logoutRouter')
 const ruleRouter = require('./routes/ruleRouter')
 const errorHandler = require('./middleware/error')
 const varMiddleware = require('./middleware/variables')
+const configMiggleware = require('./middleware/config')
 
 const app = express()
 
@@ -29,7 +30,7 @@ app.set('views', 'views')
 app.use(express.static(__dirname))
 
 var options = {
-    host: 'localhost',
+    host: configMiggleware.host,
     user: 'root',
     password: 'ZAQwsxz1.',
     database: 'usersdb'
@@ -58,6 +59,6 @@ app.use('/rules', ruleRouter)
 
 app.use(errorHandler)
 
-app.listen(3000, () => {
+app.listen(configMiggleware.port, () => {
     console.log('Server is waiting connections')
 })
