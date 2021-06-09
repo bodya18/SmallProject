@@ -5,9 +5,8 @@ const User = require('./userService');
 class RBAC{
     constructor(){
         this.user = new User;
-        
-        // this.role = new Role;
-        // this.permission = new Permission;
+        this.role = new Role;
+        this.permission = new Permission;
     }
 }
 

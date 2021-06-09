@@ -1,6 +1,7 @@
 const UserModel = require('../models/user')
 const file = require('../middleware/file')
 const bcrypt = require('bcryptjs');
+const { v4: uuidv4 } = require('uuid');
 const RuleModel = require('../models/rule');
 
 class User{
@@ -88,7 +89,7 @@ class User{
     async loginLogic(email, passwordBody){
         var user = new UserModel
         const data = await user.SelectWhere('email', email)
-        
+
         if(!data)
             return {isAuth: false, error: 'Данного email не существует'}
         else {
@@ -113,6 +114,34 @@ class User{
                 Perm: permissions
             }
         }
+    }
+
+    async registerLogic(email, name, password, repeat, age){
+        var user = new UserModel
+        const data = await user.SelectWhere('email', email)
+        if(data)
+            return {isAuth: false, error: 'Данный email уже зарегистрирован'}
+        else {
+            if(name.length < 2)
+                return {isAuth: false, error: 'Имя меньше 2-х символов'}
+            if(age < 1)
+                return {isAuth: false, error: 'Введите настоящий возраст'}
+            if(password.length < 6)
+                return {isAuth: false, error: 'Пароль должен быть больше 6 символов'}
+            if(password !== repeat)
+                return {isAuth: false, error: 'Пароли должны совпадать'}
+
+            const hashPassword = await bcrypt.hash(password, 10)
+            const id = uuidv4()
+            var user = new UserModel(hashPassword, email, name, age, null, id)
+            user.create()
+            return {
+                user,
+                isAuth: true,
+                id
+            }
+        }
+        
     }
 
 }
