@@ -1,4 +1,3 @@
-const pool = require('../middleware/pool')
 const User = require('../models/user')
 const file = require('../middleware/file')
 const RBAC = require('../service/RBAC_Service')
@@ -32,7 +31,6 @@ exports.GetEditUser = async (req,res) => {
 
     const rbac = new RBAC
     const UserData = await rbac.user.GetPermEditUsers(req.params.id, req.session.userIden, req.session.Perm);
-    console.log(UserData);
     if (UserData.perm === false)
         return res.redirect('/')
     res.render('edit.hbs', {

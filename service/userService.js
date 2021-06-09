@@ -6,19 +6,17 @@ class User{
         this.is = false
     }
 
-   async GetPermEditUsers(id, userId, permissions) {
-       console.log(id, userId, permissions);
+    async GetPermEditUsers(id, userId, permissions) {
+        var temp;
         if(userId === id){
             await pool.query('Select * from users where id=?', [id]) 
-                .then(data =>{
-                    console.log('===========================');
-                    console.log(123);
-                    console.log('===========================');
-                    return {perm: true, data: data[0][0]}
-                })
-                .catch(e =>{
-                    return console.log(e);
-                })
+                    .then(data =>{
+                        temp = data[0][0]
+                    })
+                    .catch(e =>{
+                        return console.log(e);
+                    })
+            return {perm: true, data: temp}
         }
         else{
     
@@ -30,23 +28,24 @@ class User{
     
             }
             if(this.is){
-    
                 await pool.query('Select * from users where id=?', [id]) 
-                .then(data =>{
-                    return {perm: true, data: data[0][0]}
-                })
-                .catch(e =>{
-                    return console.log(e);
-                })
-    
+                        .then(data =>{
+                            temp = data[0][0]
+                        })
+                        .catch(e =>{
+                            return console.log(e);
+                        })
+                return {perm: true, data: temp}
             }
             else{
                 return {perm: false}
             }
+            
         }
-        console.log('===========================');
-        console.log(321);  
-        console.log('===========================');  
     }
+
+    
+
 }
+
 module.exports = User
