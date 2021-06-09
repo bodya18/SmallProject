@@ -48,7 +48,17 @@ exports.registerLogic = (req,res) => {
                 const hashPassword = await bcrypt.hash(req.body.password, 10)
                 const user = new User(hashPassword, req.body.email, req.body.name, req.body.age, null, id)
                 user.create()
-                return res.redirect(`/login`)
+                req.session.Perm = []
+                req.session.user = user
+                req.session.isAuthenticated = true
+                req.session.userIden = id
+                
+                req.session.save(err =>{
+                    if(err){
+                        throw err
+                    }
+                    res.redirect(`/`)
+                })
             }
         })
         .catch(e =>{

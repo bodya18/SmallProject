@@ -12,7 +12,7 @@ class User{
         this.time = new Date()
     }
 
-    edit() {
+    async edit() {
         try{
             if(this.avatarURL){
                 pool.query('Select avatarURL from users where id=?', [this.id]) 
@@ -35,7 +35,7 @@ class User{
         }
     }
 
-    create() {
+    async create() {
         try{
             pool.query('Insert into users (password, email, name, age, id, time, avatarURL) values (?, ?, ?, ?, ?, ?, ?)', [this.password, this.email, this.name, this.age, this.id, this.time, this.avatarURL])
         }
@@ -43,7 +43,7 @@ class User{
             console.log(e)
         }
     }
-    delete(){
+    async delete(){
         try {
             pool.query('Select avatarURL from users where id=?', [this.id])
                 .then(data => {
@@ -59,6 +59,21 @@ class User{
         } catch (e) {
             console.log(e)
         }
+    }
+    async getById(id){
+        try {
+            var temp;
+            await pool.query('Select * from users where id=?', [id])
+                .then(data => {
+                temp = data[0][0];
+                })
+                .catch(e =>{
+                    return console.log(e);
+                })
+            return temp
+        } catch (e) {
+            console.log(e)
+        } 
     }
 }
 

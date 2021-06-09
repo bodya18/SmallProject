@@ -1,17 +1,13 @@
-const pool = require('../middleware/pool')
+const User = require('../models/user')
 
-exports.GetUser = (req,res) => {
+exports.GetUser = async (req,res) => {
     const id = req.params.id
-    pool.query('Select * from users where id=?', [id])
-        .then(data =>{
-            res.render('user.hbs', {
-                users: data[0][0], 
-                title: 'Профиль',
-                thisUserId: id
-            })
-        })
-        .catch(e => {
-            console.log(e);
-        })
+    const user = new User
+    const temp = await user.getById(id)
+    res.render('user.hbs', {
+        users: temp, 
+        title: 'Профиль',
+        thisUserId: id
+    })
 }
  
