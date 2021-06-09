@@ -44,37 +44,42 @@ class User{
         }
     }
     async delete(){
-        try {
-            pool.query('Select avatarURL from users where id=?', [this.id])
-                .then(data => {
-                    if(data[0][0].avatarURL !== null)
-                        fs.unlinkSync('/home/bogdan/NodeJsProjects/SmallProject/'+data[0][0].avatarURL)
-                })
-                .catch(e => {
-                    return console.log(e)
-                })
+        pool.query('Select avatarURL from users where id=?', [this.id])
+            .then(data => {
+                if(data[0][0].avatarURL !== null)
+                    fs.unlinkSync('/home/bogdan/NodeJsProjects/SmallProject/'+data[0][0].avatarURL)
+            })
+            .catch(e => {
+                return console.log(e)
+            })
 
-            pool.query('delete from users where id=?', [this.id])
-
-        } catch (e) {
-            console.log(e)
-        }
+        pool.query('delete from users where id=?', [this.id])
     }
+
     async getById(id){
-        try {
-            var temp;
-            await pool.query('Select * from users where id=?', [id])
-                .then(data => {
+        var temp;
+        await pool.query('Select * from users where id=?', [id])
+            .then(data => {
                 temp = data[0][0];
-                })
-                .catch(e =>{
-                    return console.log(e);
-                })
-            return temp
-        } catch (e) {
-            console.log(e)
-        } 
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
     }
+
+    async SelectOrderBy(what, desc = ''){
+        var temp
+        await pool.query(`SELECT * FROM users ORDER BY ${what} ${desc}`)
+            .then(data =>{
+                temp = data[0]
+            })
+            .catch(e =>{
+                return console.log(e)
+            })
+        return temp;
+    }
+    
 }
 
 module.exports = User

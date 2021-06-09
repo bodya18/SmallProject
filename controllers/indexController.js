@@ -1,14 +1,10 @@
-const pool = require('../middleware/pool')
+const RBAC = require('../service/RBAC_Service')
 
-exports.GetIndex = (req,res) => {
-    pool.query('SELECT * FROM users ORDER BY time DESC')
-        .then(data =>{
-        res.render('index.hbs', {
-            users: data[0],
-            title: 'Список пользователей'
-        })
-        })
-        .catch(e =>{
-            return console.log(e)
-        })
+exports.GetIndex = async (req,res) => {
+    const rbac = new RBAC
+    const UserData = await rbac.user.GetIndex('time', 'DESC')
+    res.render('index.hbs', {
+        users: UserData,
+        title: 'Список пользователей'
+    })
 }

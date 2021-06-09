@@ -35,7 +35,6 @@ class User{
     }
 
     async EditPost(name, id, filedata, email, age){
-        console.log(id);
         if(name.length < 2)
             return {perm: false, error: 'Имя должно быть длиннее 2-х символов'}
         if((!filedata) && (file.inFile === true)){
@@ -72,6 +71,11 @@ class User{
             }
             return {isAcс: false}
         }
+    }
+
+    async GetIndex(what, desc = ''){
+        const user = new UserModel();
+        return await user.SelectOrderBy(what, desc)
     }
 
 }

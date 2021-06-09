@@ -1,29 +1,19 @@
-const pool = require('../middleware/pool')
+const RBAC = require('../service/RBAC_Service')
 
-exports.up = (req,res) => {
-    const what = req.params.what
-    pool.query(`SELECT * FROM users ORDER BY ${what}`)
-        .then(data => {
-            res.render('index.hbs', {
-                users: data[0],
-                title: 'Список пользователей'
-            })
-        })
-        .catch(e =>{
-            return console.log(e);
-        })
+exports.up = async (req,res) => {
+    const rbac = new RBAC
+    const UserData = await rbac.user.GetIndex(req.params.what)
+    res.render('index.hbs', {
+        users: UserData,
+        title: 'Список пользователей'
+    })
 }
 
-exports.down = (req,res) => {
-    const what = req.params.what
-    pool.query(`SELECT * FROM users ORDER BY ${what} DESC`)
-        .then(data =>{
-            res.render('index.hbs', {
-                users: data[0],
-                title: 'Список пользователей'
-            })
-        })
-        .catch(e =>{
-            return console.log(e);
-        })
+exports.down = async (req,res) => {
+    const rbac = new RBAC
+    const UserData = await rbac.user.GetIndex(req.params.what, 'DESC')
+    res.render('index.hbs', {
+        users: UserData,
+        title: 'Список пользователей'
+    })
 }
