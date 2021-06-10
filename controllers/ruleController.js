@@ -1,7 +1,3 @@
-const RuleModel = require('../models/rule')
-const UserModel = require('../models/user')
-const PermissionModel = require('../models/permission')
-const ConnectionModel = require('../models/connection')
 const RBAC = require('../service/RBAC_Service')
 
 exports.GetRoles = async (req,res) => {

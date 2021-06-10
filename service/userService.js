@@ -1,5 +1,4 @@
 const UserModel = require('../models/user')
-const RuleModel = require('../models/rule')
 const PermissionModel = require('../models/permission')
 const file = require('../middleware/file')
 const bcrypt = require('bcryptjs');
