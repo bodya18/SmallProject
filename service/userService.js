@@ -7,14 +7,15 @@ const RuleModel = require('../models/rule');
 class User{
 
     constructor(){
+        this.user = new UserModel
+        this.rule = new RuleModel
         this.is = false
     }
 
     async GetPermEditUsers(id, userId, permissions) {
         var temp;
-        const user = new UserModel
         if(userId === id){
-            temp = await user.getById(id)
+            temp = await this.user.getById(id)
             return {perm: true, data: temp}
         }
         else{
@@ -27,7 +28,7 @@ class User{
     
             }
             if(this.is){
-                temp = await user.getById(id)
+                temp = await this.user.getById(id)
                 return {perm: true, data: temp}
             }
             else{
@@ -45,11 +46,9 @@ class User{
             return {perm: false, error: 'Аватар пользователя должен быть фотографией'}
         }
         try {
-            const user = new UserModel(null, email, name, age, filedata.path, id)
-            user.edit()
+            this.user.edit(id, age, filedata.path, name)
         } catch {
-            const user = new UserModel(null, email, name, age, null, id)
-            user.edit()
+            this.user.edit(id, age, null, name)
         }
         file.inFile = false
         return {perm: true}
@@ -57,8 +56,7 @@ class User{
 
     async deleteUser(id, sessionId, permission){
         if(sessionId === id){
-            const user = new UserModel(null, null ,null, null, null, id)
-            await user.delete()
+            await this.user.delete(id)
             return {isAcс: true}
         }
         else{
@@ -69,46 +67,40 @@ class User{
                 }
             }
             if(this.is){
-                const user = new UserModel(null, null ,null, null, null, id)
-                await user.delete()
+                await this.user.delete(id)
             }
             return {isAcс: false}
         }
     }
 
     async GetIndex(what, desc = ''){
-        const user = new UserModel();
-        return await user.SelectOrderBy(what, desc)
+        return await this.user.SelectOrderBy(what, desc)
     }
 
     async GetUser(id){
-        const user = new UserModel
-        return await user.getById(id)
+        return await this.user.getById(id)
     }
 
     async loginLogic(email, passwordBody){
-        var user = new UserModel
-        const data = await user.SelectWhere('email', email)
+
+        const data = await this.user.SelectWhere('email', email)
 
         if(!data)
             return {isAuth: false, error: 'Данного email не существует'}
         else {
+
             const password = data.password
             const id = data.id
-            const email = data.email
-            const name = data.name
-            const age = data.age
-            const avatarURL = data.avatarURL
             const areSame = await bcrypt.compare(passwordBody, password)
+
             if(!areSame)
                 return {isAuth: false, error: 'Неверный пароль'}
-            var user = new UserModel(password, email, name, age, avatarURL, id)
-            const rule = new RuleModel
-            const permissions = await rule.ShowAllPermissions(id)
+            
+            const permissions = await this.rule.ShowAllPermissions(id)
 
             return {
                 isAuth: true,
-                user: user,
+                user: data,
                 isAuthenticated: true,
                 userIden: id,
                 Perm: permissions
@@ -117,8 +109,7 @@ class User{
     }
 
     async registerLogic(email, name, password, repeat, age){
-        var user = new UserModel
-        const data = await user.SelectWhere('email', email)
+        const data = await this.user.SelectWhere('email', email)
         if(data)
             return {isAuth: false, error: 'Данный email уже зарегистрирован'}
         else {
@@ -133,10 +124,10 @@ class User{
 
             const hashPassword = await bcrypt.hash(password, 10)
             const id = uuidv4()
-            var user = new UserModel(hashPassword, email, name, age, null, id)
-            user.create()
+            this.user.create(hashPassword, email, name, age, id)
+            const dat = await this.user.getById(id)
             return {
-                user,
+                user: dat,
                 isAuth: true,
                 id
             }

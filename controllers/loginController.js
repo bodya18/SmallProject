@@ -22,7 +22,7 @@ exports.loginLogic = async(req,res) => {
         req.flash('error', UserData.error)
         return res.redirect(`/login`)
     }
-
+    
     req.session.user = UserData.user
     req.session.isAuthenticated = UserData.isAuthenticated
     req.session.userIden = UserData.userIden

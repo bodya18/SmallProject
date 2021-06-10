@@ -2,20 +2,13 @@ const pool = require('../middleware/pool')
 const fs = require('fs')
 
 class User{
-    constructor(password, email, name, age, avatarURL, id){
-        this.password = password
-        this.email = email
-        this.name = name
-        this.age = age
-        this.avatarURL = avatarURL
-        this.id = id
-        this.time = new Date()
-    }
+    
 
-    async edit() {
+    async edit(id, age, avatarURL, name) {
         try{
-            if(this.avatarURL){
-                pool.query('Select avatarURL from users where id=?', [this.id]) 
+            const time = new Date
+            if(avatarURL){
+                pool.query('Select avatarURL from users where id=?', [id]) 
                     .then(data =>{ 
                         if(data[0][0].avatarURL !== null)
                             fs.unlinkSync('/home/bogdan/NodeJsProjects/SmallProject/'+data[0][0].avatarURL)
@@ -23,10 +16,10 @@ class User{
                     .catch(e => {
                         return console.log(e)
                     })
-                pool.query('update users set name=?, age=?, time=?, avatarURL=? where id=?', [this.name, this.age, this.time, this.avatarURL, this.id])
+                pool.query('update users set name=?, age=?, time=?, avatarURL=? where id=?', [name, age, time, avatarURL, id])
             }
             else{
-                pool.query('update users set name=?, age=?, time=? where id=?', [this.name, this.age, this.time, this.id])
+                pool.query('update users set name=?, age=?, time=? where id=?', [name, age, time, id])
             }
             
         }
@@ -35,16 +28,17 @@ class User{
         }
     }
 
-    async create() {
+    async create(password, email, name, age, id) {
         try{
-            pool.query('Insert into users (password, email, name, age, id, time, avatarURL) values (?, ?, ?, ?, ?, ?, ?)', [this.password, this.email, this.name, this.age, this.id, this.time, this.avatarURL])
+            const time = new Date
+            pool.query('Insert into users (password, email, name, age, id, time, avatarURL) values (?, ?, ?, ?, ?, ?, ?)', [password, email, name, age, id, time, null])
         }
         catch (e){
             console.log(e)
         }
     }
-    async delete(){
-        pool.query('Select avatarURL from users where id=?', [this.id])
+    async delete(id){
+        pool.query('Select avatarURL from users where id=?', [id])
             .then(data => {
                 if(data[0][0].avatarURL !== null)
                     fs.unlinkSync('/home/bogdan/NodeJsProjects/SmallProject/'+data[0][0].avatarURL)
@@ -53,7 +47,7 @@ class User{
                 return console.log(e)
             })
 
-        pool.query('delete from users where id=?', [this.id])
+        pool.query('delete from users where id=?', [id])
     }
 
     async getById(id){
@@ -84,13 +78,11 @@ class User{
         var temp
         await pool.query(`SELECT * FROM users where ${what} = ?`, [how])
             .then(data =>{
-                console.log(data[0]);
                 temp = data[0][0]
             })
             .catch(e =>{
                 return console.log(e)
             })
-            console.log(temp);
         return temp;
     }
 

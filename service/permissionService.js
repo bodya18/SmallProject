@@ -1,4 +1,4 @@
-const pool = require('../middleware/pool')
+const Rule = require('../models/rule')
 
 class Permission{
 
