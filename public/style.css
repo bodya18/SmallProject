@@ -4,9 +4,43 @@ input {
     width: 250px;
     margin-bottom: 20px;
 }
+
 input:hover { 
     background: gold; 
     -webkit-box-shadow: 27px 18px 40px 8px #FFFFFF; 
     box-shadow: 27px 18px 40px 8px #FFFFFF;
     transition-duration: 1s;
 }
+
+.btn {
+    -webkit-border-radius: 46px;
+    -moz-border-radius: 46px;
+    border-radius: 46px;
+    height: 100px;
+    color: #000000;
+    font-family: Brush Script MT;
+    width: 229px;
+    font-size: 16px;
+    font-weight: 100;
+    padding: 15px;
+    background-color: #CBCBCB;
+    -webkit-box-shadow: 0 0 8px 0 #DD380D;
+    -moz-box-shadow: 0 0 8px 0 #DD380D;
+    box-shadow: 0 0 8px 0 #DD380D;
+    text-shadow: 1px 1px 20px #000000;
+    border: solid #0059A0 3px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+ }
+ 
+ .btn:hover {
+    background: #006EE9;
+    border: solid #0059A0 3px;
+    -webkit-border-radius: 46px;
+    -moz-border-radius: 46px;
+    border-radius: 46px;
+    text-decoration: none;
+    transition-duration: 0.5s;
+ }

@@ -15,16 +15,16 @@
 
                 {{#each permissionsList}}
                     {{#ifeq this 'GIVE'}}
-                        <a href="/rules"><button><h2>Роли</h2></button></a>
+                        <a href="/rules"><button class="btn">Роли</button></a>
                     {{/ifeq}}
                 {{/each}}
 
-                <a href="/"><button><h2>Список пользователей</h2></button></a>
-                <a href="/logout"><button><h2>Выйти</h2></button></a>
+                <a href="/"><button class="btn">Список пользователей</button></a>
+                <a href="/logout"><button class="btn">Выйти</button></a>
 
             {{else}}            
-                <a href="/register"><button><h2>Регистрация</h2></button></a>
-                <a href="/login"><button><h2>Войти</h2></button></a>
+                <a href="/register"><button class="btn">Регистрация</button></a>
+                <a href="/login"><button class="btn">Войти</button></a>
             {{/if}}
 
         </div>
