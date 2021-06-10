@@ -1,7 +1,6 @@
 const RuleModel = require('../models/rule')
 const ConnectionModel = require('../models/connection')
 const UserModel = require('../models/user')
-const PermissionModel = require('../models/permission')
 
 class Role{
 

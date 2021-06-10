@@ -1,14 +1,16 @@
 const UserModel = require('../models/user')
+const RuleModel = require('../models/rule')
+const PermissionModel = require('../models/permission')
 const file = require('../middleware/file')
 const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
-const RuleModel = require('../models/rule');
+
 
 class User{
 
     constructor(){
         this.user = new UserModel
-        this.rule = new RuleModel
+        this.permission = new PermissionModel
         this.is = false
     }
 
@@ -96,7 +98,7 @@ class User{
             if(!areSame)
                 return {isAuth: false, error: 'Неверный пароль'}
             
-            const permissions = await this.rule.ShowAllPermissions(id)
+            const permissions = await this.permission.ShowAllPermissions(id)
 
             return {
                 isAuth: true,

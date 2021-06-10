@@ -9,56 +9,45 @@ exports.GetRoles = async (req,res) => {
     const rbac = new RBAC
     const role = await rbac.role.GetRoles(req.session.Perm)
 
-    if(role.isGet){
+    if(role.isGet)
         res.render('roles.hbs', {
             rules: role.rules, 
             users: role.users,
             title: 'Создание роли',
             error: req.flash('errorRule')
         })
-
-    }else{
+    else
         return res.redirect('/')
-    }
-    
 }
 
 exports.GetPermissions = async (req,res) => {
-
     const rbac = new RBAC
     const perm = await rbac.permission.GetPermissions(req.session.Perm)
 
-    if(perm.isGet){
+    if(perm.isGet)
         res.render('permissions.hbs', {
             rules: perm.rules, 
             permissions: perm.permissions, 
             title: 'Создание разрешения',
             error: req.flash('errorPermission')
         })
-
-    }else{
+    else
         return res.redirect('/')
-    }
-    
 }
 
 exports.GetAllConnection = async (req,res) => {
-
     const rbac = new RBAC
     const perm = await rbac.permission.GetAllConnection(req.session.Perm)
 
-    if(perm.isGet){
+    if(perm.isGet)
         res.render('rolesConnections.hbs', {
         rules_users: perm.rule_user,
         data: perm.Alldata,
         rules_permissions: perm.rule_permission,
         title: 'Просмотр связей'
     })
-
-    }else{
+    else
         return res.redirect('/')
-    }
-    
 }
 
 exports.CreateRule = async (req, res) => {
