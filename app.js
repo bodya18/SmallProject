@@ -37,7 +37,7 @@ var options = {
 }
 
 app.use(session({
-    secret: 'some secret value',
+    secret: configMiggleware.sessionSecretKey,
     resave: false,
     saveUninitialized: false,
     store: new SessionStore(options)
