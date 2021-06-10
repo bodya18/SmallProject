@@ -2,26 +2,19 @@ const RuleModel = require('../models/rule')
 const UserModel = require('../models/user')
 const PermissionModel = require('../models/permission')
 const ConnectionModel = require('../models/connection')
+const RBAC = require('../service/RBAC_Service')
 
 exports.GetRoles = async (req,res) => {
-    var is=false
-    for (let i = 0; i < req.session.Perm.length; i++) {
-        if (req.session.Perm[i] === "GIVE") {
-            is=true
-            break;
-        }
-    }
-    if(is){
-        const rule = new RuleModel
-        const rules = await rule.GetRoles()
 
-        const user = new UserModel
-        const users = await user.GetUsers()
+    const rbac = new RBAC
+    const role = await rbac.role.GetRoles(req.session.Perm)
+
+    if(role.isGet){
         res.render('roles.hbs', {
-            rules: rules, 
-            users: users,
+            rules: role.rules, 
+            users: role.users,
             title: 'Создание роли',
-            error: req.flash('error')
+            error: req.flash('errorRule')
         })
 
     }else{
@@ -31,25 +24,16 @@ exports.GetRoles = async (req,res) => {
 }
 
 exports.GetPermissions = async (req,res) => {
-    var is=false
-    for (let i = 0; i < req.session.Perm.length; i++) {
-        if (req.session.Perm[i] === "GIVE") {
-            is=true
-            break;
-        }
-    }
-    if(is){
-        const rule = new RuleModel
-        const rules = await rule.GetRoles()
 
-        const permission = new PermissionModel
-        const permissions = await permission.GetPermissions()
+    const rbac = new RBAC
+    const perm = await rbac.permission.GetPermissions(req.session.Perm)
 
+    if(perm.isGet){
         res.render('permissions.hbs', {
-            rules: rules, 
-            permissions: permissions, 
+            rules: perm.rules, 
+            permissions: perm.permissions, 
             title: 'Создание разрешения',
-            error: req.flash('error')
+            error: req.flash('errorPermission')
         })
 
     }else{
@@ -59,26 +43,17 @@ exports.GetPermissions = async (req,res) => {
 }
 
 exports.GetAllConnection = async (req,res) => {
-    var is=false
-    for (let i = 0; i < req.session.Perm.length; i++) {
-        if (req.session.Perm[i] === "GIVE") {
-            is=true
-            break;
-        }
-    }
-    if(is){
-        const connection = new ConnectionModel
 
-        const Alldata = await connection.GetAllConnection()
-        const rule_permission = await connection.GetRulePermission()
-        const rule_user = await connection.GetRuleUser()
+    const rbac = new RBAC
+    const perm = await rbac.permission.GetAllConnection(req.session.Perm)
 
+    if(perm.isGet){
         res.render('rolesConnections.hbs', {
-            rules_users: rule_user,
-            data: Alldata,
-            rules_permissions: rule_permission,
-            title: 'Просмотр связей'
-        })
+        rules_users: perm.rule_user,
+        data: perm.Alldata,
+        rules_permissions: perm.rule_permission,
+        title: 'Просмотр связей'
+    })
 
     }else{
         return res.redirect('/')
@@ -88,71 +63,60 @@ exports.GetAllConnection = async (req,res) => {
 
 exports.CreateRule = async (req, res) => {
     if(!req.body) return res.sendStatus(400)
-    Rol = req.body.rule
-    if(Rol.length<3)
-    {
-        req.flash('error', 'Роль должна быть больше 2 символов')
-        return res.redirect(`/rules/role`)
-    }
-    const rule = new RuleModel
-    await rule.create(Rol)
+
+    const rbac = new RBAC
+    const data = await rbac.role.CreateRule(req.body.rule)
+
+    if(!data.is)
+        req.flash('errorRule', data.error)
     return res.redirect(`/rules/role`)
 }
 
 exports.DeleteRule = async (req,res) => {
-    const id = req.params.id
-    const rule = new RuleModel   
-    await rule.delete(id)
+    const rbac = new RBAC
+    await rbac.role.DeleteRule(req.params.id)
     return res.redirect('/rules/role')
 }
 
 exports.GiveRule = async (req, res) =>{
     if(!req.body) return res.sendStatus(400)
-    const user = req.body.selectNameId
-    const rule = req.body.selectRuleId
-    const connection = new ConnectionModel
-    await connection.AddRuleToUser(user, rule)
-    return res.redirect('/rules/role') 
+    const rbac = new RBAC
+    await rbac.role.GiveRule(req.body.selectNameId, req.body.selectRuleId)
+    return res.redirect('/rules') 
 }
 
 exports.DeleteRuleFromUser = async (req, res) =>{
-    const id = req.params.id
-    const connection = new ConnectionModel
-    await connection.deleteFromUser(id)
+    const rbac = new RBAC
+    await rbac.role.DeleteRuleFromUser(req.params.id)
     return res.redirect('/rules') 
 }
 
 exports.GivePermission = async (req, res) =>{
     if(!req.body) return res.sendStatus(400)
-    const permissionId = req.body.selectPermissionId
-    const ruleId = req.body.PermSelectRuleId
-    const connection = new ConnectionModel
-    await connection.GivePermission(permissionId,ruleId)
-    return res.redirect('/rules/permission') 
+    const rbac = new RBAC
+    await rbac.permission.GivePermission(req.body.selectPermissionId, req.body.PermSelectRuleId)
+    return res.redirect('/rules') 
 }
 
 exports.CreatePermission = async (req, res) =>{
     if(!req.body) return res.sendStatus(400)
-    Permission = req.body.NewPermission
-    if(Permission.length<3){
-        req.flash('error', 'Разрешение должно быть больше 2 символов')
+    const rbac = new RBAC
+    const data = await rbac.permission.CreatePermission(req.body.NewPermission)
+    if(!data.is){
+        req.flash('errorPermission', data.error)
         return res.redirect(`/rules/permission`)
     }
-    const perm = new PermissionModel
-    await perm.CreatePermission(Permission)
     return res.redirect(`/rules/permission`)
 }
 
 exports.DeletePermissionFromUser = async (req, res) =>{
-    const id = req.params.id
-    const connection = new ConnectionModel
-    await connection.DeletePermissionFromRule(id)
+    const rbac = new RBAC
+    await rbac.permission.DeletePermissionFromUser(req.params.id)
     return res.redirect('/rules') 
 }
 
 exports.DeletePermission = async (req,res) => {
-    const id = req.params.id
-    const perm = new PermissionModel  
-    await perm.DeletePermission(id)
+    const rbac = new RBAC
+    await rbac.permission.DeletePermission(req.params.id)
     return res.redirect(`/rules/permission`)
 }
