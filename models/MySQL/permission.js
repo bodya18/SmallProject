@@ -1,4 +1,4 @@
-const pool = require('../middleware/pool')
+const pool = require('../../middleware/pool')
 
 class Permission{
 

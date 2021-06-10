@@ -21,6 +21,10 @@
         </a><br><br>
         <form action="/delete/{{users.id}}" method="POST">
             <input type="submit" value="Удалить пользователя">
+        </form><p>
+            
+        <form action="/delete/avatar/{{@root.users.id}}" method="POST">
+            <input type="submit" value="Удалить аватар">
         </form>
     {{else}}
 
@@ -34,6 +38,9 @@
             {{#ifeq this 'DELETE'}}
                 <form action="/delete/{{@root.users.id}}" method="POST">
                     <input type="submit" value="Удалить пользователя">
+                </form>
+                <form action="/delete/avatar/{{@root.users.id}}" method="POST">
+                    <input type="submit" value="Удалить аватар" width='300'>
                 </form>
             {{/ifeq}}
 

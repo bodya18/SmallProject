@@ -1,6 +1,7 @@
-const RuleModel = require('../models/rule')
-const ConnectionModel = require('../models/connection')
-const PermissionModel = require('../models/permission')
+const config = require('../middleware/config')
+const RuleModel = require(`../models/${config.database}/rule`)
+const ConnectionModel = require(`../models/${config.database}/connection`)
+const PermissionModel = require(`../models/${config.database}/permission`)
 
 class Permission{
 

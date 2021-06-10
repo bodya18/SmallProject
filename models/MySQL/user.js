@@ -1,4 +1,4 @@
-const pool = require('../middleware/pool')
+const pool = require('../../middleware/pool')
 const fs = require('fs')
 
 class User{
@@ -46,6 +46,19 @@ class User{
             })
 
         await pool.query('delete from users where id=?', [id])
+    }
+
+    async deleteAvatar(id){
+        await pool.query('Select avatarURL from users where id=?', [id])
+            .then(data => {
+                if(data[0][0].avatarURL !== null){
+                    fs.unlinkSync('/home/bogdan/NodeJsProjects/SmallProject/' + data[0][0].avatarURL)
+                    pool.query('update users set avatarURL=? where id=?', [null, id])
+                }
+            })
+            .catch(e => {
+                return console.log(e)
+            })
     }
 
     async getById(id){

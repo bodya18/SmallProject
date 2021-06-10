@@ -1,5 +1,6 @@
-const UserModel = require('../models/user')
-const PermissionModel = require('../models/permission')
+const config = require('../middleware/config')
+const PermissionModel = require(`../models/${config.database}/permission`)
+const UserModel = require(`../models/${config.database}/user`)
 const file = require('../middleware/file')
 const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
@@ -71,6 +72,23 @@ class User{
                 await this.user.delete(id)
             }
             return {isAcс: false}
+        }
+    }
+
+    async deleteAvatar(id, sessionId, permission){
+        if(sessionId === id){
+            await this.user.deleteAvatar(id)
+        }
+        else{
+            for (let i = 0; i < permission.length; i++) {
+                if (permission[i] === "DELETE") {
+                    this.is=true
+                    break;
+                }
+            }
+            if(this.is){
+                await this.user.deleteAvatar(id)
+            }
         }
     }
 
