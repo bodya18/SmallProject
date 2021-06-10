@@ -1,9 +1,10 @@
-const Rule = require('../models/rule')
+const RuleModel = require('../models/rule')
 
 class Permission{
 
     constructor(){
         this.is = false
+        this.permission = new RuleModel
     }  
 
 }
