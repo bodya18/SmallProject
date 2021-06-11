@@ -40,12 +40,20 @@ class Role{
                 is:false,
                 error: 'Роль должна быть больше 2 символов'
             }
+        const data = await this.rule.GetRoleBy('rule', Rol)
+        if(data)
+            return {
+                is:false,
+                error: 'Данная роль уже есть'
+            }
         await this.rule.create(Rol)
         return {is: true}
     }
 
     async DeleteRule(id){
-        await this.rule.delete(id)
+        const data = await this.rule.delete(id)
+        if(data === false)
+            return{isDel: false}
     }
 
     async GiveRule(user, rule){

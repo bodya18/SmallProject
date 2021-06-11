@@ -12,14 +12,17 @@ class Permission{
     }
 
     async DeletePermission(id){
+        var temp = true
         await pool.query('select * from Rule_Permission where permissionId=?', [id])
             .then(data=>{
                 if (!data[0][0])
                     pool.query('delete from Permissions where id=?', [id])
+                else temp = false
             })
             .catch(e => {
                 console.log(e);
             })
+            return temp
     }
 
     async ShowAllPermissions(id){
@@ -48,6 +51,18 @@ class Permission{
                 return console.log(e);
             })
         return(temp)
+    }
+
+    async GetPermissionBy(what, value){
+        var temp
+        await pool.query(`SELECT * FROM Permissions where ${what} = ?`, [value])
+            .then(data =>{
+                temp = data[0][0]
+            })
+            .catch(e =>{
+                return console.log(e)
+            })
+        return temp;
     }
 }
 

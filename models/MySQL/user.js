@@ -32,7 +32,7 @@ class User{
             await pool.query('Insert into users (password, email, name, age, id, time, avatarURL) values (?, ?, ?, ?, ?, ?, ?)', [password, email, name, age, id, time, null])
         }
         catch (e){
-            console.log(e)
+            console.log(e) 
         }
     }
     async delete(id){

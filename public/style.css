@@ -2,7 +2,7 @@ input {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 130%;
     width: 250px;
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 input:hover { 
@@ -16,10 +16,10 @@ input:hover {
     -webkit-border-radius: 46px;
     -moz-border-radius: 46px;
     border-radius: 46px;
-    height: 100px;
+    height: 80px;
     color: #000000;
     font-family: Brush Script MT;
-    width: 229px;
+    width: 200px;
     font-size: 16px;
     font-weight: 100;
     padding: 15px;

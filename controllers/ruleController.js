@@ -59,7 +59,9 @@ exports.CreateRule = async (req, res) => {
 
 exports.DeleteRule = async (req,res) => {
     const rbac = new RBAC
-    await rbac.role.DeleteRule(req.params.id)
+    const data = await rbac.role.DeleteRule(req.params.id)
+    if(data !== undefined)
+        req.flash('errorRule', 'Удалите связи ролей')
     return res.redirect('/rules/role')
 }
 
@@ -102,6 +104,8 @@ exports.DeletePermissionFromUser = async (req, res) =>{
 
 exports.DeletePermission = async (req,res) => {
     const rbac = new RBAC
-    await rbac.permission.DeletePermission(req.params.id)
+    const data = await rbac.permission.DeletePermission(req.params.id)
+    if(data !== undefined)
+        req.flash('errorPermission', 'Удалите связи разрешений')
     return res.redirect(`/rules/permission`)
 }

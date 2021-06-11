@@ -69,6 +69,12 @@ class Permission{
             return {
                 is: false,
                 error: 'Разрешение должно быть больше 2 символов'
+            }   
+        const data = await this.permission.GetPermissionBy('permission', Permission)
+        if(data)
+            return {
+                is:false,
+                error: 'Данное разрешение уже есть'
             }
         await this.permission.CreatePermission(Permission)
         return {is:true}
@@ -79,7 +85,9 @@ class Permission{
     }
 
     async DeletePermission(id){
-        await this.permission.DeletePermission(id)
+        const data = await this.permission.DeletePermission(id)
+        if(data === false)
+            return{isDel: false}
     }
 }
 
