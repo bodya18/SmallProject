@@ -20,9 +20,9 @@
                 {{/if}} 
 
                 {{#ifeq this.id @root.userId}}
-                    <td><a href="/user/{{this.id}}"><button>Редактировать</button></a></td>   
+                    <td><a href="/user/{{this.id}}"><button class="btn1">Редактировать</button></a></td>   
                 {{else}}
-                    <td><a href="/user/{{this.id}}"><button>Детальнее</button></a></td>
+                    <td><a href="/user/{{this.id}}"><button class="btn1">Детальнее</button></a></td>
                 {{/ifeq}}             
                 
                 <td width="150">{{this.email}}</td>

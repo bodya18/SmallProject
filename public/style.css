@@ -63,3 +63,25 @@ select {
     -moz-appearance: none;
     appearance: none;
 }
+
+.btn1{
+    border-radius: 46px;
+    height: 30px;
+    color: #000000;
+    font-family: Brush Script MT;
+    width: 120px;
+    font-size: 16px;
+    font-weight: 100;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn1:hover {
+    background: #006EE9;
+    border: solid #0059A0 3px;
+    -webkit-border-radius: 46px;
+    -moz-border-radius: 46px;
+    border-radius: 46px;
+    text-decoration: none;
+    transition-duration: 0.5s;
+ }
