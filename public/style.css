@@ -1,87 +1,13 @@
-input {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 130%;
-    width: 250px;
-    margin-top: 20px;
+.btn-outline-primary {
+    color: #000000 !important;
+    border-color: #000000 !important;
+}
+.btn-outline-primary:hover {
+    color: #614646 !important;
+    background-color: rgb(228, 228, 228) !important;
+    border-color: rgb(228, 228, 228) !important;
 }
 
-input:hover { 
-    background: gold; 
-    -webkit-box-shadow: 27px 18px 40px 8px #FFFFFF; 
-    box-shadow: 0px 18px 40px 15px #FFFFFF;
-    transition-duration: 1s;
-}
-
-.btn {
-    -webkit-border-radius: 46px;
-    -moz-border-radius: 46px;
-    border-radius: 46px;
-    height: 80px;
-    color: #000000;
-    font-family: Brush Script MT;
+.btn-dark {
     width: 200px;
-    font-size: 16px;
-    font-weight: 100;
-    padding: 15px;
-    background-color: #CBCBCB;
-    -webkit-box-shadow: 0 0 8px 0 #DD380D;
-    -moz-box-shadow: 0 0 8px 0 #DD380D;
-    box-shadow: 0 0 8px 0 #DD380D;
-    text-shadow: 1px 1px 20px #000000;
-    border: solid #0059A0 3px;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    text-align: center;
- }
- 
- .btn:hover {
-    background: #006EE9;
-    border: solid #0059A0 3px;
-    -webkit-border-radius: 46px;
-    -moz-border-radius: 46px;
-    border-radius: 46px;
-    text-decoration: none;
-    transition-duration: 0.5s;
- }
-
-select {
-    display: block;
-    width: 250px;
-    padding: .375rem 2.25rem .375rem .75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
-    background-repeat: no-repeat;
-    background-position: right .75rem center;
-    background-size: 16px 12px;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
 }
-
-.btn1{
-    border-radius: 46px;
-    height: 30px;
-    color: #000000;
-    font-family: Brush Script MT;
-    width: 120px;
-    font-size: 16px;
-    font-weight: 100;
-    cursor: pointer;
-    text-align: center;
-}
-
-.btn1:hover {
-    background: #006EE9;
-    border: solid #0059A0 3px;
-    -webkit-border-radius: 46px;
-    -moz-border-radius: 46px;
-    border-radius: 46px;
-    text-decoration: none;
-    transition-duration: 0.5s;
- }

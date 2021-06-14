@@ -5,29 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
-    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" href="../../public/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
-<body bgcolor="black">
-    <font color='#DCDCDC'>
-        <div align='right'>
+    <body style="background-color: rgb(228, 228, 228);">
+            <div align='right'>
+                {{#if isAuth}}
 
-            {{#if isAuth}}
+                    {{#each permissionsList}}
+                        {{#ifeq this 'GIVE'}}
+                            <a href="/rules">
+                                <button type="button" class="btn btn-secondary btn-lg">Роли</button>
+                            </a>
+                        {{/ifeq}}
+                    {{/each}}
 
-                {{#each permissionsList}}
-                    {{#ifeq this 'GIVE'}}
-                        <a href="/rules"><button class="btn">Роли</button></a>
-                    {{/ifeq}}
-                {{/each}}
+                    <a href="/">
+                        <button type="button" class="btn btn-secondary btn-lg">Список пользователей</button>
+                    </a>
+                    <a href="/logout"><button type="button" class="btn btn-secondary btn-lg">Выйти</button></a>
 
-                <a href="/"><button class="btn">Список пользователей</button></a>
-                <a href="/logout"><button class="btn">Выйти</button></a>
+                {{else}}            
+                    <a href="/register"><button type="button" class="btn btn-secondary btn-lg">Регистрация</button></a>
+                    <a href="/login"><button type="button" class="btn btn-secondary btn-lg">Войти</button></a>
+                {{/if}}
 
-            {{else}}            
-                <a href="/register"><button class="btn">Регистрация</button></a>
-                <a href="/login"><button class="btn">Войти</button></a>
-            {{/if}}
-
-        </div>
-        {{{body}}}
-</body>
+            </div>
+            {{{body}}}
+    </body>
 </html>

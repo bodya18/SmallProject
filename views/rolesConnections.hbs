@@ -1,7 +1,7 @@
-<a href="/rules"><button class="btn">Просмотр связей</button></a>
-<a href="/rules/role"><button class="btn">Создание роли</button></a>
-<a href="/rules/permission"><button class="btn">Создание разрешения</button></a>
-
+<a href="/rules"><button type="button" class="btn btn-secondary btn-lg">Просмотр связей</button></a>
+<a href="/rules/role"><button type="button" class="btn btn-secondary btn-lg">Создание роли</button></a>
+<a href="/rules/permission"><button type="button" class="btn btn-secondary btn-lg">Создание разрешения</button></a>
+<br><br><br>
 <div align='center'>
     <table width='99%'>
         <td align="center">
@@ -9,18 +9,18 @@
                 <caption>Связь роли и разрешения</caption>
                 <tr align="center">
                     <td width='50'></td>
-                    <td width='100'><h3>Роль</h3></td>
-                    <td width='100'><h3>Разрешение</h3></td>
+                    <td width='100'><h4>Роль</h4></td>
+                    <td width='100'><h4>Разрешение</h4></td>
                 </tr>
                 {{#each rules_permissions}}        
                     <tr align="center">
                         <td>
                             <form action="/rules/deleteFromRule/{{this.id}}" method="POST">
-                                <button type="submit" class="btn1">Удалить связь</button>
+                                <button type="button" class="btn btn-danger">Удалить связь</button>
                             </form>
                         </td>
-                        <td><h3>{{this.rule}}</h3></td>
-                        <td><h3>{{this.permission}}</h3></td>
+                        <td><h4>{{this.rule}}</h4></td>
+                        <td><h4>{{this.permission}}</h4></td>
                     </tr>
                 {{/each}}
             </table>
@@ -30,18 +30,18 @@
                 <caption>Связь Роли и Имени</caption>
                 <tr align="center">
                     <td width='50'></td>
-                    <td width='100'><h3>Роль</h3></td>
-                    <td width='100'><h3>Имя</h3></td>
+                    <td width='100'><h4>Роль</h4></td>
+                    <td width='100'><h4>Имя</h4></td>
                 </tr>
                 {{#each rules_users}}        
                     <tr align="center">
                         <td>
                             <form action="/rules/deleteFromUser/{{this.id}}" method="POST">
-                                <button type="submit" class="btn1">Удалить связь</button>
+                                <button type="button" class="btn btn-danger">Удалить связь</button>
                             </form>
                         </td>
-                        <td><h3>{{this.rule}}</h3></td>
-                        <td><h3>{{this.name}}</h3></td>
+                        <td><h4>{{this.rule}}</h4></td>
+                        <td><h4>{{this.name}}</h4></td>
                     </tr>
                 {{/each}}
             </table>
@@ -50,15 +50,15 @@
             <table border="1">
                 <caption>Разрешение Роль Имя</caption>
                 <tr align="center">
-                    <td width='50'><h3>Разрешение</h3></td>
-                    <td width='100'><h3>Роль</h3></td>
-                    <td width='100'><h3>Имя</h3></td>
+                    <td width='50'><h4>Разрешение</h4></td>
+                    <td width='100'><h4>Роль</h4></td>
+                    <td width='100'><h4>Имя</h4></td>
                 </tr>
                 {{#each data}}        
                     <tr align="center">
-                        <td><h3>{{this.permission}}</h3></td>
-                        <td><h3>{{this.rule}}</h3></td>
-                        <td><h3>{{this.name}}</h3></td>
+                        <td><h4>{{this.permission}}</h4></td>
+                        <td><h4>{{this.rule}}</h4></td>
+                        <td><h4>{{this.name}}</h4></td>
                     </tr>
                 {{/each}}
             </table>  

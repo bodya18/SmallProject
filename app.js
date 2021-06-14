@@ -56,6 +56,8 @@ app.use('/login', loginRouter)
 app.use('/register', registerRouter)
 app.use('/logout', logoutRouter)
 app.use('/rules', ruleRouter)
+app.use('/admin', express.static('./AdminLTE-3.1.0'))
+app.use('/news', express.static('./bootstrap-news-template'))
 
 app.use(errorHandler)
 

@@ -2,7 +2,7 @@ const RBAC = require('../service/RBAC_Service')
 
 exports.GetRegister = (req,res) => {
     if(req.session.isAuthenticated)
-        return res.redirect('/')
+        return res.redirect('/news')
     else{
         res.render('register.hbs', {
             title: 'Регистрация',
@@ -31,7 +31,7 @@ exports.registerLogic = async (req,res) => {
         if(err){
             throw err
         }
-        return res.redirect(`/`)
+        return res.redirect(`/news`)
     })
 
 }

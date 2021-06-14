@@ -1,7 +1,7 @@
-<a href="/rules"><button class="btn">Просмотр связей</button></a>
-<a href="/rules/role"><button class="btn">Создание роли</button></a>
-<a href="/rules/permission"><button class="btn">Создание разрешения</button></a>
-
+<a href="/rules"><button type="button" class="btn btn-secondary btn-lg">Просмотр связей</button></a>
+<a href="/rules/role"><button type="button" class="btn btn-secondary btn-lg">Создание роли</button></a>
+<a href="/rules/permission"><button type="button" class="btn btn-secondary btn-lg">Создание разрешения</button></a>
+<br><br><br>
 <table width="99%">
     <td align="center">
         {{#if error}}
@@ -37,16 +37,16 @@
             <caption>Список Ролей</caption>
             <tr align="center">
                 <td></td>
-                <td width='100'><h3>Роль</h3></td>
+                <td width='100'><h4>Роль</h4></td>
             </tr>
             {{#each rules}}
                 <tr align="center">
                     <td>
                         <form action="/rules/deleteRule/{{this.id}}" method="POST">
-                            <button type="submit" class="btn1">Удалить роль</button>
+                            <button type="button" class="btn btn-danger">Удалить роль</button>
                         </form>
                     </td>
-                    <td><h3>{{this.rule}}</h3></td>
+                    <td><h4>{{this.rule}}</h4></td>
                 </tr>
             {{/each}}
         </table>

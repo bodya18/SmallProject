@@ -1,17 +1,15 @@
 <div align='center'>
     <h1>Вход</h1>
     {{#if error}}
-        <p><font color='red'>{{error}}</font></p>
+        <font color='red'>{{error}}</font>
     {{/if}}
     <form method="POST" action="/login">
-        
-
-        <label>Адрес эл. почты</label><br>
-        <input name="email" type="email" width="150"><br><br>
-
-        <label>Пароль</label><br>
-        <input name="password" type="password" min="1" max="32" width="150"><br><br>
-        
-        <input type="submit" value="Отправить">
+        <div class="col-sm-3">
+            <input name="email" type="email" class="form-control" placeholder="email">
+            <input name="password" type="password" min="1" max="32" class="form-control" placeholder="password">
+            <br>
+            <input type="submit" class="btn btn-outline-success" value="Отправить">
+        </div>
     </form>
+
 </div>

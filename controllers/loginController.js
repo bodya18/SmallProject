@@ -2,7 +2,7 @@ const RBAC = require('../service/RBAC_Service')
 
 exports.GetLogin = (req,res) => {
     if(req.session.isAuthenticated)
-        return res.redirect('/')
+        return res.redirect('/news')
     else{
         res.render('login.hbs', {
             title: 'Вход',
@@ -32,6 +32,6 @@ exports.loginLogic = async(req,res) => {
         if(err){
             throw err
         }
-        res.redirect(`/`)
+        res.redirect(`/news`)
     })
 }

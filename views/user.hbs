@@ -17,30 +17,31 @@
     
     {{#ifeq thisUserId userId}}
         <a href="/edit/{{users.id}}">
-            <button><h3>Редактировать пользователя</h3></button>
+            <button type="button" class="btn btn-dark">Редактировать пользователя</button>
         </a><br><br>
         <form action="/delete/{{users.id}}" method="POST">
-            <input type="submit" value="Удалить пользователя">
+            <input type="submit" class="btn btn-danger" value="Удалить пользователя">
         </form><p>
             
         <form action="/delete/avatar/{{@root.users.id}}" method="POST">
-            <input type="submit" value="Удалить аватар">
+            <input type="submit" class="btn btn-warning" value="        Удалить аватар       ">
         </form>
     {{else}}
 
         {{#each permissionsList}}
             {{#ifeq this 'EDIT'}}
                 <a href="/edit/{{@root.users.id}}">
-                    <button><h3>Редактировать пользователя</h3></button>
+                    <button type="button" class="btn btn-dark">Редактировать пользователя</button>
                 </a><br><br>
             {{/ifeq}}
 
             {{#ifeq this 'DELETE'}}
                 <form action="/delete/{{@root.users.id}}" method="POST">
-                    <input type="submit" value="Удалить пользователя">
-                </form>
+                    <input type="submit" class="btn btn-danger" value="Удалить пользователя">
+                </form><p>
+                    
                 <form action="/delete/avatar/{{@root.users.id}}" method="POST">
-                    <input type="submit" value="Удалить аватар" width='300'>
+                    <input type="submit" class="btn btn-warning" value="        Удалить аватар       ">
                 </form>
             {{/ifeq}}
 
