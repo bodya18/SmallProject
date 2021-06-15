@@ -6,7 +6,8 @@ exports.GetLogin = (req,res) => {
     else{
         res.render('login.hbs', {
             title: 'Вход',
-            error: req.flash('error')
+            error: req.flash('error'),
+            isLogin: true
         })
     }
     

@@ -12,6 +12,8 @@ const loginRouter = require('./routes/loginRouter')
 const registerRouter = require('./routes/registerRouter')
 const logoutRouter = require('./routes/logoutRouter')
 const ruleRouter = require('./routes/ruleRouter')
+const newsRouter = require('./routes/newsRouter')
+const adminRouter = require('./routes/adminRouter')
 const errorHandler = require('./middleware/error')
 const varMiddleware = require('./middleware/variables')
 const configMiggleware = require('./middleware/config')
@@ -46,7 +48,6 @@ app.use(session({
 app.use(flash())
 app.use(varMiddleware)
 
-
 app.use('/', indexRouter)
 app.use('/sort', sortRouter)
 app.use('/delete', deleteRouter)
@@ -56,8 +57,8 @@ app.use('/login', loginRouter)
 app.use('/register', registerRouter)
 app.use('/logout', logoutRouter)
 app.use('/rules', ruleRouter)
-app.use('/admin', express.static('./AdminLTE-3.1.0'))
-app.use('/news', express.static('./bootstrap-news-template'))
+app.use('/admin', adminRouter)
+app.use('/news', newsRouter)
 
 app.use(errorHandler)
 

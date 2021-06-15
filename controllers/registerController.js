@@ -6,7 +6,8 @@ exports.GetRegister = (req,res) => {
     else{
         res.render('register.hbs', {
             title: 'Регистрация',
-            error: req.flash('error')
+            error: req.flash('error'),
+            isRegister: true
         })
     }
     
