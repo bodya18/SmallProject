@@ -1,13 +1,3 @@
-.btn-outline-primary {
-    color: #000000 !important;
-    border-color: #000000 !important;
-}
-.btn-outline-primary:hover {
-    color: #614646 !important;
-    background-color: rgb(228, 228, 228) !important;
-    border-color: rgb(228, 228, 228) !important;
-}
-
-.btn-dark {
-    width: 200px;
+.nav-bar, .nav-bar .navbar {
+    background: #f90 !important;
 }

@@ -1,12 +1,13 @@
 const config = require('../middleware/config')
 const NewsModel = require(`../models/${config.database}/news`)
 const file = require('../middleware/file')
-
+const CategoriesModel = require(`../models/${config.database}/categories`)
 
 class News{
     constructor(){
         this.news = new NewsModel
         this.is = false
+        this.category = new CategoriesModel
     }
 
     async CreateNews(title, postText, selectCategoryId, filedata, perm) {
@@ -45,7 +46,13 @@ class News{
             return false
         }
         
-        return await this.news.GetCategories()
+        return await this.category.GetCategories()
+    }
+    async GetNewsById(id){
+        return await this.news.getById(id)
+    }
+    async GetNews(){
+        return await this.news.GetNews()
     }
 
 }

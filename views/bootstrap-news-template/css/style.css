@@ -288,7 +288,8 @@ button.btn:hover {
 .navbar-dark .navbar-nav .nav-link:hover,
 .navbar-dark .navbar-nav .nav-link.active {
     padding: 10px 10px 8px 10px;
-    color: #ffffff;
+    color: black !important;
+    font-weight: 700;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,
@@ -307,7 +308,7 @@ button.btn:hover {
 @media (min-width: 768px) {
     .nav-bar,
     .nav-bar .navbar {
-        background: #FF6F61 !important;
+        background: #FF6F61;
     }
     
     .nav-bar .navbar-brand {

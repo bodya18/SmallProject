@@ -95,18 +95,6 @@ class News{
         return(temp)
     }
 
-    async GetCategories(){
-        var temp
-        await pool.query('Select * from Categories')
-            .then(data => {
-                temp = data[0]
-            })
-            .catch(e =>{
-                return console.log(e);
-            })
-        return temp
-    }
-
 }
 
 module.exports = News

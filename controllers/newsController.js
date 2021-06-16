@@ -1,18 +1,27 @@
-// const RBAC = require('../service/RBAC_Service')
-const config = require('../middleware/config')
-const NewsModel = require(`../models/${config.database}/news`)
 const RBAC = require('../service/RBAC_Service');
 
 exports.GetNews = async (req,res) => {
+    const rbac = new RBAC
+    const news = await rbac.news.GetNews()
+    const categories = await rbac.category.GetCategories()
     res.render('./bootstrap-news-template/index.hbs', {
         title: 'Список пользователей',
-        isNews: true
+        isNews: true,
+        news: news,
+        categories: categories
     })
 }
 
-exports.GetPost = async (req,res) => {
+exports.GetThisPost = async (req,res) => {
+    const rbac = new RBAC
+    const news = await rbac.news.GetNewsById(req.params.id)
+    const dataNews = await rbac.news.GetNews()
+    const categories = await rbac.category.GetCategoriesById(news.categoryId)
     res.render('./bootstrap-news-template/single-page.hbs', {
-        title: ''
+        title: news.title,
+        news: news,
+        dataNews: dataNews,
+        categories: categories.id
     })
 }
 
