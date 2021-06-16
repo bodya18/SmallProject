@@ -17,11 +17,13 @@ exports.GetThisPost = async (req,res) => {
     const news = await rbac.news.GetNewsById(req.params.id)
     const dataNews = await rbac.news.GetNews()
     const categories = await rbac.category.GetCategoriesById(news.categoryId)
+    const data = [100, 10, 1,1,1,11,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,11,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,11,1,1,1,1,1,1,1,1,1,11,1,1,1]
     res.render('./bootstrap-news-template/single-page.hbs', {
         title: news.title,
         news: news,
         dataNews: dataNews,
-        categories: categories.id
+        categories: categories.id,
+        data: data
     })
 }
 

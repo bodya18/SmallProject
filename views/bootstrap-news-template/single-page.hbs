@@ -26,7 +26,6 @@
                         <h2 class="sw-title">В этой категории</h2>
                         <div class="news-list">
                             {{#each dataNews}}
-                                
                                 {{#ifeq this.categoryId @root.categories}}
                                     <div class="nl-item">
                                         <div class="nl-img">
@@ -37,7 +36,6 @@
                                         </div>
                                     </div>
                                 {{/ifeq}}
-                                
                             {{/each}}
                         </div>
                     </div>

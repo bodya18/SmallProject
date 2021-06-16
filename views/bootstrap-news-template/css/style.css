@@ -906,6 +906,9 @@ button.btn:hover {
     position: relative;
     width: 100%;
     margin-bottom: 45px;
+    overflow: scroll !important;
+    height: 750px;
+    overflow: auto !important;
 }
 
 .sidebar .sidebar-widget h2.sw-title {
@@ -928,6 +931,7 @@ button.btn:hover {
 
 .sidebar .news-list .nl-item .nl-img {
     width: 100px;
+
 }
 
 .sidebar .news-list .nl-item .nl-img img {
@@ -952,6 +956,7 @@ button.btn:hover {
 .sidebar .sidebar-widget .tab-news {
     position: relative;
     margin-bottom: 30px;
+    
 }
 
 .sidebar .tab-news .nav.nav-pills .nav-link {
