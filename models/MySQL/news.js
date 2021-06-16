@@ -3,7 +3,7 @@ const fs = require('fs')
 
 class News{
     
-    async edit(post_text, postUrl, categoryId, title) {
+    async edit(post_text, postUrl, categoryId, title, id) {
         try{
             if(postUrl){
                 await pool.query('Select postUrl from news where id=?', [id]) 

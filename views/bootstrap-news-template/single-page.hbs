@@ -11,16 +11,22 @@
                     <div class="sn-content">
                         <h1 class="sn-title">{{news.title}}</h1>
                             {{news.post_text}}
+                        <br>
                     </div>
                 </div>
+                <a href="/news/edit/{{news.id}}">
+                    <button type="button" class="btn btn-light">Редактировать статью</button>
+                </a>
             </div>
+
             
             <div class="col-lg-4">
                 <div class="sidebar">
                     <div class="sidebar-widget">
-                        <h2 class="sw-title">In This Category</h2>
+                        <h2 class="sw-title">В этой категории</h2>
                         <div class="news-list">
                             {{#each dataNews}}
+                                
                                 {{#ifeq this.categoryId @root.categories}}
                                     <div class="nl-item">
                                         <div class="nl-img">
@@ -31,6 +37,7 @@
                                         </div>
                                     </div>
                                 {{/ifeq}}
+                                
                             {{/each}}
                         </div>
                     </div>

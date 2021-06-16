@@ -38,10 +38,34 @@ exports.GetCreate = async (req,res) => {
     })
 }
 
+exports.GetEdit = async (req,res) => {
+    const rbac = new RBAC
+    const data = await rbac.news.GetEdit(req.session.Perm, req.params.id)
+    if(data === false)
+        return res.redirect('/news')
+    res.render('editNews.hbs', {
+        categories: data.categories,
+        news: data.news,
+        title: 'Редактирование статьи',
+        isCreate: true,
+        error: req.flash('error')
+    })
+}
+
+exports.EditNews = async (req, res) => {
+    const rbac = new RBAC
+    const data = await rbac.news.EditNews(req.body.title, req.body.postText, req.body.selectCategoryId, req.file, req.body.id)
+    if(data.isCreate === false){
+        req.flash('error', data.error)
+        return res.redirect(`/news/edit/${req.body.id}`)
+    }
+    return res.redirect('/news')
+}
+
 exports.CreateNews = async (req, res) => {
     const rbac = new RBAC
     const data = await rbac.news.CreateNews(req.body.title, req.body.postText, req.body.selectCategoryId, req.file)
-    if(data.isCreate===false){
+    if(data.isCreate === false){
         req.flash('error', data.error)
         return res.redirect(`/news/create`)
     }

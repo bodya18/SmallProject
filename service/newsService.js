@@ -10,7 +10,7 @@ class News{
         this.category = new CategoriesModel
     }
 
-    async CreateNews(title, postText, selectCategoryId, filedata, perm) {
+    async CreateNews(title, postText, selectCategoryId, filedata) {
         if(title.length < 5)
         return {
             isCreate: false,
@@ -48,6 +48,50 @@ class News{
         
         return await this.category.GetCategories()
     }
+
+    async GetEdit (perm, id){
+        for (let i = 0; i < perm.length; i++) {
+            if(perm[i] === "GIVE"){
+                this.is = true
+                break;
+            }
+        }
+        if(!this.is){
+            return false
+        }
+        
+        const categories = await this.category.GetCategories()
+        const news = await this.news.getById(id)
+        return {
+            news,
+            categories
+        }
+    }
+
+    async EditNews(title, postText, selectCategoryId, filedata, id){
+        if(title.length < 5)
+        return {
+            isCreate: false,
+            error: 'Название статьи должно быть длиннее 5 символов'
+        }
+        if(title.length > 100)
+            return {
+                isCreate: false,
+                error: 'Название статьи должно быть не длиннее 100 символов'
+            }
+        if(postText.length < 100)
+            return {
+                isCreate: false,
+                error: 'Статья должна быть длиннее 100 символов'
+            }
+        if((!filedata) && (file.inFile === true)){
+            file.inFile = false
+            return {isCreate: false, error: 'Аватар пользователя должен быть фотографией'}
+        }
+        await this.news.edit(postText, filedata, selectCategoryId, title, id)
+        return{isCreate:true}
+    }
+
     async GetNewsById(id){
         return await this.news.getById(id)
     }
