@@ -24,7 +24,7 @@ a:focus {
 p {
     padding: 0;
     margin: 0 0 15px 0;
-    color: #000000;
+    font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
 h1,
@@ -905,10 +905,8 @@ button.btn:hover {
 .sidebar .sidebar-widget {
     position: relative;
     width: 100%;
-    margin-bottom: 45px;
-    overflow: scroll !important;
+    margin-bottom: 45px;   
     height: 750px;
-    overflow: auto !important;
 }
 
 .sidebar .sidebar-widget h2.sw-title {

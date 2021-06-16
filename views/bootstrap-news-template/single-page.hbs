@@ -10,7 +10,7 @@
                     </div>
                     <div class="sn-content">
                         <h1 class="sn-title">{{news.title}}</h1>
-                            {{news.post_text}}
+                            <pre>{{news.post_text}}</pre>
                         <br>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
             <div class="col-lg-4">
                 <div class="sidebar">
                     <div class="sidebar-widget">
-                        <h2 class="sw-title">В этой категории</h2>
+                        <h2 class="sw-title">В этой категории<br> !!!5 штук!!!</h2>
                         <div class="news-list">
                             {{#each dataNews}}
                                 {{#ifeq this.categoryId @root.categories}}
