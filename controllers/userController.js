@@ -6,7 +6,9 @@ exports.GetUser = async (req,res) => {
     res.render('user.hbs', {
         users: UserData, 
         title: 'Профиль',
-        thisUserId: req.params.id
+        thisUserId: req.params.id,
+        isAdmin: true,
+        isUsers: true
     })
 }
  

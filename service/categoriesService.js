@@ -28,6 +28,16 @@ class Categories{
     async GetCategoriesById(id){
         return await this.category.GetCategoriesById(id)
     }
+
+    async CreateCategory(title){
+        const data = await this.category.GetByName(title)
+        if(data)
+            return{
+                error: 'Данная категория уже присутствует, придумайте новое название'
+            }
+        await this.category.createCategory(title)
+        return true
+    }
 }
 
 module.exports = Categories

@@ -1,0 +1,15 @@
+ <div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <h1>Список категорий</h1>
+            <ul class="list-group">
+                {{#each categories}}
+                    <li class="list-group-item">
+                        {{this.category}}
+                        
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>

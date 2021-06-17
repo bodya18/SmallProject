@@ -5,7 +5,7 @@ exports.GetNews = async (req,res) => {
     const news = await rbac.news.GetNews()
     const categories = await rbac.category.GetCategories()
     res.render('./bootstrap-news-template/index.hbs', {
-        title: 'Список пользователей',
+        title: 'Новости',
         isNews: true,
         news: news,
         categories: categories
@@ -38,6 +38,7 @@ exports.GetCreate = async (req,res) => {
     res.render('createNews.hbs', {
         categories: data,
         title: 'Создание статьи',
+        isAdmin: true,
         isCreate: true,
         error: req.flash('error')
     })
@@ -72,7 +73,7 @@ exports.CreateNews = async (req, res) => {
     const data = await rbac.news.CreateNews(req.body.title, req.body.postText, req.body.selectCategoryId, req.file)
     if(data.isCreate === false){
         req.flash('error', data.error)
-        return res.redirect(`/news/create`)
+        return res.redirect(`/news/create/post`)
     }
     
     return res.redirect('/news')
@@ -82,4 +83,34 @@ exports.DeleteNews = async (req, res) => {
     const rbac = new RBAC
     await rbac.news.DeleteNews(req.params.id)
     return res.redirect('/news')
+}
+
+exports.GetCreateCategory = async (req,res) => {
+    res.render('createCategory.hbs', {
+        title: 'Создание категории',
+        isAdmin: true,
+        isCreateCategory: true,
+        error: req.flash('error')
+    })
+}
+
+exports.CreateCategory = async (req, res) => {
+    const rbac = new RBAC
+    const data = await rbac.category.CreateCategory(req.body.title)
+    if(data === true){
+        return res.redirect('/news/categories')
+    }
+    req.flash('error', data.error)
+    return res.redirect(`/news/create/category`)
+}
+
+exports.GetCategories = async (req,res) => {
+    const rbac = new RBAC
+    const categories = await rbac.category.GetCategories()
+    res.render('categories.hbs', {
+        title: 'Список категорий',
+        isCategories: true,
+        categories: categories,
+        isAdmin: true
+    })
 }

@@ -1,0 +1,16 @@
+<div align='center'>
+    <h1>Создание категории</h1>
+    {{#if error}}
+        <font color='red'>{{error}}</font>
+    {{/if}}
+    <form method="POST" action="/news/newCategory">
+        <div class="col-sm-6">
+            
+            <input name="title" type="text" class="form-control" placeholder="Название категории" maxlength="30" minlength="2" autocomplete="off">
+            
+            <input type="submit" class="btn btn-secondary" value="Отправить">
+
+        </div>
+    </form>
+
+</div>
