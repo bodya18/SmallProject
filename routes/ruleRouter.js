@@ -21,8 +21,8 @@ router.post('/give', isAdmin, urlencodedParser, auth, ruleController.GiveRule)
 router.post('/givePermission', isAdmin, urlencodedParser, auth, ruleController.GivePermission)
 
 router.post('/deleteRule/:id', isAdmin, urlencodedParser, auth, ruleController.DeleteRule)
-router.post('/deleteFromUser/:id', isAdmin, urlencodedParser, auth, ruleController.DeleteRuleFromUser)
-router.post('/deleteFromRule/:id', isAdmin, urlencodedParser, auth, ruleController.DeletePermissionFromUser)
+router.post('/deleteFromUser/:id', isAdmin, auth, ruleController.DeleteRuleFromUser)
+router.post('/deleteFromRule/:id', isAdmin, auth, ruleController.DeletePermissionFromUser)
 router.post('/deletePermission/:id', isAdmin, urlencodedParser, auth, ruleController.DeletePermission)
 
 module.exports = router

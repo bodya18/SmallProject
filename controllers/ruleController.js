@@ -120,7 +120,6 @@ exports.GiveRule = async (req, res) =>{
 }
 
 exports.DeleteRuleFromUser = async (req, res) =>{
-    console.log(123+"fds");
     const rbac = new RBAC
     await rbac.role.DeleteRuleFromUser(req.params.id)
     return res.redirect('/rules') 
