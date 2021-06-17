@@ -5,7 +5,9 @@ exports.up = async (req,res) => {
     const UserData = await rbac.user.GetIndex(req.params.what)
     res.render('index.hbs', {
         users: UserData,
-        title: 'Список пользователей'
+        title: 'Список пользователей',
+        isAdmin: true,
+        isUsers: true
     })
 }
 
@@ -14,6 +16,8 @@ exports.down = async (req,res) => {
     const UserData = await rbac.user.GetIndex(req.params.what, 'DESC')
     res.render('index.hbs', {
         users: UserData,
-        title: 'Список пользователей'
+        title: 'Список пользователей',
+        isAdmin: true,
+        isUsers: true
     })
 }

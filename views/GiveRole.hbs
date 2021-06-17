@@ -1,0 +1,24 @@
+
+<div class="container">
+    <h1>Выдача ролей</h1>
+    <div class="row">
+        <div class="col-lg-6">
+            <form action="/rules/give" method="POST">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="selectNameId">
+                    <option selected>Выберите пользователя</option>
+                    {{#each users}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="selectRuleId">
+                    <option selected>Выберите роль</option>
+                    {{#each rules}}
+                        <option value="{{this.id}}">{{this.rule}}</option>
+                    {{/each}}
+                </select>
+                <input type="submit" value="Выдать роль">
+            </form>
+        </div>
+    </div>
+</div>

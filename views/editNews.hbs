@@ -1,5 +1,5 @@
 <div align='center'>
-    <h1>Создание статьи</h1>
+    <h1>Редактирование статьи</h1>
     {{#if error}}
         <font color='red'>{{error}}</font>
     {{/if}}
@@ -25,7 +25,7 @@
 
         </div>
     </form><br><br>
-    <form action="/news/delete/{{news.id}}" method="post">
+    <form action="/news/delete/post/{{news.id}}" method="post">
         <input type="submit" class="btn btn-danger" value="Удалить новость">
     </form>
 </div>

@@ -38,6 +38,12 @@ class Categories{
         await this.category.createCategory(title)
         return true
     }
+    async DeleteCategory(id){
+        const data = await this.category.DeleteCategory(id)
+        console.log(data);
+        if(data === false)
+            return false
+    }
 }
 
 module.exports = Categories

@@ -5,6 +5,8 @@ exports.GetIndex = async (req,res) => {
     const UserData = await rbac.user.GetIndex('time', 'DESC')
     res.render('index.hbs', {
         users: UserData,
-        title: 'Список пользователей'
+        title: 'Список пользователей',
+        isAdmin: true,
+        isUsers: true
     })
 }

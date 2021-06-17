@@ -15,16 +15,18 @@
         </tr>
         {{#each users}}
             <tr align="center"> 
-                {{#if this.avatarURL}}
-                    <td><img src="/{{this.avatarURL}}" width="60" ></td>
-                {{else}}
-                    <td><img src="/images/no_avatar.png" width="60"></td>
-                {{/if}} 
+                <div class="image">
+                    {{#if this.avatarURL}}
+                        <td><img src="/{{this.avatarURL}}" class="img-circle elevation-2" width="60" ></td>
+                    {{else}}
+                        <td><img src="/images/no_avatar.png" class="img-circle elevation-2" width="60"></td>
+                    {{/if}} 
+                </div>
 
                 {{#ifeq this.id @root.userId}}
-                    <td><a href="/user/{{this.id}}"><button type="button" class="btn btn-dark">Редактировать</button></a></td>   
+                    <td><a href="/user/{{this.id}}"><button type="button" style="width: 150px" class="btn btn-dark">Редактировать</button></a></td>   
                 {{else}}
-                    <td><a href="/user/{{this.id}}"><button type="button" class="btn btn-dark">Детальнее</button></a></td>
+                    <td><a href="/user/{{this.id}}"><button type="button" style="width: 150px" class="btn btn-dark">Детальнее</button></a></td>
                 {{/ifeq}}             
                 
                 <td>{{this.email}}</td>

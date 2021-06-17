@@ -28,7 +28,7 @@ exports.loginLogic = async(req,res) => {
     req.session.isAuthenticated = UserData.isAuthenticated
     req.session.userIden = UserData.userIden
     req.session.Perm = UserData.Perm
-
+    
     req.session.save(err =>{
         if(err){
             throw err

@@ -33,8 +33,6 @@ exports.GetThisPost = async (req,res) => {
 exports.GetCreate = async (req,res) => {
     const rbac = new RBAC
     const data = await rbac.news.GetCreate(req.session.Perm)
-    if(data === false)
-        return res.redirect('/news')
     res.render('createNews.hbs', {
         categories: data,
         title: 'Создание статьи',
@@ -54,7 +52,8 @@ exports.GetEdit = async (req,res) => {
         news: data.news,
         title: 'Редактирование статьи',
         isCreate: true,
-        error: req.flash('error')
+        error: req.flash('error'),
+        isAdmin: true
     })
 }
 
@@ -85,6 +84,14 @@ exports.DeleteNews = async (req, res) => {
     return res.redirect('/news')
 }
 
+exports.DeleteCategory = async (req, res) => {
+    const rbac = new RBAC
+    const data = await rbac.category.DeleteCategory(req.params.id)
+    if(data === false)
+        req.flash('error', 'Чтобы удалить категорию требуется удалить ВСЕ новости в данной категории!')
+    return res.redirect('/news/categories')
+}
+
 exports.GetCreateCategory = async (req,res) => {
     res.render('createCategory.hbs', {
         title: 'Создание категории',
@@ -111,6 +118,7 @@ exports.GetCategories = async (req,res) => {
         title: 'Список категорий',
         isCategories: true,
         categories: categories,
-        isAdmin: true
+        isAdmin: true,
+        error: req.flash('error')
     })
 }

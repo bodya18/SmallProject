@@ -46,6 +46,21 @@ class Categories{
             })
         return temp
     }
+
+    async DeleteCategory(id){
+        var temp = true
+        console.log(id);
+        await pool.query('select * from news where categoryId=?', [id])
+            .then(data=>{
+                if (!data[0][0])
+                    pool.query('delete from Categories where id=?', [id])
+                else temp = false
+            })
+            .catch(e => {
+                console.log(e);
+            })
+            return temp
+    }
 }
 
 module.exports = Categories

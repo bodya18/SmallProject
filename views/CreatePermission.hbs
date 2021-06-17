@@ -1,0 +1,15 @@
+<div align='center'>
+    <h1>Создание разрешения</h1>
+    {{#if error}}
+        <font color='red'>{{error}}</font>
+    {{/if}}
+    <form method="POST" action="/rules/newPermission">
+        <div class="col-sm-6">
+            
+            <input name="NewPermission" type="text" class="form-control" placeholder="Название разрешения" maxlength="30" minlength="2" autocomplete="off">
+            
+            <input type="submit" class="btn btn-secondary" value="Отправить">
+
+        </div>
+    </form>
+</div>

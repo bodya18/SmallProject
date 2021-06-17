@@ -1,0 +1,15 @@
+<div align='center'>
+    <h1>Создание роли</h1>
+    {{#if error}}
+        <font color='red'>{{error}}</font>
+    {{/if}}
+    <form method="POST" action="/rules/newRole">
+        <div class="col-sm-6">
+            
+            <input name="rule" type="text" class="form-control" placeholder="Название роли" maxlength="30" minlength="2" autocomplete="off">
+            
+            <input type="submit" class="btn btn-secondary" value="Отправить">
+
+        </div>
+    </form>
+</div>

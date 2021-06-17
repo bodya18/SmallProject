@@ -1,53 +1,24 @@
-<a href="/rules"><button type="button" class="btn btn-secondary btn-lg">Просмотр связей</button></a>
-<a href="/rules/role"><button type="button" class="btn btn-secondary btn-lg">Создание роли</button></a>
-<a href="/rules/permission"><button type="button" class="btn btn-secondary btn-lg">Создание разрешения</button></a>
-<br><br><br>
-<table width="99%">
-    <td align="center">
+<div class="container">
+    <h1>Список разрешений</h1>
+    <div class="row">
         {{#if error}}
-            <p><font color='red'>{{error}}</font></p>
+            <font color='red'>{{error}}</font>
         {{/if}}
-        <form action="/rules/newPermission" method="POST">
-            <label><b>Новое разрешение</b></label><br>
-            <input name="NewPermission" type="text" width="150"><br><br>
-            <input type="submit" value="Добавить">
-        </form>
-    </td>
-    <td align="center">
-        <h3>Выдать</h3>
-        <form action="/rules/givePermission" method="POST">
-            Рарешение
-            <select name="selectPermissionId">
-                {{#each permissions}}
-                    <option value="{{this.id}}">{{this.permission}}</option>
-                {{/each}}
-            </select>
-            роли
-            <select name="PermSelectRuleId">
-                {{#each rules}}
-                    <option value="{{this.id}}">{{this.rule}}</option>
-                {{/each}}
-            </select>
-            <input type="submit" value="Добавить">
-        </form>
-    </td>
-    <td align="center">
-        <table border="1">
-            <caption>Список Разрешений</caption>
-            <tr align="center">
-                <td></td>
-                <td><h4>Разрешение</h4></td>
-            </tr>
-            {{#each permissions}}        
-                <tr align="center">
-                    <td>
-                        <form action="/rules/deletePermission/{{this.id}}" method="POST">
-                            <button type="button" class="btn btn-danger">Удалить разрешение</button>
-                        </form>
-                    </td>
-                    <td><h4>{{this.permission}}</h4></td>
-                </tr>
-            {{/each}}
-        </table>
-    </td>
-</table>
+        {{#each permissions}}
+        <div class="col-lg-6">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    {{this.permission}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-2">
+            <ul class="list-group">
+                <form action="/rules/deletePermission/{{this.id}}" method="post">
+                    <input type="submit" class="btn btn-danger" value="Удалить разрешение">
+                </form>
+            </ul>
+        </div>
+        {{/each}}
+    </div>
+</div>

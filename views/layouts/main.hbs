@@ -9,28 +9,26 @@
 
 
 
-        {{#if isAdmin}}
-            <!-- Google Font: Source Sans Pro -->
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-            <!-- Font Awesome -->
-            <link rel="stylesheet" href="/views/AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css">
-            <!-- Ionicons -->
-            <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-            <!-- Tempusdominus Bootstrap 4 -->
-            <link rel="stylesheet" href="/views/AdminLTE-3.1.0/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-            <!-- iCheck -->
-            <link rel="stylesheet" href="/views/AdminLTE-3.1.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-            <!-- JQVMap -->
-            <link rel="stylesheet" href="/views/AdminLTE-3.1.0/plugins/jqvmap/jqvmap.min.css">
-            <!-- Theme style -->
-            <link rel="stylesheet" href="/views/AdminLTE-3.1.0/dist/css/adminlte.min.css">
-            <!-- overlayScrollbars -->
-            <link rel="stylesheet" href="/views/AdminLTE-3.1.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-            <!-- Daterange picker -->
-            <link rel="stylesheet" href="/views/AdminLTE-3.1.0/plugins/daterangepicker/daterangepicker.css">
-            <!-- summernote -->
-            <link rel="stylesheet" href="/views/AdminLTE-3.1.0/plugins/summernote/summernote-bs4.min.css">
-        {{/if}}
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="/views/AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Tempusdominus Bootstrap 4 -->
+        <link rel="stylesheet" href="/views/AdminLTE-3.1.0/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+        <!-- iCheck -->
+        <link rel="stylesheet" href="/views/AdminLTE-3.1.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+        <!-- JQVMap -->
+        <link rel="stylesheet" href="/views/AdminLTE-3.1.0/plugins/jqvmap/jqvmap.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="/views/AdminLTE-3.1.0/dist/css/adminlte.min.css">
+        <!-- overlayScrollbars -->
+        <link rel="stylesheet" href="/views/AdminLTE-3.1.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+        <!-- Daterange picker -->
+        <link rel="stylesheet" href="/views/AdminLTE-3.1.0/plugins/daterangepicker/daterangepicker.css">
+        <!-- summernote -->
+        <link rel="stylesheet" href="/views/AdminLTE-3.1.0/plugins/summernote/summernote-bs4.min.css">
 
 
         <!-- Favicon -->
@@ -55,16 +53,16 @@
 
         <!-- Nav Bar Start -->
         <div class="nav-bar">
-            <div class="container">
+            <div class="container"> 
                 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
+                            {{#if @root.isNews}}
+                                <a href="/news" class="nav-item nav-link active">News</a>
+                            {{else}}
+                                <a href="/news" class="nav-item nav-link">News</a>
+                            {{/if}}
                             {{#if isAuth}}
-                                {{#if @root.isNews}}
-                                    <a href="/news" class="nav-item nav-link active">News</a>
-                                {{else}}
-                                    <a href="/news" class="nav-item nav-link">News</a>
-                                {{/if}}
                                 {{#each permissionsList}}
                                     {{#ifeq this 'GIVE'}}
                                         {{#if @root.isAdmin}}
@@ -74,6 +72,11 @@
                                         {{/if}}
                                     {{/ifeq}}
                                 {{/each}}
+                            {{/if}}
+                        </div>
+                        <div class="navbar-nav">
+                            {{#if isAuth}}
+                                <a href="/logout"class="nav-item nav-link">Выйти</a>
                             {{else}}
                                 {{#if @root.isRegister}}
                                     <a href="/register" class="nav-item nav-link active">Регистрация</a>
@@ -84,14 +87,23 @@
                                     <a href="/login" class="nav-item nav-link active">Войти</a>
                                     {{else}}
                                     <a href="/login" class="nav-item nav-link">Войти</a>
-                                {{/if}}
+                                {{/if}}        
                             {{/if}}
                         </div>
-                        <div class="navbar-nav">
-                            {{#if isAuth}}
-                                <a href="/logout"class="nav-item nav-link">Выйти</a>        
-                            {{/if}}
-                        </div>
+                        {{#if isAuth}}
+                            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                                <div class="image">
+                                    {{#if ThisUser.avatarURL}}
+                                        <img src="/{{ThisUser.avatarURL}}" style="margin-top: 15px;" class="img-circle elevation-2">
+                                    {{else}}
+                                        <img src="/images/no_avatar.png" style="margin-top: 15px;" class="img-circle elevation-2">
+                                    {{/if}}
+                                </div>
+                                <div class="info">
+                                    <a href="/user/{{ThisUser.id}}" style="margin-top: 10px;" class="nav-link p-2 active">{{ThisUser.name}}</a>
+                                </div>
+                            </div>
+                        {{/if}}
                     </div>
                 </nav>
             </div>
@@ -105,10 +117,14 @@
                     <!-- Sidebar user panel (optional) -->
                         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                             <div class="image">
-                            <img src="/views/AdminLTE-3.1.0/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                                {{#if ThisUser.avatarURL}}
+                                    <img src="/{{ThisUser.avatarURL}}" class="img-circle elevation-2">
+                                {{else}}
+                                    <img src="/images/no_avatar.png" class="img-circle elevation-2">
+                                {{/if}}
                             </div>
                             <div class="info">
-                            <a href="#" class="d-block">Alexander Pierce</a>
+                                <a href="/user/{{ThisUser.id}}" class="d-block">{{ThisUser.name}}</a>
                             </div>
                         </div>
 
@@ -133,12 +149,25 @@
                                             {{#if isAdminPanel}}
                                                 <a href="/admin" class="nav-link active">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Main</p>
+                                                    <p>News</p>
                                                 </a>
                                             {{else}}
                                                 <a href="/admin" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Main</p>
+                                                    <p>News</p>
+                                                </a>
+                                            {{/if}}
+                                        </li>
+                                        <li class="nav-item">
+                                            {{#if isCategories}}
+                                                <a href="/news/categories" class="nav-link active">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Categories</p>
+                                                </a>
+                                            {{else}}
+                                                <a href="/news/categories" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Categories</p>
                                                 </a>
                                             {{/if}}
                                         </li>
@@ -169,19 +198,6 @@
                                             {{/if}}
                                         </li>
                                         <li class="nav-item">
-                                            {{#if isCategories}}
-                                                <a href="/news/categories" class="nav-link active">
-                                                    <i class="far fa-circle nav-icon"></i>
-                                                    <p>Categories</p>
-                                                </a>
-                                            {{else}}
-                                                <a href="/news/categories" class="nav-link">
-                                                    <i class="far fa-circle nav-icon"></i>
-                                                    <p>Categories</p>
-                                                </a>
-                                            {{/if}}
-                                        </li>
-                                        <li class="nav-item">
                                             {{#if isUsers}}
                                                 <a href="/" class="nav-link active">
                                                     <i class="far fa-circle nav-icon"></i>
@@ -191,6 +207,97 @@
                                                 <a href="/" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
                                                     <p>Users</p>
+                                                </a>
+                                            {{/if}}
+                                        </li>
+                                        <li class="nav-item">
+                                            {{#if isRole}}
+                                                <a href="/rules/role" class="nav-link active">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Roles</p>
+                                                </a>
+                                            {{else}}
+                                                <a href="/rules/role" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Roles</p>
+                                                </a>
+                                            {{/if}}
+                                        </li>
+                                        <li class="nav-item">
+                                            {{#if isPermission}}
+                                                <a href="/rules/permission" class="nav-link active">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Permissions</p>
+                                                </a>
+                                            {{else}}
+                                                <a href="/rules/permission" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Permissions</p>
+                                                </a>
+                                            {{/if}}
+                                        </li>
+                                        <li class="nav-item">
+                                            {{#if isRoleCreate}}
+                                                <a href="/rules/roles/create" class="nav-link active">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Create role</p>
+                                                </a>
+                                            {{else}}
+                                                <a href="/rules/roles/create" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Create role</p>
+                                                </a>
+                                            {{/if}}
+                                        </li>
+                                        <li class="nav-item">
+                                            {{#if isPermissionCreate}}
+                                                <a href="/rules/permission/create" class="nav-link active">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Create permission</p>
+                                                </a>
+                                            {{else}}
+                                                <a href="/rules/permission/create" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Create permission</p>
+                                                </a>
+                                            {{/if}}
+                                        </li>
+                                        <li class="nav-item">
+                                            {{#if isConnection}}
+                                                <a href="/rules" class="nav-link active">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>All connection</p>
+                                                </a>
+                                            {{else}}
+                                                <a href="/rules" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>All connection</p>
+                                                </a>
+                                            {{/if}}
+                                        </li>
+                                        <li class="nav-item">
+                                            {{#if isGiveRole}}
+                                                <a href="/rules/give/role" class="nav-link active">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Give Role</p>
+                                                </a>
+                                            {{else}}
+                                                <a href="/rules/give/role" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Give Role</p>
+                                                </a>
+                                            {{/if}}
+                                        </li>
+                                        <li class="nav-item">
+                                            {{#if isGivePermission}}
+                                                <a href="/rules/give/permission" class="nav-link active">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Give Permission</p>
+                                                </a>
+                                            {{else}}
+                                                <a href="/rules/give/permission" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Give Permission</p>
                                                 </a>
                                             {{/if}}
                                         </li>

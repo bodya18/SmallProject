@@ -1,0 +1,25 @@
+
+<div class="container">
+    <h1>Выдача разрешений</h1>
+    <div class="row">
+        <div class="col-lg-6">
+            <form action="/rules/givePermission" method="POST">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="PermSelectRuleId">
+                    <option selected>Выберите роль</option>
+                    {{#each rules}}
+                        <option value="{{this.id}}">{{this.rule}}</option>
+                    {{/each}}
+                </select>
+
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="selectPermissionId">
+                    <option selected>Выберите разрешение</option>
+                    {{#each permissions}}
+                        <option value="{{this.id}}">{{this.permission}}</option>
+                    {{/each}}
+                </select>
+                <input type="submit" value="Выдать разрешение">
+            </form>
+        </div>
+    </div>
+</div>
+

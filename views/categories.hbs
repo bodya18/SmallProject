@@ -1,15 +1,25 @@
- <div class="container">
+
+<div class="container">
+    <h1>Список категорий</h1>
     <div class="row">
+        {{#if error}}
+            <font color='red'>{{error}}</font>
+        {{/if}}
+        {{#each categories}}
         <div class="col-lg-6">
-            <h1>Список категорий</h1>
             <ul class="list-group">
-                {{#each categories}}
-                    <li class="list-group-item">
-                        {{this.category}}
-                        
-                    </li>
-                {{/each}}
+                <li class="list-group-item">
+                    {{this.category}}
+                </li>
             </ul>
         </div>
+        <div class="col-lg-2">
+            <ul class="list-group">
+                <form action="/news/delete/category/{{this.id}}" method="post">
+                    <input type="submit" class="btn btn-danger" value="Удалить">
+                </form>
+            </ul>
+        </div>
+        {{/each}}
     </div>
 </div>

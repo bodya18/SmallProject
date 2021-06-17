@@ -7,7 +7,6 @@ exports.GetUser = async (req,res) => {
         users: UserData, 
         title: 'Профиль',
         thisUserId: req.params.id,
-        isAdmin: true,
         isUsers: true
     })
 }

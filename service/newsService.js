@@ -36,16 +36,6 @@ class News{
     }
 
     async GetCreate (perm){
-        for (let i = 0; i < perm.length; i++) {
-            if(perm[i] === "GIVE"){
-                this.is = true
-                break;
-            }
-        }
-        if(!this.is){
-            return false
-        }
-        
         return await this.category.GetCategories()
     }
 
