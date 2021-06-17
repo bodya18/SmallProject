@@ -98,7 +98,12 @@ class News{
     async GetNews(){
         return await this.news.GetNews()
     }
-
+    async GetNewsByCategory(categoryId){
+        return await this.news.GetNewsByCategory(categoryId)
+    }
+    async DeleteNews(id){
+        return await this.news.DeleteNews(id)
+    }
 }
 
 module.exports = News

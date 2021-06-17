@@ -34,7 +34,7 @@ class News{
             console.log(e) 
         }
     }
-    async delete(id){
+    async DeleteNews(id){
         await pool.query('Select postUrl from news where id=?', [id])
             .then(data => {
                 if(data[0][0].postUrl !== null)
@@ -95,6 +95,18 @@ class News{
         return(temp)
     }
 
+    async GetNewsByCategory(categoryId){
+        var temp
+        await pool.query('Select * from news where categoryId = ?', [categoryId])
+            .then(data => {
+                temp = data[0]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return(temp)
+    }
+    
 }
 
 module.exports = News

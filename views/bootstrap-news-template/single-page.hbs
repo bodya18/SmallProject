@@ -5,25 +5,32 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="sn-container">
-                    <div class="sn-img">
-                        <img width="850" heigth="540" src="/{{news.postUrl}}" />
+                    <div class="single-img">
+                        <img style="width: 850px" src="/{{news.postUrl}}">
                     </div>
                     <div class="sn-content">
-                        <h1 class="sn-title">{{news.title}}</h1>
-                            <pre>{{news.post_text}}</pre>
+                        <h1 class="sn-title">
+                            {{news.title}}
+                            {{#each permissionsList}}
+                                {{#ifeq this 'GIVE'}}
+                                    <a href="/news/edit/{{@root.news.id}}">
+                                        <button type="button" class="btn btn-dark">&#9998;</button>
+                                    </a>
+                                {{/ifeq}}
+                            {{/each}}
+                            
+                        </h1>
+                        <pre>{{news.post_text}}</pre>
                         <br>
                     </div>
                 </div>
-                <a href="/news/edit/{{news.id}}">
-                    <button type="button" class="btn btn-light">Редактировать статью</button>
-                </a>
             </div>
 
             
             <div class="col-lg-4">
                 <div class="sidebar">
                     <div class="sidebar-widget">
-                        <h2 class="sw-title">В этой категории<br> !!!5 штук!!!</h2>
+                        <h2 class="sw-title">В этой категории</h2>
                         <div class="news-list">
                             {{#each dataNews}}
                                 {{#ifeq this.categoryId @root.categories}}

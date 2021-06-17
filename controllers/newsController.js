@@ -13,10 +13,15 @@ exports.GetNews = async (req,res) => {
 }
 
 exports.GetThisPost = async (req,res) => {
+
     const rbac = new RBAC
     const news = await rbac.news.GetNewsById(req.params.id)
-    const dataNews = await rbac.news.GetNews()
+    var dataNews = await rbac.news.GetNewsByCategory(news.categoryId)
     const categories = await rbac.category.GetCategoriesById(news.categoryId)
+
+    if(dataNews.length > 5){
+        dataNews = dataNews.slice(0, 5)
+    }
     res.render('./bootstrap-news-template/single-page.hbs', {
         title: news.title,
         news: news,
@@ -70,5 +75,11 @@ exports.CreateNews = async (req, res) => {
         return res.redirect(`/news/create`)
     }
     
+    return res.redirect('/news')
+}
+
+exports.DeleteNews = async (req, res) => {
+    const rbac = new RBAC
+    await rbac.news.DeleteNews(req.params.id)
     return res.redirect('/news')
 }

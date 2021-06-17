@@ -13,5 +13,6 @@ router.get('/edit/:id', auth, newsController.GetEdit)
 
 router.post('/newPost', auth, isAdmin, urlencodedParser, file.upload.single("postUrl"), newsController.CreateNews)
 router.post('/edit', auth, urlencodedParser, file.upload.single("postUrl"), newsController.EditNews)
+router.post('/delete/:id', auth, urlencodedParser, newsController.DeleteNews)
 
 module.exports = router
