@@ -1,0 +1,31 @@
+
+<h1>Создание настройки</h1>
+{{#if error}}
+    <font color='red'>{{error}}</font>
+{{/if}}
+<form method="POST" action="/news/newSettings">
+    <div class="col-sm-6">
+        
+        <input name="label" type="text" class="form-control" placeholder="Название настройки" maxlength="100" minlength="2" autocomplete="off">
+        <input name="_key" type="text" class="form-control" placeholder="Уникальное английское название" maxlength="100" minlength="2" autocomplete="off">
+
+        <h2>Выберите категории показа
+        <select class="selectpicker" multiple name="selectCategoryId">
+            {{#each categories}}
+                <option value="{{this.id}}">{{this.category}}</option>
+            {{/each}}
+        </select></h2>
+        
+        <h2>Выберите новость</h2>
+        <div class="form-check">
+            {{#each news}}
+            <input class="form-check-input" value="{{this.id}}" name="CheckNews" type="checkbox">
+                    <option>{{this.title}}</option>
+            {{/each}}
+        </div>
+
+        <br><br><br><br>
+        <input type="submit" class="btn btn-secondary" value="Отправить">
+
+    </div>
+</form>

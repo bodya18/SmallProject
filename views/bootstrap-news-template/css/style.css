@@ -505,7 +505,7 @@ button.btn:hover {
 
 .cat-news .cn-img {
     position: relative;
-    overflow: hidden;
+    overflow: hidden !important;
 }
 
 .cat-news .cn-img img {

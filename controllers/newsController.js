@@ -12,6 +12,24 @@ exports.GetNews = async (req,res) => {
     })
 }
 
+exports.GetSettings = async (req,res) => {
+    const rbac = new RBAC
+    const news = await rbac.news.GetNews()
+    const categories = await rbac.category.GetCategories()
+    res.render('settings.hbs', {
+        title: 'Настройки',
+        isSettings: true,
+        isAdmin: true,
+        news: news,
+        categories: categories
+    })
+}
+
+exports.CreateSettings = async (req, res) => {
+    console.log(req.body);
+    return res.redirect(`/news/settings`)
+}
+
 exports.GetThisPost = async (req,res) => {
 
     const rbac = new RBAC

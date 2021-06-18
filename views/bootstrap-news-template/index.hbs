@@ -53,12 +53,15 @@
     <div class="container">
         <div class="row">
             {{#each categories}}
-                <div class="col-md-6">
-                    <h2>{{this.category}}</h2>
-                    <div class="row">{{!-- <div class="row cn-slider"> --}}
+                <div class="col-md-12">
+                    <div align="center">
+                        <br><br><br><br>
+                        <h2>{{this.category}}</h2>
+                    </div>
+                    <div class="row">
                         {{#each @root.news}}
                             {{#ifeq this.categoryId ../this.id}}
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <div class="cn-img">
                                         <img width="285" height="180" src="/{{this.postUrl}}" />
                                         <div class="cn-title">
@@ -73,7 +76,7 @@
             {{/each}}
         </div>
     </div>
-</div>
+</div><BR><BR>
 <!-- Category News End-->
 
 <!-- Footer Start -->
