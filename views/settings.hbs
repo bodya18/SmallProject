@@ -1,26 +1,30 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            {{!-- <form method="POST" action="/news/editSettings"> --}}
-                    <table border="1">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Название</th>
+                        <th scope="col">Ключ</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each settings}}
                         <tr>
-                            <td>Название</td>
-                            <td>Ключ</td>
-                            <td></td>
-                        </tr>
-                        {{#each settings}}
-                        <tr>
+                            <th>{{this.id}}</th>
                             <td>{{this.label}}</td>
                             <td>{{this._key}}</td>
                             <td>
-                                <a href="/news/GetEditSettings/{{this._key}}" style="nav-link p-2 active">
-                                    Редактировать
+                                <a href="/news/GetEditSettings/{{this._key}}">
+                                    <button class="btn btn-secondary">Редактировать</button>
                                 </a>
                             </td>
                         </tr>
-                        {{/each}}
-                    </table>
-            {{!-- </form> --}}
+                    {{/each}}
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
