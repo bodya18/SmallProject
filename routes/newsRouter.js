@@ -14,7 +14,10 @@ router.get('/create/post', isAdmin, auth, newsController.GetCreate)
 router.get('/edit/:id', isAdmin, auth, newsController.GetEdit)
 router.get('/create/category', isAdmin, auth, newsController.GetCreateCategory)
 router.get('/categories', isAdmin, auth, newsController.GetCategories)
+router.get('/GetEditSettings/:key', isAdmin, auth, newsController.GetEditSettings)
 
+
+router.post('/editSettings', isAdmin, auth, urlencodedParser, newsController.editSettings)
 router.post('/newSettings', isAdmin, auth, urlencodedParser, newsController.CreateSettings)
 router.post('/newCategory', isAdmin, auth, urlencodedParser, newsController.CreateCategory)
 router.post('/newPost', isAdmin, auth, urlencodedParser, file.upload.single("postUrl"), newsController.CreateNews)

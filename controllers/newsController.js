@@ -1,37 +1,51 @@
 const RBAC = require('../service/RBAC_Service');
+const fs = require('fs');
 
 exports.GetNews = async (req,res) => {
     const rbac = new RBAC
     const news = await rbac.news.GetNews()
-    const categories = await rbac.category.GetCategories()
-    res.render('./bootstrap-news-template/index.hbs', {
-        title: 'Новости',
-        isNews: true,
-        news: news,
-        categories: categories
+    const categoriesId = await rbac.news.GetCategoriesInSettings('SelectedCategories')
+    fs.readFile(`/home/bogdan/NodeJsProjects/SmallProject${categoriesId.value}`, "utf8", async (error, data) =>{
+        if(error) throw error;
+        data = JSON.parse(data);
+        var categories = [];
+        for (let i = 0; i < data.length; i++) {
+            categories[i] = await rbac.category.GetCategoriesById(data[i]) 
+        }
+        
+        res.render('./bootstrap-news-template/index.hbs', {
+            title: 'Новости',
+            isNews: true,
+            news: news,
+            categories: categories
+        })
     })
 }
 
 exports.GetSettings = async (req,res) => {
     const rbac = new RBAC
-    const news = await rbac.news.GetNews()
-    const categories = await rbac.category.GetCategories()
+    const settings = await rbac.news.GetSettings()
     res.render('settings.hbs', {
         title: 'Настройки',
         isSettings: true,
         isAdmin: true,
-        news: news,
-        categories: categories
+        settings
     })
 }
 
 exports.CreateSettings = async (req, res) => {
-    console.log(req.body);
-    return res.redirect(`/news/settings`)
+    if(!req.body) return res.sendStatus(400)
+    const rbac = new RBAC
+    const data = await rbac.news.CreateSettings(req.body._key, req.body.label, req.body.selectCategoryId)
+    if(data){
+        req.flash('error', data.error)
+        return res.redirect(`/news/settings`)
+    }
+
+    return res.redirect(`/admin`)
 }
 
 exports.GetThisPost = async (req,res) => {
-
     const rbac = new RBAC
     const news = await rbac.news.GetNewsById(req.params.id)
     var dataNews = await rbac.news.GetNewsByCategory(news.categoryId)
@@ -81,6 +95,17 @@ exports.EditNews = async (req, res) => {
     if(data.isCreate === false){
         req.flash('error', data.error)
         return res.redirect(`/news/edit/${req.body.id}`)
+    }
+    return res.redirect('/news')
+}
+
+exports.editSettings = async (req, res) => {
+    console.log(req.body._key, req.body.label, req.body.selectCategoryId);
+    const rbac = new RBAC
+    const data = await rbac.news.editSettings(req.body.key, req.body.label, req.body.selectCategoryId)
+    if(data){
+        req.flash('error', data.error)
+        return res.redirect(`/news/settings`)
     }
     return res.redirect('/news')
 }
@@ -135,6 +160,20 @@ exports.GetCategories = async (req,res) => {
     res.render('categories.hbs', {
         title: 'Список категорий',
         isCategories: true,
+        categories: categories,
+        isAdmin: true,
+        error: req.flash('error')
+    })
+}
+
+exports.GetEditSettings = async (req,res) => {
+    const rbac = new RBAC
+    const settings = await rbac.news.GetSettingsByKey(req.params.key)
+    const categories = await rbac.category.GetCategories()
+    console.log(settings);
+    res.render('EditSettings.hbs', {
+        title: 'Редактирование настройки',
+        settings,
         categories: categories,
         isAdmin: true,
         error: req.flash('error')

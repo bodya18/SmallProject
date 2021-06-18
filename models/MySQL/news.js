@@ -107,6 +107,46 @@ class News{
         return(temp)
     }
     
+    async CreateSettings(key, label, value){
+        try{
+            await pool.query('Insert into settings (_key, label, value) values (?, ?, ?)', [key, label, value])
+        }
+        catch (e){
+            console.log(e) 
+        }
+    }
+
+    async GetSettingsByKey(key){
+        var temp
+        await pool.query('Select * from settings where _key = ?', [key])
+            .then(data => {
+                temp = data[0][0]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return(temp)
+    }
+
+    async GetSettings(){
+        var temp
+        await pool.query('Select * from settings')
+            .then(data => {
+                temp = data[0]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return(temp)
+    }
+
+    async editSettings(key, label){
+        try {
+            await pool.query('update settings set label=? where _key=?', [label, key])
+        } catch (e) {
+            console.log(e);
+        }
+    }
 }
 
 module.exports = News

@@ -2,6 +2,7 @@ const config = require('../middleware/config')
 const NewsModel = require(`../models/${config.database}/news`)
 const file = require('../middleware/file')
 const CategoriesModel = require(`../models/${config.database}/categories`)
+const fs = require('fs');
 
 class News{
     constructor(){
@@ -93,6 +94,65 @@ class News{
     }
     async DeleteNews(id){
         return await this.news.DeleteNews(id)
+    }
+    
+    async editSettings(key, label, selectCategoryId){
+        if (key.length < 5)
+            return {
+                isCreate: false,
+                error: 'Длина ключа должна быть не менее 5 символов'
+            }
+        if (label.length < 5)
+            return {
+                isCreate: false,
+                error: 'Длина названия должна быть не менее 5 символов'
+            }
+        if(selectCategoryId === undefined)
+            return {
+                isCreate: false,
+                error: 'Выберите категории для показа'
+            }
+
+        fs.writeFile(`/home/bogdan/NodeJsProjects/SmallProject/settings/${key}.json`, JSON.stringify(selectCategoryId), (error) =>{
+            if(error) throw error;
+        })
+        await this.news.editSettings(key, label)
+    }
+
+    async CreateSettings(key, label, selectCategoryId){
+        if (key.length < 5)
+            return {
+                isCreate: false,
+                error: 'Длина ключа должна быть не менее 5 символов'
+            }
+        if (label.length < 5)
+            return {
+                isCreate: false,
+                error: 'Длина названия должна быть не менее 5 символов'
+            }
+        if(selectCategoryId === undefined)
+            return {
+                isCreate: false,
+                error: 'Выберите категории для показа'
+            }
+
+        let data = JSON.stringify(selectCategoryId)
+        fs.writeFile(`/home/bogdan/NodeJsProjects/SmallProject/settings/${key}.json`, data, (error) =>{
+            if(error) throw error;
+        })
+        await this.news.CreateSettings(key, label, `/settings/${key}.json`)
+    }
+
+    async GetCategoriesInSettings(key){
+        return await this.news.GetSettingsByKey(key)
+    }
+
+    async GetSettings(){
+        return await this.news.GetSettings()
+    }
+
+    async GetSettingsByKey(key){
+        return await this.news.GetSettingsByKey(key)
     }
 }
 
