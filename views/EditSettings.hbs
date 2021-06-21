@@ -2,14 +2,13 @@
     <div class="row">
         <div class="col-lg-12">
             <form method="POST" action="/news/editSettings">
-                <h1>Создание настройки</h1>
                 {{#if error}}
                     <font color='red'>{{error}}</font>
                 {{/if}}
-                <input value="{{settings.label}}" name="label" type="text" class="form-control" placeholder="Название настройки" maxlength="100" minlength="5" autocomplete="off">
+                <h1>{{settings.label}}</h1>
+                <input type="hidden" name="label" value="{{settings.label}}">
                 <input type="hidden" value="{{settings.id}}" name="id">
                 <input type="hidden" value="{{settings._key}}" name="key">
-                <h2>Выберите категории показа</h2>
                 <select class="selectpicker" multiple name="selectCategoryId">
                     {{#each categories}}
                         <option value="{{this.id}}">{{this.category}}</option>

@@ -139,14 +139,6 @@ class News{
             })
         return(temp)
     }
-
-    async editSettings(key, label){
-        try {
-            await pool.query('update settings set label=? where _key=?', [label, key])
-        } catch (e) {
-            console.log(e);
-        }
-    }
 }
 
 module.exports = News

@@ -100,12 +100,11 @@ exports.EditNews = async (req, res) => {
 }
 
 exports.editSettings = async (req, res) => {
-    console.log(req.body._key, req.body.label, req.body.selectCategoryId);
     const rbac = new RBAC
-    const data = await rbac.news.editSettings(req.body.key, req.body.label, req.body.selectCategoryId)
+    const data = await rbac.news.editSettings(req.body.key, req.body.selectCategoryId)
     if(data){
         req.flash('error', data.error)
-        return res.redirect(`/news/settings`)
+        return res.redirect(`/news/GetEditSettings/`+req.body.key)
     }
     return res.redirect('/news')
 }
@@ -170,11 +169,22 @@ exports.GetEditSettings = async (req,res) => {
     const rbac = new RBAC
     const settings = await rbac.news.GetSettingsByKey(req.params.key)
     const categories = await rbac.category.GetCategories()
-    console.log(settings);
     res.render('EditSettings.hbs', {
         title: 'Редактирование настройки',
         settings,
         categories: categories,
+        isAdmin: true,
+        error: req.flash('error')
+    })
+}
+
+exports.GetCreateSettings = async (req, res) =>{
+    const rbac = new RBAC
+    const categories = await rbac.category.GetCategories()
+    res.render('CreateSettings.hbs', {
+        title: 'Создание настройки',
+        isCreateSettings: true,
+        categories,
         isAdmin: true,
         error: req.flash('error')
     })

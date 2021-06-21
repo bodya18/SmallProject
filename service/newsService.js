@@ -96,27 +96,15 @@ class News{
         return await this.news.DeleteNews(id)
     }
     
-    async editSettings(key, label, selectCategoryId){
-        if (key.length < 5)
-            return {
-                isCreate: false,
-                error: 'Длина ключа должна быть не менее 5 символов'
-            }
-        if (label.length < 5)
-            return {
-                isCreate: false,
-                error: 'Длина названия должна быть не менее 5 символов'
-            }
+    async editSettings(key, selectCategoryId){
         if(selectCategoryId === undefined)
             return {
                 isCreate: false,
                 error: 'Выберите категории для показа'
             }
-
-        fs.writeFile(`/home/bogdan/NodeJsProjects/SmallProject/settings/${key}.json`, JSON.stringify(selectCategoryId), (error) =>{
+        fs.writeFile(`/home/bogdan/NodeJsProjects/SmallProject/settings/${key}`, JSON.stringify(selectCategoryId), (error) =>{
             if(error) throw error;
         })
-        await this.news.editSettings(key, label)
     }
 
     async CreateSettings(key, label, selectCategoryId){
@@ -137,10 +125,10 @@ class News{
             }
 
         let data = JSON.stringify(selectCategoryId)
-        fs.writeFile(`/home/bogdan/NodeJsProjects/SmallProject/settings/${key}.json`, data, (error) =>{
+        fs.writeFile(`/home/bogdan/NodeJsProjects/SmallProject/settings/${key}`, data, (error) =>{
             if(error) throw error;
         })
-        await this.news.CreateSettings(key, label, `/settings/${key}.json`)
+        await this.news.CreateSettings(key, label, `/settings/${key}`)
     }
 
     async GetCategoriesInSettings(key){
