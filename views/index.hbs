@@ -1,28 +1,31 @@
-<table class="table table-striped">
-    <tr>
-        <th width="70"></th>
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <th width="200">Name<a href="/sort/up/name"><button type="button" class="btn btn-outline-primary">&uArr;</button></a><a href="/sort/down/name"><button type="button" class="btn btn-outline-primary">&dArr;</button></a></th>
-        </div>
-        <th>Role</th>
-    </tr>
-    {{#each users}}
-        <tr> 
-            <div class="image">
-                {{#if this.avatarURL}}
-                    <td><a href="/user/{{this.id}}"><img src="/{{this.avatarURL}}" class="img-circle elevation-2" width="60" ></a></td>
-                {{else}}
-                    <td><a href="/user/{{this.id}}"><img src="/images/no_avatar.png" class="img-circle elevation-2" width="60"></a></td>
-                {{/if}} 
+<div class="content">
+    <div class="container">
+        <div class="row">
+            {{#each users}}
+            <div class="col-lg-4">
+                <div class="text-center card-box">
+                    <div class="member-card pt-2 pb-2">
+                        <div class="thumb-lg member-thumb mx-auto" style="height: 220px;">
+                            {{#if this.avatarURL}}
+                                <td><a href="/user/{{this.id}}"><img src="/{{this.avatarURL}}" class="rounded-circle img-thumbnail" width="150" ></a></td>
+                            {{else}}
+                                <td><a href="/user/{{this.id}}"><img src="/images/no_avatar.png" class="rounded-circle img-thumbnail" width="150"></a></td>
+                            {{/if}}
+                            </div>
+                            <h4>{{this.name}}</h4>
+                            {{#each @root.rules_users}}
+                                {{#ifeq this.id ../this.id}}
+                                    <p class="text-muted">{{this.rule}}</p>
+                                {{else}}
+                                    <p style="height: 24px;"></p>
+                                {{/ifeq}}
+                            {{/each}}
+                            <a href="/user/{{this.id}}" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">Details</a>
+                    </div>
+                </div>
             </div>
-            <td><h5>{{this.name}}</h5></td>
-            <td>
-                {{#each @root.rules_users}}
-                    {{#ifeq this.id ../this.id}}
-                        <h5>{{this.rule}}</h5>
-                    {{/ifeq}}
-                {{/each}}
-            </td>
-        </tr>
-    {{/each}}
-</table>
+            {{/each}}
+        </div>
+    </div>
+</div>
+<br><br><br><br><br>
