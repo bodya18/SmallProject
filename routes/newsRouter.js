@@ -10,7 +10,7 @@ router.get('/', newsController.GetNews)
 router.get('/get/:id', newsController.GetThisPost)
 
 router.get('/settings', isAdmin, auth, newsController.GetSettings)
-router.get('/settings', isAdmin, auth, newsController.GetCreateSettings)
+router.get('/settings/create', isAdmin, auth, newsController.GetCreateSettings)
 router.get('/create/post', isAdmin, auth, newsController.GetCreate)
 router.get('/edit/:id', isAdmin, auth, newsController.GetEdit)
 router.get('/create/category', isAdmin, auth, newsController.GetCreateCategory)
