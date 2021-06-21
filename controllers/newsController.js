@@ -96,7 +96,7 @@ exports.EditNews = async (req, res) => {
         req.flash('error', data.error)
         return res.redirect(`/news/edit/${req.body.id}`)
     }
-    return res.redirect('/news')
+    return res.redirect('/news/get/'+req.body.id)
 }
 
 exports.editSettings = async (req, res) => {

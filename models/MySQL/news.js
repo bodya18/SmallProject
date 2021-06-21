@@ -14,7 +14,7 @@ class News{
                     .catch(e => {
                         return console.log(e)
                     })
-                await pool.query('update news set post_text=?, categoryId=?, title=?, postUrl=? where id=?', [post_text, categoryId, title, postUrl, id])
+                await pool.query('update news set post_text=?, categoryId=?, title=?, postUrl=? where id=?', [post_text, categoryId, title, postUrl.path, id])
             }
             else{
                 await pool.query('update news set post_text=?, categoryId=?, title=? where id=?', [post_text, categoryId, title, id])
