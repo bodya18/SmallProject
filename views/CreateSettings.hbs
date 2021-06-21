@@ -9,15 +9,36 @@
                 <input name="label" type="text" class="form-control" placeholder="Название настройки" maxlength="100" minlength="5" autocomplete="off">
                 <input name="_key" type="text" class="form-control" placeholder="Уникальное английское название" maxlength="100" minlength="5" autocomplete="off" pattern="^[a-zA-Z]+$">
 
-                <h2>Выберите категории показа</h2>
-                <select class="selectpicker" multiple name="selectCategoryId">
-                    {{#each categories}}
-                        <option value="{{this.id}}">{{this.category}}</option>
-                    {{/each}}
-                </select>
-
+                <h2>Выберите новости показа</h2>
+                <div class="cat-news">
+                {{#each categories}}
+                    <div class="col-md-12">
+                        <div align="center">
+                            <br><br><br><br>
+                            <h2>{{this.category}}</h2>
+                        </div>
+                        <div class="row">
+                            {{#each @root.news}}
+                                {{#ifeq this.categoryId ../this.id}}
+                                    <div class="col-md-3">
+                                        <div class="cn-img">
+                                            <img width="285" height="180" src="/{{this.postUrl}}" />
+                                            <div class="cn-title">
+                                                <a href="/news/get/{{this.id}}">{{this.title}}</a>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{this.id}}" name="checkNews">
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/ifeq}}
+                            {{/each}}
+                        </div>
+                    </div>
+                {{/each}}
+                </div>
                 <br><br><br><br>
-                <input type="submit" class="btn btn-secondary" value="Отправить">
+                <input type="submit" class="btn btn-secondary" value="Отправить"><br><br><br><br><br>
             </form>
         </div>
     </div>

@@ -5,6 +5,8 @@ exports.GetNews = async (req,res) => {
     const rbac = new RBAC
     const news = await rbac.news.GetNews()
     const categoriesId = await rbac.news.GetCategoriesInSettings('SelectedCategories')
+    const TopLeft = await rbac.news.GetCategoriesInSettings('TopLeftNewsSlider')
+    const TopRight = await rbac.news.GetCategoriesInSettings('TopRightNewsSlider')
     fs.readFile(`/home/bogdan/NodeJsProjects/SmallProject${categoriesId.value}`, "utf8", async (error, data) =>{
         if(error) throw error;
         data = JSON.parse(data);
@@ -12,12 +14,30 @@ exports.GetNews = async (req,res) => {
         for (let i = 0; i < data.length; i++) {
             categories[i] = await rbac.category.GetCategoriesById(data[i]) 
         }
-        
-        res.render('./bootstrap-news-template/index.hbs', {
-            title: 'Новости',
-            isNews: true,
-            news: news,
-            categories: categories
+        fs.readFile(`/home/bogdan/NodeJsProjects/SmallProject${TopLeft.value}`, "utf8", async (error, left) =>{
+            if(error) throw error;
+            left = JSON.parse(left);
+            var LeftNews = [];
+            for (let i = 0; i < left.length; i++) {
+                LeftNews[i] = await rbac.news.GetNewsById(left[i]) 
+            }
+            fs.readFile(`/home/bogdan/NodeJsProjects/SmallProject${TopRight.value}`, "utf8", async (error, right) =>{
+                if(error) throw error;
+                right = JSON.parse(right);
+                var RightNews = [];
+                for (let i = 0; i < right.length; i++) {
+                    RightNews[i] = await rbac.news.GetNewsById(right[i]) 
+                }
+                
+                res.render('./bootstrap-news-template/index.hbs', {
+                    title: 'Новости',
+                    isNews: true,
+                    RightNews,
+                    LeftNews,
+                    news,
+                    categories
+                })
+            })
         })
     })
 }
@@ -36,7 +56,7 @@ exports.GetSettings = async (req,res) => {
 exports.CreateSettings = async (req, res) => {
     if(!req.body) return res.sendStatus(400)
     const rbac = new RBAC
-    const data = await rbac.news.CreateSettings(req.body._key, req.body.label, req.body.selectCategoryId)
+    const data = await rbac.news.CreateSettings(req.body._key, req.body.label, req.body.checkNews)
     if(data){
         req.flash('error', data.error)
         return res.redirect(`/news/settings/create`)
@@ -181,10 +201,12 @@ exports.GetEditSettings = async (req,res) => {
 exports.GetCreateSettings = async (req, res) =>{
     const rbac = new RBAC
     const categories = await rbac.category.GetCategories()
+    const news = await rbac.news.GetNews()
     res.render('CreateSettings.hbs', {
         title: 'Создание настройки',
         isCreateSettings: true,
         categories,
+        news,
         isAdmin: true,
         error: req.flash('error')
     })

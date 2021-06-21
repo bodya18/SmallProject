@@ -28,6 +28,9 @@ class Categories{
     async GetCategoriesById(id){
         return await this.category.GetCategoriesById(id)
     }
+    async GetNewsById(id){
+        return await this.news.getById(id)
+    }
 
     async CreateCategory(title){
         const data = await this.category.GetByName(title)

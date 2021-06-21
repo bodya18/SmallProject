@@ -107,7 +107,7 @@ class News{
         })
     }
 
-    async CreateSettings(key, label, selectCategoryId){
+    async CreateSettings(key, label, checkNews){
         if (key.length < 5)
             return {
                 isCreate: false,
@@ -118,13 +118,13 @@ class News{
                 isCreate: false,
                 error: 'Длина названия должна быть не менее 5 символов'
             }
-        if(selectCategoryId === undefined)
+        if(checkNews === undefined)
             return {
                 isCreate: false,
-                error: 'Выберите категории для показа'
+                error: 'Выберите новости для показа'
             }
 
-        let data = JSON.stringify(selectCategoryId)
+        let data = JSON.stringify(checkNews)
         fs.writeFile(`/home/bogdan/NodeJsProjects/SmallProject/settings/${key}`, data, (error) =>{
             if(error) throw error;
         })
