@@ -12,5 +12,6 @@ exports.deleteUser = async (req,res)=>{
 exports.deleteAvatar = async (req,res)=>{
     const rbac = new RBAC
     await rbac.user.deleteAvatar(req.params.id, req.session.userIden, req.session.Perm)
+    req.session.user.avatarURL = null
     return res.redirect(`/user/${req.params.id}`)
 }
