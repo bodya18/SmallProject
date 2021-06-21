@@ -50,7 +50,7 @@ app.use(session({
 app.use(flash())
 app.use(varMiddleware)
 
-app.use('/', indexRouter)
+app.use('/users', indexRouter)
 app.use('/sort', sortRouter)
 app.use('/delete', deleteRouter)
 app.use('/edit', editRouter)

@@ -78,10 +78,9 @@ exports.GetPermissions = async (req,res) => {
 
 exports.GetAllConnection = async (req,res) => {
     const rbac = new RBAC
-    const perm = await rbac.permission.GetAllConnection(req.session.Perm)
-
-    if(perm.isGet)
-        res.render('rolesConnections.hbs', {
+    const perm = await rbac.permission.GetAllConnection()
+    
+    res.render('rolesConnections.hbs', {
         rules_users: perm.rule_user,
         data: perm.Alldata,
         rules_permissions: perm.rule_permission,
@@ -89,8 +88,6 @@ exports.GetAllConnection = async (req,res) => {
         isAdmin: true,
         isConnection: true
     })
-    else
-        return res.redirect('/')
 }
 
 exports.CreateRule = async (req, res) => {

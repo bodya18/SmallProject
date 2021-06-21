@@ -65,7 +65,7 @@ class Connection{
 
     async GetRuleUser(){
         var temp
-        await pool.query(`Select users.name, Rules.rule, Rule_User.id 
+        await pool.query(`Select users.name, Rules.rule, users.id 
                     from users, Rule_User, Rules 
                     where Rule_User.userId = users.id AND Rule_User.ruleId = Rules.id`)
             .then(data => {

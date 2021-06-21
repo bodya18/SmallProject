@@ -35,29 +35,15 @@ class Permission{
         
     }
 
-    async GetAllConnection(Perm){
-        for (let i = 0; i < Perm.length; i++) {
-            if (Perm[i] === "GIVE") {
-                this.is=true
-                break;
-            }
+    async GetAllConnection(){
+        const Alldata = await this.connection.GetAllConnection()
+        const rule_permission = await this.connection.GetRulePermission()
+        const rule_user = await this.connection.GetRuleUser()
+        return {
+            Alldata,
+            rule_permission,
+            rule_user
         }
-        if(this.is){
-            const Alldata = await this.connection.GetAllConnection()
-            const rule_permission = await this.connection.GetRulePermission()
-            const rule_user = await this.connection.GetRuleUser()
-    
-            return {
-                isGet: true,
-                Alldata,
-                rule_permission,
-                rule_user
-            }
-    
-        }else{
-            return {isGet: false}
-        }
-        
     }
 
     async GivePermission(permissionId, ruleId){
