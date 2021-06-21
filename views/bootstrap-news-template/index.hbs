@@ -6,28 +6,50 @@
             <div class="col-md-6 tn-left">
                 <div class="row tn-slider">
                     {{#each LeftNews}}
-                        <div class="col-md-6">
-                            <div class="tn-img">
-                                <img width="450" height="350" src="/{{this.postUrl}}" />
-                                <div class="tn-title">
-                                    <a href="/news/get/{{this.id}}">{{this.title}}</a>
+                        {{#ifeq @root.LeftNews.length 1}}
+                            <div class="col-md-12">
+                                <div class="tn-img">
+                                    <img width="450" height="350" src="/{{this.postUrl}}" />
+                                    <div class="tn-title">
+                                        <a href="/news/get/{{this.id}}">{{this.title}}</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        {{else}}
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                    <img width="450" height="350" src="/{{this.postUrl}}" />
+                                    <div class="tn-title">
+                                        <a href="/news/get/{{this.id}}">{{this.title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/ifeq}}
                     {{/each}}
                 </div>
             </div>
             <div class="col-md-6 tn-left">
                 <div class="row tn-slider">
                     {{#each RightNews}}
-                        <div class="col-md-6">
-                            <div class="tn-img">
-                                <img width="450" height="350" src="/{{this.postUrl}}" />
-                                <div class="tn-title">
-                                    <a href="/news/get/{{this.id}}">{{this.title}}</a>
+                        {{#ifeq @root.RightNews.length 1}}
+                            <div class="col-md-12">
+                                <div class="tn-img">
+                                    <img width="450" height="350" src="/{{this.postUrl}}" />
+                                    <div class="tn-title">
+                                        <a href="/news/get/{{this.id}}">{{this.title}}</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        {{else}}
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                    <img width="450" height="350" src="/{{this.postUrl}}" />
+                                    <div class="tn-title">
+                                        <a href="/news/get/{{this.id}}">{{this.title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/ifeq}}
                     {{/each}}
                 </div>
             </div>

@@ -103,7 +103,6 @@ exports.GetEdit = async (req,res) => {
         categories: data.categories,
         news: data.news,
         title: 'Редактирование статьи',
-        isCreate: true,
         error: req.flash('error'),
         isAdmin: true
     })
@@ -121,7 +120,14 @@ exports.EditNews = async (req, res) => {
 
 exports.editSettings = async (req, res) => {
     const rbac = new RBAC
-    const data = await rbac.news.editSettings(req.body.key, req.body.selectCategoryId)
+    var data
+    if(req.body.key === 'SelectedCategories'){
+        data = await rbac.news.editSettings(req.body.key, req.body.selectCategoryId)
+    }
+    else{
+        data = await rbac.news.editSettings(req.body.key, req.body.checkNews)
+    }
+    
     if(data){
         req.flash('error', data.error)
         return res.redirect(`/news/GetEditSettings/`+req.body.key)
@@ -189,23 +195,38 @@ exports.GetEditSettings = async (req,res) => {
     const rbac = new RBAC
     const settings = await rbac.news.GetSettingsByKey(req.params.key)
     const categories = await rbac.category.GetCategories()
-    res.render('EditSettingsCategories.hbs', {
-        title: 'Редактирование настройки',
-        settings,
-        categories: categories,
-        isAdmin: true,
-        error: req.flash('error')
-    })
+    if(req.params.key === 'SelectedCategories'){    
+        return res.render('EditSettingsCategories.hbs', {
+            title: 'Редактирование настройки',
+            settings,
+            categories,
+            isAdmin: true,
+            error: req.flash('error')
+        })
+    }
+    else{
+        const news = await rbac.news.GetNews()
+        return res.render('EditSettingsTopNews.hbs', {
+            title: 'Редактирование настройки',
+            settings,
+            categories,
+            news,
+            isAdmin: true,
+            error: req.flash('error')
+        })
+    }
 }
 
 exports.GetCreateSettings = async (req, res) =>{
     const rbac = new RBAC
+    const settings = await rbac.news.GetSettingsByKey(req.params.key)
     const categories = await rbac.category.GetCategories()
     const news = await rbac.news.GetNews()
     res.render('CreateSettings.hbs', {
         title: 'Создание настройки',
         isCreateSettings: true,
         categories,
+        settings,
         news,
         isAdmin: true,
         error: req.flash('error')
