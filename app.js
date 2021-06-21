@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars')
 const session = require('express-session')
 const SessionStore = require('express-mysql-session')
 const flash = require('connect-flash')
+const path = require('path');
 const indexRouter = require('./routes/indexRouter')
 const deleteRouter = require('./routes/deleteRouter')
 const editRouter = require('./routes/editRouter')
@@ -22,6 +23,7 @@ const app = express()
 
 const hbs = exphbs.create({
     defaultLayout: 'main',
+    layoutsDir: path.join(__dirname, "views/layouts"),
     extname: 'hbs',
     helpers: require('./utils/hbs-helper')
 })

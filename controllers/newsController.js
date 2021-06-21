@@ -39,10 +39,10 @@ exports.CreateSettings = async (req, res) => {
     const data = await rbac.news.CreateSettings(req.body._key, req.body.label, req.body.selectCategoryId)
     if(data){
         req.flash('error', data.error)
-        return res.redirect(`/news/settings`)
+        return res.redirect(`/news/settings/create`)
     }
 
-    return res.redirect(`/admin`)
+    return res.redirect(`/news/settings`)
 }
 
 exports.GetThisPost = async (req,res) => {
@@ -169,7 +169,7 @@ exports.GetEditSettings = async (req,res) => {
     const rbac = new RBAC
     const settings = await rbac.news.GetSettingsByKey(req.params.key)
     const categories = await rbac.category.GetCategories()
-    res.render('EditSettings.hbs', {
+    res.render('EditSettingsCategories.hbs', {
         title: 'Редактирование настройки',
         settings,
         categories: categories,
