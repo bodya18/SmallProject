@@ -7,7 +7,6 @@ const path = require('path');
 const indexRouter = require('./routes/indexRouter')
 const deleteRouter = require('./routes/deleteRouter')
 const editRouter = require('./routes/editRouter')
-// const sortRouter = require('./routes/sortRouter')
 const userRouter = require('./routes/profileRouter')
 const loginRouter = require('./routes/loginRouter')
 const registerRouter = require('./routes/registerRouter')

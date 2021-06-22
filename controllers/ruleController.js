@@ -113,13 +113,17 @@ exports.GiveRule = async (req, res) =>{
     const rbac = new RBAC
     await rbac.role.GiveRule(req.body.selectNameId, req.body.selectRuleId)
     const data = await rbac.permission.ShowAllPermissions(req.body.selectNameId)
-    req.session.Perm = data
+    if(req.session.userIden === req.body.selectNameId)
+        req.session.Perm = data
     return res.redirect(`/user/${req.body.selectNameId}`) 
 }
 
 exports.DeleteRuleFromUser = async (req, res) =>{
     const rbac = new RBAC
     await rbac.role.DeleteRuleFromUser(req.body.selectNameId, req.body.selectRuleId)
+    const data = await rbac.permission.ShowAllPermissions(req.body.selectNameId)
+    if(req.session.userIden === req.body.selectNameId)
+        req.session.Perm = data
     return res.redirect('/user/' + req.body.selectNameId) 
 }
 

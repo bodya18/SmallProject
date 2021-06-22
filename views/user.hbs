@@ -89,7 +89,7 @@
                   <div class="row">
                     <div class="col-sm-12">
                         {{#ifeq thisUserId userId}}
-                            <a class="btn btn-info " target="__blank" href="/edit/{{users.id}}" style="float: left;">Edit</a>
+                            <a class="btn btn-info " href="/edit/{{users.id}}" style="float: left;">Edit</a>
                             <form action="/delete/{{@root.users.id}}" method="POST">
                                 <input type="submit" class="btn btn-danger" value="Delete" style="float: left;">
                             </form>
@@ -99,7 +99,7 @@
                         {{else}}
                             {{#each permissionsList}}
                                 {{#ifeq this 'EDIT'}}
-                                    <a class="btn btn-info " target="__blank" href="/edit/{{@root.users.id}}" style="float: left;">Edit</a>
+                                    <a class="btn btn-info " href="/edit/{{@root.users.id}}" style="float: left;">Edit</a>
                                 {{/ifeq}}
                                 {{#ifeq this 'DELETE'}}
                                     <form action="/delete/{{@root.users.id}}" method="POST">
@@ -115,6 +115,12 @@
                     
                     {{#each permissionsList}}
                       {{#ifeq this 'GIVE'}}
+                        <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
+                            {{#each @root.rules}}
+                                <option value="{{this.id}}">{{this.rule}}</option>
+                            {{/each}}
+                        </select><BR>
+
                         <form action="/rules/give" method="POST">
                           <input type="hidden" name="selectNameId" value="{{@root.users.id}}">
                           
