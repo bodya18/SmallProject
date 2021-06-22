@@ -119,8 +119,8 @@ exports.GiveRule = async (req, res) =>{
 
 exports.DeleteRuleFromUser = async (req, res) =>{
     const rbac = new RBAC
-    await rbac.role.DeleteRuleFromUser(req.params.id)
-    return res.redirect('/rules') 
+    await rbac.role.DeleteRuleFromUser(req.body.selectNameId, req.body.selectRuleId)
+    return res.redirect('/user/' + req.body.selectNameId) 
 }
 
 exports.GivePermission = async (req, res) =>{

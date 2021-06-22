@@ -22,7 +22,6 @@ exports.GetUser = async (req,res) => {
                 const UserData = await rbac.user.GetUser(req.params.id)
                 const perm = await rbac.permission.GetAllConnection()
                 const rules = await rbac.role.GetRoles()
-
                 return res.render('user.hbs', {
                     users: UserData, 
                     title: 'Профиль',

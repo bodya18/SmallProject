@@ -36,7 +36,7 @@ class Connection{
 
     async GetAllConnection(){
         var temp
-        await pool.query(`Select Rules.rule, Permissions.permission, users.name 
+        await pool.query(`Select Rules.rule, Permissions.permission, users.name, Rule_User.id 
                     from Rules, Permissions, users, Rule_Permission, Rule_User 
                     where Rule_Permission.ruleId = Rules.id AND Rule_Permission.permissionId = Permissions.id 
                     AND Rule_User.userId = users.id AND Rule_User.ruleId = Rules.id`)
@@ -77,9 +77,9 @@ class Connection{
         return(temp)
     }
 
-    async GetRuleID(id){
+    async GetRuleID(id, title){
         var temp
-        await pool.query(`Select id from Rule_User where userId = ?`, [id])
+        await pool.query(`Select Rule_User.id from Rule_User, Rules where Rule_User.userId = ? AND Rules.rule = ? AND Rules.id = Rule_User.ruleId`, [id, title])
             .then(data => {
                 temp = data[0][0]
             })

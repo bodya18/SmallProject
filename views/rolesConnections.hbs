@@ -32,7 +32,9 @@
                 {{#each rules_users}}        
                     <tr align="center">
                         <td>
-                            <form action="/rules/deleteFromUser/{{this.id}}" method="POST">
+                            <form action="/rules/deleteFromUser" method="POST">
+                                <input type="hidden" name="selectRuleId" value="{{this.rule}}">
+                                <input type="hidden" name="selectNameId" value="{{this.id}}">
                                 <input type="submit" class="btn btn-danger" value="Удалить связь">
                             </form>
                         </td>
