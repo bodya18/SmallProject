@@ -2,8 +2,9 @@
     <tr>
         <th width="70"></th>
         <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <th width="200">Name<a href="/sort/up/name"><button type="button" class="btn btn-outline-primary">&uArr;</button></a><a href="/sort/down/name"><button type="button" class="btn btn-outline-primary">&dArr;</button></a></th>
+            <th width="200">Name</th>
         </div>
+        <th width="250">Email</th>
         <th>Role</th>
     </tr>
     {{#each users}}
@@ -16,12 +17,12 @@
                 {{/if}}
             </div>
             <td><h5>{{this.name}}</h5></td>
+            <td><h5>{{this.email}}</h5></td>
             <td>
                 {{#each @root.rules_users}}
                     {{#ifeq this.id ../this.id}}
-                        <h5>{{this.rule}}</h5>
+                        <h5 style="float: left;">{{this.rule}}&nbsp;&nbsp;&nbsp;</h5>
                     {{/ifeq}}
-
                 {{/each}}
             </td>
         </tr>

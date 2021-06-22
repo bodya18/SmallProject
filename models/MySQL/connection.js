@@ -65,11 +65,23 @@ class Connection{
 
     async GetRuleUser(){
         var temp
-        await pool.query(`Select users.name, Rules.rule, users.id 
+        await pool.query(`Select users.name, Rules.rule, users.id
                     from users, Rule_User, Rules 
                     where Rule_User.userId = users.id AND Rule_User.ruleId = Rules.id`)
             .then(data => {
                 temp = data[0]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return(temp)
+    }
+
+    async GetRuleID(id){
+        var temp
+        await pool.query(`Select id from Rule_User where userId = ?`, [id])
+            .then(data => {
+                temp = data[0][0]
             })
             .catch(e =>{
                 return console.log(e);

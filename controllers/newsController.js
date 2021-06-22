@@ -1,5 +1,6 @@
 const RBAC = require('../service/RBAC_Service');
 const fs = require('fs');
+const config = require('../middleware/config');
 
 exports.GetNews = async (req,res) => {
     const rbac = new RBAC
@@ -7,21 +8,21 @@ exports.GetNews = async (req,res) => {
     const categoriesId = await rbac.news.GetCategoriesInSettings('SelectedCategories')
     const TopLeft = await rbac.news.GetCategoriesInSettings('TopLeftNewsSlider')
     const TopRight = await rbac.news.GetCategoriesInSettings('TopRightNewsSlider')
-    fs.readFile(`/home/bogdan/NodeJsProjects/SmallProject${categoriesId.value}`, "utf8", async (error, data) =>{
+    fs.readFile(`${config.dirname}${categoriesId.value}`, "utf8", async (error, data) =>{
         if(error) throw error;
         data = JSON.parse(data);
         var categories = [];
         for (let i = 0; i < data.length; i++) {
             categories[i] = await rbac.category.GetCategoriesById(data[i]) 
         }
-        fs.readFile(`/home/bogdan/NodeJsProjects/SmallProject${TopLeft.value}`, "utf8", async (error, left) =>{
+        fs.readFile(`${config.dirname}${TopLeft.value}`, "utf8", async (error, left) =>{
             if(error) throw error;
             left = JSON.parse(left);
             var LeftNews = [];
             for (let i = 0; i < left.length; i++) {
                 LeftNews[i] = await rbac.news.GetNewsById(left[i]) 
             }
-            fs.readFile(`/home/bogdan/NodeJsProjects/SmallProject${TopRight.value}`, "utf8", async (error, right) =>{
+            fs.readFile(`${config.dirname}${TopRight.value}`, "utf8", async (error, right) =>{
                 if(error) throw error;
                 right = JSON.parse(right);
                 var RightNews = [];
@@ -84,7 +85,7 @@ exports.GetThisPost = async (req,res) => {
 
 exports.GetCreate = async (req,res) => {
     const rbac = new RBAC
-    const data = await rbac.news.GetCreate(req.session.Perm)
+    const data = await rbac.news.GetCreate()
     res.render('createNews.hbs', {
         categories: data,
         title: 'Создание статьи',

@@ -1,5 +1,6 @@
 const pool = require('../../middleware/pool')
 const fs = require('fs')
+const config = require('../../middleware/config');
 
 class News{
     
@@ -9,7 +10,7 @@ class News{
                 await pool.query('Select postUrl from news where id=?', [id]) 
                     .then(data =>{ 
                         if(data[0][0].postUrl !== null)
-                            fs.unlinkSync('/home/bogdan/NodeJsProjects/SmallProject/'+data[0][0].postUrl)
+                            fs.unlinkSync(`${config.dirname}/`+data[0][0].postUrl)
                     }) 
                     .catch(e => {
                         return console.log(e)
@@ -38,7 +39,7 @@ class News{
         await pool.query('Select postUrl from news where id=?', [id])
             .then(data => {
                 if(data[0][0].postUrl !== null)
-                    fs.unlinkSync('/home/bogdan/NodeJsProjects/SmallProject/'+data[0][0].postUrl)
+                    fs.unlinkSync(`${config.dirname}/`+data[0][0].postUrl)
             })
             .catch(e => {
                 return console.log(e)

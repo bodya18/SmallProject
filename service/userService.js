@@ -4,6 +4,7 @@ const UserModel = require(`../models/${config.database}/user`)
 const file = require('../middleware/file')
 const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
+const ConnectionModel = require(`../models/${config.database}/connection`);
 
 
 class User{
@@ -11,6 +12,7 @@ class User{
     constructor(){
         this.user = new UserModel
         this.permission = new PermissionModel
+        this.connection = new ConnectionModel
         this.is = false
     }
 
@@ -144,6 +146,7 @@ class User{
             const hashPassword = await bcrypt.hash(password, 10)
             const id = uuidv4()
             this.user.create(hashPassword, email, name, age, id)
+            this.connection.AddRuleToUser(id, 1)
             const dat = await this.user.getById(id)
             return {
                 user: dat,

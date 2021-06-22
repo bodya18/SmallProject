@@ -79,7 +79,6 @@ exports.GetPermissions = async (req,res) => {
 exports.GetAllConnection = async (req,res) => {
     const rbac = new RBAC
     const perm = await rbac.permission.GetAllConnection()
-    
     res.render('rolesConnections.hbs', {
         rules_users: perm.rule_user,
         data: perm.Alldata,
@@ -113,7 +112,9 @@ exports.GiveRule = async (req, res) =>{
     if(!req.body) return res.sendStatus(400)
     const rbac = new RBAC
     await rbac.role.GiveRule(req.body.selectNameId, req.body.selectRuleId)
-    return res.redirect('/rules') 
+    const data = await rbac.permission.ShowAllPermissions(req.body.selectNameId)
+    req.session.Perm = data
+    return res.redirect(`/user/${req.body.selectNameId}`) 
 }
 
 exports.DeleteRuleFromUser = async (req, res) =>{

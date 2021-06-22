@@ -12,27 +12,20 @@ class Permission{
         this.connection = new ConnectionModel
     } 
 
-    async GetPermissions (Perm){
-        for (let i = 0; i < Perm.length; i++) {
-            if (Perm[i] === "GIVE") {
-                this.is=true
-                break;
-            }
-        }
-        if(this.is){
-            const rules = await this.rule.GetRoles()
-            const permissions = await this.permission.GetPermissions()
-    
-            return{
-                isGet: true,
-                rules,
-                permissions
-            }
-    
-        }else{
-            return {isGet: false}
+    async GetPermissions (){
+        const rules = await this.rule.GetRoles()
+        const permissions = await this.permission.GetPermissions()
+
+        return{
+            isGet: true,
+            rules,
+            permissions
         }
         
+    }
+
+    async ShowAllPermissions(id){
+        return await this.permission.ShowAllPermissions(id)
     }
 
     async GetAllConnection(){

@@ -1,5 +1,6 @@
 const pool = require('../../middleware/pool')
 const fs = require('fs')
+const config = require('../../middleware/config');
 
 class User{
     async edit(id, age, avatarURL, name) {
@@ -9,7 +10,7 @@ class User{
                 await pool.query('Select avatarURL from users where id=?', [id]) 
                     .then(data =>{ 
                         if(data[0][0].avatarURL !== null)
-                            fs.unlinkSync('/home/bogdan/NodeJsProjects/SmallProject/'+data[0][0].avatarURL)
+                            fs.unlinkSync(`${config.dirname}/`+data[0][0].avatarURL)
                     }) 
                     .catch(e => {
                         return console.log(e)
@@ -39,7 +40,7 @@ class User{
         await pool.query('Select avatarURL from users where id=?', [id])
             .then(data => {
                 if(data[0][0].avatarURL !== null)
-                    fs.unlinkSync('/home/bogdan/NodeJsProjects/SmallProject/'+data[0][0].avatarURL)
+                    fs.unlinkSync(`${config.dirname}/`+data[0][0].avatarURL)
             })
             .catch(e => {
                 return console.log(e)
@@ -52,7 +53,7 @@ class User{
         await pool.query('Select avatarURL from users where id=?', [id])
             .then(data => {
                 if(data[0][0].avatarURL !== null){
-                    fs.unlinkSync('/home/bogdan/NodeJsProjects/SmallProject/' + data[0][0].avatarURL)
+                    fs.unlinkSync(`${config.dirname}/` + data[0][0].avatarURL)
                     pool.query('update users set avatarURL=? where id=?', [null, id])
                 }
             })

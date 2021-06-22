@@ -12,24 +12,13 @@ class Role{
         this.connection = new ConnectionModel
     }  
 
-    async GetRoles(Perm) {
-        for (let i = 0; i < Perm.length; i++) {
-            if (Perm[i] === "GIVE") {
-                this.is=true
-                break;
-            }
-        }
-        if(this.is){
-            const rules = await this.rule.GetRoles()
-            const users = await this.user.GetUsers()
-            return{
-                rules,
-                users,
-                isGet: true
-            }
-            
-        }else{
-            return {isGet: false}
+    async GetRoles() {
+        const rules = await this.rule.GetRoles()
+        const users = await this.user.GetUsers()
+        return{
+            rules,
+            users,
+            isGet: true
         }
         
     }
@@ -61,7 +50,8 @@ class Role{
     }
     
     async DeleteRuleFromUser(id){
-        await this.connection.deleteFromUser(id)
+        const data = await this.connection.GetRuleID(id)
+        await this.connection.deleteFromUser(data.id)
     }
 
 }

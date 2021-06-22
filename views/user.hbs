@@ -74,6 +74,19 @@
                   </div>
                   <hr>
                   <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Role</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{#each rules_users}}
+                          {{#ifeq this.id @root.users.id}}
+                              <p style="float: left;">{{this.rule}}&nbsp;&nbsp;&nbsp;</p>
+                          {{/ifeq}}
+                      {{/each}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
                     <div class="col-sm-12">
                         {{#ifeq thisUserId userId}}
                             <a class="btn btn-info " target="__blank" href="/edit/{{users.id}}" style="float: left;">Edit</a>
@@ -99,6 +112,21 @@
                             {{/each}}
                         {{/ifeq}}
                     </div>
+                    <hr>
+                    {{#each permissionsList}}
+                      {{#ifeq this 'GIVE'}}
+                        <form action="/rules/give" method="POST">
+                          <input type="hidden" name="selectNameId" value="{{@root.users.id}}">
+                          <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="selectRuleId">
+                              <option selected>Выдать роль</option>
+                              {{#each @root.rules}}
+                                  <option value="{{this.id}}">{{this.rule}}</option>
+                              {{/each}}
+                          </select><BR><BR>
+                          <input type="submit" class="btn btn-secondary" value="Выдать роль">
+                      </form>
+                      {{/ifeq}}
+                    {{/each}}
                   </div>
                 </div>
               </div>

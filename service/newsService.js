@@ -36,7 +36,7 @@ class News{
         
     }
 
-    async GetCreate (perm){
+    async GetCreate (){
         return await this.category.GetCategories()
     }
 
@@ -102,7 +102,7 @@ class News{
                 isCreate: false,
                 error: 'Выберите категории для показа'
             }
-        fs.writeFile(`/home/bogdan/NodeJsProjects/SmallProject/settings/${key}`, JSON.stringify(selectCategoryId), (error) =>{
+        fs.writeFile(`${config.dirname}/settings/${key}`, JSON.stringify(selectCategoryId), (error) =>{
             if(error) throw error;
         })
     }
@@ -125,7 +125,7 @@ class News{
             }
 
         let data = JSON.stringify(checkNews)
-        fs.writeFile(`/home/bogdan/NodeJsProjects/SmallProject/settings/${key}`, data, (error) =>{
+        fs.writeFile(`${config.dirname}/settings/${key}`, data, (error) =>{
             if(error) throw error;
         })
         await this.news.CreateSettings(key, label, `/settings/${key}`)

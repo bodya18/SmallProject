@@ -19,6 +19,8 @@ const errorHandler = require('./middleware/error')
 const varMiddleware = require('./middleware/variables')
 const configMiggleware = require('./middleware/config')
 
+configMiggleware.dirname = __dirname;
+
 const app = express()
 
 const hbs = exphbs.create({
