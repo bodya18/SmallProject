@@ -1,3 +1,4 @@
+<a class="btn btn-dark" href="/news/GetEditSettings/{{settings._key}}" style="float: left; margin-top:20px">Back at this setting</a>
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -29,7 +30,7 @@
                 {{#if error}}
                     <font color='red'>{{error}}</font>
                 {{/if}}<br>
-                <h1>{{settings.label}}<input type="submit" class="btn btn-secondary" value="Confirm"></h1>
+                <h1>{{settings.label}}<input type="submit" class="btn btn-success" value="Confirm"></h1>
                 <input type="hidden" value="{{settings.label}}" name="label">
                 <input type="hidden" value="{{settings.id}}" name="id">
                 <input type="hidden" value="{{settings._key}}" name="key">
