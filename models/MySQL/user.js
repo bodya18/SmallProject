@@ -110,6 +110,18 @@ class User{
         return(temp)
     }
 
+    async GetUserRoles(id){
+        var temp
+        await pool.query('Select ruleId from Rule_User where userId = ?', [id])
+            .then(data => {
+                temp = data[0]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return(temp)
+    }
+
 }
 
 module.exports = User

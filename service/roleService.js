@@ -23,6 +23,16 @@ class Role{
         
     }
 
+    async GetUserRoles(id) {
+        const rules = await this.rule.GetRoles()
+        const users = await this.user.GetUserRoles(id)
+        return{
+            rules,
+            users
+        }
+        
+    }
+
     async CreateRule(Rol){
         if(Rol.length<3)
             return {
