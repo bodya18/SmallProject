@@ -114,56 +114,27 @@
                     </div>
                     {{#each permissionsList}}
                       {{#ifeq this 'GIVE'}}
-                      <form action="/rules/give/del" method="POST">
-                        <select class="js-example-basic-multiple" name="selectRuleId" multiple="multiple">
-                          {{#each @root.SelectRules}}
-                            <option value="{{this.id}}" selected="selected">{{this.rule}}</option>
-                          {{/each}}
-                          {{#each @root.NonSelectRules}}
-                            <option value="{{this.id}}">{{this.rule}}</option>
-                          {{/each}}
-                        </select><BR>
+                      <form action="/rules/updateFromUser" method="POST" >
+                        <input type="hidden" name="selectNameId" value="{{@root.users.id}}">
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-9">
+                            <h6 class="mb-0">
+                              <select class="js-example-basic-multiple" name="selectRuleId" multiple="multiple" style="width: 610px;">
+                                {{#each @root.SelectRules}}
+                                  <option value="{{this.id}}" selected="selected">{{this.rule}}</option>
+                                {{/each}}
+                                {{#each @root.NonSelectRules}}
+                                  <option value="{{this.id}}">{{this.rule}}</option>
+                                {{/each}}
+                              </select><BR>
+                            </h6>
+                          </div>
+                          <div class="col-sm-3 text-secondary">
+                            <input type="submit" class="btn btn-secondary" value="Изменить роли">
+                          </div>
+                        </div>
                       </form>
-                        <form action="/rules/give" method="POST">
-                          <input type="hidden" name="selectNameId" value="{{@root.users.id}}">
-                         <hr>
-                          <div class="row">
-                                <div class="col-sm-9">
-                                  <h6 class="mb-0">
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="selectRuleId">
-                                        <option selected>Выдать роль</option>
-                                        {{#each @root.rules}}
-                                            <option value="{{this.id}}">{{this.rule}}</option>
-                                        {{/each}}
-                                    </select><BR>
-                                  </h6>
-                                </div>
-                                <div class="col-sm-3 text-secondary">
-                                   <input type="submit" class="btn btn-secondary" value="Выдать роль">
-                                </div>
-                              </div><hr>
-                        </form>
-                        
-                          <form action="/rules/deleteFromUser" method="POST">
-                              <input type="hidden" name="selectNameId" value="{{@root.users.id}}">
-                              <div class="row">
-                                <div class="col-sm-9">
-                                  <h6 class="mb-0">
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="selectRuleId">
-                                        <option selected>Забрать роль</option>
-                                        {{#each @root.rules_users}}
-                                            {{#ifeq this.id @root.users.id}}
-                                                <option value="{{this.rule}}">{{this.rule}}</option>
-                                            {{/ifeq}}
-                                        {{/each}}
-                                    </select><BR>
-                                  </h6>
-                                </div>
-                                <div class="col-sm-3 text-secondary">
-                                  <input type="submit" class="btn btn-secondary" value="Забрать роль">
-                                </div>
-                              </div><hr>
-                          </form>
                       {{/ifeq}}
                     {{/each}}
                   </div>

@@ -5,7 +5,7 @@ exports.EditPost = async (req, res) => {
     const rbac = new RBAC
     const UserData = await rbac.user.EditPost(req.body.name, req.body.id, req.file, req.body.email, req.body.age);
     if (UserData.perm === true) {
-        if(req.file)
+        if(req.file && (req.session.userIden === req.body.id))
             req.session.user.avatarURL = req.file.path
        return res.redirect(`/user/${req.body.id}`)
     } else {
