@@ -203,6 +203,7 @@ exports.GetEditSettings = async (req,res) => {
             settings,
             categories,
             isAdmin: true,
+            isSettings: true,
             error: req.flash('error')
         })
     }
@@ -220,6 +221,7 @@ exports.GetEditSettings = async (req,res) => {
                     categories,
                     categoriesSelect,
                     news,
+                    isSettings: true,
                     isAdmin: true,
                     error: req.flash('error')
                 })
@@ -241,6 +243,7 @@ exports.GetEditSettings = async (req,res) => {
                     title: 'Редактирование настройки',
                     settings,
                     categories,
+                    isSettings: true,
                     categoriesSelect,
                     news: newNews,
                     isAdmin: true,
@@ -256,6 +259,7 @@ exports.GetEditSettings = async (req,res) => {
                     title: 'Редактирование настройки',
                     settings,
                     categories,
+                    isSettings: true,
                     categoriesSelect,
                     news: SelectTitle,
                     isAdmin: true,
@@ -270,6 +274,7 @@ exports.GetEditSettings = async (req,res) => {
                     categoriesSelect,
                     categories: categoriesSelect,
                     news: SelectTitle,
+                    isSettings: true,
                     isAdmin: true,
                     error: req.flash('error')
                 })
