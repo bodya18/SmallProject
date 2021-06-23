@@ -5,8 +5,8 @@
             <form action="/news/settings/serch" method="POST">
                 <input type="hidden" value="{{settings._key}}" name="key">
                 <div class="form-group">
-                    <label>Result Type:</label>
-                    <select class="js-example-basic-multiple" multiple="multiple" name="SelectCategory" data-placeholder="Any" style="width: 100%;">
+                    <br>
+                    <select class="js-example-basic-multiple" multiple="multiple" name="SelectCategory" data-placeholder="Select categories" style="width: 500px;">
                         {{#each categoriesSelect}}
                             <option value="{{this.id}}">{{this.category}}</option>
                         {{/each}}
@@ -14,8 +14,8 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="input-group input-group-lg">
-                        <input type="search" class="form-control form-control-lg" name="title" placeholder="Введите название статьи">
+                    <div class="input-group input-group-lg" style="width: 800px;">
+                        <input type="search" class="form-control form-control-lg" name="title" placeholder="Введите название статьи" autocomplete="off">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-lg btn-default">
                                 <i class="fa fa-search"></i>
@@ -28,8 +28,8 @@
             <form method="POST" action="/news/editSettings">
                 {{#if error}}
                     <font color='red'>{{error}}</font>
-                {{/if}}
-                <h1>{{settings.label}}<input type="submit" class="btn btn-secondary" value="Отправить"></h1>
+                {{/if}}<br>
+                <h1>{{settings.label}}<input type="submit" class="btn btn-secondary" value="Confirm"></h1>
                 <input type="hidden" value="{{settings.label}}" name="label">
                 <input type="hidden" value="{{settings.id}}" name="id">
                 <input type="hidden" value="{{settings._key}}" name="key">
