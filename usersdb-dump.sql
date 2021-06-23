@@ -110,7 +110,7 @@ CREATE TABLE `Rule_User` (
   KEY `userId` (`userId`),
   CONSTRAINT `Rule_User_ibfk_1` FOREIGN KEY (`ruleId`) REFERENCES `Rules` (`id`) ON DELETE RESTRICT,
   CONSTRAINT `Rule_User_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=143 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +119,7 @@ CREATE TABLE `Rule_User` (
 
 LOCK TABLES `Rule_User` WRITE;
 /*!40000 ALTER TABLE `Rule_User` DISABLE KEYS */;
-INSERT INTO `Rule_User` VALUES (21,2,'040034f7-fed6-4669-8671-4fe2acb0684f'),(43,3,'295480fe-a2c7-4f84-8af7-7b37a7e9e14a');
+INSERT INTO `Rule_User` VALUES (44,1,'75bcd420-825e-4e8d-8d1c-6e18db8ef094'),(45,1,'be523355-41e8-4569-bf65-33406a31e1ee'),(46,1,'c371e2eb-aee6-4d28-be34-580812e4faa5'),(47,1,'f32ab56a-caa4-44bd-8412-56df42d85f2b'),(50,1,NULL),(51,1,NULL),(54,1,'13143854-b790-4c38-8c5a-8e4df25e58c8'),(130,2,'040034f7-fed6-4669-8671-4fe2acb0684f'),(131,1,'040034f7-fed6-4669-8671-4fe2acb0684f'),(132,3,'040034f7-fed6-4669-8671-4fe2acb0684f'),(140,2,'295480fe-a2c7-4f84-8af7-7b37a7e9e14a'),(141,3,'295480fe-a2c7-4f84-8af7-7b37a7e9e14a'),(142,1,'295480fe-a2c7-4f84-8af7-7b37a7e9e14a');
 /*!40000 ALTER TABLE `Rule_User` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +198,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('yDhqUFQXLIJ4GHqHs9G8-A5aHwbXk5qi',1624369976,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"user\":{\"id\":\"295480fe-a2c7-4f84-8af7-7b37a7e9e14a\",\"name\":\"bodya18\",\"email\":\"bodya18x@mail.ru\",\"age\":19,\"avatarURL\":\"images/f8079957f469b6e00896dd6eb0cf2137\",\"password\":\"$2a$10$LRGhSJK576tUQZ0068HB9ut8bjcX4lPkPyx/kONX1SSpnHfnAoyky\",\"time\":\"2021-06-21 15:22:19.908\"},\"isAuthenticated\":true,\"userIden\":\"295480fe-a2c7-4f84-8af7-7b37a7e9e14a\",\"Perm\":[\"DELETE\",\"EDIT\",\"GIVE\"]}');
+INSERT INTO `sessions` VALUES ('foS2BY5jfXpMOFr-qoXevVpSOinJUje5',1624542475,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"user\":{\"id\":\"295480fe-a2c7-4f84-8af7-7b37a7e9e14a\",\"name\":\"bodya18\",\"email\":\"bodya18x@mail.ru\",\"age\":19,\"avatarURL\":\"images/b9e44aad18592603d8fb3d5da0fdbb62\",\"password\":\"$2a$10$LRGhSJK576tUQZ0068HB9ut8bjcX4lPkPyx/kONX1SSpnHfnAoyky\",\"time\":\"2021-06-23 11:48:44.382\"},\"isAuthenticated\":true,\"userIden\":\"295480fe-a2c7-4f84-8af7-7b37a7e9e14a\",\"Perm\":[\"EDIT\",\"DELETE\",\"GIVE\"]}');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -255,7 +255,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('040034f7-fed6-4669-8671-4fe2acb0684f','Al','a@mail.ru',18,'images/f583359b152a7e3947afc1a316de7904','$2a$10$2McLzmE1l8PmtMXuRMyi7OgJQc9njjPu2OJ1KE.3HVyXWZbHZr1qC','2021-06-21 16:10:05.688'),('295480fe-a2c7-4f84-8af7-7b37a7e9e14a','bodya18','bodya18x@mail.ru',19,'images/f8079957f469b6e00896dd6eb0cf2137','$2a$10$LRGhSJK576tUQZ0068HB9ut8bjcX4lPkPyx/kONX1SSpnHfnAoyky','2021-06-21 16:52:20.497'),('75bcd420-825e-4e8d-8d1c-6e18db8ef094','Cl','c@mail.ru',31,'images/6d51e695859f2df60e4f439a0ca30ca1','$2a$10$VH0WLFkh3WC0xhS8yC1QeOAXZsAi5qW0m9LdvXB4Gu4Ad9BoOs/Vu','2021-06-02 16:18:08.513'),('be523355-41e8-4569-bf65-33406a31e1ee','Bl','b@mail.ru',25,'images/63f40436086664c874be2bebec4240ac','$2a$10$LHFPa9MAESAmHSz/zVtPjuwtEa6eW/yjGx0iP6E9l4QZ0VBForCZK','2021-06-11 16:47:15.618'),('c371e2eb-aee6-4d28-be34-580812e4faa5','Dima','ddl@mail.ru',18,NULL,'$2a$10$ms6473A3vHrqSvozvuwVYe8lPnt7EnaMlRcj93Z/Isk8jrBUUEc9O','2021-06-17 15:33:14.966'),('f32ab56a-caa4-44bd-8412-56df42d85f2b','Dl','d@mail.ru',47,'images/200d40419ae2c34a5d0c32395954db68','$2a$10$9GHDlUguFEJrS1yEgMGav.nh7sEkazJ37mX7Qjpk4Py28M6zr1K4K','2021-06-11 16:52:41.444');
+INSERT INTO `users` VALUES ('040034f7-fed6-4669-8671-4fe2acb0684f','Al','a@mail.ru',18,'images/f583359b152a7e3947afc1a316de7904','$2a$10$2McLzmE1l8PmtMXuRMyi7OgJQc9njjPu2OJ1KE.3HVyXWZbHZr1qC','2021-06-21 16:10:05.688'),('13143854-b790-4c38-8c5a-8e4df25e58c8','Dc','AcDc@mail.ru',19,'images/3d0ce5d40c392be03e7fa18daa9d4ac5','$2a$10$vWXk7SUjZkFC1dnJohcVwuaKPTpR62XBEh/yu5iinRqg4zZtfi2hm','2021-06-23 11:50:02.600'),('295480fe-a2c7-4f84-8af7-7b37a7e9e14a','bodya18','bodya18x@mail.ru',19,'images/b9e44aad18592603d8fb3d5da0fdbb62','$2a$10$LRGhSJK576tUQZ0068HB9ut8bjcX4lPkPyx/kONX1SSpnHfnAoyky','2021-06-23 11:49:45.353'),('75bcd420-825e-4e8d-8d1c-6e18db8ef094','Cl','c@mail.ru',31,'images/6d51e695859f2df60e4f439a0ca30ca1','$2a$10$VH0WLFkh3WC0xhS8yC1QeOAXZsAi5qW0m9LdvXB4Gu4Ad9BoOs/Vu','2021-06-02 16:18:08.513'),('be523355-41e8-4569-bf65-33406a31e1ee','Bl','b@mail.ru',25,'images/63f40436086664c874be2bebec4240ac','$2a$10$LHFPa9MAESAmHSz/zVtPjuwtEa6eW/yjGx0iP6E9l4QZ0VBForCZK','2021-06-11 16:47:15.618'),('c371e2eb-aee6-4d28-be34-580812e4faa5','Dima','ddl@mail.ru',18,NULL,'$2a$10$ms6473A3vHrqSvozvuwVYe8lPnt7EnaMlRcj93Z/Isk8jrBUUEc9O','2021-06-17 15:33:14.966'),('f32ab56a-caa4-44bd-8412-56df42d85f2b','Dl','d@mail.ru',47,'images/200d40419ae2c34a5d0c32395954db68','$2a$10$9GHDlUguFEJrS1yEgMGav.nh7sEkazJ37mX7Qjpk4Py28M6zr1K4K','2021-06-11 16:52:41.444');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -268,4 +268,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-21 16:54:25
+-- Dump completed on 2021-06-23 17:54:47
