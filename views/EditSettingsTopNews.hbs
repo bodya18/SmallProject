@@ -39,10 +39,14 @@
                     {{#each categories}}
                         {{#if @root.news.id}}
                         {{else}}
-                        <div align="center">
-                            <br><br><br><br>
-                            <h2>{{this.category}}</h2>
-                        </div>
+                            {{#ifeq @root.news -1}}
+
+                            {{else}}
+                                <div align="center">
+                                    <br><br><br><br>
+                                    <h2>{{this.category}}</h2>
+                                </div> 
+                            {{/ifeq}}                       
                         {{/if}}
                         <div class="col-md-12">
                             <div class="row">

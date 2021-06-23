@@ -253,8 +253,11 @@ exports.GetEditSettings = async (req,res) => {
         }
         else{
             if (category === undefined || category === 'undefined') {
-                const SelectTitle = await rbac.news.GetNewsByTitle(title)
+                var SelectTitle = await rbac.news.GetNewsByTitle(title)
                 const categories = await rbac.category.GetCategories()
+                if (SelectTitle === undefined) {
+                    SelectTitle = -1
+                }
                 return res.render('EditSettingsTopNews.hbs', {
                     title: 'Редактирование настройки',
                     settings,
@@ -267,7 +270,10 @@ exports.GetEditSettings = async (req,res) => {
                 })
             }
             else{
-                const SelectTitle = await rbac.news.GetNewsByTitle(title)
+                var SelectTitle = await rbac.news.GetNewsByTitle(title)
+                if (SelectTitle === undefined) {
+                    SelectTitle = -1
+                }
                 return res.render('EditSettingsTopNews.hbs', {
                     title: 'Редактирование настройки',
                     settings,
