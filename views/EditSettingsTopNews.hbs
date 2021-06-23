@@ -1,45 +1,96 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
+            
+            <form action="/news/settings/serch" method="POST">
+                <input type="hidden" value="{{settings._key}}" name="key">
+                <div class="form-group">
+                    <label>Result Type:</label>
+                    <select class="js-example-basic-multiple" multiple="multiple" name="SelectCategory" data-placeholder="Any" style="width: 100%;">
+                        {{#each categoriesSelect}}
+                            <option value="{{this.id}}">{{this.category}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group input-group-lg">
+                        <input type="search" class="form-control form-control-lg" name="title" placeholder="Введите название статьи">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-lg btn-default">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
             <form method="POST" action="/news/editSettings">
                 {{#if error}}
                     <font color='red'>{{error}}</font>
                 {{/if}}
-                <h1>{{settings.label}}</h1>
+                <h1>{{settings.label}}<input type="submit" class="btn btn-secondary" value="Отправить"></h1>
                 <input type="hidden" value="{{settings.label}}" name="label">
                 <input type="hidden" value="{{settings.id}}" name="id">
                 <input type="hidden" value="{{settings._key}}" name="key">
+
                 
                 <div class="cat-news">
                     {{#each categories}}
+                        {{#if @root.news.id}}
+                        {{else}}
+                        <div align="center">
+                            <br><br><br><br>
+                            <h2>{{this.category}}</h2>
+                        </div>
+                        {{/if}}
                         <div class="col-md-12">
-                            <div align="center">
-                                <br><br><br><br>
-                                <h2>{{this.category}}</h2>
-                            </div>
                             <div class="row">
-                                {{#each @root.news}}
-                                    {{#ifeq this.categoryId ../this.id}}
+                                {{#if @root.news.id}}
+                                    {{#ifeq this.id @root.news.categoryId}}
+                                        <div align="center">
+                                            <br><br><br><br>
+                                            <h2>{{this.category}}</h2>
+                                        </div>
                                         <div class="col-md-3">
                                             <div class="cn-img">
-                                                <img width="285" height="180" src="/{{this.postUrl}}" />
+                                                <img width="285" height="180" src="/{{@root.news.postUrl}}" />
                                                 <div class="cn-title">
-                                                    <a href="/news/get/{{this.id}}">{{this.title}}</a>
+                                                    <a href="/news/get/{{@root.news.id}}">{{@root.news.title}}</a>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="{{this.id}}" name="checkNews">
+                                                    <input class="form-check-input" type="checkbox" value="{{@root.news.id}}" name="checkNews">
                                                 </div>
                                             </div>
                                         </div>
                                     {{/ifeq}}
-                                {{/each}}
+                                {{else}}
+
+                                    {{#each @root.news}}
+                                        {{#ifeq this.categoryId ../this.id}}
+
+                                            <div class="col-md-3">
+                                                <div class="cn-img">
+                                                    <img width="285" height="180" src="/{{this.postUrl}}" />
+                                                    <div class="cn-title">
+                                                        <a href="/news/get/{{this.id}}">{{this.title}}</a>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="{{this.id}}" name="checkNews">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {{/ifeq}}
+                                    {{/each}}
+
+                                {{/if}}
+                                    
                             </div>
                         </div>
                     {{/each}}
                 
 
-                <br><br><br><br>
-                <input type="submit" class="btn btn-secondary" value="Отправить">
+
             </form>
         </div>
     </div>

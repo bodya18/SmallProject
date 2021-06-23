@@ -82,9 +82,12 @@ class News{
         await this.news.edit(postText, filedata, selectCategoryId, title, id)
         return{isCreate:true}
     }
-
+    
     async GetNewsById(id){
         return await this.news.getById(id)
+    }
+    async GetNewsByTitle(title){
+        return await this.news.getByTitle(title)
     }
     async GetNews(){
         return await this.news.GetNews()

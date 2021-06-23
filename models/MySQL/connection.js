@@ -90,8 +90,6 @@ class Connection{
     }
     
     async UpdateRuleFromUser(id, value){
-        console.log(id);
-        console.log(value);
         await pool.query(`DELETE from Rule_User where userId = ?`, [id])
         for (let i = 0; i < value.length; i++) {
             await pool.query('Insert into Rule_User (ruleId, userId) values (?, ?)', [value[i], id])

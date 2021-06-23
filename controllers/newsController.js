@@ -195,8 +195,9 @@ exports.GetCategories = async (req,res) => {
 exports.GetEditSettings = async (req,res) => {
     const rbac = new RBAC
     const settings = await rbac.news.GetSettingsByKey(req.params.key)
-    const categories = await rbac.category.GetCategories()
+    
     if(req.params.key === 'SelectedCategories'){    
+        const categories = await rbac.category.GetCategories()
         return res.render('EditSettingsCategories.hbs', {
             title: 'Редактирование настройки',
             settings,
@@ -206,15 +207,74 @@ exports.GetEditSettings = async (req,res) => {
         })
     }
     else{
-        const news = await rbac.news.GetNews()
-        return res.render('EditSettingsTopNews.hbs', {
-            title: 'Редактирование настройки',
-            settings,
-            categories,
-            news,
-            isAdmin: true,
-            error: req.flash('error')
-        })
+        var category = req.query.category
+        const title = req.query.title
+        const categoriesSelect = await rbac.category.GetCategories()
+        if(title === undefined || title === ''){
+            if (category === undefined || category === 'undefined') {
+                const news = await rbac.news.GetNews()
+                const categories = await rbac.category.GetCategories()
+                return res.render('EditSettingsTopNews.hbs', {
+                    title: 'Редактирование настройки',
+                    settings,
+                    categories,
+                    categoriesSelect,
+                    news,
+                    isAdmin: true,
+                    error: req.flash('error')
+                })
+            }
+            else{
+                
+                category = category.split(',')
+                var SelectCategories = []
+                for (let i = 0; i < category.length; i++) {
+                    SelectCategories.push((await rbac.news.GetNewsByCategory(category[i])))
+                }
+                var newNews = [].concat(...SelectCategories);
+                var categories = [];
+                for (let i = 0; i < category.length; i++) {
+                    categories.push(await rbac.category.GetCategoriesById(category[i]))
+                }
+                
+                return res.render('EditSettingsTopNews.hbs', {
+                    title: 'Редактирование настройки',
+                    settings,
+                    categories,
+                    categoriesSelect,
+                    news: newNews,
+                    isAdmin: true,
+                    error: req.flash('error')
+                })
+            }
+        }
+        else{
+            if (category === undefined || category === 'undefined') {
+                const SelectTitle = await rbac.news.GetNewsByTitle(title)
+                const categories = await rbac.category.GetCategories()
+                return res.render('EditSettingsTopNews.hbs', {
+                    title: 'Редактирование настройки',
+                    settings,
+                    categories,
+                    categoriesSelect,
+                    news: SelectTitle,
+                    isAdmin: true,
+                    error: req.flash('error')
+                })
+            }
+            else{
+                const SelectTitle = await rbac.news.GetNewsByTitle(title)
+                return res.render('EditSettingsTopNews.hbs', {
+                    title: 'Редактирование настройки',
+                    settings,
+                    categoriesSelect,
+                    categories: categoriesSelect,
+                    news: SelectTitle,
+                    isAdmin: true,
+                    error: req.flash('error')
+                })
+            }
+        }
     }
 }
 
@@ -232,4 +292,8 @@ exports.GetCreateSettings = async (req, res) =>{
         isAdmin: true,
         error: req.flash('error')
     })
+}
+
+exports.GetSearchNews = async(req, res) =>{
+    res.redirect(`/news/GetEditSettings/${req.body.key}?category=${req.body.SelectCategory}&title=${req.body.title}`)
 }

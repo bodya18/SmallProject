@@ -17,7 +17,7 @@ router.get('/create/category', isAdmin, auth, newsController.GetCreateCategory)
 router.get('/categories', isAdmin, auth, newsController.GetCategories)
 router.get('/GetEditSettings/:key', isAdmin, auth, newsController.GetEditSettings)
 
-
+router.post('/settings/serch',isAdmin, auth, urlencodedParser, newsController.GetSearchNews)
 router.post('/editSettings', isAdmin, auth, urlencodedParser, newsController.editSettings)
 // router.post('/newSettings', isAdmin, auth, urlencodedParser, newsController.CreateSettings)
 router.post('/newCategory', isAdmin, auth, urlencodedParser, newsController.CreateCategory)

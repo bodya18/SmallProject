@@ -59,7 +59,17 @@ class News{
             })
         return temp
     }
-
+    async getByTitle(title){
+        var temp;
+        await pool.query('Select * from news where title=?', [title])
+            .then(data => {
+                temp = data[0][0];
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
+    }
     async SelectOrderBy(what, desc = ''){
         var temp
         await pool.query(`SELECT * FROM news ORDER BY ${what} ${desc}`)
