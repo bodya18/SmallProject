@@ -208,9 +208,11 @@ exports.GetEditSettings = async (req,res) => {
         })
     }
     else{
+        
         var category = req.query.category
         const title = req.query.title
         const categoriesSelect = await rbac.category.GetCategories()
+        const Allnews = await rbac.news.GetNews()
         if(title === undefined || title === ''){
             if (category === undefined || category === 'undefined') {
                 const news = await rbac.news.GetNews()
@@ -221,6 +223,7 @@ exports.GetEditSettings = async (req,res) => {
                     categories,
                     categoriesSelect,
                     news,
+                    Allnews,
                     isSettings: true,
                     isAdmin: true,
                     error: req.flash('error')
@@ -246,6 +249,7 @@ exports.GetEditSettings = async (req,res) => {
                     isSettings: true,
                     categoriesSelect,
                     news: newNews,
+                    Allnews,
                     isAdmin: true,
                     error: req.flash('error')
                 })
@@ -264,6 +268,7 @@ exports.GetEditSettings = async (req,res) => {
                     categories,
                     isSettings: true,
                     categoriesSelect,
+                    Allnews,
                     news: SelectTitle,
                     isAdmin: true,
                     error: req.flash('error')
@@ -279,6 +284,7 @@ exports.GetEditSettings = async (req,res) => {
                     settings,
                     categoriesSelect,
                     categories: categoriesSelect,
+                    Allnews,
                     news: SelectTitle,
                     isSettings: true,
                     isAdmin: true,
@@ -306,5 +312,5 @@ exports.GetCreateSettings = async (req, res) =>{
 }
 
 exports.GetSearchNews = async(req, res) =>{
-    res.redirect(`/news/GetEditSettings/${req.body.key}?category=${req.body.SelectCategory}&title=${req.body.title}`)
+    res.redirect(`/news/GetEditSettings/${req.body.key}?category=${req.body.SelectCategory}&title=${req.body.selectTitleId}`)
 }

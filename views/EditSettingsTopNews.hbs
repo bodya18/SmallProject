@@ -14,7 +14,17 @@
                     </select>
                 </div>
 
-                <div class="form-group">
+                <select class="js-example-basic-multiple" data-placeholder="Select news" name="selectTitleId" style="width: 610px;">
+                    <option></option>
+                    {{#each Allnews}}
+                        <option value="{{this.title}}">{{this.title}}</option>
+                    {{/each}}
+                </select>
+                <button type="submit" class="btn btn-lg btn-default">
+                    <i class="fa fa-search"></i>
+                </button><BR>
+
+                {{!-- <div class="form-group">
                     <div class="input-group input-group-lg" style="width: 800px;">
                         <input type="search" class="form-control form-control-lg" name="title" placeholder="Введите название статьи" autocomplete="off">
                         <div class="input-group-append">
@@ -23,7 +33,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </form>
 
             <form method="POST" action="/news/editSettings">
@@ -58,7 +68,7 @@
                                             <br><br><br><br>
                                             <h2>{{this.category}}</h2>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" style=" margin-block-end: 15px;">
                                             <div class="cn-img">
                                                 <img class="show-Posts" src="/{{@root.news.postUrl}}" />
                                                 <div class="cn-title">
@@ -73,7 +83,7 @@
                                     {{#each @root.news}}
                                         {{#ifeq this.categoryId ../this.id}}
 
-                                            <div class="col-md-3">
+                                            <div class="col-md-3" style=" margin-block-end: 15px;">
                                                 <div class="cn-img">
                                                     <img class="show-Posts" src="/{{this.postUrl}}" />
                                                     <div class="cn-title">
