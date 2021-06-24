@@ -110,7 +110,7 @@ CREATE TABLE `Rule_User` (
   KEY `userId` (`userId`),
   CONSTRAINT `Rule_User_ibfk_1` FOREIGN KEY (`ruleId`) REFERENCES `Rules` (`id`) ON DELETE RESTRICT,
   CONSTRAINT `Rule_User_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +119,7 @@ CREATE TABLE `Rule_User` (
 
 LOCK TABLES `Rule_User` WRITE;
 /*!40000 ALTER TABLE `Rule_User` DISABLE KEYS */;
-INSERT INTO `Rule_User` VALUES (44,1,'75bcd420-825e-4e8d-8d1c-6e18db8ef094'),(45,1,'be523355-41e8-4569-bf65-33406a31e1ee'),(46,1,'c371e2eb-aee6-4d28-be34-580812e4faa5'),(47,1,'f32ab56a-caa4-44bd-8412-56df42d85f2b'),(50,1,NULL),(51,1,NULL),(54,1,'13143854-b790-4c38-8c5a-8e4df25e58c8'),(140,2,'295480fe-a2c7-4f84-8af7-7b37a7e9e14a'),(141,3,'295480fe-a2c7-4f84-8af7-7b37a7e9e14a'),(142,1,'295480fe-a2c7-4f84-8af7-7b37a7e9e14a'),(145,1,'040034f7-fed6-4669-8671-4fe2acb0684f'),(146,2,'040034f7-fed6-4669-8671-4fe2acb0684f');
+INSERT INTO `Rule_User` VALUES (44,1,'75bcd420-825e-4e8d-8d1c-6e18db8ef094'),(45,1,'be523355-41e8-4569-bf65-33406a31e1ee'),(46,1,'c371e2eb-aee6-4d28-be34-580812e4faa5'),(47,1,'f32ab56a-caa4-44bd-8412-56df42d85f2b'),(50,1,NULL),(51,1,NULL),(54,1,'13143854-b790-4c38-8c5a-8e4df25e58c8'),(145,1,'040034f7-fed6-4669-8671-4fe2acb0684f'),(146,2,'040034f7-fed6-4669-8671-4fe2acb0684f'),(149,2,'295480fe-a2c7-4f84-8af7-7b37a7e9e14a'),(150,3,'295480fe-a2c7-4f84-8af7-7b37a7e9e14a'),(151,1,'295480fe-a2c7-4f84-8af7-7b37a7e9e14a');
 /*!40000 ALTER TABLE `Rule_User` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,6 +146,62 @@ LOCK TABLES `Rules` WRITE;
 /*!40000 ALTER TABLE `Rules` DISABLE KEYS */;
 INSERT INTO `Rules` VALUES (2,'ADMIN'),(3,'ROOT'),(1,'USER');
 /*!40000 ALTER TABLE `Rules` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Social_Network`
+--
+
+DROP TABLE IF EXISTS `Social_Network`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Social_Network` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `userId` varchar(255) NOT NULL,
+  `vk` text,
+  `instagram` text,
+  `telegram` text,
+  `twitter` text,
+  `facebook` text,
+  `GitHub` text,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  CONSTRAINT `Social_Network_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Social_Network`
+--
+
+LOCK TABLES `Social_Network` WRITE;
+/*!40000 ALTER TABLE `Social_Network` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Social_Network` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Subscribers`
+--
+
+DROP TABLE IF EXISTS `Subscribers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Subscribers` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `_data` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Subscribers`
+--
+
+LOCK TABLES `Subscribers` WRITE;
+/*!40000 ALTER TABLE `Subscribers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Subscribers` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -198,7 +254,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('jxpaEnFMPlYGczL7EUubXDBMF5iqNW9Z',1624622942,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"user\":{\"id\":\"295480fe-a2c7-4f84-8af7-7b37a7e9e14a\",\"name\":\"bodya18\",\"email\":\"bodya18x@mail.ru\",\"age\":19,\"avatarURL\":\"images/b9e44aad18592603d8fb3d5da0fdbb62\",\"password\":\"$2a$10$LRGhSJK576tUQZ0068HB9ut8bjcX4lPkPyx/kONX1SSpnHfnAoyky\",\"time\":\"2021-06-23 11:49:45.353\"},\"isAuthenticated\":true,\"userIden\":\"295480fe-a2c7-4f84-8af7-7b37a7e9e14a\",\"Perm\":[\"EDIT\",\"DELETE\",\"GIVE\"]}');
+INSERT INTO `sessions` VALUES ('jxpaEnFMPlYGczL7EUubXDBMF5iqNW9Z',1624631529,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"user\":{\"id\":\"295480fe-a2c7-4f84-8af7-7b37a7e9e14a\",\"name\":\"bodya18\",\"email\":\"bodya18x@mail.ru\",\"age\":19,\"avatarURL\":\"images/b9e44aad18592603d8fb3d5da0fdbb62\",\"password\":\"$2a$10$LRGhSJK576tUQZ0068HB9ut8bjcX4lPkPyx/kONX1SSpnHfnAoyky\",\"time\":\"2021-06-23 11:49:45.353\"},\"isAuthenticated\":true,\"userIden\":\"295480fe-a2c7-4f84-8af7-7b37a7e9e14a\",\"Perm\":[\"EDIT\",\"DELETE\",\"GIVE\"]}');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,4 +324,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-24 15:09:48
+-- Dump completed on 2021-06-24 17:51:29
