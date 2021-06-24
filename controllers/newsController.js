@@ -259,9 +259,6 @@ exports.GetEditSettings = async (req,res) => {
             if (category === undefined || category === 'undefined') {
                 var SelectTitle = await rbac.news.GetNewsByTitle(title)
                 const categories = await rbac.category.GetCategories()
-                if (SelectTitle === undefined) {
-                    SelectTitle = -1
-                }
                 return res.render('EditSettingsTopNews.hbs', {
                     title: 'Редактирование настройки',
                     settings,
@@ -276,9 +273,6 @@ exports.GetEditSettings = async (req,res) => {
             }
             else{
                 var SelectTitle = await rbac.news.GetNewsByTitle(title)
-                if (SelectTitle === undefined) {
-                    SelectTitle = -1
-                }
                 return res.render('EditSettingsTopNews.hbs', {
                     title: 'Редактирование настройки',
                     settings,
