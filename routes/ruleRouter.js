@@ -7,7 +7,7 @@ const isAdmin = require('../middleware/isAdmin')
 
 router.get('/role', isAdmin, auth, ruleController.GetRoles)
 router.get('/permission', isAdmin, auth, ruleController.GetPermissions)
-router.get('/', isAdmin, auth, ruleController.GetAllConnection)
+// router.get('/', isAdmin, auth, ruleController.GetAllConnection)
 
 router.get('/roles/create', isAdmin, auth, ruleController.GetCreateRole)
 router.get('/permission/create', isAdmin, auth, ruleController.GetCreatePermission)

@@ -62,10 +62,10 @@ app.use('/logout', logoutRouter)
 app.use('/rules', ruleRouter)
 app.use('/admin', adminRouter)
 app.use('/news', newsRouter)
-app.use('/', (req, res)=>{
-    return res.redirect('/news')
-})
+app.get('/', (req, res)=>res.redirect('/news'))
+
 app.use(errorHandler)
+
 
 app.listen(configMiggleware.port, () => {
     console.log('Server is waiting connections')
