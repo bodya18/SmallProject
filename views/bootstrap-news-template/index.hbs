@@ -9,7 +9,7 @@
                         {{#ifeq @root.LeftNews.length 1}}
                             <div class="col-md-12">
                                 <div class="tn-img">
-                                    <img width="450" height="380" src="/{{this.postUrl}}" />
+                                    <img width="450" height="380" style="object-fit: cover;" src="/{{this.postUrl}}" />
                                     <div class="tn-title">
                                         <a href="/news/get/{{this.id}}">{{this.title}}</a>
                                     </div>
@@ -18,7 +18,7 @@
                         {{else}}
                             <div class="col-md-6">
                                 <div class="tn-img">
-                                    <img width="450" height="380" src="/{{this.postUrl}}" />
+                                    <img width="450" height="380" style="object-fit: cover;" src="/{{this.postUrl}}" />
                                     <div class="tn-title">
                                         <a href="/news/get/{{this.id}}">{{this.title}}</a>
                                     </div>
@@ -34,7 +34,7 @@
                         {{#ifeq @root.RightNews.length 1}}
                             <div class="col-md-12">
                                 <div class="tn-img">
-                                    <img width="450" height="380" src="/{{this.postUrl}}" />
+                                    <img width="450" height="380" style="object-fit: cover;" src="/{{this.postUrl}}" />
                                     <div class="tn-title">
                                         <a href="/news/get/{{this.id}}">{{this.title}}</a>
                                     </div>
@@ -43,7 +43,7 @@
                         {{else}}
                             <div class="col-md-6">
                                 <div class="tn-img">
-                                    <img width="450" height="380" src="/{{this.postUrl}}" />
+                                    <img width="450" height="380" style="object-fit: cover;" src="/{{this.postUrl}}" />
                                     <div class="tn-title">
                                         <a href="/news/get/{{this.id}}">{{this.title}}</a>
                                     </div>
@@ -73,7 +73,7 @@
                             {{#ifeq this.categoryId ../this.id}}
                                 <div class="col-md-3">
                                     <div class="cn-img">
-                                        <img width="285" height="180" src="/{{this.postUrl}}" />
+                                        <img class="show-Posts" src="/{{this.postUrl}}">
                                         <div class="cn-title">
                                             <a href="/news/get/{{this.id}}">{{this.title}}</a>
                                         </div>

@@ -6,7 +6,7 @@
             <div class="col-lg-8">
                 <div class="sn-container">
                     <div class="single-img">
-                        <img style="width: 850px" src="/{{news.postUrl}}">
+                        <img class="single-img"  src="/{{news.postUrl}}">
                     </div>
                     <div class="sn-content">
                         <h1 class="sn-title">
@@ -36,7 +36,7 @@
                                 {{#ifeq this.categoryId @root.categories}}
                                     <div class="nl-item">
                                         <div class="nl-img">
-                                            <img width="100" height="64" src="/{{this.postUrl}}" />
+                                            <img width="100" height="64" style="object-fit: cover;" src="/{{this.postUrl}}" />
                                         </div>
                                         <div class="nl-title">
                                             <a href="/news/get/{{this.id}}">{{this.title}}</a>

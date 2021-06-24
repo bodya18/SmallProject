@@ -62,7 +62,9 @@ app.use('/logout', logoutRouter)
 app.use('/rules', ruleRouter)
 app.use('/admin', adminRouter)
 app.use('/news', newsRouter)
-
+app.use('/', (req, res)=>{
+    return res.redirect('/news')
+})
 app.use(errorHandler)
 
 app.listen(configMiggleware.port, () => {

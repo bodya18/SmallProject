@@ -63,7 +63,12 @@ class News{
         var temp;
         await pool.query('Select * from news where title=?', [title])
             .then(data => {
-                temp = data[0][0];
+                if (data[0].length > 1) {
+                    temp = data[0];
+                }
+                else{
+                    temp = data[0][0];
+                }
             })
             .catch(e =>{
                 return console.log(e);

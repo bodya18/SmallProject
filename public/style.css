@@ -16,9 +16,7 @@ pre{
 }
 
 .single-img{
-    width: 850px; 
-    height: 540px;
-    overflow: hidden;
+    width: 850px; height: 540px; object-fit: cover; 
 }
 
 .btn-outline-primary {
@@ -30,4 +28,11 @@ pre{
     color: #fff !important;
     background-color: #000000 !important;
     border-color: #000000 !important;
+}
+
+.show-Posts{
+    width: 285px;
+    height: 180px; 
+    margin-top: 15px;
+    object-fit: cover;
 }
