@@ -11,6 +11,15 @@ class News{
         this.category = new CategoriesModel
     }
 
+    async Subscribe(email){
+        if(email.length < 2)
+            return {error: 'Введите настоящий email'}
+        const data = await this.news.isSub(email)
+        if(data)
+            return {error: 'Данный email уже подписан на рассылку'}
+        await this.news.Subscribe(email);
+    }
+
     async CreateNews(title, postText, selectCategoryId, filedata) {
         if(title.length < 5)
         return {

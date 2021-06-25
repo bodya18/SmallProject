@@ -4,6 +4,7 @@ const session = require('express-session')
 const SessionStore = require('express-mysql-session')
 const flash = require('connect-flash')
 const path = require('path');
+const subscribeRouter = require('./routes/subscribeRouter');
 const indexRouter = require('./routes/indexRouter')
 const deleteRouter = require('./routes/deleteRouter')
 const editRouter = require('./routes/editRouter')
@@ -51,6 +52,7 @@ app.use(session({
 app.use(flash())
 app.use(varMiddleware)
 
+app.use('/subscribe', subscribeRouter)
 app.use('/users', indexRouter)
 // app.use('/sort', sortRouter)
 app.use('/delete', deleteRouter)

@@ -134,6 +134,8 @@ class User{
         if(data)
             return {isAuth: false, error: 'Данный email уже зарегистрирован'}
         else {
+            if(email.length < 2)
+                return {isAuth: false, error: 'Введите настоящий email'}
             if(name.length < 2)
                 return {isAuth: false, error: 'Имя меньше 2-х символов'}
             if(age < 1)

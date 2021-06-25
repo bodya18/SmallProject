@@ -59,6 +59,24 @@ class News{
             })
         return temp
     }
+
+    async Subscribe(email){
+        const data = new Date
+        await pool.query('Insert into Subscribers (_data, email) values (?, ?)', [data, email])
+    }
+
+    async isSub(email){
+        var temp;
+        await pool.query('Select * from Subscribers where email=?', [email])
+            .then(data => {
+                temp = data[0][0];
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
+    }
+
     async getByTitle(title){
         var temp;
         await pool.query('Select * from news where title=?', [title])

@@ -411,8 +411,13 @@
                                 <p>
                                     Вы можете подписаться на новости
                                 </p>
-                                <form>
-                                    <input class="form-control" type="email" placeholder="Ваша почта">
+                                <p>
+                                    {{#if errorSub}}
+                                        <font color='red'>{{errorSub}}</font>
+                                    {{/if}}
+                                </p>
+                                <form action="/subscribe" method="POST">
+                                    <input class="form-control" type="email" name="email" placeholder="Ваша почта">
                                     <button type="submit" class="btn" style="width: auto;">Подписаться</button>
                                 </form>
                             </div>
