@@ -1,5 +1,5 @@
 const pool = require('../../middleware/pool')
-const fs = require('fs')
+
 
 class Categories{
 
@@ -49,7 +49,6 @@ class Categories{
 
     async DeleteCategory(id){
         var temp = true
-        console.log(id);
         await pool.query('select * from news where categoryId=?', [id])
             .then(data=>{
                 if (!data[0][0])

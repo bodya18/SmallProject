@@ -1,4 +1,4 @@
-<a class="btn btn-dark" href="/news/GetEditSettings/{{settings._key}}" style="float: left; margin-top:20px">Back at this setting</a>
+<a class="btn btn-dark" href="/news/GetEditSettings/{{settings._key}}" style="float: left; margin-top:20px">Убрать выбор</a>
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -7,14 +7,14 @@
                 <input type="hidden" value="{{settings._key}}" name="key">
                 <div class="form-group">
                     <br>
-                    <select class="js-example-basic-multiple" multiple="multiple" name="SelectCategory" data-placeholder="Select categories" style="width: 500px;">
+                    <select class="js-example-basic-multiple" multiple="multiple" name="SelectCategory" data-placeholder="Выберите категории показа" style="width: 500px;">
                         {{#each categoriesSelect}}
                             <option value="{{this.id}}">{{this.category}}</option>
                         {{/each}}
                     </select>
                 </div>
 
-                <select class="js-example-basic-multiple" data-placeholder="Select news" name="selectTitleId" style="width: 610px;">
+                <select class="js-example-basic-multiple" data-placeholder="Выберите новость" name="selectTitleId" style="width: 610px;">
                     <option></option>
                     {{#each Allnews}}
                         <option value="{{this.title}}">{{this.title}}</option>
@@ -41,7 +41,7 @@
                     <font color='red'>{{error}}</font>
                 {{/if}}<br>
                 <h1>{{settings.label}}</h1>
-                <input type="submit" class="btn btn-success" value="SET THE SETTING" style="width: 475px; font-weight: 1000">
+                <input type="submit" class="btn btn-success" value="ЗАДАТЬ НАСТРОЙКУ" style="width: 475px; font-weight: 1000">
                 <input type="hidden" value="{{settings.label}}" name="label">
                 <input type="hidden" value="{{settings.id}}" name="id">
                 <input type="hidden" value="{{settings._key}}" name="key">

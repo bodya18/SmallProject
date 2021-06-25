@@ -43,7 +43,6 @@ class Categories{
     }
     async DeleteCategory(id){
         const data = await this.category.DeleteCategory(id)
-        console.log(data);
         if(data === false)
             return false
     }

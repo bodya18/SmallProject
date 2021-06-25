@@ -63,9 +63,9 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
                             {{#if @root.isNews}}
-                                <a href="/news" class="nav-item nav-link active">News</a>
+                                <a href="/news" class="nav-item nav-link active">Новости</a>
                             {{else}}
-                                <a href="/news" class="nav-item nav-link">News</a>
+                                <a href="/news" class="nav-item nav-link">Новости</a>
                             {{/if}}
                             {{#if isAuth}}
                                 {{#each permissionsList}}
@@ -136,7 +136,7 @@
                         <!-- SidebarSearch Form -->
                         <div class="form-inline">
                             <div class="input-group" data-widget="sidebar-search">
-                            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                            <input class="form-control form-control-sidebar" type="search" placeholder="Поиск" aria-label="Search">
                             <div class="input-group-append">
                                 <button class="btn btn-sidebar">
                                 <i class="fas fa-search fa-fw"></i>
@@ -154,12 +154,12 @@
                                             {{#if isAdminPanel}}
                                                 <a href="/admin" class="nav-link active">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>News</p>
+                                                    <p>Новости</p>
                                                 </a>
                                             {{else}}
                                                 <a href="/admin" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>News</p>
+                                                    <p>Новости</p>
                                                 </a>
                                             {{/if}}
                                         </li>
@@ -167,12 +167,12 @@
                                             {{#if isCategories}}
                                                 <a href="/news/categories" class="nav-link active">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Categories</p>
+                                                    <p>Категории</p>
                                                 </a>
                                             {{else}}
                                                 <a href="/news/categories" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Categories</p>
+                                                    <p>Категории</p>
                                                 </a>
                                             {{/if}}
                                         </li>
@@ -180,12 +180,12 @@
                                             {{#if isCreate}}
                                                 <a href="/news/create/post" class="nav-link active">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Create Post</p>
+                                                    <p>Создание поста</p>
                                                 </a>
                                             {{else}}
                                                 <a href="/news/create/post" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Create Post</p>
+                                                    <p>Создание поста</p>
                                                 </a>
                                             {{/if}}
                                         </li>
@@ -193,12 +193,12 @@
                                             {{#if isCreateCategory}}
                                                 <a href="/news/create/category" class="nav-link active">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Create Category</p>
+                                                    <p>Создание категории</p>
                                                 </a>
                                             {{else}}
                                                 <a href="/news/create/category" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Create Category</p>
+                                                    <p>Создание категории</p>
                                                 </a>
                                             {{/if}}
                                         </li>
@@ -206,12 +206,12 @@
                                             {{#if isUsers}}
                                                 <a href="/users" class="nav-link active">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Users</p>
+                                                    <p>Пользователи</p>
                                                 </a>
                                             {{else}}
                                                 <a href="/users" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Users</p>
+                                                    <p>Пользователи</p>
                                                 </a>
                                             {{/if}}
                                         </li>
@@ -219,12 +219,12 @@
                                             {{#if isRole}}
                                                 <a href="/rules/role" class="nav-link active">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Roles</p>
+                                                    <p>Роли</p>
                                                 </a>
                                             {{else}}
                                                 <a href="/rules/role" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Roles</p>
+                                                    <p>Роли</p>
                                                 </a>
                                             {{/if}}
                                         </li>
@@ -232,12 +232,12 @@
                                             {{#if isPermission}}
                                                 <a href="/rules/permission" class="nav-link active">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Permissions</p>
+                                                    <p>Разрешения</p>
                                                 </a>
                                             {{else}}
                                                 <a href="/rules/permission" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Permissions</p>
+                                                    <p>Разрешения</p>
                                                 </a>
                                             {{/if}}
                                         </li>
@@ -245,12 +245,12 @@
                                             {{#if isRoleCreate}}
                                                 <a href="/rules/roles/create" class="nav-link active">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Create role</p>
+                                                    <p>Создание роли</p>
                                                 </a>
                                             {{else}}
                                                 <a href="/rules/roles/create" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Create role</p>
+                                                    <p>Создание роли</p>
                                                 </a>
                                             {{/if}}
                                         </li>
@@ -258,12 +258,12 @@
                                             {{#if isPermissionCreate}}
                                                 <a href="/rules/permission/create" class="nav-link active">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Create permission</p>
+                                                    <p>Создание разрешения</p>
                                                 </a>
                                             {{else}}
                                                 <a href="/rules/permission/create" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Create permission</p>
+                                                    <p>Создание разрешения</p>
                                                 </a>
                                             {{/if}}
                                         </li>
@@ -284,12 +284,12 @@
                                             {{#if isGiveRole}}
                                                 <a href="/rules/give/role" class="nav-link active">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Give Role</p>
+                                                    <p>Выдача ролей</p>
                                                 </a>
                                             {{else}}
                                                 <a href="/rules/give/role" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Give Role</p>
+                                                    <p>Выдача ролей</p>
                                                 </a>
                                             {{/if}}
                                         </li>
@@ -297,12 +297,12 @@
                                             {{#if isGivePermission}}
                                                 <a href="/rules/give/permission" class="nav-link active">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Give Permission</p>
+                                                    <p>Выдача разрешений</p>
                                                 </a>
                                             {{else}}
                                                 <a href="/rules/give/permission" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Give Permission</p>
+                                                    <p>Выдача разрешений</p>
                                                 </a>
                                             {{/if}}
                                         </li>
@@ -310,12 +310,12 @@
                                             {{#if isSettings}}
                                                 <a href="/news/settings" class="nav-link active">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Settings</p>
+                                                    <p>Настройки</p>
                                                 </a>
                                             {{else}}
                                                 <a href="/news/settings" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Settings</p>
+                                                    <p>Настройки</p>
                                                 </a>
                                             {{/if}}
                                         </li>
@@ -410,11 +410,6 @@
                             <div class="newsletter">
                                 <p>
                                     Вы можете подписаться на новости
-                                </p>
-                                <p>
-                                    {{#if errorSub}}
-                                        <font color='red'>{{errorSub}}</font>
-                                    {{/if}}
                                 </p>
                                 <form action="/subscribe" method="POST">
                                     <input class="form-control" type="email" name="email" placeholder="Ваша почта">

@@ -16,6 +16,14 @@ class User{
         this.is = false
     }
 
+    async SetSocialNetw(vk, instagram, facebook, twitter, GitHub, telegram, id){
+        return await this.user.SetSocialNetw(vk, instagram, facebook, twitter, GitHub, telegram, id)
+    }
+
+    async GetSocialNetw(id){
+        return await this.user.GetSocialNetw(id)
+    }
+
     async GetPermEditUsers(id, userId, permissions) {
         var temp;
         if(userId === id){
@@ -150,6 +158,7 @@ class User{
             this.user.create(hashPassword, email, name, age, id)
             this.connection.AddRuleToUser(id, 1)
             const dat = await this.user.getById(id)
+            await this.user.CreateSocialNetwork(id)
             return {
                 user: dat,
                 isAuth: true,

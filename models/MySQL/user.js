@@ -3,6 +3,25 @@ const fs = require('fs')
 const config = require('../../middleware/config');
 
 class User{
+
+    async SetSocialNetw(vk, instagram, facebook, twitter, GitHub, telegram, id){
+        await pool.query('update Social_Network set vk=?, instagram=?, facebook=?, twitter=?, GitHub=?, telegram=? where userId=?', [vk, instagram, facebook, twitter, GitHub, telegram, id])
+    }
+    async CreateSocialNetwork(id){
+        await pool.query('insert into Social_Network (userId) values (?)', [id])
+    }
+    async GetSocialNetw(id){
+        var temp;
+        await pool.query('Select * from Social_Network where userId=?', [id])
+            .then(data => {
+                temp = data[0][0];
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
+    }
+
     async edit(id, age, avatarURL, name) {
         try{
             const time = new Date
