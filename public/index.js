@@ -12,17 +12,17 @@ function addInput() {
     div.className = 'block_addition'
     div.id = 'input' + ++x;
     div.innerHTML = `
-    <select class="js-example-basic-multiple" style="width: 200px; max-height: 30px;" data-placeholder="Выберите соцсеть">
+    <select name="netw" class="form-select" style="width: 187px; max-height: 30px; padding-top: 1px;">
         <option></option>
-        <option>Vk</option>
-        <option>Telegram</option>
-        <option>Github</option>
-        <option>Twitter</option>
-        <option>Instagram</option>
-        <option>Facebook</option>
+        <option {{netw.vk}}>Vk</option>
+        <option {{netw.telegram}}>Telegram</option>
+        <option {{netw.GitHub}}>Github</option>
+        <option {{netw.twitter}}>Twitter</option>
+        <option {{netw.instagram}}>Instagram</option>
+        <option {{netw.facebook}}>Facebook</option>
     </select>
-    <input class="form-control" placeholder="Ссылка" style="width:200px; height: 30px; margin-left: 30px">
-    <button class="btn btn-danger" type="button" style="max-height: 30px; margin-left: 40px" onclick="delInput(${x})">-</button>
+    <input class="form-control" placeholder="Ссылка" style="width:200px; height: 30px; margin-left: 30px" name="link">
+    <button class="btn btn-danger" type="button" style="height: 30px; width:35px; margin-left: 40px" onclick="delInput(${x})">-</button>
     <hr class="my-4">
     `;
     profile.appendChild(div);

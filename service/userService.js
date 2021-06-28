@@ -20,6 +20,10 @@ class User{
         return await this.user.SetSocialNetw(vk, instagram, facebook, twitter, GitHub, telegram, id)
     }
 
+    async SetSocialNetwBy(netw, link, id) {
+        return await this.user.SetSocialNetwBy(netw, link, id)
+    }
+
     async GetSocialNetw(id){
         return await this.user.GetSocialNetw(id)
     }

@@ -7,6 +7,11 @@ class User{
     async SetSocialNetw(vk, instagram, facebook, twitter, GitHub, telegram, id){
         await pool.query('update Social_Network set vk=?, instagram=?, facebook=?, twitter=?, GitHub=?, telegram=? where userId=?', [vk, instagram, facebook, twitter, GitHub, telegram, id])
     }
+
+    async SetSocialNetwBy(netw, link, id) {
+        await pool.query(`update Social_Network set ${netw}=? where userId=?`, [link, id])
+    }
+
     async CreateSocialNetwork(id){
         await pool.query('insert into Social_Network (userId) values (?)', [id])
     }
