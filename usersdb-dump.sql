@@ -41,6 +41,33 @@ INSERT INTO `Categories` VALUES ('Films',3),('GameNews',2),('News',1);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `Comments`
+--
+
+DROP TABLE IF EXISTS `Comments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Comments` (
+  `id` int NOT NULL,
+  `userId` varchar(255) DEFAULT NULL,
+  `comment` text,
+  `date` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  CONSTRAINT `Comments_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Comments`
+--
+
+LOCK TABLES `Comments` WRITE;
+/*!40000 ALTER TABLE `Comments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Comments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Permissions`
 --
 
@@ -110,7 +137,7 @@ CREATE TABLE `Rule_User` (
   KEY `userId` (`userId`),
   CONSTRAINT `Rule_User_ibfk_1` FOREIGN KEY (`ruleId`) REFERENCES `Rules` (`id`) ON DELETE RESTRICT,
   CONSTRAINT `Rule_User_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +146,7 @@ CREATE TABLE `Rule_User` (
 
 LOCK TABLES `Rule_User` WRITE;
 /*!40000 ALTER TABLE `Rule_User` DISABLE KEYS */;
-INSERT INTO `Rule_User` VALUES (44,1,'75bcd420-825e-4e8d-8d1c-6e18db8ef094'),(45,1,'be523355-41e8-4569-bf65-33406a31e1ee'),(50,1,NULL),(51,1,NULL),(54,1,'13143854-b790-4c38-8c5a-8e4df25e58c8'),(145,1,'040034f7-fed6-4669-8671-4fe2acb0684f'),(146,2,'040034f7-fed6-4669-8671-4fe2acb0684f'),(149,2,'295480fe-a2c7-4f84-8af7-7b37a7e9e14a'),(150,3,'295480fe-a2c7-4f84-8af7-7b37a7e9e14a'),(151,1,'295480fe-a2c7-4f84-8af7-7b37a7e9e14a');
+INSERT INTO `Rule_User` VALUES (44,1,'75bcd420-825e-4e8d-8d1c-6e18db8ef094'),(45,1,'be523355-41e8-4569-bf65-33406a31e1ee'),(50,1,NULL),(51,1,NULL),(54,1,'13143854-b790-4c38-8c5a-8e4df25e58c8'),(145,1,'040034f7-fed6-4669-8671-4fe2acb0684f'),(146,2,'040034f7-fed6-4669-8671-4fe2acb0684f'),(154,2,'295480fe-a2c7-4f84-8af7-7b37a7e9e14a'),(155,3,'295480fe-a2c7-4f84-8af7-7b37a7e9e14a'),(156,1,'295480fe-a2c7-4f84-8af7-7b37a7e9e14a');
 /*!40000 ALTER TABLE `Rule_User` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,7 +283,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('RGTtvfu9GcX3-wXcTWAgs-9PU_k2Zexg',1624711838,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"user\":{\"id\":\"295480fe-a2c7-4f84-8af7-7b37a7e9e14a\",\"name\":\"bodya18\",\"email\":\"bodya18x@mail.ru\",\"age\":19,\"avatarURL\":\"images/b9e44aad18592603d8fb3d5da0fdbb62\",\"password\":\"$2a$10$LRGhSJK576tUQZ0068HB9ut8bjcX4lPkPyx/kONX1SSpnHfnAoyky\",\"time\":\"2021-06-25 15:24:36.391\"},\"isAuthenticated\":true,\"userIden\":\"295480fe-a2c7-4f84-8af7-7b37a7e9e14a\",\"Perm\":[\"EDIT\",\"DELETE\",\"GIVE\"]}');
+INSERT INTO `sessions` VALUES ('_rtLCAEPmsN6Pg7wR0i7M1RagG8l4IuK',1624968816,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"user\":{\"id\":\"295480fe-a2c7-4f84-8af7-7b37a7e9e14a\",\"name\":\"bodya18\",\"email\":\"bodya18x@mail.ru\",\"age\":19,\"avatarURL\":\"images/b9e44aad18592603d8fb3d5da0fdbb62\",\"password\":\"$2a$10$LRGhSJK576tUQZ0068HB9ut8bjcX4lPkPyx/kONX1SSpnHfnAoyky\",\"time\":\"2021-06-25 16:07:11.203\"},\"isAuthenticated\":true,\"userIden\":\"295480fe-a2c7-4f84-8af7-7b37a7e9e14a\",\"Perm\":[\"EDIT\",\"DELETE\",\"GIVE\"]}');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -313,7 +340,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('040034f7-fed6-4669-8671-4fe2acb0684f','Al','a@mail.ru',18,'images/f583359b152a7e3947afc1a316de7904','$2a$10$2McLzmE1l8PmtMXuRMyi7OgJQc9njjPu2OJ1KE.3HVyXWZbHZr1qC','2021-06-21 16:10:05.688'),('13143854-b790-4c38-8c5a-8e4df25e58c8','Dc','AcDc@mail.ru',19,'images/3d0ce5d40c392be03e7fa18daa9d4ac5','$2a$10$vWXk7SUjZkFC1dnJohcVwuaKPTpR62XBEh/yu5iinRqg4zZtfi2hm','2021-06-23 11:50:02.600'),('295480fe-a2c7-4f84-8af7-7b37a7e9e14a','bodya18','bodya18x@mail.ru',19,'images/b9e44aad18592603d8fb3d5da0fdbb62','$2a$10$LRGhSJK576tUQZ0068HB9ut8bjcX4lPkPyx/kONX1SSpnHfnAoyky','2021-06-25 15:33:30.540'),('75bcd420-825e-4e8d-8d1c-6e18db8ef094','Cl','c@mail.ru',31,'images/6d51e695859f2df60e4f439a0ca30ca1','$2a$10$VH0WLFkh3WC0xhS8yC1QeOAXZsAi5qW0m9LdvXB4Gu4Ad9BoOs/Vu','2021-06-02 16:18:08.513'),('be523355-41e8-4569-bf65-33406a31e1ee','Bl','b@mail.ru',25,'images/63f40436086664c874be2bebec4240ac','$2a$10$LHFPa9MAESAmHSz/zVtPjuwtEa6eW/yjGx0iP6E9l4QZ0VBForCZK','2021-06-11 16:47:15.618');
+INSERT INTO `users` VALUES ('040034f7-fed6-4669-8671-4fe2acb0684f','Al','a@mail.ru',18,'images/f583359b152a7e3947afc1a316de7904','$2a$10$2McLzmE1l8PmtMXuRMyi7OgJQc9njjPu2OJ1KE.3HVyXWZbHZr1qC','2021-06-21 16:10:05.688'),('13143854-b790-4c38-8c5a-8e4df25e58c8','Dc','AcDc@mail.ru',19,'images/3d0ce5d40c392be03e7fa18daa9d4ac5','$2a$10$vWXk7SUjZkFC1dnJohcVwuaKPTpR62XBEh/yu5iinRqg4zZtfi2hm','2021-06-23 11:50:02.600'),('295480fe-a2c7-4f84-8af7-7b37a7e9e14a','bodya18','bodya18x@mail.ru',19,'images/b9e44aad18592603d8fb3d5da0fdbb62','$2a$10$LRGhSJK576tUQZ0068HB9ut8bjcX4lPkPyx/kONX1SSpnHfnAoyky','2021-06-28 15:12:05.245'),('75bcd420-825e-4e8d-8d1c-6e18db8ef094','Cl','c@mail.ru',31,'images/6d51e695859f2df60e4f439a0ca30ca1','$2a$10$VH0WLFkh3WC0xhS8yC1QeOAXZsAi5qW0m9LdvXB4Gu4Ad9BoOs/Vu','2021-06-02 16:18:08.513'),('be523355-41e8-4569-bf65-33406a31e1ee','Bl','b@mail.ru',25,'images/63f40436086664c874be2bebec4240ac','$2a$10$LHFPa9MAESAmHSz/zVtPjuwtEa6eW/yjGx0iP6E9l4QZ0VBForCZK','2021-06-11 16:47:15.618');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -326,4 +353,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-25 15:51:11
+-- Dump completed on 2021-06-28 15:22:10
