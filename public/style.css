@@ -9,13 +9,13 @@
     font-weight: 700 !important;
 }
 
-pre{
+pre {
     text-align: justify;
     overflow-x:hidden;
     white-space:pre-wrap;
 }
 
-.single-img{
+.single-img {
     width: 850px; height: 540px; object-fit: cover; 
 }
 
@@ -30,9 +30,13 @@ pre{
     border-color: #000000 !important;
 }
 
-.show-Posts{
+.show-Posts {
     width: 285px;
     height: 180px; 
     margin-top: 15px;
     object-fit: cover;
+}
+
+.block_addition { 
+    display: flex;
 }
