@@ -23,6 +23,63 @@
                         <pre>{{news.post_text}}</pre>
                         <br>
                     </div>
+
+                    {{#if comments}}
+                        <div class="coment-bottom bg-white p-2 px-4">
+                            {{#if isAuth}}
+                                {{#if error}}
+                                    <font color='red'>{{error}}</font>
+                                {{/if}}
+                                <form action="/news/newComment" method="POST">
+                                    <input type="hidden" name="userId" value="{{ThisUser.id}}">
+                                    <input type="hidden" name="newsId" value="{{news.id}}">
+                                    <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+                                        <img class="img-fluid img-responsive rounded-circle mr-2" src="/{{ThisUser.avatarURL}}" style="width: 50px; height: 50px;">
+                                        <textarea name="comment" type="text" class="form-control mr-3" placeholder="Добавить комментарий" minlength="1"></textarea>   
+                                        <button class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
+                                            Комментировать
+                                        </button>
+                                    </div>
+                                </form>
+                            {{/if}}
+                            {{#each comments}}
+                                <div class="commented-section mt-2">
+                                    <div class="bg-white p-2">
+                                        {{#each @root.users}}
+                                            {{#ifeq this.id ../this.userId}}
+                                                <div class="d-flex flex-row user-info">
+                                                    <img class="rounded-circle" src="/{{this.avatarURL}}" width="40">
+                                                    <div class="d-flex flex-column justify-content-start ml-2">
+                                                        <span class="d-block font-weight-bold name">{{this.name}}</span>
+                                                        <span class="date text-black-50">{{../this.date}}</span>
+                                                    </div>
+                                                    {{#ifeq @root.ThisUser.id ../this.userId}}
+                                                        <a href="">
+                                                            <button style="margin-left:400px; margin-right: 20px;" type="button" class="btn btn-dark">Редактировать</button>
+                                                        </a>
+                                                        <a href="">
+                                                            <button type="button" class="btn btn-danger">Удалить</button>
+                                                        </a>
+                                                    {{else}}
+                                                        {{#each @root.permissionsList}}
+                                                            {{#ifeq this 'GIVE'}}
+                                                                <a href="">
+                                                                    <button style="margin-left:562px;" type="button" class="btn btn-danger">Удалить</button>
+                                                                </a>
+                                                            {{/ifeq}}
+                                                        {{/each}}
+                                                    {{/ifeq}}
+                                                </div>
+                                            {{/ifeq}}
+                                        {{/each}}
+                                        <div class="mt-2">
+                                            <p class="comment-text">{{this.comment}}</p>
+                                        </div>
+                                    </div>
+                                </div><hr>
+                            {{/each}}
+                        </div>
+                    {{/if}}
                 </div>
             </div>
 

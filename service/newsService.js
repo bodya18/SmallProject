@@ -108,6 +108,12 @@ class News{
         return await this.news.DeleteNews(id)
     }
     
+    async newComment(comment, newsId, userId){
+        if (comment.length < 1) 
+            return {error: 'Длина комментария должна быть длиннее 1 символа'}
+        return await this.news.newComment(comment, newsId, userId)
+    }
+
     async editSettings(key, selectCategoryId){
         if(selectCategoryId === undefined)
             return {
@@ -153,6 +159,10 @@ class News{
 
     async GetSettingsByKey(key){
         return await this.news.GetSettingsByKey(key)
+    }
+
+    async GetComments(newsId){
+        return await this.news.GetComments(newsId)
     }
 }
 

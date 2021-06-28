@@ -23,7 +23,9 @@ class User{
     async SetSocialNetwBy(netw, link, id) {
         return await this.user.SetSocialNetwBy(netw, link, id)
     }
-
+    async GetUsers(){
+        return await this.user.GetUsers()
+    }
     async GetSocialNetw(id){
         return await this.user.GetSocialNetw(id)
     }

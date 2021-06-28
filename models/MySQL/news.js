@@ -173,6 +173,28 @@ class News{
             })
         return(temp)
     }
+
+    async newComment(comment, newsId, userId){
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        today = mm + '.' + dd + '.' + yyyy;
+        await pool.query('Insert into Comments (comment, newsId, userId, date) values (?, ?, ?, ?)', [comment, newsId, userId, today])
+    }
+
+    async GetComments(newsId){
+        var temp
+        await pool.query('Select * from Comments where newsId = ?', [newsId])
+            .then(data => {
+                temp = data[0]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return(temp)
+    }
+
 }
 
 module.exports = News

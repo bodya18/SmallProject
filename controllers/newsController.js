@@ -69,17 +69,25 @@ exports.CreateSettings = async (req, res) => {
 exports.GetThisPost = async (req,res) => {
     const rbac = new RBAC
     const news = await rbac.news.GetNewsById(req.params.id)
+
     var dataNews = await rbac.news.GetNewsByCategory(news.categoryId)
+
     const categories = await rbac.category.GetCategoriesById(news.categoryId)
 
+    const comments = await rbac.news.GetComments(req.params.id)
+    const users = await rbac.user.GetUsers()
+    
     if(dataNews.length > 5){
         dataNews = dataNews.slice(0, 5)
     }
     res.render('./bootstrap-news-template/single-page.hbs', {
         title: news.title,
         news: news,
+        users,
         dataNews: dataNews,
-        categories: categories.id
+        comments,
+        categories: categories.id,
+        error: req.flash('error')
     })
 }
 
@@ -307,4 +315,13 @@ exports.GetCreateSettings = async (req, res) =>{
 
 exports.GetSearchNews = async(req, res) =>{
     res.redirect(`/news/GetEditSettings/${req.body.key}?category=${req.body.SelectCategory}&title=${req.body.selectTitleId}`)
+}
+
+exports.newComment = async(req, res) =>{
+    const rbac = new RBAC
+    const data = await rbac.news.newComment(req.body.comment, req.body.newsId, req.body.userId)
+    if (data) {
+        req.flash('error', data.error)
+    }
+    return res.redirect(req.get('referer'));
 }
