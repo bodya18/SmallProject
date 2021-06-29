@@ -78,6 +78,8 @@ exports.GetThisPost = async (req,res) => {
     const comments = await rbac.news.GetComments(req.params.id)
     const users = await rbac.user.GetUsers()
 
+    const isLike = await rbac.news.isLike(req.params.id, req.session.userIden)
+
     if(dataNews.length > 5){
         dataNews = dataNews.slice(0, 5)
     }
@@ -89,6 +91,7 @@ exports.GetThisPost = async (req,res) => {
         comments,
         categories: categories.id,
         error: req.flash('error'),
+        isLike,
         EditComment: req.flash('comment')[0]
     })
 }
@@ -346,5 +349,11 @@ exports.EditThisComment = async(req, res) =>{
 exports.DeleteComment = async(req, res) =>{
     const rbac = new RBAC
     await rbac.news.DeleteComment(req.body.id)
+    return res.redirect(req.get('referer'));
+}
+
+exports.like = async(req, res) =>{
+    const rbac = new RBAC
+    await rbac.news.like(req.body.userId, req.body.newsId)
     return res.redirect(req.get('referer'));
 }

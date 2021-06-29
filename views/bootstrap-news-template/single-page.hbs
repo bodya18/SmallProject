@@ -21,9 +21,24 @@
                             
                         </h1>
                         <pre>{{news.post_text}}</pre>
+                        <div class="block_addition">
+                            {{#if isAuth}}
+                                <form action="/news/like" method="POST">
+                                    <input type="hidden" name="userId" value="{{ThisUser.id}}">
+                                    <input type="hidden" name="newsId" value="{{news.id}}">
+                                    {{#if isLike}}
+                                        <button class="btn btn-success" type="submit">Нравится&nbsp;&nbsp; {{news.likes}}</button>
+                                    {{else}}
+                                        <button class="btn btn-danger" type="submit">Нравится&nbsp;&nbsp; {{news.likes}}</button>
+                                    {{/if}}
+                                </form>
+                            {{else}}
+                                <h4><font color="red">{{news.likes}} "Нравиться"</font></h4>
+                            {{/if}}
+                        </div>
                         <br>
                     </div>
-
+                    
                     {{#if comments}}
                         <div class="coment-bottom bg-white p-2 px-4">
                             {{#if isAuth}}

@@ -17,6 +17,7 @@ router.get('/create/category', isAdmin, auth, newsController.GetCreateCategory)
 router.get('/categories', isAdmin, auth, newsController.GetCategories)
 router.get('/GetEditSettings/:key', isAdmin, auth, newsController.GetEditSettings)
 
+router.post('/like', auth, urlencodedParser, newsController.like)
 router.post('/deleteComment', auth, urlencodedParser, newsController.DeleteComment)
 router.post('/EditComment/:id', auth, urlencodedParser, newsController.EditThisComment)
 router.post('/EditComment', auth, urlencodedParser, newsController.EditComment)

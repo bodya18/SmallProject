@@ -202,6 +202,42 @@ class News{
     async DeleteComment (id) {
         await pool.query('delete from Comments where id=?', [id])
     }
+
+    async isLike(userId, newsId){
+        var temp
+        await pool.query('Select * from LikeNews where newsId = ? AND userId = ?', [newsId, userId])
+            .then(data => {
+                temp = data[0][0]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return(temp)
+    }
+
+    async GetLikes(newsId){
+        var temp
+        await pool.query('Select likes from news where id = ?', [newsId])
+            .then(data => {
+                temp = data[0][0]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return(temp.likes)
+    }
+
+    async DeleteLike(newsId, userId){
+        await pool.query('delete from LikeNews where newsId = ? AND userId = ?', [newsId, userId])
+    }
+
+    async GiveLike(newsId, userId){
+        await pool.query('insert into LikeNews (newsId, userId) values (?, ?)', [newsId, userId])
+    }
+
+    async updateLike(newsId, likes){
+        await pool.query('update news set likes=? where id=?', [likes, newsId])
+    }
 }
 
 module.exports = News

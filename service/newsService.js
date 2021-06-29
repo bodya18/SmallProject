@@ -20,6 +20,26 @@ class News{
         await this.news.Subscribe(email);
     }
 
+    async like(userId, newsId){
+        const data = await this.news.isLike(userId, newsId)
+        var likes = await this.news.GetLikes(newsId)
+        if(data){
+            await this.news.DeleteLike(newsId, userId)
+            await this.news.updateLike(newsId, --likes)
+        }   
+        else{
+            await this.news.GiveLike(newsId, userId)
+            await this.news.updateLike(newsId, ++likes)
+        }
+    }
+
+    async isLike(id, userId){
+        const data = await this.news.isLike(userId, id)
+        if(data)
+            return false
+        return true
+    }
+
     async CreateNews(title, postText, selectCategoryId, filedata) {
         if(title.length < 5)
         return {
