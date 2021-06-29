@@ -1,6 +1,7 @@
 const RBAC = require('../service/RBAC_Service');
 const fs = require('fs');
 const config = require('../middleware/config');
+const exp = require('constants');
 
 exports.GetNews = async (req,res) => {
     const rbac = new RBAC
@@ -76,7 +77,7 @@ exports.GetThisPost = async (req,res) => {
 
     const comments = await rbac.news.GetComments(req.params.id)
     const users = await rbac.user.GetUsers()
-    
+
     if(dataNews.length > 5){
         dataNews = dataNews.slice(0, 5)
     }
@@ -87,7 +88,8 @@ exports.GetThisPost = async (req,res) => {
         dataNews: dataNews,
         comments,
         categories: categories.id,
-        error: req.flash('error')
+        error: req.flash('error'),
+        EditComment: req.flash('comment')[0]
     })
 }
 
@@ -323,5 +325,26 @@ exports.newComment = async(req, res) =>{
     if (data) {
         req.flash('error', data.error)
     }
+    return res.redirect(req.get('referer'));
+}
+
+exports.EditComment = async(req, res) =>{
+    req.flash('comment' , req.body)
+    return res.redirect(req.get('referer'));
+}
+
+exports.EditThisComment = async(req, res) =>{
+    const rbac = new RBAC
+    const data = await rbac.news.EditThisComment(req.body.comment, req.params.id)
+    if (data) {
+        req.flash('error', data.error)
+    }
+    
+    return res.redirect(req.get('referer'));
+}
+
+exports.DeleteComment = async(req, res) =>{
+    const rbac = new RBAC
+    await rbac.news.DeleteComment(req.body.id)
     return res.redirect(req.get('referer'));
 }

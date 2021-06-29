@@ -185,7 +185,7 @@ class News{
 
     async GetComments(newsId){
         var temp
-        await pool.query('Select * from Comments where newsId = ?', [newsId])
+        await pool.query('Select * from Comments where newsId = ? ORDER BY date DESC', [newsId])
             .then(data => {
                 temp = data[0]
             })
@@ -195,6 +195,13 @@ class News{
         return(temp)
     }
 
+    async EditThisComment(comment, id) {
+        await pool.query('update Comments set comment=? where id=?', [comment, id])
+    }
+
+    async DeleteComment (id) {
+        await pool.query('delete from Comments where id=?', [id])
+    }
 }
 
 module.exports = News

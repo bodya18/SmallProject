@@ -2,7 +2,6 @@ $(document).ready(function() {
     $('.js-example-basic-multiple').select2();
 });
 
-
 let x = 1;
 function addInput() {
 	if (x < 6) {

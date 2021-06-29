@@ -30,18 +30,31 @@
                                 {{#if error}}
                                     <font color='red'>{{error}}</font>
                                 {{/if}}
-                                <form action="/news/newComment" method="POST">
-                                    <input type="hidden" name="userId" value="{{ThisUser.id}}">
-                                    <input type="hidden" name="newsId" value="{{news.id}}">
-                                    <div class="d-flex flex-row add-comment-section mt-4 mb-4">
-                                        <img class="img-fluid img-responsive rounded-circle mr-2" src="/{{ThisUser.avatarURL}}" style="width: 50px; height: 50px;">
-                                        <textarea name="comment" type="text" class="form-control mr-3" placeholder="Добавить комментарий" minlength="1"></textarea>   
-                                        <button class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
-                                            Комментировать
-                                        </button>
-                                    </div>
-                                </form>
+                                {{#if EditComment}}
+                                    <form action="/news/EditComment/{{EditComment.id}}" method="POST">
+                                        <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+                                            <img class="img-fluid img-responsive rounded-circle mr-2" src="/{{ThisUser.avatarURL}}" style="width: 50px; height: 50px;">
+                                            <textarea name="comment" type="text" class="form-control mr-3" placeholder="Редактировать комментарий" minlength="1">{{EditComment.comment}}</textarea>   
+                                            <button class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
+                                                Редактировать
+                                            </button>
+                                        </div>
+                                    </form>
+                                {{else}}
+                                    <form action="/news/newComment" method="POST">
+                                        <input type="hidden" name="userId" value="{{ThisUser.id}}">
+                                        <input type="hidden" name="newsId" value="{{news.id}}">
+                                        <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+                                            <img class="img-fluid img-responsive rounded-circle mr-2" src="/{{ThisUser.avatarURL}}" style="width: 50px; height: 50px;">
+                                            <textarea name="comment" type="text" class="form-control mr-3" placeholder="Добавить комментарий" minlength="1"></textarea>   
+                                            <button class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
+                                                Комментировать
+                                            </button>
+                                        </div>
+                                    </form>
+                                {{/if}}
                             {{/if}}
+                            
                             {{#each comments}}
                                 <div class="commented-section mt-2">
                                     <div class="bg-white p-2">
@@ -54,18 +67,22 @@
                                                         <span class="date text-black-50">{{../this.date}}</span>
                                                     </div>
                                                     {{#ifeq @root.ThisUser.id ../this.userId}}
-                                                        <a href="">
-                                                            <button style="margin-left:400px; margin-right: 20px;" type="button" class="btn btn-dark">Редактировать</button>
-                                                        </a>
-                                                        <a href="">
-                                                            <button type="button" class="btn btn-danger">Удалить</button>
-                                                        </a>
+                                                        <form action="/news/EditComment" method="POST">
+                                                            <input type="hidden" name="id" value="{{../this.id}}">
+                                                            <input type="hidden" name="comment" value="{{../this.comment}}">
+                                                            <button style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
+                                                        </form>
+                                                        <form action="/news/deleteComment" method="POST">
+                                                            <input type="hidden" name="id" value="{{../this.id}}">
+                                                            <button type="submit" class="btn btn-danger">Удалить</button>
+                                                        </form>
                                                     {{else}}
                                                         {{#each @root.permissionsList}}
                                                             {{#ifeq this 'GIVE'}}
-                                                                <a href="">
-                                                                    <button style="margin-left:562px;" type="button" class="btn btn-danger">Удалить</button>
-                                                                </a>
+                                                            <form action="/news/deleteComment" method="POST">
+                                                                <input type="hidden" name="id" value="{{../../this.id}}">
+                                                                <button style="margin-left:562px;" type="submit" class="btn btn-danger">Удалить</button>
+                                                            </form>
                                                             {{/ifeq}}
                                                         {{/each}}
                                                     {{/ifeq}}
@@ -77,9 +94,10 @@
                                         </div>
                                     </div>
                                 </div><hr>
-                            {{/each}}
+                            {{/each}}  
                         </div>
                     {{/if}}
+                    
                 </div>
             </div>
 
