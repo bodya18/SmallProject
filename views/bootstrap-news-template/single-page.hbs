@@ -49,7 +49,7 @@
                                     <form action="/news/EditComment/{{EditComment.id}}" method="POST">
                                         <div class="d-flex flex-row add-comment-section mt-4 mb-4">
                                             <img class="img-fluid img-responsive rounded-circle mr-2" src="/{{ThisUser.avatarURL}}" style="width: 50px; height: 50px;">
-                                            <textarea name="comment" type="text" class="form-control mr-3" placeholder="Редактировать комментарий" minlength="1">{{EditComment.comment}}</textarea>   
+                                            <textarea name="comment" type="text" class="form-control mr-3" placeholder="Редактировать комментарий" minlength="1" maxlength="1000">{{EditComment.comment}}</textarea>   
                                             <button class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
                                                 Редактировать
                                             </button>
@@ -61,7 +61,7 @@
                                         <input type="hidden" name="newsId" value="{{news.id}}">
                                         <div class="d-flex flex-row add-comment-section mt-4 mb-4">
                                             <img class="img-fluid img-responsive rounded-circle mr-2" src="/{{ThisUser.avatarURL}}" style="width: 50px; height: 50px;">
-                                            <textarea name="comment" type="text" class="form-control mr-3" placeholder="Добавить комментарий" minlength="1"></textarea>   
+                                            <textarea name="comment" type="text" class="form-control mr-3" placeholder="Добавить комментарий" maxlength="1000" minlength="1"></textarea>   
                                             <button class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
                                                 Комментировать
                                             </button>
