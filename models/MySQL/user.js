@@ -4,6 +4,10 @@ const config = require('../../middleware/config');
 
 class User{
 
+    async SetStatus(token, num){
+        await pool.query('update users set status=? where token=?', [num, token])
+    }
+
     async SetSocialNetw(vk, instagram, facebook, twitter, GitHub, telegram, id){
         await pool.query('update Social_Network set vk=?, instagram=?, facebook=?, twitter=?, GitHub=?, telegram=? where userId=?', [vk, instagram, facebook, twitter, GitHub, telegram, id])
     }
@@ -29,7 +33,6 @@ class User{
 
     async edit(id, age, avatarURL, name) {
         try{
-            const time = new Date
             if(avatarURL){
                 await pool.query('Select avatarURL from users where id=?', [id]) 
                     .then(data =>{ 
@@ -39,10 +42,10 @@ class User{
                     .catch(e => {
                         return console.log(e)
                     })
-                await pool.query('update users set name=?, age=?, time=?, avatarURL=? where id=?', [name, age, time, avatarURL, id])
+                await pool.query('update users set name=?, age=?, avatarURL=? where id=?', [name, age, avatarURL, id])
             }
             else{
-                await pool.query('update users set name=?, age=?, time=? where id=?', [name, age, time, id])
+                await pool.query('update users set name=?, age=? where id=?', [name, age, id])
             }
             
         }
@@ -51,10 +54,10 @@ class User{
         }
     }
 
-    async create(password, email, name, age, id) {
+    async create(password, email, name, age, id, token) {
         try{
             const time = new Date
-            await pool.query('Insert into users (password, email, name, age, id, time, avatarURL) values (?, ?, ?, ?, ?, ?, ?)', [password, email, name, age, id, time, null])
+            await pool.query('Insert into users (password, email, name, age, id, time, avatarURL, token) values (?, ?, ?, ?, ?, ?, ?, ?)', [password, email, name, age, id, time, null, token])
         }
         catch (e){
             console.log(e) 

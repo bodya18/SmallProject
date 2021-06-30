@@ -12,3 +12,9 @@ exports.GetIndex = async (req,res) => {
         isUsers: true
     })
 }
+
+exports.AcceptAcc = async (req,res) => {
+    const rbac = new RBAC
+    await rbac.user.SetStatus(req.params.token, 2)
+    return res.redirect('/news')
+}

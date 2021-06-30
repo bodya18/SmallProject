@@ -1,4 +1,5 @@
 const RBAC = require('../service/RBAC_Service')
+const mail = require('../middleware/nodemailer')
 
 exports.GetRegister = (req,res) => {
     if(req.session.isAuthenticated)
@@ -32,7 +33,8 @@ exports.registerLogic = async (req,res) => {
         if(err){
             throw err
         }
-        return res.redirect(`/news`)
+        res.redirect(`/news`)
+        mail.acceptAcc(UserData.user.token, UserData.user.email)
     })
 
 }

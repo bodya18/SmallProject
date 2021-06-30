@@ -5,6 +5,7 @@ const file = require('../middleware/file')
 const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
 const ConnectionModel = require(`../models/${config.database}/connection`);
+const crypto = require('crypto');
 
 
 class User{
@@ -14,6 +15,10 @@ class User{
         this.permission = new PermissionModel
         this.connection = new ConnectionModel
         this.is = false
+    }
+
+    async SetStatus(token, num){
+        return await this.user.SetStatus(token, num)
     }
 
     async SetSocialNetw(vk, instagram, facebook, twitter, GitHub, telegram, id){
@@ -161,10 +166,16 @@ class User{
 
             const hashPassword = await bcrypt.hash(password, 10)
             const id = uuidv4()
-            this.user.create(hashPassword, email, name, age, id)
-            this.connection.AddRuleToUser(id, 1)
-            const dat = await this.user.getById(id)
+            const buffer = crypto.randomBytes(32)
+
+            const token = buffer.toString('hex')
+            await this.user.create(hashPassword, email, name, age, id, token)
+            await this.connection.AddRuleToUser(id, 1)
             await this.user.CreateSocialNetwork(id)
+            
+
+
+            const dat = await this.user.getById(id)
             return {
                 user: dat,
                 isAuth: true,
