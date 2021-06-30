@@ -48,8 +48,12 @@
                                 {{#if EditComment}}
                                     <form action="/news/EditComment/{{EditComment.id}}" method="POST">
                                         <div class="d-flex flex-row add-comment-section mt-4 mb-4">
-                                            <img class="img-fluid img-responsive rounded-circle mr-2" src="/{{ThisUser.avatarURL}}" style="width: 50px; height: 50px;">
-                                            <textarea name="comment" type="text" class="form-control mr-3" placeholder="Редактировать комментарий" minlength="1" maxlength="1000">{{EditComment.comment}}</textarea>   
+                                            {{#if ThisUser.avatarURL}}
+                                                <img class="img-fluid img-responsive rounded-circle mr-2" src="/{{ThisUser.avatarURL}}" style="width: 50px; height: 50px;">
+                                            {{else}}
+                                                <img class="img-fluid img-responsive rounded-circle mr-2" src="../../images/no_avatar.png" style="width: 50px; height: 50px;">
+                                            {{/if}}
+                                            <textarea name="comment" type="text" class="form-control mr-3" placeholder="Редактировать комментарий" rows="4" minlength="1" maxlength="1000">{{EditComment.comment}}</textarea>   
                                             <button class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
                                                 Редактировать
                                             </button>
@@ -60,8 +64,12 @@
                                         <input type="hidden" name="userId" value="{{ThisUser.id}}">
                                         <input type="hidden" name="newsId" value="{{news.id}}">
                                         <div class="d-flex flex-row add-comment-section mt-4 mb-4">
-                                            <img class="img-fluid img-responsive rounded-circle mr-2" src="/{{ThisUser.avatarURL}}" style="width: 50px; height: 50px;">
-                                            <textarea name="comment" type="text" class="form-control mr-3" placeholder="Добавить комментарий" maxlength="1000" minlength="1"></textarea>   
+                                            {{#if ThisUser.avatarURL}}
+                                                <img class="img-fluid img-responsive rounded-circle mr-2" src="/{{ThisUser.avatarURL}}" style="width: 50px; height: 50px;">
+                                            {{else}}
+                                                <img class="img-fluid img-responsive rounded-circle mr-2" src="../../images/no_avatar.png" style="width: 50px; height: 50px;">
+                                            {{/if}}
+                                            <textarea name="comment" type="text" class="form-control mr-3" placeholder="Добавить комментарий" rows="4" maxlength="1000" minlength="1"></textarea>   
                                             <button class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
                                                 Комментировать
                                             </button>
@@ -76,7 +84,11 @@
                                         {{#each @root.users}}
                                             {{#ifeq this.id ../this.userId}}
                                                 <div class="d-flex flex-row user-info">
-                                                    <img class="rounded-circle" src="/{{this.avatarURL}}" width="40">
+                                                    {{#if this.avatarURL}}
+                                                        <img class="rounded-circle" src="/{{this.avatarURL}}" width="40">
+                                                    {{else}}
+                                                        <img class="rounded-circle" src="../../images/no_avatar.png" width="40">
+                                                    {{/if}}
                                                     <div class="d-flex flex-column justify-content-start ml-2">
                                                         <span class="d-block font-weight-bold name">{{this.name}}</span>
                                                         <span class="date text-black-50">{{../this.date}}</span>
