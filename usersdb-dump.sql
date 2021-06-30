@@ -58,7 +58,7 @@ CREATE TABLE `Comments` (
   KEY `newsId` (`newsId`),
   CONSTRAINT `Comments_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `Comments_ibfk_2` FOREIGN KEY (`newsId`) REFERENCES `news` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,6 +67,7 @@ CREATE TABLE `Comments` (
 
 LOCK TABLES `Comments` WRITE;
 /*!40000 ALTER TABLE `Comments` DISABLE KEYS */;
+INSERT INTO `Comments` VALUES ('38f72991-e983-4ee3-b420-6827e9f9c5d2','прикольный сериал, чисто семейный:)','06.30.2021',5,17);
 /*!40000 ALTER TABLE `Comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,6 +296,31 @@ INSERT INTO `news` VALUES (1,'Valheim — это игра, в которой в�
 UNLOCK TABLES;
 
 --
+-- Table structure for table `recovery`
+--
+
+DROP TABLE IF EXISTS `recovery`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `recovery` (
+  `token` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `date` bigint NOT NULL,
+  PRIMARY KEY (`token`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `recovery`
+--
+
+LOCK TABLES `recovery` WRITE;
+/*!40000 ALTER TABLE `recovery` DISABLE KEYS */;
+INSERT INTO `recovery` VALUES ('3cd5d2c0a0ddb452f4d17c4f797adae9373f685f78eaa103a4fe73428356dd21','bodya18x@mail.ru',1625065412434);
+/*!40000 ALTER TABLE `recovery` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `sessions`
 --
 
@@ -315,7 +341,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('5xrJaYe1OG-7maaj3AxTDRepi_MZY58F',1625143252,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"user\":{\"id\":\"38f72991-e983-4ee3-b420-6827e9f9c5d2\",\"name\":\"bodya18\",\"email\":\"bodya18x@mail.ru\",\"age\":19,\"avatarURL\":\"images/aa172951c79a78ec8e832ab4bae6ca2d\",\"password\":\"$2a$10$SlEWligASORLSwksJr9glOSb70UB2TOMrS62yNFrxC.nduPO4WH0y\",\"time\":\"2021-06-30 15:38:44.946\",\"status\":2,\"token\":\"2e53ec80ab0e0778f44ea970e9834aa2075e5d078a0fe1224a219f14437037af\"},\"isAuthenticated\":true,\"userIden\":\"38f72991-e983-4ee3-b420-6827e9f9c5d2\",\"Perm\":[\"EDIT\",\"DELETE\",\"GIVE\"]}'),('jK0oSL6E10bokZFxmr7gqEzEkDxfEZQj',1625143125,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"Perm\":[],\"user\":{\"id\":\"38f72991-e983-4ee3-b420-6827e9f9c5d2\",\"name\":\"bodya18\",\"email\":\"bodya18x@mail.ru\",\"age\":19,\"avatarURL\":null,\"password\":\"$2a$10$SlEWligASORLSwksJr9glOSb70UB2TOMrS62yNFrxC.nduPO4WH0y\",\"time\":\"2021-06-30 15:38:44.946\",\"status\":1,\"token\":\"2e53ec80ab0e0778f44ea970e9834aa2075e5d078a0fe1224a219f14437037af\"},\"isAuthenticated\":true,\"userIden\":\"38f72991-e983-4ee3-b420-6827e9f9c5d2\"}');
+INSERT INTO `sessions` VALUES ('eAEOhBiIRg3SqJkar6hNGIz8ZErpWJi1',1625148213,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}'),('jm6MtMnL_qiOTVY0yLK15ezeRjkNBYwB',1625148300,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"user\":{\"id\":\"38f72991-e983-4ee3-b420-6827e9f9c5d2\",\"name\":\"bodya18\",\"email\":\"bodya18x@mail.ru\",\"age\":19,\"avatarURL\":\"images/aa172951c79a78ec8e832ab4bae6ca2d\",\"password\":\"$2a$10$SlEWligASORLSwksJr9glOSb70UB2TOMrS62yNFrxC.nduPO4WH0y\",\"time\":\"2021-06-30 15:38:44.946\",\"status\":2,\"token\":\"2e53ec80ab0e0778f44ea970e9834aa2075e5d078a0fe1224a219f14437037af\"},\"isAuthenticated\":true,\"userIden\":\"38f72991-e983-4ee3-b420-6827e9f9c5d2\",\"Perm\":[\"EDIT\",\"DELETE\",\"GIVE\"]}');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -414,4 +440,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-30 15:43:04
+-- Dump completed on 2021-06-30 17:05:40

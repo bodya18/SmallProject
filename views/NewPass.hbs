@@ -1,18 +1,16 @@
-<div align='center'>
-    <h1>Вход</h1>
+<div align='center'><br><br>
+    <h3>Придумайте новый пароль</h3><br>
     {{#if error}}
         <font color='red'>{{error}}</font>
-    {{/if}}
-    <form method="POST" action="/login">
+    {{else}}
+    <form method="POST" action="/users/newPass">
         <div class="col-sm-3">
-            <input name="email" type="email" class="form-control" placeholder="email">
+            <input type="hidden" value="{{token}}" name="token">
             <input name="password" type="password" min="6" max="32" class="form-control" placeholder="password">
             <br>
             <input type="submit" class="btn btn-outline-success" value="Отправить">
         </div>
     </form>
-    <a style="margin-left: 300px; margin-top: -100px;" href="/users/recoveryPass">
-        Забыли пароль?
-    </a>
+    {{/if}} 
 
 </div><br><br><br><br><br><br><br><br><br><br><br><br><br>

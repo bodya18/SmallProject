@@ -4,6 +4,37 @@ const config = require('../../middleware/config');
 
 class User{
 
+    async SetPass(hashPassword, token){
+        await pool.query('update users set password=? where token=?', [hashPassword, token])
+    }
+    
+    async getByToken(token){
+        var temp;
+        await pool.query('Select * from users where token=?', [token])
+            .then(data => {
+                temp = data[0][0];
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
+    }
+
+    async GetRecToken(token){
+        var temp;
+        await pool.query('Select * from recovery where token=?', [token])
+            .then(data => {
+                temp = data[0][0];
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
+    }
+
+    async recoveryPass(email, token, date){
+        await pool.query('insert into recovery (email, token, date) values (?, ?, ?)', [email, token, date])
+    }
     async SetStatus(token, num){
         await pool.query('update users set status=? where token=?', [num, token])
     }

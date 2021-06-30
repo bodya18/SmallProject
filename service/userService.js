@@ -7,7 +7,6 @@ const { v4: uuidv4 } = require('uuid');
 const ConnectionModel = require(`../models/${config.database}/connection`);
 const crypto = require('crypto');
 
-
 class User{
 
     constructor(){
@@ -146,6 +145,43 @@ class User{
                 Perm: permissions
             }
         }
+    }
+
+    async NewPass(token){
+        const isToken = await this.user.GetRecToken(token)
+        if(!isToken)
+            return {
+                error: 'Данного токена не существует'
+            }
+        const date = Date.now()
+        if(isToken.date < date)
+            return{
+                error: 'Данный токен устарел'
+            }
+    }
+    async setPass(token, password){
+        const isToken = await this.user.GetRecToken(token)
+        const date = Date.now()
+        if(isToken.date < date)
+            return false
+        else{
+            const hashPassword = await bcrypt.hash(password, 10)
+            await this.user.SetPass(hashPassword, token)
+            return true
+        }
+    }
+
+    async getByToken(token){
+        return await this.user.getByToken(token)
+    }
+    async recovery(email){
+        const buffer = crypto.randomBytes(32)
+        const token = buffer.toString('hex')
+
+        const date = Date.now() + 1000*60*60;
+        await this.user.recoveryPass(email, token, date)
+
+        return token
     }
 
     async registerLogic(email, name, password, repeat, age){
