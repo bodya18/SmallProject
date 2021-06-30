@@ -18,6 +18,7 @@ const adminRouter = require('./routes/adminRouter')
 const errorHandler = require('./middleware/error')
 const varMiddleware = require('./middleware/variables')
 const configMiggleware = require('./middleware/config')
+const msg = require('./middleware/nodemailer')
 
 configMiggleware.dirname = __dirname;
 
@@ -29,6 +30,10 @@ const hbs = exphbs.create({
     extname: 'hbs',
     helpers: require('./utils/hbs-helper')
 })
+// (1000*60*60*24*3)
+// const intervalMsg = 1000*10;
+// setInterval(() => msg.SendMSG(), intervalMsg)
+
 
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs');

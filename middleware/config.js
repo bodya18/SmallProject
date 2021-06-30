@@ -3,5 +3,6 @@ module.exports = {
     port: 3000,
     sessionSecretKey: 'some secret value',
     database: 'MySQL',
-    dirname: ''
+    dirname: '',
+    site: 'http://localhost:3000'
 }

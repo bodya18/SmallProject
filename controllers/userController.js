@@ -1,4 +1,5 @@
 const RBAC = require('../service/RBAC_Service')
+const msg = require('../middleware/nodemailer')
 
 exports.GetUser = async (req,res) => {
     const rbac = new RBAC
