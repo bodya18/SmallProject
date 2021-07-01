@@ -81,7 +81,6 @@ exports.GetThisPost = async (req,res) => {
     const isLike = await rbac.news.isLike(req.params.id, req.session.userIden)
 
     const isSave = await rbac.news.isSave(req.session.userIden, req.params.id)
-    console.log(isSave);
     if(dataNews.length > 5){
         dataNews = dataNews.slice(0, 5)
     }
