@@ -69,7 +69,8 @@ exports.CreateSettings = async (req, res) => {
 exports.GetThisPost = async (req,res) => {
     const rbac = new RBAC
     const news = await rbac.news.GetNewsById(req.params.id)
-
+    if(!news)
+        return res.redirect('/news')
     var dataNews = await rbac.news.GetNewsByCategory(news.categoryId)
 
     const categories = await rbac.category.GetCategoriesById(news.categoryId)

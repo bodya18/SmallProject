@@ -21,6 +21,8 @@ exports.AcceptAcc = async (req,res) => {
 }
 
 exports.recovery = async (req, res) => {
+    if(req.session.isAuthenticated)
+        return res.redirect('/news')
     return res.render('recovery.hbs',{
         title: 'Забыли пароль?'
     })
@@ -34,6 +36,8 @@ exports.recoveryPass = async (req, res) =>{
 }
 
 exports.NewPass = async (req, res) =>{
+    if(req.session.isAuthenticated)
+        return res.redirect('/news')
     const rbac = new RBAC
     const error = await rbac.user.NewPass(req.params.token)
     res.render('NewPass',{
