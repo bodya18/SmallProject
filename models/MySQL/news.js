@@ -4,6 +4,37 @@ const config = require('../../middleware/config');
 
 class News{
     
+    async isSave(userId, newsId){
+        var temp;
+        await pool.query('Select * from WatchLater where userId=? and newsId=?', [userId, newsId])
+            .then(data => {
+                temp = data[0][0];
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
+    }
+
+    async DelWatchLater(id){
+        await pool.query('delete from WatchLater where id=?', [id])
+    }
+
+    async SaveWatchLater(userId, newsId){
+        await pool.query('insert into WatchLater (newsId, userId) values (?, ?)', [newsId, userId])
+    }
+
+    async GetWatchLater(userId){
+        var temp;
+        await pool.query('Select * from WatchLater where userId=?', [userId])
+            .then(data => {
+                temp = data[0];
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
+    }
     async edit(post_text, postUrl, categoryId, title, id) {
         try{
             if(postUrl){

@@ -266,6 +266,35 @@ INSERT INTO `Subscribers` VALUES (1,'bodya18x@mail.ru','2021-06-25 11:21:12.668'
 UNLOCK TABLES;
 
 --
+-- Table structure for table `WatchLater`
+--
+
+DROP TABLE IF EXISTS `WatchLater`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `WatchLater` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `userId` varchar(255) NOT NULL,
+  `newsId` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  KEY `newsId` (`newsId`),
+  CONSTRAINT `WatchLater_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `WatchLater_ibfk_2` FOREIGN KEY (`newsId`) REFERENCES `news` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `WatchLater`
+--
+
+LOCK TABLES `WatchLater` WRITE;
+/*!40000 ALTER TABLE `WatchLater` DISABLE KEYS */;
+INSERT INTO `WatchLater` VALUES (2,'38f72991-e983-4ee3-b420-6827e9f9c5d2',7),(3,'38f72991-e983-4ee3-b420-6827e9f9c5d2',5);
+/*!40000 ALTER TABLE `WatchLater` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `news`
 --
 
@@ -341,7 +370,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('OiHu0FjAjirpUkSBXGryhRTgZ3ehF7xw',1625212207,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"user\":{\"id\":\"38f72991-e983-4ee3-b420-6827e9f9c5d2\",\"name\":\"bodya18\",\"email\":\"bodya18x@mail.ru\",\"age\":19,\"avatarURL\":\"images/aa172951c79a78ec8e832ab4bae6ca2d\",\"password\":\"$2a$10$HeYgCJTNB6uWpR39kV6uaeYJne/FWcjpglDAUbTJDi6qp3jRU67wO\",\"time\":\"2021-06-30 15:38:44.946\",\"status\":2,\"token\":\"2e53ec80ab0e0778f44ea970e9834aa2075e5d078a0fe1224a219f14437037af\"},\"isAuthenticated\":true,\"userIden\":\"38f72991-e983-4ee3-b420-6827e9f9c5d2\",\"Perm\":[\"EDIT\",\"DELETE\",\"GIVE\"]}'),('eAEOhBiIRg3SqJkar6hNGIz8ZErpWJi1',1625148213,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}');
+INSERT INTO `sessions` VALUES ('OiHu0FjAjirpUkSBXGryhRTgZ3ehF7xw',1625214924,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"user\":{\"id\":\"38f72991-e983-4ee3-b420-6827e9f9c5d2\",\"name\":\"bodya18\",\"email\":\"bodya18x@mail.ru\",\"age\":19,\"avatarURL\":\"images/aa172951c79a78ec8e832ab4bae6ca2d\",\"password\":\"$2a$10$HeYgCJTNB6uWpR39kV6uaeYJne/FWcjpglDAUbTJDi6qp3jRU67wO\",\"time\":\"2021-06-30 15:38:44.946\",\"status\":2,\"token\":\"2e53ec80ab0e0778f44ea970e9834aa2075e5d078a0fe1224a219f14437037af\"},\"isAuthenticated\":true,\"userIden\":\"38f72991-e983-4ee3-b420-6827e9f9c5d2\",\"Perm\":[\"EDIT\",\"DELETE\",\"GIVE\"]}'),('eAEOhBiIRg3SqJkar6hNGIz8ZErpWJi1',1625148213,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -440,4 +469,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-01 10:51:06
+-- Dump completed on 2021-07-01 11:35:40

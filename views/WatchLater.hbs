@@ -1,0 +1,24 @@
+<div class="cat-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div align="center">
+                    <br><br><br><br>
+                    <h2>Избранное</h2>
+                </div>
+                <div class="row">
+                    {{#each news}}
+                        <div class="col-md-3">
+                            <div class="cn-img">
+                                <img class="show-Posts" src="/{{this.postUrl}}">
+                                <div class="cn-title">
+                                    <a style="text-decoration: none;" href="/news/get/{{this.id}}">{{this.title}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>

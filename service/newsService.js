@@ -33,6 +33,19 @@ class News{
         }
     }
 
+    async watchLater(userId, newsId){
+        const data = await this.news.isSave(userId, newsId)
+        if(data){
+            await this.news.DelWatchLater(data.id)
+        }else{
+            await this.news.SaveWatchLater(userId, newsId)
+        }
+    }
+
+    async isSave(userId, newsId){
+        return await this.news.isSave(userId, newsId)
+    }
+
     async isLike(id, userId){
         const data = await this.news.isLike(userId, id)
         if(data)
@@ -193,6 +206,10 @@ class News{
 
     async DeleteComment(id){
         return await this.news.DeleteComment(id)
+    }
+
+    async GetWatchLater(userId){
+        return await this.news.GetWatchLater(userId)
     }
 }
 

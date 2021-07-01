@@ -32,6 +32,15 @@
                                         <button class="btn btn-danger" type="submit">Нравится&nbsp;&nbsp; {{news.likes}}</button>
                                     {{/if}}
                                 </form>
+                                <form action="/news/watchLater" method="POST" style="margin-left: 500px;">
+                                    <input type="hidden" name="userId" value="{{ThisUser.id}}">
+                                    <input type="hidden" name="newsId" value="{{news.id}}">
+                                    {{#if isSave}}
+                                        <button class="btn btn-warning" type="submit">Убрать из избранного</button>
+                                    {{else}}
+                                        <button class="btn btn-info" type="submit">Добавить в избранное</button>
+                                    {{/if}}
+                                </form>
                             {{else}}
                                 <h4><font color="red">{{news.likes}} "Нравиться"</font></h4>
                             {{/if}}

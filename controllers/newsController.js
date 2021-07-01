@@ -1,7 +1,6 @@
 const RBAC = require('../service/RBAC_Service');
 const fs = require('fs');
 const config = require('../middleware/config');
-const exp = require('constants');
 
 exports.GetNews = async (req,res) => {
     const rbac = new RBAC
@@ -80,6 +79,8 @@ exports.GetThisPost = async (req,res) => {
 
     const isLike = await rbac.news.isLike(req.params.id, req.session.userIden)
 
+    const isSave = await rbac.news.isSave(req.session.userIden, req.params.id)
+    console.log(isSave);
     if(dataNews.length > 5){
         dataNews = dataNews.slice(0, 5)
     }
@@ -92,6 +93,7 @@ exports.GetThisPost = async (req,res) => {
         categories: categories.id,
         error: req.flash('error'),
         isLike,
+        isSave,
         EditComment: req.flash('comment')[0]
     })
 }
@@ -356,4 +358,24 @@ exports.like = async(req, res) =>{
     const rbac = new RBAC
     await rbac.news.like(req.body.userId, req.body.newsId)
     return res.redirect(req.get('referer'));
+}
+
+exports.watchLater = async(req, res) =>{
+    const rbac = new RBAC
+    await rbac.news.watchLater(req.body.userId, req.body.newsId)
+    return res.redirect(req.get('referer'));
+}
+
+exports.GetWatchLater = async(req, res) =>{
+    const rbac = new RBAC
+    const newsId = await rbac.news.GetWatchLater(req.session.userIden)
+    var news = []
+    for (let i = 0; i < newsId.length; i++) {
+        news[i] = await rbac.news.GetNewsById(newsId[i].newsId)  
+    }
+    res.render('WatchLater.hbs', {
+        title: 'Избранное',
+        isWatchLater: true,
+        news
+    })
 }

@@ -79,6 +79,12 @@
                                         {{/if}}
                                     {{/ifeq}}
                                 {{/each}}
+
+                                {{#if isWatchLater}}
+                                    <a href="/news/watchLater" class="nav-item nav-link active">Избранное</a>
+                                {{else}}
+                                    <a href="/news/watchLater" class="nav-item nav-link">Избранное</a>
+                                {{/if}}
                             {{/if}}
                         </div>
                         <div class="navbar-nav">
