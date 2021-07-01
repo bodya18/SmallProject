@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer')
 const config = require('./config')
+const newsModel = require(`../models/${config.database}/news`);
 
 let transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -10,9 +11,15 @@ let transporter = nodemailer.createTransport({
 })
 
 exports.SendMSG = async () => {  
+    const news = new newsModel;
+    const emails = await news.getSubscribers()
+    let mail = []
+    for (let i = 0; i < emails.length; i++) {
+        mail[i] = emails[i].email
+    }
     let result = await transporter.sendMail({
     from: '<news@gmail.com>',
-    to: 'bodya18x@mail.ru',
+    to: mail,
     subject: 'Новостной портал',
     html:
         `Переходите по <a href="${config.site}">ссылке</a> на наш новостной портал.<br> У нас Вы пожете прочитать новости на различные, <strong>интересные Вам</strong>, темы!`

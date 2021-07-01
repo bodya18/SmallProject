@@ -96,6 +96,17 @@ class News{
         await pool.query('Insert into Subscribers (_data, email) values (?, ?)', [data, email])
     }
 
+    async getSubscribers(){
+        var temp;
+        await pool.query('Select email from Subscribers')
+            .then(data => {
+                temp = data[0];
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
+    }
     async isSub(email){
         var temp;
         await pool.query('Select * from Subscribers where email=?', [email])
