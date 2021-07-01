@@ -235,7 +235,7 @@ CREATE TABLE `Social_Network` (
 
 LOCK TABLES `Social_Network` WRITE;
 /*!40000 ALTER TABLE `Social_Network` DISABLE KEYS */;
-INSERT INTO `Social_Network` VALUES (31,'a3f767af-9962-4499-8635-abc4f1da44df',NULL,NULL,NULL,NULL,NULL,NULL),(32,'38f72991-e983-4ee3-b420-6827e9f9c5d2',NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `Social_Network` VALUES (31,'a3f767af-9962-4499-8635-abc4f1da44df',NULL,NULL,NULL,NULL,NULL,NULL),(32,'38f72991-e983-4ee3-b420-6827e9f9c5d2','https://vk.com/bosbos123',NULL,NULL,NULL,NULL,'https://github.com/bodya18');
 /*!40000 ALTER TABLE `Social_Network` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -316,7 +316,7 @@ CREATE TABLE `recovery` (
 
 LOCK TABLES `recovery` WRITE;
 /*!40000 ALTER TABLE `recovery` DISABLE KEYS */;
-INSERT INTO `recovery` VALUES ('3cd5d2c0a0ddb452f4d17c4f797adae9373f685f78eaa103a4fe73428356dd21','bodya18x@mail.ru',1625065412434);
+INSERT INTO `recovery` VALUES ('394134505731191cb5a12b46b24e65addacfc513f18bf70ee55c5885f55dbb6f','bodya18x@mail.ru',1625066490313),('4229f67b3f8428557390211672dbfe255873a853060d98dbec8fbf5b00bc9349','bodya18x@mail.ru',1625065720720),('61d3b61f890c3355a2be919c857b55f97e36289b8cd2c71a4ee6846d95ced3b2','bodya18x@mail.ru',1625066270625),('9a4cf1870a005bcac7e916985ba00e5d914556b95905115bd7cf852854e3d406','bodya18x@mail.ru',1625065831166),('ece214400553d39324061cbe9d6b30b8cac4e119424c2fb1cae370d230572614','bodya18x@mail.ru',1625066080594);
 /*!40000 ALTER TABLE `recovery` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -341,7 +341,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('eAEOhBiIRg3SqJkar6hNGIz8ZErpWJi1',1625148213,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}'),('jm6MtMnL_qiOTVY0yLK15ezeRjkNBYwB',1625148300,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"user\":{\"id\":\"38f72991-e983-4ee3-b420-6827e9f9c5d2\",\"name\":\"bodya18\",\"email\":\"bodya18x@mail.ru\",\"age\":19,\"avatarURL\":\"images/aa172951c79a78ec8e832ab4bae6ca2d\",\"password\":\"$2a$10$SlEWligASORLSwksJr9glOSb70UB2TOMrS62yNFrxC.nduPO4WH0y\",\"time\":\"2021-06-30 15:38:44.946\",\"status\":2,\"token\":\"2e53ec80ab0e0778f44ea970e9834aa2075e5d078a0fe1224a219f14437037af\"},\"isAuthenticated\":true,\"userIden\":\"38f72991-e983-4ee3-b420-6827e9f9c5d2\",\"Perm\":[\"EDIT\",\"DELETE\",\"GIVE\"]}');
+INSERT INTO `sessions` VALUES ('OiHu0FjAjirpUkSBXGryhRTgZ3ehF7xw',1625212207,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"user\":{\"id\":\"38f72991-e983-4ee3-b420-6827e9f9c5d2\",\"name\":\"bodya18\",\"email\":\"bodya18x@mail.ru\",\"age\":19,\"avatarURL\":\"images/aa172951c79a78ec8e832ab4bae6ca2d\",\"password\":\"$2a$10$HeYgCJTNB6uWpR39kV6uaeYJne/FWcjpglDAUbTJDi6qp3jRU67wO\",\"time\":\"2021-06-30 15:38:44.946\",\"status\":2,\"token\":\"2e53ec80ab0e0778f44ea970e9834aa2075e5d078a0fe1224a219f14437037af\"},\"isAuthenticated\":true,\"userIden\":\"38f72991-e983-4ee3-b420-6827e9f9c5d2\",\"Perm\":[\"EDIT\",\"DELETE\",\"GIVE\"]}'),('eAEOhBiIRg3SqJkar6hNGIz8ZErpWJi1',1625148213,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -427,7 +427,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('38f72991-e983-4ee3-b420-6827e9f9c5d2','bodya18','bodya18x@mail.ru',19,'images/aa172951c79a78ec8e832ab4bae6ca2d','$2a$10$SlEWligASORLSwksJr9glOSb70UB2TOMrS62yNFrxC.nduPO4WH0y','2021-06-30 15:38:44.946',2,'2e53ec80ab0e0778f44ea970e9834aa2075e5d078a0fe1224a219f14437037af'),('a3f767af-9962-4499-8635-abc4f1da44df','Al','a@mail.ru',19,'images/44a2139740ca524962e98056e4f5ef00','$2a$10$kzNh6swGYgQcLoI/3WlC.OXjrVWpWkGVfJKsx2SJMZQDrowjYoo3C','2021-06-30 15:37:32.766',1,'e51fc42af0ea9f198bbc9120c3e6a72543417fa01392af4bea0f961c8345fd98');
+INSERT INTO `users` VALUES ('38f72991-e983-4ee3-b420-6827e9f9c5d2','bodya18','bodya18x@mail.ru',19,'images/aa172951c79a78ec8e832ab4bae6ca2d','$2a$10$HeYgCJTNB6uWpR39kV6uaeYJne/FWcjpglDAUbTJDi6qp3jRU67wO','2021-06-30 15:38:44.946',2,'2e53ec80ab0e0778f44ea970e9834aa2075e5d078a0fe1224a219f14437037af'),('a3f767af-9962-4499-8635-abc4f1da44df','Al','a@mail.ru',19,'images/44a2139740ca524962e98056e4f5ef00','$2a$10$kzNh6swGYgQcLoI/3WlC.OXjrVWpWkGVfJKsx2SJMZQDrowjYoo3C','2021-06-30 15:37:32.766',1,'e51fc42af0ea9f198bbc9120c3e6a72543417fa01392af4bea0f961c8345fd98');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -440,4 +440,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-30 17:05:40
+-- Dump completed on 2021-07-01 10:51:06

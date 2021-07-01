@@ -150,14 +150,12 @@ class User{
     async NewPass(token){
         const isToken = await this.user.GetRecToken(token)
         if(!isToken)
-            return {
-                error: 'Данного токена не существует'
-            }
+            return 'Данного токена не существует'
         const date = Date.now()
-        if(isToken.date < date)
-            return{
-                error: 'Данный токен устарел'
-            }
+        if(isToken.date < date){
+            await this.user.delPassToken(token)
+            return 'Данный токен устарел'
+        }
     }
     async setPass(token, password){
         const isToken = await this.user.GetRecToken(token)
@@ -165,14 +163,18 @@ class User{
         if(isToken.date < date)
             return false
         else{
+            const user = await this.user.getByEmail(isToken.email)
             const hashPassword = await bcrypt.hash(password, 10)
-            await this.user.SetPass(hashPassword, token)
+            await this.user.SetPass(hashPassword, user.token)
             return true
         }
     }
 
     async getByToken(token){
-        return await this.user.getByToken(token)
+        return await this.user.GetRecToken(token)
+    }
+    async delPassToken(token){
+        return await this.user.delPassToken(token)
     }
     async recovery(email){
         const buffer = crypto.randomBytes(32)

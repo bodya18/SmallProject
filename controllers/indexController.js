@@ -48,8 +48,10 @@ exports.SetNewPass = async (req, res) =>{
     const data = await rbac.user.setPass(req.body.token, req.body.password)
     if (data) {
         const user = await rbac.user.getByToken(req.body.token)
+        await rbac.user.delPassToken(req.body.token)
         res.redirect(`/news`)
         mail.NewPass(user.email)
     }
-    res.redirect(`/news`)
+    else
+        return res.redirect(`/news`)
 }

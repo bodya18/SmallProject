@@ -4,6 +4,10 @@ const config = require('../../middleware/config');
 
 class User{
 
+    async delPassToken(token){
+        await pool.query('delete from recovery where token=?', [token])
+    }
+
     async SetPass(hashPassword, token){
         await pool.query('update users set password=? where token=?', [hashPassword, token])
     }
@@ -131,7 +135,18 @@ class User{
             })
         return temp
     }
-
+    
+    async getByEmail(email){
+        var temp;
+        await pool.query('Select * from users where email=?', [email])
+            .then(data => {
+                temp = data[0][0];
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
+    }
     async SelectOrderBy(what, desc = ''){
         var temp
         await pool.query(`SELECT * FROM users ORDER BY ${what} ${desc}`)
