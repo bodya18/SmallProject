@@ -357,8 +357,15 @@ exports.EditThisComment = async(req, res) =>{
 
 exports.DeleteComment = async(req, res) =>{
     const rbac = new RBAC
-    await rbac.news.DeleteComment(req.body.id)
-    return res.redirect(req.get('referer'));
+    console.log(req.body);
+    await rbac.news.DeleteComment(req.body.commentId)
+    var is = true
+    console.log(is);
+    is = JSON.stringify(is)
+    console.log(is);
+    is = JSON.parse(is)
+    console.log(is);
+    res.json(is)
 }
 
 exports.like = async(req, res) =>{

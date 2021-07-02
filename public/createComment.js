@@ -31,7 +31,7 @@ document.getElementById("comment").addEventListener("click", function (e) {
             <div class="commented-section mt-2">
                 <div class="bg-white p-2">
                     <div class="d-flex flex-row user-info">
-                        <img class="rounded-circle" src="/${receivedUser.user.avatarURL}" width="40">
+                        <img id="UserAvatar" class="rounded-circle" src="/${receivedUser.user.avatarURL}" style="width: 50px; height: 50px;">
                         <div class="d-flex flex-column justify-content-start ml-2">
                             <span class="d-block font-weight-bold name">${receivedUser.user.name}</span>
                             <span class="date text-black-50">${receivedUser.comment.date}</span>
@@ -41,9 +41,9 @@ document.getElementById("comment").addEventListener("click", function (e) {
                             <input type="hidden" name="comment" value="${receivedUser.comment.comment}">
                             <button style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
                         </form>
-                        <form action="/news/deleteComment" method="POST">
-                            <input type="hidden" name="id" value="${receivedUser.comment.id}">
-                            <button type="submit" class="btn btn-danger">Удалить</button>
+                        <form name="DeleteComment">
+                            <input type="hidden" name="commentId" value="${receivedUser.comment.id}">
+                            <button id="DelComm" type="submit" class="btn btn-danger">Удалить</button>
                         </form>
                     </div>
                     <div class="mt-2">
@@ -53,6 +53,10 @@ document.getElementById("comment").addEventListener("click", function (e) {
             </div><hr>`
             let texrow = document.getElementById('texrow')
             texrow.value = ''
+            if(!receivedUser.user.avatarURL){
+                let av = document.getElementById('UserAvatar')
+                av.src = "../../images/no_avatar.png"
+            }
         }
     });
     request.send(save);

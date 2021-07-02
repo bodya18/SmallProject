@@ -18,7 +18,6 @@
                                     </a>
                                 {{/ifeq}}
                             {{/each}}
-                            
                         </h1>
                         <pre>{{news.post_text}}</pre>
                         <div class="block_addition">
@@ -32,9 +31,6 @@
                                         <button id="submitLike" class="btn btn-danger" type="submit">Нравится&nbsp;&nbsp; {{news.likes}}</button>
                                     {{/if}}
                                 </form>
-
-                                
-
                                 <form name="Watch" style="margin-left: 500px;">
                                     <input type="hidden" name="userId" value="{{ThisUser.id}}">
                                     <input type="hidden" name="newsId" value="{{news.id}}">
@@ -44,15 +40,12 @@
                                         <button id="WatchLater" class="btn btn-info" type="submit">Добавить в избранное</button>
                                     {{/if}}
                                 </form>
-
-                                
                             {{else}}
                                 <h4><font color="red">{{news.likes}} "Нравиться"</font></h4>
                             {{/if}}
                         </div>
                         <br>
                     </div>
-                    
                         <div class="coment-bottom bg-white p-2 px-4">
                             {{#if isAuth}}
                                 <font color='red' id="error"></font>
@@ -71,7 +64,7 @@
                                         </div>
                                     </form>
                                 {{else}}
-                                    <form name="NewComment" action="/news/newComment" method="POST">
+                                    <form name="NewComment">
                                         <input type="hidden" name="userId" value="{{ThisUser.id}}">
                                         <input type="hidden" name="newsId" value="{{news.id}}">
                                         <div class="d-flex flex-row add-comment-section mt-4 mb-4">
@@ -87,9 +80,7 @@
                                         </div>
                                     </form>
 
-                                    <script src="../../public/likePost.js"></script>
-                                    <script src="../../public/watchLater.js"></script>
-                                    <script src="../../public/createComment.js"></script>
+                                    
                                     
                                 {{/if}}
                             {{/if}}
@@ -102,9 +93,9 @@
                                             {{#ifeq this.id ../this.userId}}
                                                 <div class="d-flex flex-row user-info">
                                                     {{#if this.avatarURL}}
-                                                        <img class="rounded-circle" src="/{{this.avatarURL}}" width="40">
+                                                        <img class="rounded-circle" src="/{{this.avatarURL}}" style="width: 50px; height: 50px;">
                                                     {{else}}
-                                                        <img class="rounded-circle" src="../../images/no_avatar.png" width="40">
+                                                        <img class="rounded-circle" src="../../images/no_avatar.png" style="width: 50px; height: 50px;">
                                                     {{/if}}
                                                     <div class="d-flex flex-column justify-content-start ml-2">
                                                         <span class="d-block font-weight-bold name">{{this.name}}</span>
@@ -116,17 +107,17 @@
                                                             <input type="hidden" name="comment" value="{{../this.comment}}">
                                                             <button style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
                                                         </form>
-                                                        <form action="/news/deleteComment" method="POST">
-                                                            <input type="hidden" name="id" value="{{../this.id}}">
-                                                            <button type="submit" class="btn btn-danger">Удалить</button>
+                                                        <form name="DeleteComment">
+                                                            <input id="commentId" type="hidden" name="commentId" value="{{../this.id}}">
+                                                            <button id="DelComm" type="submit" class="btn btn-danger">Удалить</button>
                                                         </form>
                                                     {{else}}
                                                         {{#each @root.permissionsList}}
                                                             {{#ifeq this 'GIVE'}}
-                                                            <form action="/news/deleteComment" method="POST">
+                                                            {{!-- <form name="DeleteComment">
                                                                 <input type="hidden" name="id" value="{{../../this.id}}">
-                                                                <button style="margin-left:562px;" type="submit" class="btn btn-danger">Удалить</button>
-                                                            </form>
+                                                                <button id="DelComm" style="margin-left:562px;" type="submit" class="btn btn-danger">Удалить</button>
+                                                            </form> --}}
                                                             {{/ifeq}}
                                                         {{/each}}
                                                     {{/ifeq}}
@@ -143,7 +134,6 @@
                     
                 </div>
             </div>
-
             
             <div class="col-lg-4">
                 <div class="sidebar">
@@ -157,7 +147,7 @@
                                             <img width="100" height="64" style="object-fit: cover;" src="/{{this.postUrl}}" />
                                         </div>
                                         <div class="nl-title">
-                                            <a style="text-decoration: none;"                        href="/news/get/{{this.id}}">{{this.title}}</a>
+                                            <a style="text-decoration: none;" href="/news/get/{{this.id}}">{{this.title}}</a>
                                         </div>
                                     </div>
                                 {{/ifeq}}
@@ -170,3 +160,7 @@
     </div>
 </div>
 <!-- Single News End-->        
+<script src="../../public/likePost.js"> </script>
+<script src="../../public/watchLater.js"></script>
+<script src="../../public/createComment.js"></script>
+<script src="../../public/deleteComment.js"></script>

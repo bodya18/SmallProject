@@ -21,7 +21,7 @@ router.get('/watchLater', auth, urlencodedParser, newsController.GetWatchLater)
 
 router.post('/watchLater', auth, jsonParser, urlencodedParser, newsController.watchLater)
 router.post('/like', auth, jsonParser, urlencodedParser, newsController.like)
-router.post('/deleteComment', auth, urlencodedParser, newsController.DeleteComment)
+router.post('/deleteComment', auth, jsonParser, urlencodedParser, newsController.DeleteComment)
 router.post('/EditComment/:id', auth, urlencodedParser, newsController.EditThisComment)
 router.post('/EditComment', auth, urlencodedParser, newsController.EditComment)
 router.post('/newComment', auth, jsonParser, urlencodedParser, newsController.newComment)
