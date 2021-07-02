@@ -33,3 +33,4 @@ function delInput(y) {
     div.remove();
     --x;
 }
+

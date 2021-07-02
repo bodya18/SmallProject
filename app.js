@@ -4,6 +4,7 @@ const session = require('express-session')
 const SessionStore = require('express-mysql-session')
 const flash = require('connect-flash')
 const path = require('path');
+
 const subscribeRouter = require('./routes/subscribeRouter');
 const indexRouter = require('./routes/indexRouter')
 const deleteRouter = require('./routes/deleteRouter')
@@ -15,6 +16,8 @@ const logoutRouter = require('./routes/logoutRouter')
 const ruleRouter = require('./routes/ruleRouter')
 const newsRouter = require('./routes/newsRouter')
 const adminRouter = require('./routes/adminRouter')
+const apiRouter = require('./routes/apiRouter')
+
 const errorHandler = require('./middleware/error')
 const varMiddleware = require('./middleware/variables')
 const configMiggleware = require('./middleware/config')
@@ -69,6 +72,7 @@ app.use('/logout', logoutRouter)
 app.use('/rules', ruleRouter)
 app.use('/admin', adminRouter)
 app.use('/news', newsRouter)
+// app.use('/api', apiRouter)
 app.get('/', (req, res)=>res.redirect('/news'))
 
 app.use(errorHandler)

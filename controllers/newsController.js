@@ -357,7 +357,13 @@ exports.DeleteComment = async(req, res) =>{
 exports.like = async(req, res) =>{
     const rbac = new RBAC
     await rbac.news.like(req.body.userId, req.body.newsId)
-    return res.redirect(req.get('referer'));
+    const news = await rbac.news.GetNewsById(req.body.newsId)
+
+    const isLike = await rbac.news.isLike(req.body.newsId, req.session.userIden)
+
+    let like = JSON.stringify({likes: news.likes, isLike: isLike});
+    like = JSON.parse(like)
+    res.json(like)
 }
 
 exports.watchLater = async(req, res) =>{

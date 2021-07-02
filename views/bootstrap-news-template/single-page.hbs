@@ -23,15 +23,52 @@
                         <pre>{{news.post_text}}</pre>
                         <div class="block_addition">
                             {{#if isAuth}}
-                                <form action="/news/like" method="POST">
+                                <form name="registerForm">
                                     <input type="hidden" name="userId" value="{{ThisUser.id}}">
                                     <input type="hidden" name="newsId" value="{{news.id}}">
                                     {{#if isLike}}
-                                        <button class="btn btn-success" type="submit">Нравится&nbsp;&nbsp; {{news.likes}}</button>
+                                        <button id="submitLike" class="btn btn-success" type="submit">Нравится&nbsp;&nbsp; {{news.likes}}</button>
                                     {{else}}
-                                        <button class="btn btn-danger" type="submit">Нравится&nbsp;&nbsp; {{news.likes}}</button>
+                                        <button id="submitLike" class="btn btn-danger" type="submit">Нравится&nbsp;&nbsp; {{news.likes}}</button>
                                     {{/if}}
                                 </form>
+
+                                <script>
+                                    document.getElementById("submitLike").addEventListener("click", function (e) {
+                                        e.preventDefault();
+                                        let registerForm = document.forms["registerForm"];
+                                        let userId = registerForm.elements["userId"].value;
+                                        let newsId = registerForm.elements["newsId"].value;
+
+                                        let like = JSON.stringify({userId: userId, newsId: newsId});
+
+                                        let request = new XMLHttpRequest();
+
+                                        request.open("POST", "/news/like", true);   
+
+                                        request.setRequestHeader("Content-Type", "application/json");
+
+                                        request.addEventListener("load", function () {
+
+                                            let receivedUser = JSON.parse(request.response);
+
+                                            let a = document.getElementById('submitLike')
+                                            if(receivedUser.isLike){
+                                                a.innerHTML = `Нравится&nbsp;&nbsp; ${receivedUser.likes}`
+                                                a.classList.remove('btn-danger')
+                                                a.classList.add('btn-success')
+                                            }
+                                            else{
+                                                a.innerHTML = `Нравится&nbsp;&nbsp; ${receivedUser.likes}`
+                                                a.classList.remove('btn-success')
+                                                a.classList.add('btn-danger')
+                                            }
+                                               
+                                        });
+                                        request.send(like);
+                                    });
+                                </script>
+
                                 <form action="/news/watchLater" method="POST" style="margin-left: 500px;">
                                     <input type="hidden" name="userId" value="{{ThisUser.id}}">
                                     <input type="hidden" name="newsId" value="{{news.id}}">

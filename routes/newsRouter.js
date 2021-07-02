@@ -5,6 +5,7 @@ const isAdmin = require('../middleware/isAdmin')
 const newsController = require('../controllers/newsController')
 const urlencodedParser = require('../middleware/urlencodedParser')
 const file = require('../middleware/file')
+const jsonParser = express.json();
 
 router.get('/', newsController.GetNews)
 router.get('/get/:id', newsController.GetThisPost)
@@ -19,7 +20,7 @@ router.get('/GetEditSettings/:key', isAdmin, auth, newsController.GetEditSetting
 router.get('/watchLater', auth, urlencodedParser, newsController.GetWatchLater)
 
 router.post('/watchLater', auth, urlencodedParser, newsController.watchLater)
-router.post('/like', auth, urlencodedParser, newsController.like)
+router.post('/like', auth, jsonParser, urlencodedParser, newsController.like)
 router.post('/deleteComment', auth, urlencodedParser, newsController.DeleteComment)
 router.post('/EditComment/:id', auth, urlencodedParser, newsController.EditThisComment)
 router.post('/EditComment', auth, urlencodedParser, newsController.EditComment)
