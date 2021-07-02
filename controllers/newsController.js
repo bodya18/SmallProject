@@ -327,10 +327,17 @@ exports.GetSearchNews = async(req, res) =>{
 exports.newComment = async(req, res) =>{
     const rbac = new RBAC
     const data = await rbac.news.newComment(req.body.comment, req.body.newsId, req.body.userId)
-    if (data) {
-        req.flash('error', data.error)
-    }
-    return res.redirect(req.get('referer'));
+    let error
+    if (data)
+        error = data.error
+    else
+        error = false
+    const comm = await rbac.news.GetCommentByAll(req.body.comment, req.body.newsId, req.body.userId)
+
+    let comment = JSON.stringify({comment: comm, error: error, user: req.session.user});
+
+    comment = JSON.parse(comment)
+    res.json(comment)
 }
 
 exports.EditComment = async(req, res) =>{
@@ -368,8 +375,16 @@ exports.like = async(req, res) =>{
 
 exports.watchLater = async(req, res) =>{
     const rbac = new RBAC
+    let isSave = await rbac.news.isSave(req.session.userIden, req.body.newsId)
+
     await rbac.news.watchLater(req.body.userId, req.body.newsId)
-    return res.redirect(req.get('referer'));
+    if (isSave) 
+        isSave = true
+    else
+        isSave = false
+    let save = JSON.stringify({isSave: isSave});
+    save = JSON.parse(save)
+    res.json(save)    
 }
 
 exports.GetWatchLater = async(req, res) =>{

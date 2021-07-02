@@ -147,6 +147,10 @@ class News{
         return await this.news.newComment(comment, newsId, userId)
     }
 
+    async GetCommentByAll(comment, newsId, userId){
+        return await this.news.GetCommentByAll(comment, newsId, userId)
+    }
+
     async EditThisComment(comment, id){
         if (comment.length < 1) 
             return {error: 'Длина комментария должна быть длиннее 1 символа'}

@@ -237,6 +237,18 @@ class News{
         return(temp)
     }
 
+    async GetCommentByAll(comment, newsId, userId){
+        var temp
+        await pool.query('Select * from Comments where comment = ? AND newsId = ? AND userId=?', [comment, newsId, userId])
+            .then(data => {
+                temp = data[0][0]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return(temp)
+    }
+
     async EditThisComment(comment, id) {
         await pool.query('update Comments set comment=? where id=?', [comment, id])
     }
