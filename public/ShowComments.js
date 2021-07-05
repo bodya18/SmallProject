@@ -32,10 +32,10 @@ request.addEventListener("load", function () {
                                     <span class="d-block font-weight-bold name">${session.users[j].name}</span>
                                     <span class="date text-black-50">${session.comments[i].date}</span>
                                 </div>
-                                    <form action="/news/EditComment" method="POST">
-                                        <input type="hidden" name="id" value="${session.comments[i].id}">
-                                        <input type="hidden" name="comment" value="${session.comments[i].comment}">
-                                        <button style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
+                                    <form name="editComment${countComments}">
+                                        <input type="hidden" id="commentId${countComments}" name="id" value="${session.comments[i].id}">
+                                        <input type="hidden" id="ThisComment${countComments}" name="comment" value="${session.comments[i].comment}">
+                                        <button onclick="editComment(${countComments})" style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
                                     </form>
                                     <form name="DeleteComment${countComments}">
                                         <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
@@ -44,7 +44,7 @@ request.addEventListener("load", function () {
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <p class="comment-text">${session.comments[i].comment}</p>
+                                <pre>${session.comments[i].comment}</pre>
                             </div>
                         </div><hr>`
                     }

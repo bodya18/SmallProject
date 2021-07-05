@@ -13,6 +13,7 @@ pre {
     text-align: justify;
     overflow-x:hidden;
     white-space:pre-wrap;
+    word-wrap:break-word;
 }
 
 .single-img {

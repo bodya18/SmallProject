@@ -41,7 +41,7 @@
                                     {{/if}}
                                 </form>
                             {{else}}
-                                <h4><font color="green">{{news.likes}} "Нравиться"</font></h4>
+                                <h4><font color="green">{{news.likes}} "Нравится"</font></h4>
                             {{/if}}
                         </div>
                         <br>
@@ -84,8 +84,10 @@
                                 
                             {{/if}}
                         {{/if}}
+                        <div id="EditComment"></div>
                         <div id="ListComments0"></div>
                         <div id="ShowComments" value="{{news.id}}"></div>
+                        
                     </div>
                 </div>
             </div>
@@ -119,5 +121,6 @@
     <script src="../../public/watchLater.js"></script>
     <script src="../../public/createComment.js"></script>
     <script src="../../public/deleteComment.js"></script>
+    <script src="../../public/editComment.js"> </script>
 {{/if}}
 <script src="../../public/ShowComments.js"> </script>

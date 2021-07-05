@@ -341,11 +341,11 @@ exports.newComment = async(req, res) =>{
 }
 
 exports.EditComment = async(req, res) =>{
-    req.flash('comment' , req.body)
-    return res.redirect(req.get('referer'));
+    console.log(req.body);
 }
 
 exports.EditThisComment = async(req, res) =>{
+    console.log(123);
     const rbac = new RBAC
     const data = await rbac.news.EditThisComment(req.body.comment, req.params.id)
     if (data) {

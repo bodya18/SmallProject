@@ -23,7 +23,7 @@ router.post('/watchLater', auth, jsonParser, urlencodedParser, newsController.wa
 router.post('/like', auth, jsonParser, urlencodedParser, newsController.like)
 router.post('/deleteComment', auth, jsonParser, newsController.DeleteComment)
 router.post('/EditComment/:id', auth, urlencodedParser, newsController.EditThisComment)
-router.post('/EditComment', auth, urlencodedParser, newsController.EditComment)
+router.post('/EditComment', auth, jsonParser, newsController.EditComment)
 router.post('/newComment', auth, jsonParser, urlencodedParser, newsController.newComment)
 router.post('/settings/serch',isAdmin, auth, urlencodedParser, newsController.GetSearchNews)
 router.post('/editSettings', isAdmin, auth, urlencodedParser, newsController.editSettings)
