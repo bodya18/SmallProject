@@ -36,10 +36,10 @@ document.getElementById("comment").addEventListener("click", function (e) {
                             <span class="d-block font-weight-bold name">${receivedUser.user.name}</span>
                             <span class="date text-black-50">${receivedUser.comment.date}</span>
                         </div>
-                        <form action="/news/EditComment" method="POST">
-                            <input type="hidden" name="id" value="${receivedUser.comment.id}">
-                            <input type="hidden" name="comment" value="${receivedUser.comment.comment}">
-                            <button style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
+                        <form name="editComment${countComments}">
+                            <input type="hidden" id="commentId${countComments}" name="id" value="${receivedUser.comment.id}">
+                            <input type="hidden" id="ThisComment${countComments}" name="comment" value="${receivedUser.comment.comment}">
+                            <button id='Editcom' onclick="editComment(${countComments})" style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
                         </form>
                         <form name="DeleteComment${countComments}">
                             <input id="commentId${countComments}" type="hidden" value="${receivedUser.comment.id}">

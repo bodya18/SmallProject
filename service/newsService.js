@@ -150,6 +150,9 @@ class News{
     async GetCommentByAll(comment, newsId, userId){
         return await this.news.GetCommentByAll(comment, newsId, userId)
     }
+    async GetCommentById(id){
+        return await this.news.GetCommentById(id)
+    }
 
     async EditThisComment(comment, id){
         if (comment.length < 1) 

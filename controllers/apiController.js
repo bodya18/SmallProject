@@ -19,3 +19,8 @@ exports.comment = async (req,res) =>{
     const data = {permissionsList: req.session.Perm, user: req.session.user, comments: comments, users: users}
     return res.json(data)
 }
+
+exports.UserSession = async (req,res) =>{
+    const data = {user: req.session.user}
+    return res.json(data)
+}

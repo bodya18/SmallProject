@@ -340,19 +340,18 @@ exports.newComment = async(req, res) =>{
     res.json(comment)
 }
 
-exports.EditComment = async(req, res) =>{
-    console.log(req.body);
-}
-
 exports.EditThisComment = async(req, res) =>{
-    console.log(123);
     const rbac = new RBAC
     const data = await rbac.news.EditThisComment(req.body.comment, req.params.id)
-    if (data) {
-        req.flash('error', data.error)
-    }
-    
-    return res.redirect(req.get('referer'));
+    let error = false
+    if (data)
+        error = data.error
+    const comm = await rbac.news.GetCommentById(req.params.id)
+
+    let comment = JSON.stringify({comment: comm, error: error, user: req.session.user});
+
+    comment = JSON.parse(comment)
+    res.json(comment)
 }
 
 exports.DeleteComment = async(req, res) =>{
