@@ -13,10 +13,11 @@ request.addEventListener("load", function () {
     let session = JSON.parse(request.response);
     let a = document.getElementById(`ShowComments`)
     
+    
     for (let i = 0; i < session.comments.length; i++) {
         var div = document.createElement('div')
         div.className = "commented-section mt-2"
-        div.id = countComments
+        div.id ="comment"+ countComments
         for (let j = 0; j < session.users.length; j++) {
             if(session.users[j].id === session.comments[i].userId){
                 if(!session.users[j].avatarURL)
@@ -36,9 +37,9 @@ request.addEventListener("load", function () {
                                         <input type="hidden" name="comment" value="${session.comments[i].comment}">
                                         <button style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
                                     </form>
-                                    <form name="DeleteComment">
-                                        <input id="commentId" type="hidden" name="commentId" value="${session.comments[i].id}">
-                                        <button id="DelComm${session.countComments}" type="submit" class="btn btn-danger">Удалить</button>
+                                    <form name="DeleteComment${countComments}">
+                                        <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
+                                        <button onclick="DelComment(${countComments})" id="DelComm${countComments}" type="submit" class="btn btn-danger">Удалить</button>
                                     </form>
                                 </div>
                             </div>
@@ -58,9 +59,9 @@ request.addEventListener("load", function () {
                                         <span class="d-block font-weight-bold name">${session.users[j].name}</span>
                                         <span class="date text-black-50">${session.comments[i].date}</span>
                                     </div>
-                                        <form name="DeleteComment">
-                                            <input id="commentId" type="hidden" name="commentId" value="${session.comments[i].id}">
-                                            <button id="DelComm${session.countComments}" type="submit" style="margin-left:562px;" class="btn btn-danger">Удалить</button>
+                                        <form name="DeleteComment${countComments}">
+                                            <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
+                                            <button onclick="DelComment(${countComments})" id="DelComm${countComments}" type="submit" style="margin-left:562px;" class="btn btn-danger">Удалить</button>
                                         </form>
                                     </div>
                                 </div>

@@ -28,7 +28,7 @@ document.getElementById("comment").addEventListener("click", function (e) {
             count++;
             a.innerHTML = `
             <div id="ListComments${count}"></div>
-            <div class="commented-section mt-2">
+            <div class="commented-section mt-2" id="comment${countComments}">
                 <div class="bg-white p-2">
                     <div class="d-flex flex-row user-info">
                         <img id="UserAvatar" class="rounded-circle" src="/${receivedUser.user.avatarURL}" style="width: 50px; height: 50px;">
@@ -41,18 +41,20 @@ document.getElementById("comment").addEventListener("click", function (e) {
                             <input type="hidden" name="comment" value="${receivedUser.comment.comment}">
                             <button style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
                         </form>
-                        <form name="DeleteComment">
-                            <input type="hidden" name="commentId" value="${receivedUser.comment.id}">
-                            <button id="DelComm" type="submit" class="btn btn-danger">Удалить</button>
+                        <form name="DeleteComment${countComments}">
+                            <input id="commentId${countComments}" type="hidden" value="${receivedUser.comment.id}">
+                            <button onclick="DelComment(${countComments})" id="DelComm${countComments}" type="submit" class="btn btn-danger">Удалить</button>
                         </form>
                     </div>
                     <div class="mt-2">
                         <p class="comment-text">${receivedUser.comment.comment}</p>
                     </div>
+                    <hr>
                 </div>
-            </div><hr>`
+            </div>`
             let texrow = document.getElementById('texrow')
             texrow.value = ''
+            countComments++
             if(!receivedUser.user.avatarURL){
                 let av = document.getElementById('UserAvatar')
                 av.src = "../../images/no_avatar.png"
