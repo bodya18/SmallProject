@@ -72,7 +72,7 @@ app.use('/logout', logoutRouter)
 app.use('/rules', ruleRouter)
 app.use('/admin', adminRouter)
 app.use('/news', newsRouter)
-// app.use('/api', apiRouter)
+app.use('/api', apiRouter)
 app.get('/', (req, res)=>res.redirect('/news'))
 
 app.use(errorHandler)
