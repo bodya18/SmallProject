@@ -1,4 +1,5 @@
 let x1 = 0
+
 function editComment(id){
     addEventListener("click", function (e) {
         e.preventDefault();
@@ -23,13 +24,14 @@ function editComment(id){
                     <div class="d-flex flex-row add-comment-section mt-4 mb-4">
                         <img class="img-fluid img-responsive rounded-circle mr-2" src="../../${user.user.avatarURL}" style="width: 50px; height: 50px;">
                         <textarea id="texrow${commentId}" name="comment" type="text" class="form-control mr-3" placeholder="Редактировать комментарий" rows="4" maxlength="1000" minlength="1">${comment}</textarea>   
-                        <button onclick="editThisComment(${commentId}, ${id})" class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
+                        <button id="EditComentThis" onclick="editThisComment(${commentId}, ${id})" class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
                             Редактировать
                         </button>
                     </div>
                 </form>
                 <hr>
             `;
+            id = undefined
             })
             request.send()
             x1++
@@ -51,7 +53,7 @@ function editThisComment(id, idd){
 
         request.addEventListener("load", function () {
             let receivedUser = JSON.parse(request.response);
-        
+            x1--
             if(receivedUser.error){
                 let a = document.getElementById('errorEdit')
                 a.innerHTML = receivedUser.error
@@ -73,7 +75,7 @@ function editThisComment(id, idd){
                             <form name="editComment${countComments}">
                                 <input type="hidden" id="commentId${countComments}" name="id" value="${receivedUser.comment.id}">
                                 <input type="hidden" id="ThisComment${countComments}" name="comment" value="${receivedUser.comment.comment}">
-                                <button style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
+                               <button id='Editcom${countComments}' onclick="editComment(${countComments})" style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
                             </form>
                             <form name="DeleteComment${countComments}">
                                 <input id="commentId${countComments}" type="hidden" value="${receivedUser.comment.id}">
@@ -87,7 +89,7 @@ function editThisComment(id, idd){
                     </div>
                 </div>`
                 countComments++
-                
+                id = idd = undefined
             }
         })
         request.send(data)
