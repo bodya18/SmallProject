@@ -11,6 +11,15 @@ class News{
         this.category = new CategoriesModel
     }
 
+    async GetViews(id){
+        let data = await this.news.GetViews(id)
+        if(!data){
+            data = 0;
+            await this.news.CreateViews(id)
+            return data
+        }
+        return data.count
+    }
     async Subscribe(email){
         if(email.length < 2)
             return {error: 'Введите настоящий email'}
@@ -217,6 +226,10 @@ class News{
 
     async GetWatchLater(userId){
         return await this.news.GetWatchLater(userId)
+    }
+
+    async SetViews(newsId, count){
+        await this.news.SetViews(newsId, count)
     }
 }
 

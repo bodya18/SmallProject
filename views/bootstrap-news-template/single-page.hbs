@@ -43,46 +43,32 @@
                             {{else}}
                                 <h4><font color="green">{{news.likes}} "Нравится"</font></h4>
                             {{/if}}
-                        </div>
+                        </div><br>
+                        {{!-- <form name="viewsCount"> --}}
+                            <input type="hidden" id="views" value="{{views}}">
+                            <h4 class="timer"><font color="gray">{{views}} "Просмотров"</font></h4>
+                            <input type="hidden" id="newsId" value="{{news.id}}">
+                        {{!-- </form> --}}
                         <br>
                     </div>
                     <div class="coment-bottom bg-white p-2 px-4">
                         {{#if isAuth}}
                             <font color='red' id="error"></font>
-                            {{#if EditComment}}
-                                <form action="/news/EditComment/{{EditComment.id}}" method="POST">
-                                    <div class="d-flex flex-row add-comment-section mt-4 mb-4">
-                                        {{#if ThisUser.avatarURL}}
-                                            <img class="img-fluid img-responsive rounded-circle mr-2" src="/{{ThisUser.avatarURL}}" style="width: 50px; height: 50px;">
-                                        {{else}}
-                                            <img class="img-fluid img-responsive rounded-circle mr-2" src="../../images/no_avatar.png" style="width: 50px; height: 50px;">
-                                        {{/if}}
-                                        <textarea name="comment" type="text" class="form-control mr-3" placeholder="Редактировать комментарий" rows="4" minlength="1" maxlength="1000">{{EditComment.comment}}</textarea>   
-                                        <button class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
-                                            Редактировать
-                                        </button>
-                                    </div>
-                                </form>
-                            {{else}}
-                                <form name="NewComment">
-                                    <input type="hidden" name="userId" value="{{ThisUser.id}}">
-                                    <input type="hidden" name="newsId" value="{{news.id}}">
-                                    <div class="d-flex flex-row add-comment-section mt-4 mb-4">
-                                        {{#if ThisUser.avatarURL}}
-                                            <img class="img-fluid img-responsive rounded-circle mr-2" src="/{{ThisUser.avatarURL}}" style="width: 50px; height: 50px;">
-                                        {{else}}
-                                            <img class="img-fluid img-responsive rounded-circle mr-2" src="../../images/no_avatar.png" style="width: 50px; height: 50px;">
-                                        {{/if}}
-                                        <textarea id="texrow" name="comments" type="text" class="form-control mr-3" placeholder="Добавить комментарий" rows="4" maxlength="1000" minlength="1"></textarea>   
-                                        <button id="comment" class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
-                                            Комментировать
-                                        </button>
-                                    </div>
-                                </form>
-
-                                
-                                
-                            {{/if}}
+                            <form name="NewComment">
+                                <input type="hidden" name="userId" value="{{ThisUser.id}}">
+                                <input type="hidden" name="newsId" value="{{news.id}}">
+                                <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+                                    {{#if ThisUser.avatarURL}}
+                                        <img class="img-fluid img-responsive rounded-circle mr-2" src="/{{ThisUser.avatarURL}}" style="width: 50px; height: 50px;">
+                                    {{else}}
+                                        <img class="img-fluid img-responsive rounded-circle mr-2" src="../../images/no_avatar.png" style="width: 50px; height: 50px;">
+                                    {{/if}}
+                                    <textarea id="texrow" name="comments" type="text" class="form-control mr-3" placeholder="Добавить комментарий" rows="4" maxlength="1000" minlength="1"></textarea>   
+                                    <button id="comment" class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
+                                        Комментировать
+                                    </button>
+                                </div>
+                            </form>
                         {{/if}}
                         <div id="EditComment"></div>
                         <div id="ListComments0"></div>
@@ -118,6 +104,7 @@
 <!-- Single News End-->
 <script src="../../public/ShowComments.js"> </script>
 {{#if isAuth}}
+    <script src="../../public/timer.js"></script>
     <script src="../../public/likePost.js"> </script>
     <script src="../../public/watchLater.js"></script>
     <script src="../../public/createComment.js"></script>

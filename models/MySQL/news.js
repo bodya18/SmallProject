@@ -225,6 +225,26 @@ class News{
         await pool.query('Insert into Comments (comment, newsId, userId, date) values (?, ?, ?, ?)', [comment, newsId, userId, today])
     }
 
+    async SetViews(newsId, count){
+        await pool.query('update All_Views set count=? where newsId=?', [count, newsId])
+    }
+
+    async GetViews(id){
+        var temp
+        await pool.query('Select count from All_Views where newsId = ?', [id])
+            .then(data => {
+                temp = data[0][0]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return(temp)
+    }
+
+    async CreateViews(id){
+        await pool.query('Insert into All_Views (newsId) values (?)', [id])
+    }
+
     async GetComments(newsId){
         var temp
         await pool.query('Select * from Comments where newsId = ? ORDER BY date DESC', [newsId])

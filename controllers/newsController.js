@@ -71,8 +71,8 @@ exports.GetThisPost = async (req,res) => {
     const news = await rbac.news.GetNewsById(req.params.id)
     if(!news)
         return res.redirect('/news')
+    const views = await rbac.news.GetViews(req.params.id)
     var dataNews = await rbac.news.GetNewsByCategory(news.categoryId)
-
     const categories = await rbac.category.GetCategoriesById(news.categoryId)
 
     const comments = await rbac.news.GetComments(req.params.id)
@@ -88,6 +88,7 @@ exports.GetThisPost = async (req,res) => {
         title: news.title,
         news: news,
         users,
+        views,
         dataNews: dataNews,
         comments,
         categories: categories.id,
@@ -398,4 +399,11 @@ exports.GetWatchLater = async(req, res) =>{
         isWatchLater: true,
         news
     })
+}
+
+exports.SetViews = async(req, res) =>{
+    const rbac = new RBAC
+    let count = await rbac.news.GetViews(req.body.newsId)
+    await rbac.news.SetViews(req.body.newsId, ++count)
+    res.json(count)
 }
