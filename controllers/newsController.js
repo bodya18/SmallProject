@@ -18,18 +18,29 @@ exports.GetNews = async (req,res) => {
         fs.readFile(`${config.dirname}${TopLeft.value}`, "utf8", async (error, left) =>{
             if(error) throw error;
             left = JSON.parse(left);
-            var LeftNews = [];
-            for (let i = 0; i < left.length; i++) {
-                LeftNews[i] = await rbac.news.GetNewsById(left[i]) 
+            var a = left;
+            left = parseInt(left);
+            var LeftNews = []
+            if((typeof a)==('object')){
+                for (let i = 0; i < a.length; i++) {
+                    LeftNews[i] = await rbac.news.GetNewsById(a[i]) 
+                }
+            }else{
+                LeftNews[0] = await rbac.news.GetNewsById(left) 
             }
             fs.readFile(`${config.dirname}${TopRight.value}`, "utf8", async (error, right) =>{
                 if(error) throw error;
                 right = JSON.parse(right);
+                var a = right;
+                right = parseInt(right);
                 var RightNews = [];
-                for (let i = 0; i < right.length; i++) {
-                    RightNews[i] = await rbac.news.GetNewsById(right[i]) 
+                if((typeof a)==('object')){
+                    for (let i = 0; i < a.length; i++) {
+                        RightNews[i] = await rbac.news.GetNewsById(a[i]) 
+                    }
+                }else{
+                    RightNews[0] = await rbac.news.GetNewsById(right) 
                 }
-                
                 res.render('./bootstrap-news-template/index.hbs', {
                     title: 'Новости',
                     isNews: true,

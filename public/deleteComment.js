@@ -1,4 +1,5 @@
 function DelComment(id){
+    console.log(document.getElementById(`DelComm${id}`));
     addEventListener("click", function (e) {
         e.preventDefault();
         let registerForm = document.forms["DeleteComment"+id];
