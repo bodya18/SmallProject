@@ -146,6 +146,9 @@ class News{
     async GetNewsByCategory(categoryId){
         return await this.news.GetNewsByCategory(categoryId)
     }
+    async GetNewsByCategoryNoThisPost(categoryId, newsId){
+        return await this.news.GetNewsByCategoryNoThisPost(categoryId, newsId)
+    }
     async DeleteNews(id){
         return await this.news.DeleteNews(id)
     }

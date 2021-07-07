@@ -56,7 +56,7 @@ pre {
 .comments {
     text-decoration: underline;
     text-underline-position: under;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .dot {
@@ -74,4 +74,18 @@ pre {
 
 .hit-voting {
     cursor: pointer
+}
+.comment_list{
+    overflow-y:auto;
+    width: auto;
+    height: auto;
+    max-height: 1000px;
+    padding: 5px;
+}
+.comment_list_1{
+    overflow-y:auto;
+    width: auto;
+    height: auto;
+    max-height: 1400px;
+    padding: 5px;
 }

@@ -182,6 +182,18 @@ class News{
             })
         return(temp)
     }
+
+    async GetNewsByCategoryNoThisPost(categoryId, newsId){
+        var temp
+        await pool.query('Select * from news where categoryId = ? and id != ?', [categoryId, newsId])
+            .then(data => {
+                temp = data[0]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return(temp)
+    }
     
     async CreateSettings(key, label, value){
         try{
