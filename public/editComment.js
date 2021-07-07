@@ -72,11 +72,11 @@ function editThisComment(id, idd, e){
                         <form name="editComment${countComments}">
                             <input type="hidden" id="commentId${countComments}" name="id" value="${receivedUser.comment.id}">
                             <input type="hidden" id="ThisComment${countComments}" name="comment" value="${receivedUser.comment.comment}">
-                            <button id='Editcom${countComments}' onclick="editComment(${countComments})" style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
+                            <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
                         </form>
                         <form name="DeleteComment${countComments}">
                             <input id="commentId${countComments}" type="hidden" value="${receivedUser.comment.id}">
-                            <button onclick="DelComment(${countComments})" id="DelComm${countComments}" type="submit" class="btn btn-danger">Удалить</button>
+                            <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" class="btn btn-danger">Удалить</button>
                         </form>
                     </div>
                     <div class="mt-2">
