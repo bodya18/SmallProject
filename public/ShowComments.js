@@ -35,11 +35,11 @@ request.addEventListener("load", function () {
                                     <form name="editComment${countComments}">
                                         <input type="hidden" id="commentId${countComments}" name="id" value="${session.comments[i].id}">
                                         <input type="hidden" id="ThisComment${countComments}" name="comment" value="${session.comments[i].comment}">
-                                        <button id='Editcom${countComments}' onclick="editComment(${countComments})" style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
+                                        <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
                                     </form>
                                     <form name="DeleteComment${countComments}">
                                         <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
-                                        <button onclick="DelComment(${countComments})" id="DelComm${countComments}" type="submit" class="btn btn-danger">Удалить</button>
+                                        <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" class="btn btn-danger">Удалить</button>
                                     </form>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@ request.addEventListener("load", function () {
                                     </div>
                                         <form name="DeleteComment${countComments}">
                                             <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
-                                            <button onclick="DelComment(${countComments})" id="DelComm${countComments}" type="submit" style="margin-left:562px;" class="btn btn-danger">Удалить</button>
+                                            <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" style="margin-left:562px;" class="btn btn-danger">Удалить</button>
                                         </form>
                                     </div>
                                 </div>
