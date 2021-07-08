@@ -1,8 +1,7 @@
-document.getElementById("WatchLater").addEventListener("click", function (e) {
+function WatchLater(newsId, e){
     e.preventDefault();
-    let registerForm = document.forms["Watch"];
+    let registerForm = document.forms["Watch"+newsId];
     let userId = registerForm.elements["userId"].value;
-    let newsId = registerForm.elements["newsId"].value;
 
     let save = JSON.stringify({userId: userId, newsId: newsId});
 
@@ -16,7 +15,7 @@ document.getElementById("WatchLater").addEventListener("click", function (e) {
 
         let receivedUser = JSON.parse(request.response);
 
-        let a = document.getElementById('WatchLater')
+        let a = document.getElementById('WatchLater'+ newsId)
         if(receivedUser.isSave){
             a.innerHTML = `Добавить в избранное`
             a.classList.remove('btn-warning')
@@ -27,7 +26,7 @@ document.getElementById("WatchLater").addEventListener("click", function (e) {
             a.classList.remove('btn-info')
             a.classList.add('btn-warning')
         }
-           
+            
     });
     request.send(save);
-});
+}

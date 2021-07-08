@@ -22,22 +22,23 @@
                         <pre>{{news.post_text}}</pre>
                         <div class="block_addition">
                             {{#if isAuth}}
-                                <form name="registerForm">
+                            
+                                <form name="registerForm{{news.id}}">
                                     <input type="hidden" name="userId" value="{{ThisUser.id}}">
                                     <input type="hidden" name="newsId" value="{{news.id}}">
                                     {{#if isLike}}
-                                        <button id="submitLike" class="btn btn-success" type="submit">Нравится&nbsp;&nbsp; {{news.likes}}</button>
+                                        <button id="submitLike{{news.id}}" onclick="likePost({{news.id}}, event)" class="btn btn-success" type="submit">Нравится&nbsp;&nbsp; {{news.likes}}</button>
                                     {{else}}
-                                        <button id="submitLike" class="btn btn-danger" type="submit">Нравится&nbsp;&nbsp; {{news.likes}}</button>
+                                        <button id="submitLike{{news.id}}" onclick="likePost({{news.id}}, event)" class="btn btn-danger" type="submit">Нравится&nbsp;&nbsp; {{news.likes}}</button>
                                     {{/if}}
                                 </form>
-                                <form name="Watch" style="margin-left: 500px;">
+                                <form name="Watch{{news.id}}" style="margin-left: 500px;">
                                     <input type="hidden" name="userId" value="{{ThisUser.id}}">
                                     <input type="hidden" name="newsId" value="{{news.id}}">
                                     {{#if isSave}}
-                                        <button id="WatchLater" class="btn btn-warning" type="submit">Убрать из избранного</button>
+                                        <button id="WatchLater{{news.id}}" onclick="WatchLater({{news.id}}, event)" class="btn btn-warning" type="submit">Убрать из избранного</button>
                                     {{else}}
-                                        <button id="WatchLater" class="btn btn-info" type="submit">Добавить в избранное</button>
+                                        <button id="WatchLater{{news.id}}" onclick="WatchLater({{news.id}}, event)" class="btn btn-info" type="submit">Добавить в избранное</button>
                                     {{/if}}
                                 </form>
                             {{else}}
@@ -102,93 +103,10 @@
                 
             </div>
             <div id="ListNews" value="{{categories}}"></div>
-
-            {{!-- <div class="col-lg-7">
-                <div class="sn-container">
-                    <div class="single-img">
-                        <img class="single-img"  src="/{{news.postUrl}}">
-                    </div>
-                    <div class="sn-content">
-                        <h1 class="sn-title">
-                            {{news.title}}
-                            {{#each permissionsList}}
-                                {{#ifeq this 'GIVE'}}
-                                    <a style="text-decoration: none;" href="/news/edit/{{@root.news.id}}">
-                                        <button type="button" class="btn btn-dark">&#9998;</button>
-                                    </a>
-                                {{/ifeq}}
-                            {{/each}}
-                        </h1>
-                        <pre>{{news.post_text}}</pre>
-                        <div class="block_addition">
-                            {{#if isAuth}}
-                                <form name="registerForm">
-                                    <input type="hidden" name="userId" value="{{ThisUser.id}}">
-                                    <input type="hidden" name="newsId" value="{{news.id}}">
-                                    {{#if isLike}}
-                                        <button id="submitLike" class="btn btn-success" type="submit">Нравится&nbsp;&nbsp; {{news.likes}}</button>
-                                    {{else}}
-                                        <button id="submitLike" class="btn btn-danger" type="submit">Нравится&nbsp;&nbsp; {{news.likes}}</button>
-                                    {{/if}}
-                                </form>
-                                <form name="Watch" style="margin-left: 500px;">
-                                    <input type="hidden" name="userId" value="{{ThisUser.id}}">
-                                    <input type="hidden" name="newsId" value="{{news.id}}">
-                                    {{#if isSave}}
-                                        <button id="WatchLater" class="btn btn-warning" type="submit">Убрать из избранного</button>
-                                    {{else}}
-                                        <button id="WatchLater" class="btn btn-info" type="submit">Добавить в избранное</button>
-                                    {{/if}}
-                                </form>
-                            {{else}}
-                                <h4><font color="green">{{news.likes}} "Нравится"</font></h4>
-                            {{/if}}
-                        </div><br>
-                        <input type="hidden" id="views" value="{{views}}">
-                        <h4 class="timer"><font color="gray">{{views}} "Просмотров"</font></h4>
-                        <input type="hidden" id="newsId" value="{{news.id}}">
-                        <br>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="col-lg-5">
-                <div class="sidebar">
-                    <div class="sidebar-widget">    
-                        <div class="coment-bottom bg-white p-2 px-4 comment_list_1">
-                            <h3>Комментарии</h3>
-                            {{#if isAuth}}
-                                <font color='red' id="error"></font>
-                                <form name="NewComment">
-                                    <input type="hidden" name="userId" value="{{ThisUser.id}}">
-                                    <input type="hidden" name="newsId" value="{{news.id}}">
-                                    <div class="d-flex flex-row add-comment-section mt-4 mb-4">
-                                        {{#if ThisUser.avatarURL}}
-                                            <img class="img-fluid img-responsive rounded-circle mr-2" src="/{{ThisUser.avatarURL}}" style="width: 50px; height: 50px;">
-                                        {{else}}
-                                            <img class="img-fluid img-responsive rounded-circle mr-2" src="../../images/no_avatar.png" style="width: 50px; height: 50px;">
-                                        {{/if}}
-                                        <textarea id="texrow" name="comments" type="text" class="form-control mr-3" placeholder="Добавить комментарий" rows="4" maxlength="1000" minlength="1"></textarea>   
-                                        <button id="comment" class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
-                                            Комментировать
-                                        </button>
-                                    </div>
-                                </form>
-                            {{/if}}
-                            <div id="EditComment"></div>
-                            <div id="ListComments0"></div>
-                            <div id="ShowComments" value="{{news.id}}"></div>
-                            
-                        </div>
-                    </div>
-                    
-                </div>
-                
-            </div> --}}
         </div>
     </div>
 </div>
-<!-- Single News End-->
+
 <script src="../../public/ShowComments.js"> </script>
 <script src="../../public/ShowNews.js"></script>
 {{#if isAuth}}

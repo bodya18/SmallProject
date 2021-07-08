@@ -17,13 +17,15 @@ exports.news = async (req,res) =>{
     const rbac = new RBAC
 
     const news = await rbac.news.GetNewsByCategoryNoThisPost(req.body.categoryId, req.body.newsId)
-    const comments = await rbac.news.GetComments(req.body.newsId)
     const users = await rbac.user.GetUsers()
-
+    const TopNews = await rbac.news.GetNewsById(req.body.newsId)
     const isLike = await rbac.news.isLike(req.body.newsId, req.session.userIden)
     const isSave = await rbac.news.isSave(req.session.userIden, req.body.newsId)
-    
-    const data = {news: news, permissionsList: req.session.Perm, user: req.session.user, users: users, isAuth: req.session.isAuthenticated}
+    const views = await rbac.news.GetViews(req.body.newsId)
+    TopNews.isLike = isLike
+    TopNews.isSave = isSave
+    TopNews.views = views
+    const data = {news: news, permissionsList: req.session.Perm, user: req.session.user, users: users, isAuth: req.session.isAuthenticated, TopNews}
     return res.json(data)
 }
 

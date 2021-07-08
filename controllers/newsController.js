@@ -83,7 +83,7 @@ exports.GetThisPost = async (req,res) => {
     if(!news)
         return res.redirect('/news')
     const views = await rbac.news.GetViews(req.params.id)
-    var dataNews = await rbac.news.GetNewsByCategory(news.categoryId)
+    var dataNews = await rbac.news.GetNewsByCategoryNoThisPost(news.categoryId, req.params.id)
     const categories = await rbac.category.GetCategoriesById(news.categoryId)
 
     const comments = await rbac.news.GetComments(req.params.id)

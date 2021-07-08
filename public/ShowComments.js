@@ -12,10 +12,7 @@ request.setRequestHeader("Content-Type", "application/json");
 request.addEventListener("load", function () {
     let session = JSON.parse(request.response);
     let a = document.getElementById(`ShowComments`)
-    
-    // if(!session.comments.length<100){
 
-    // }
     for (let i = 0; i < session.comments.length; i++) {
         
         var div = document.createElement('div')
