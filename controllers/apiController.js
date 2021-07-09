@@ -13,9 +13,14 @@ exports.UserSession = async (req,res) =>{
     return res.json(data)
 }
 
+exports.newsCategory = async (req,res) =>{
+    const rbac = new RBAC
+    const TopNews = await rbac.news.GetNewsByCategory(req.body.categoryId)
+    return res.json(TopNews)
+}
+
 exports.news = async (req,res) =>{
     const rbac = new RBAC
-
     const news = await rbac.news.GetNewsByCategoryNoThisPost(req.body.categoryId, req.body.newsId)
     const users = await rbac.user.GetUsers()
     const TopNews = await rbac.news.GetNewsById(req.body.newsId)

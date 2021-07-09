@@ -46,8 +46,9 @@
                             {{/if}}
                         </div><br>
                         <input type="hidden" id="views" value="{{views}}">
-                        <h4 class="timer"><font color="gray">{{views}} "Просмотров"</font></h4>
+                        <h4 id="waypoint" class="timer"><font color="gray">{{views}} "Просмотров"</font></h4>
                         <input type="hidden" id="newsId" value="{{news.id}}">
+                        <input type="hidden" id="categoryId" value="{{news.categoryId}}">
                         <br>
                     </div>
                     
@@ -92,8 +93,9 @@
                                     </div>
                                 </form>
                             {{/if}}
-                            <div id="EditComment"></div>
-                            <div id="ListComments0"></div>
+                            <form name="AddComment{{news.id}}">
+                                <div id="ListComments0"></div>
+                            </form>
                             <div id="ShowComments" value="{{news.id}}"></div>
                             
                         </div>
@@ -106,9 +108,8 @@
         </div>
     </div>
 </div>
-
-<script src="../../public/ShowComments.js"> </script>
 <script src="../../public/ShowNews.js"></script>
+<script src="../../public/ShowComments.js"> </script>
 {{#if isAuth}}
     <script src="../../public/timer.js"></script>
     <script src="../../public/likePost.js"> </script>
