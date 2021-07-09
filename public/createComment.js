@@ -1,9 +1,8 @@
 let count = 0
-document.getElementById("comment").addEventListener("click", function (e) {
+function addComment(newsId, e){
     e.preventDefault();
-    let registerForm = document.forms["NewComment"];
+    let registerForm = document.forms["NewComment"+newsId];
     let userId = registerForm.elements["userId"].value;
-    let newsId = registerForm.elements["newsId"].value;
     let comment = registerForm.elements["comments"].value;
     let save = JSON.stringify({userId: userId, newsId: newsId, comment: comment});
 
@@ -24,10 +23,10 @@ document.getElementById("comment").addEventListener("click", function (e) {
         else{
             let error = document.getElementById('error')
             error.innerHTML = ""
-            let a = document.getElementById('ListComments'+count)
+            let a = document.getElementById(`ListComments${count}`+newsId)
             count++;
             a.innerHTML = `
-            <div id="ListComments${count}"></div>
+            <div id="ListComments${count}${newsId}"></div>
             <div class="commented-section mt-2" id="comment${countComments}">
                 <div class="bg-white p-2">
                     <div class="d-flex flex-row user-info">
@@ -36,6 +35,7 @@ document.getElementById("comment").addEventListener("click", function (e) {
                             <span class="d-block font-weight-bold name">${receivedUser.user.name}</span>
                             <span class="date text-black-50">${receivedUser.comment.date}</span>
                         </div>
+                        <form></form>
                         <form name="editComment${countComments}">
                             <input type="hidden" id="commentId${countComments}" name="id" value="${receivedUser.comment.id}">
                             <input type="hidden" id="ThisComment${countComments}" name="comment" value="${receivedUser.comment.comment}">
@@ -52,7 +52,7 @@ document.getElementById("comment").addEventListener("click", function (e) {
                     <hr>
                 </div>
             </div>`
-            let texrow = document.getElementById('texrow')
+            let texrow = document.getElementById('texrow'+newsId)
             texrow.value = ''
             countComments++
             if(!receivedUser.user.avatarURL){
@@ -62,4 +62,4 @@ document.getElementById("comment").addEventListener("click", function (e) {
         }
     });
     request.send(save);
-});
+}

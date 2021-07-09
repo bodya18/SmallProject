@@ -77,7 +77,7 @@
                             <h3>Комментарии</h3>
                             {{#if isAuth}}
                                 <font color='red' id="error"></font>
-                                <form name="NewComment">
+                                <form name="NewComment{{news.id}}">
                                     <input type="hidden" name="userId" value="{{ThisUser.id}}">
                                     <input type="hidden" name="newsId" value="{{news.id}}">
                                     <div class="d-flex flex-row add-comment-section mt-4 mb-4">
@@ -86,15 +86,15 @@
                                         {{else}}
                                             <img class="img-fluid img-responsive rounded-circle mr-2" src="../../images/no_avatar.png" style="width: 50px; height: 50px;">
                                         {{/if}}
-                                        <textarea id="texrow" name="comments" type="text" class="form-control mr-3" placeholder="Добавить комментарий" rows="4" maxlength="1000" minlength="1"></textarea>   
-                                        <button id="comment" class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
+                                        <textarea id="texrow{{news.id}}" name="comments" type="text" class="form-control mr-3" placeholder="Добавить комментарий" rows="4" maxlength="1000" minlength="1"></textarea>   
+                                        <button id="comment{{news.id}}" onclick="addComment({{news.id}}, event)" class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
                                             Комментировать
                                         </button>
                                     </div>
                                 </form>
                             {{/if}}
                             <form name="AddComment{{news.id}}">
-                                <div id="ListComments0"></div>
+                                <div id="ListComments0{{news.id}}"></div>
                             </form>
                             <div id="ShowComments" value="{{news.id}}"></div>
                             

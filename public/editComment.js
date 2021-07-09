@@ -50,17 +50,16 @@ function editThisComment(id, idd, e){
 
     request.addEventListener("load", function () {
         let receivedUser = JSON.parse(request.response);
-        x1--
         if(receivedUser.error){
             let a = document.getElementById('errorEdit')
             a.innerHTML = receivedUser.error
         }
         else{
+            x1--
             let error = document.getElementById('error')
             error.innerHTML = ""
-            count++;
             commentDiv.innerHTML = `
-            <div id="ListComments${count}"></div>
+            <div id="ListComments${count}${newsId}"></div>
             <div class="commented-section mt-2" id="comment${countComments}">
                 <div class="bg-white p-2">
                     <div class="d-flex flex-row user-info">
@@ -69,6 +68,7 @@ function editThisComment(id, idd, e){
                             <span class="d-block font-weight-bold name">${receivedUser.user.name}</span>
                             <span class="date text-black-50">${receivedUser.comment.date}</span>
                         </div>
+                        <form></form>
                         <form name="editComment${countComments}">
                             <input type="hidden" id="commentId${countComments}" name="id" value="${receivedUser.comment.id}">
                             <input type="hidden" id="ThisComment${countComments}" name="comment" value="${receivedUser.comment.comment}">

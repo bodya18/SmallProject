@@ -94,7 +94,7 @@ window.addEventListener('scroll', ()=>{
                                 <h3>Комментарии</h3>
                                 ${AllNews.isAuth 
                                     ? `<font color='red' id="error"></font>
-                                    <form name="NewComment">
+                                    <form name="NewComment${AllNews.news[i].id}">
                                         <input type="hidden" name="userId" value="${AllNews.user.id}">
                                         <input type="hidden" name="newsId" value="${AllNews.news[i].id}">
                                         <div class="d-flex flex-row add-comment-section mt-4 mb-4">
@@ -103,8 +103,8 @@ window.addEventListener('scroll', ()=>{
                                             ? `<img class="img-fluid img-responsive rounded-circle mr-2" src="/${AllNews.user.avatarURL}" style="width: 50px; height: 50px;">` 
                                             : `<img class="img-fluid img-responsive rounded-circle mr-2" src="../../images/no_avatar.png" style="width: 50px; height: 50px;">`
                                         }
-                                            <textarea id="texrow" name="comments" type="text" class="form-control mr-3" placeholder="Добавить комментарий" rows="4" maxlength="1000" minlength="1"></textarea>   
-                                            <button id="comment" class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
+                                            <textarea id="texrow${AllNews.news[i].id}" name="comments" type="text" class="form-control mr-3" placeholder="Добавить комментарий" rows="4" maxlength="1000" minlength="1"></textarea>   
+                                            <button id="comment${AllNews.news[i].id}" onclick="addComment(${AllNews.news[i].id}, event)" class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
                                                 Комментировать
                                             </button>
                                         </div>
@@ -112,7 +112,7 @@ window.addEventListener('scroll', ()=>{
                                     : ``
                                 }
                                 <form name="AddComment${AllNews.news[i].id}">
-                                    <div id="ListComments0"></div>
+                                    <div id="ListComments0${AllNews.news[i].id}"></div>
                                 </form>
                                 <div id="ShowComments${AllNews.news[i].id}" value="${AllNews.news[i].id}"></div>                                    
                             </div>
@@ -137,7 +137,6 @@ window.addEventListener('scroll', ()=>{
             
             request2.addEventListener("load", function () {
                 let session = JSON.parse(request2.response);
-                console.log(session.comments);
                 let b = document.getElementById(`ShowComments`+ThisNewsId)
             
                 for (let i = 0; i < session.comments.length; i++) {
