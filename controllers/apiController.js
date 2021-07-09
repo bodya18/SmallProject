@@ -18,6 +18,9 @@ exports.newsCategory = async (req,res) =>{
     const TopNews = await rbac.news.GetNewsByCategory(req.body.categoryId)
     return res.json(TopNews)
 }
+exports.route = async (req,res) =>{
+   
+}
 
 exports.news = async (req,res) =>{
     const rbac = new RBAC
