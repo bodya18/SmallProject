@@ -76,7 +76,7 @@
                         <div class="coment-bottom bg-white p-2 px-4 comment_list">
                             <h3>Комментарии</h3>
                             {{#if isAuth}}
-                                <font color='red' id="error"></font>
+                                <font color='red' id="error{{news.id}}"></font>
                                 <form name="NewComment{{news.id}}">
                                     <input type="hidden" name="userId" value="{{ThisUser.id}}">
                                     <input type="hidden" name="newsId" value="{{news.id}}">
@@ -94,7 +94,7 @@
                                 </form>
                             {{/if}}
                             <form name="AddComment{{news.id}}">
-                                <div id="ListComments0{{news.id}}"></div>
+                                <div id="ListComments{{news.id}}"></div>
                             </form>
                             <div id="ShowComments" value="{{news.id}}"></div>
                             

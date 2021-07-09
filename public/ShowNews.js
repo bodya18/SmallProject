@@ -1,4 +1,3 @@
-
 let AllNews
 addEventListener('load', ()=>{
     const ThiscategoryId = document.getElementById("ListNews").getAttribute('value')
@@ -36,9 +35,10 @@ window.addEventListener('scroll', ()=>{
             let ThisNews = JSON.parse(request1.response);
             
             let isPerm=false
-            for (let j = 0; j < AllNews.permissionsList.length; j++)
-                if (AllNews.permissionsList[j] === 'GIVE')
-                    isPerm=true
+            if(AllNews.permissionsList)
+                for (let j = 0; j < AllNews.permissionsList.length; j++)
+                    if (AllNews.permissionsList[j] === 'GIVE')
+                        isPerm=true
             div.id ="news"+ listValue
             div.className="row"
             div.innerHTML = `
@@ -93,7 +93,7 @@ window.addEventListener('scroll', ()=>{
                             <div class="coment-bottom bg-white p-2 px-4 comment_list_1">
                                 <h3>Комментарии</h3>
                                 ${AllNews.isAuth 
-                                    ? `<font color='red' id="error"></font>
+                                    ? `<font color='red' id="error${AllNews.news[i].id}"></font>
                                     <form name="NewComment${AllNews.news[i].id}">
                                         <input type="hidden" name="userId" value="${AllNews.user.id}">
                                         <input type="hidden" name="newsId" value="${AllNews.news[i].id}">
@@ -112,7 +112,7 @@ window.addEventListener('scroll', ()=>{
                                     : ``
                                 }
                                 <form name="AddComment${AllNews.news[i].id}">
-                                    <div id="ListComments0${AllNews.news[i].id}"></div>
+                                    <div id="ListComments${AllNews.news[i].id}"></div>
                                 </form>
                                 <div id="ShowComments${AllNews.news[i].id}" value="${AllNews.news[i].id}"></div>                                    
                             </div>
@@ -175,27 +175,45 @@ window.addEventListener('scroll', ()=>{
                                     </div><hr>`
                                 }
                                 else{
+                                    let permis = true
                                     for (let k = 0; k < session.permissionsList.length; k++) {
-                                        if(session.permissionsList[k] === 'GIVE')
-                                        div.innerHTML =`
-                                        <div class="bg-white p-2">
-                                            <div class="d-flex flex-row user-info">   
-                                                <img id="UserAvatar" class="rounded-circle" src="../../${session.users[j].avatarURL}" style="width: 50px; height: 50px;">
-                                                <div class="d-flex flex-column justify-content-start ml-2">
-                                                    <span class="d-block font-weight-bold name">${session.users[j].name}</span>
-                                                    <span class="date text-black-50">${session.comments[i].date}</span>
+                                        if(session.permissionsList[k] === 'GIVE'){
+                                            div.innerHTML =`
+                                            <div class="bg-white p-2">
+                                                <div class="d-flex flex-row user-info">   
+                                                    <img id="UserAvatar" class="rounded-circle" src="../../${session.users[j].avatarURL}" style="width: 50px; height: 50px;">
+                                                    <div class="d-flex flex-column justify-content-start ml-2">
+                                                        <span class="d-block font-weight-bold name">${session.users[j].name}</span>
+                                                        <span class="date text-black-50">${session.comments[i].date}</span>
+                                                    </div>
+                                                        <form name="DeleteComment${countComments}">
+                                                            <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
+                                                            <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" style="margin-left:300px;" class="btn btn-danger">Удалить</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
-                                                    <form name="DeleteComment${countComments}">
-                                                        <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
-                                                        <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" style="margin-left:300px;" class="btn btn-danger">Удалить</button>
-                                                    </form>
+                                                <div class="mt-2">
+                                                    <p class="comment-text">${session.comments[i].comment}</p>
                                                 </div>
-                                            </div>
-                                            <div class="mt-2">
-                                                <p class="comment-text">${session.comments[i].comment}</p>
-                                            </div>
-                                        </div><hr>`
+                                            </div><hr>`
+                                            permis = false
+                                        }   
                                     }
+                                    if(permis)
+                                        div.innerHTML =`
+                                            <div class="bg-white p-2">
+                                                <div class="d-flex flex-row user-info">   
+                                                    <img id="UserAvatar" class="rounded-circle" src="../../${session.users[j].avatarURL}" style="width: 50px; height: 50px;">
+                                                    <div class="d-flex flex-column justify-content-start ml-2">
+                                                        <span class="d-block font-weight-bold name">${session.users[j].name}</span>
+                                                        <span class="date text-black-50">${session.comments[i].date}</span>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <p class="comment-text">${session.comments[i].comment}</p>
+                                                </div>
+                                            </div><hr>`
                                 }
                             }
                             else{

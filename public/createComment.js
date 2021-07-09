@@ -17,20 +17,24 @@ function addComment(newsId, e){
         let receivedUser = JSON.parse(request.response);
         
         if(receivedUser.error){
-            let a = document.getElementById('error')
+            let a = document.getElementById('error'+newsId)
             a.innerHTML = receivedUser.error
         }
         else{
-            let error = document.getElementById('error')
+            let error = document.getElementById('error'+newsId)
             error.innerHTML = ""
-            let a = document.getElementById(`ListComments${count}`+newsId)
+            let a = document.getElementById(`ListComments`+newsId)
+            var div = document.createElement('div')
+            div.className="commented-section mt-2"
             count++;
-            a.innerHTML = `
-            <div id="ListComments${count}${newsId}"></div>
-            <div class="commented-section mt-2" id="comment${countComments}">
+            div.id = `comment${countComments}`
+            div.innerHTML =  `
                 <div class="bg-white p-2">
                     <div class="d-flex flex-row user-info">
-                        <img id="UserAvatar" class="rounded-circle" src="/${receivedUser.user.avatarURL}" style="width: 50px; height: 50px;">
+                    ${receivedUser.user.avatarURL 
+                        ? `<img id="UserAvatar" class="rounded-circle" src="/${receivedUser.user.avatarURL}" style="width: 50px; height: 50px;">` 
+                        : `<img id="UserAvatar" class="rounded-circle" src="/images/no_avatar.png" style="width: 50px; height: 50px;">`}
+                        
                         <div class="d-flex flex-column justify-content-start ml-2">
                             <span class="d-block font-weight-bold name">${receivedUser.user.name}</span>
                             <span class="date text-black-50">${receivedUser.comment.date}</span>
@@ -50,8 +54,8 @@ function addComment(newsId, e){
                         <p class="comment-text">${receivedUser.comment.comment}</p>
                     </div>
                     <hr>
-                </div>
-            </div>`
+                </div>`
+            a.prepend(div)
             let texrow = document.getElementById('texrow'+newsId)
             texrow.value = ''
             countComments++

@@ -56,10 +56,11 @@ function editThisComment(id, idd, e){
         }
         else{
             x1--
-            let error = document.getElementById('error')
+            console.log(receivedUser);
+            let error = document.getElementById('error'+receivedUser.comment.newsId)
             error.innerHTML = ""
             commentDiv.innerHTML = `
-            <div id="ListComments${count}${newsId}"></div>
+            <div id="ListComments${newsId}"></div>
             <div class="commented-section mt-2" id="comment${countComments}">
                 <div class="bg-white p-2">
                     <div class="d-flex flex-row user-info">
