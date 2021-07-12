@@ -13,7 +13,7 @@ addEventListener('load', ()=>{
         request.send(categoryId);
 })
 let listValue = 0
-let isNews = true
+let isNews = true   
 window.addEventListener('scroll', ()=>{
     let pix = document.body.scrollHeight - window.innerHeight - $(this).scrollTop()
     
@@ -31,6 +31,7 @@ window.addEventListener('scroll', ()=>{
         request1.setRequestHeader("Content-Type", "application/json");
         
         request1.addEventListener("load", function () {
+            
             var div = document.createElement('div')
             let ThisNews = JSON.parse(request1.response);
             
@@ -125,8 +126,13 @@ window.addEventListener('scroll', ()=>{
             
             a.appendChild(div)
 
+            
+        })
+        request1.send(newsId);
+        
+        setTimeout(() => {
             ThisNewsId = JSON.parse(newsId).newsId
-
+            
             
             let request2 = new XMLHttpRequest();
             let newsId1 = JSON.stringify({id: ThisNewsId});
@@ -240,9 +246,9 @@ window.addEventListener('scroll', ()=>{
             });
             
             request2.send(newsId1);    
+        }, 100);
+        
                 
-        })
-        request1.send(newsId);
         isNews = false
     }	
 })

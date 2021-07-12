@@ -56,7 +56,6 @@ function editThisComment(id, idd, e){
         }
         else{
             x1--
-            console.log(receivedUser);
             let error = document.getElementById('error'+receivedUser.comment.newsId)
             error.innerHTML = ""
             commentDiv.innerHTML = `
