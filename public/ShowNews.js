@@ -43,8 +43,8 @@ window.addEventListener('scroll', ()=>{
             div.id ="news"+ listValue
             div.className="row"
             div.innerHTML = `
-                <hr>
-                <div class="col-lg-7">
+                <hr style="margin-left:15px; margin-top:20px; width:63%;">
+                <div class="col-lg-8">
                     <div class="sn-container">
                         <div class="single-img">
                             <img class="single-img"  src="/${AllNews.news[i].postUrl}">
@@ -86,42 +86,39 @@ window.addEventListener('scroll', ()=>{
                             <input type="hidden" id="newsId" value="${AllNews.news[i].id}">
                             <br>
                         </div>
+                        <div class="coment-bottom bg-white p-2 px-4 comment_list">
+                            <details>
+                                <summary><h3>Комментарии</h3></summary>
+                                <div class="content">
+                                    ${AllNews.isAuth 
+                                        ? `<font color='red' id="error${AllNews.news[i].id}"></font>
+                                        <form name="NewComment${AllNews.news[i].id}">
+                                            <input type="hidden" name="userId" value="${AllNews.user.id}">
+                                            <input type="hidden" name="newsId" value="${AllNews.news[i].id}">
+                                            <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+                                            ${
+                                                AllNews.user.avatarURL 
+                                                ? `<img class="img-fluid img-responsive rounded-circle mr-2" src="/${AllNews.user.avatarURL}" style="width: 50px; height: 50px;">` 
+                                                : `<img class="img-fluid img-responsive rounded-circle mr-2" src="../../images/no_avatar.png" style="width: 50px; height: 50px;">`
+                                            }
+                                                <textarea id="texrow${AllNews.news[i].id}" name="comments" type="text" class="form-control mr-3" placeholder="Добавить комментарий" rows="4" maxlength="1000" minlength="1"></textarea>   
+                                                <button id="comment${AllNews.news[i].id}" onclick="addComment(${AllNews.news[i].id}, event)" class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
+                                                    Комментировать
+                                                </button>
+                                            </div>
+                                        </form>`
+                                        : ``
+                                    }
+                                    <form name="AddComment${AllNews.news[i].id}">
+                                        <div id="ListComments${AllNews.news[i].id}"></div>
+                                    </form>
+                                    <div id="ShowComments${AllNews.news[i].id}" value="${AllNews.news[i].id}"></div>
+                                </div>
+                            </details>                                    
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-5">
-                    <div class="sidebar">
-                        <div class="sidebar-widget">    
-                            <div class="coment-bottom bg-white p-2 px-4 comment_list_1">
-                                <h3>Комментарии</h3>
-                                ${AllNews.isAuth 
-                                    ? `<font color='red' id="error${AllNews.news[i].id}"></font>
-                                    <form name="NewComment${AllNews.news[i].id}">
-                                        <input type="hidden" name="userId" value="${AllNews.user.id}">
-                                        <input type="hidden" name="newsId" value="${AllNews.news[i].id}">
-                                        <div class="d-flex flex-row add-comment-section mt-4 mb-4">
-                                        ${
-                                            AllNews.user.avatarURL 
-                                            ? `<img class="img-fluid img-responsive rounded-circle mr-2" src="/${AllNews.user.avatarURL}" style="width: 50px; height: 50px;">` 
-                                            : `<img class="img-fluid img-responsive rounded-circle mr-2" src="../../images/no_avatar.png" style="width: 50px; height: 50px;">`
-                                        }
-                                            <textarea id="texrow${AllNews.news[i].id}" name="comments" type="text" class="form-control mr-3" placeholder="Добавить комментарий" rows="4" maxlength="1000" minlength="1"></textarea>   
-                                            <button id="comment${AllNews.news[i].id}" onclick="addComment(${AllNews.news[i].id}, event)" class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
-                                                Комментировать
-                                            </button>
-                                        </div>
-                                    </form>`
-                                    : ``
-                                }
-                                <form name="AddComment${AllNews.news[i].id}">
-                                    <div id="ListComments${AllNews.news[i].id}"></div>
-                                </form>
-                                <div id="ShowComments${AllNews.news[i].id}" value="${AllNews.news[i].id}"></div>                                    
-                            </div>
-                        </div>
-                        
-                    </div>
-                    
-                </div>`
+                `
             
             
             a.appendChild(div)
@@ -167,7 +164,7 @@ window.addEventListener('scroll', ()=>{
                                                 <form name="editComment${countComments}">
                                                     <input type="hidden" id="commentId${countComments}" name="id" value="${session.comments[i].id}">
                                                     <input type="hidden" id="ThisComment${countComments}" name="comment" value="${session.comments[i].comment}">
-                                                    <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" style="margin-left:154px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
+                                                    <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
                                                 </form>
                                                 <form name="DeleteComment${countComments}">
                                                     <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
@@ -194,7 +191,7 @@ window.addEventListener('scroll', ()=>{
                                                     </div>
                                                         <form name="DeleteComment${countComments}">
                                                             <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
-                                                            <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" style="margin-left:300px;" class="btn btn-danger">Удалить</button>
+                                                            <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" style="margin-left:562px;" class="btn btn-danger">Удалить</button>
                                                         </form>
                                                     </div>
                                                 </div>
