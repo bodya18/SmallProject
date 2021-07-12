@@ -33,3 +33,30 @@ function delInput(y) {
     div.remove();
     --x;
 }
+
+function sub(e){
+    e.preventDefault();
+
+    const form = document.forms['subscribe'];
+    const email = form.elements["userEmail"].value
+
+    let request = new XMLHttpRequest();
+
+    request.open("post", "/subscribe", true)
+
+    request.setRequestHeader("Content-Type", "application/json");
+
+    request.addEventListener("load", function () {
+        const error = JSON.parse(request.response)
+        if(error){
+            document.getElementById('goodSub').innerHTML = ''
+            document.getElementById('errorSub').innerHTML = error.error
+        }else{
+            document.getElementById('errorSub').innerHTML = ''
+            document.getElementById('goodSub').innerHTML = 'Вы успешно подписались на рассылку'
+        }
+        form.elements["userEmail"].value = ''
+    })
+
+    request.send(JSON.stringify({email: email}))
+}

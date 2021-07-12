@@ -416,14 +416,17 @@
                     
                     <div class="col-lg-4 col-md-6">
                         <div class="footer-widget">
+                            
                             <h3 class="title">Подписаться</h3>
                             <div class="newsletter">
                                 <p>
                                     Вы можете подписаться на новости
                                 </p>
-                                <form action="/subscribe" method="POST">
-                                    <input class="form-control" type="email" name="email" placeholder="Ваша почта">
-                                    <button type="submit" class="btn" style="width: auto;">Подписаться</button>
+                                <font color="lime" id="goodSub"></font>
+                                <font color="red" id="errorSub"></font>
+                                <form name="subscribe">
+                                    <input id="userEmail" class="form-control" type="email" name="email" placeholder="Ваша почта">
+                                    <button type="submit" onclick="sub(event)" class="btn" style="width: auto;">Подписаться</button>
                                 </form>
                             </div>
                         </div>
