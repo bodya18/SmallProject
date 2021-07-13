@@ -23,10 +23,11 @@ function addMore(e){
         let session = JSON.parse(request.response);
         let a = document.getElementById(`ShowComments`)
         if(session.comments.length > CommentsLength){
+            let step = CommentsLength + CountShowComments
             if(session.comments.length - CommentsLength < CountShowComments){
-                CountShowComments = session.comments.length - CommentsLength
+                step = session.comments.length
             }
-            for (let i = CommentsLength; i < (CommentsLength + CountShowComments); i++) {
+            for (let i = CommentsLength; i < step; i++) {
                 var div = document.createElement('div')
                 div.className = "commented-section mt-2"
                 div.id ="comment"+ countComments
@@ -123,8 +124,8 @@ function addMore(e){
                 a.appendChild(div)
                 countComments++;
             }
-            CommentsLength +=CountShowComments;
-            if(CommentsLength<session.comments.length){
+            CommentsLength += CountShowComments;
+            if(CommentsLength < session.comments.length){
                 var btn = document.createElement("button");
                 btn.type = 'submit';
                 btn.id = 'button_more'

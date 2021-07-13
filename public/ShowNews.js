@@ -160,10 +160,8 @@ function addMoreList(e, ThisNewsId, ThisCommentsLength){
         if(session.comments.length > ThisCommentsLength){
             let step = ThisCommentsLength + CountShowComments
             if(session.comments.length - ThisCommentsLength < CountShowComments){
-                step = session.comments.length - ThisCommentsLength + CountShowComments
+                step = session.comments.length
             }
-            console.log(ThisCommentsLength);
-            console.log(step);
             for (let i = ThisCommentsLength; i < step; i++) {
                 
                 var div = document.createElement('div')
