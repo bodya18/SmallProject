@@ -84,3 +84,9 @@ pre {
     padding: 5px;
 }
 
+.in_this_category{
+    position:fixed; 
+    top:78px; 
+    left:1300px;
+    width: 500px !important;
+}

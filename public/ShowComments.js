@@ -1,8 +1,51 @@
 let countComments = 0;
 let CommentsLength = 0;
-let CountShowComments = 2
+let CountShowComments = 5
 
 addEventListener('load', function (e){
+    const div = document.getElementById('in_this_category')
+
+    let request = new XMLHttpRequest();
+    let newsId = document.getElementById('newsId').value
+    let categoryId = document.getElementById('categoryId').value
+    let news = JSON.stringify({newsId: newsId, categoryId: categoryId});
+
+    request.open("post", "/api/news", true)
+    
+    request.setRequestHeader("Content-Type", "application/json");
+    
+    request.addEventListener("load", function () {
+        let data = JSON.parse(request.response)
+        div.className = 'col-lg-4 in_this_category'
+        let a = document.createElement('div')
+        a.className = 'news-list'
+        for (let i = 0; i < data.news.length; i++) {
+            a.insertAdjacentHTML(
+                'beforeend', 
+                `<div class="nl-item">
+                    <div class="nl-img">
+                        <img width="100" height="64" style="object-fit: cover;" src="/${data.news[i].postUrl}" />
+                    </div>
+                    <div class="nl-title">
+                        <a style="text-decoration: none;" href="/news/get/${data.news[i].id}">${data.news[i].title}</a>
+                    </div>
+                </div>`
+            )
+        }
+        div.innerHTML = 
+        `<div class="sidebar">
+            <div class="sidebar-widget">
+                <h2 class="sw-title">В этой категории</h2>
+                <div id="showInThisCategory">
+                    
+                </div> 
+            </div>
+        </div>`
+        document.getElementById('showInThisCategory').appendChild(a)
+
+    })
+    request.send(news)
+    
     addMore(e)  
 })
 
