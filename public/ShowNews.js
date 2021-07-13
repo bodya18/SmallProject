@@ -21,6 +21,9 @@ window.addEventListener('scroll', ()=>{
         setTimeout(() => {
             isNews = true
         }, 500);
+        document.querySelectorAll('details').forEach((el) => {
+            new Accordion(el);
+        });
         let a = document.getElementById(`ListNews`)
         let i = listValue
         listValue++;    
@@ -113,8 +116,8 @@ window.addEventListener('scroll', ()=>{
                                         <div id="ListComments${AllNews.news[i].id}"></div>
                                     </form>
                                     <div id="ShowComments${AllNews.news[i].id}" value="${AllNews.news[i].id}"></div>
-                                </div>
-                            </details>                                    
+                                </div>                                   
+                            </details>
                         </div>
                     </div>
                 </div>
