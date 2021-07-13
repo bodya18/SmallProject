@@ -164,12 +164,17 @@ exports.editSettings = async (req, res) => {
 }
 
 exports.CreateNews = async (req, res) => {
-    const rbac = new RBAC
-    const data = await rbac.news.CreateNews(req.body.title, req.body.postText, req.body.selectCategoryId, req.file)
-    if(data.isCreate === false){
-        req.flash('error', data.error)
-        return res.redirect(`/news/create/post`)
-    }
+    let timeout = 0
+    if(req.body.timeout)
+        timeout = req.body.timeout * 60 * 60 * 1000
+    setTimeout(async () => {
+        const rbac = new RBAC
+        const data = await rbac.news.CreateNews(req.body.title, req.body.postText, req.body.selectCategoryId, req.file)
+        if(data.isCreate === false){
+            req.flash('error', data.error)
+            return res.redirect(`/news/create/post`)
+        }
+    }, timeout);
     
     return res.redirect('/news')
 }

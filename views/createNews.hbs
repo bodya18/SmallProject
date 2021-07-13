@@ -18,10 +18,18 @@
                 {{#each categories}}
                     <option value="{{this.id}}">{{this.category}}</option>
                 {{/each}}
-            </select><br><br><br><br>
-
+            </select><br><br>
+            <select class="form-select" name="timeout">
+                <option disabled selected>Выберите на сколько отложить публикацию статьи</option>
+                <option value="1">1 час</option>
+                <option value="2">2 часа</option>
+                <option value="4">4 часа</option>
+                <option value="8">8 часов</option>
+                <option value="24">24 часа</option>
+                <option value="48">2 дня</option>
+            </select><br><br>
             <input type="submit" class="btn btn-secondary" value="Отправить">
-
+            
         </div>
     </form>
 
