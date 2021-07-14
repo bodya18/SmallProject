@@ -19,18 +19,21 @@ addEventListener('load', function (e){
         div.className = 'col-lg-4 in_this_category'
         let a = document.createElement('div')
         a.className = 'news-list'
+        const date = new Date()
+        const nowDate = Date.UTC(date.getFullYear(), date.getMonth()+1, date.getDate(), date.getHours(), date.getMinutes())
         for (let i = 0; i < data.news.length; i++) {
-            a.insertAdjacentHTML(
-                'beforeend', 
-                `<div class="nl-item">
-                    <div class="nl-img">
-                        <img width="100" height="64" style="object-fit: cover;" src="/${data.news[i].postUrl}" />
-                    </div>
-                    <div class="nl-title">
-                        <a style="text-decoration: none;" href="/news/get/${data.news[i].id}">${data.news[i].title}</a>
-                    </div>
-                </div>`
-            )
+            if(data.news[i].time<nowDate)
+                a.insertAdjacentHTML(
+                    'beforeend', 
+                    `<div class="nl-item">
+                        <div class="nl-img">
+                            <img width="100" height="64" style="object-fit: cover;" src="/${data.news[i].postUrl}" />
+                        </div>
+                        <div class="nl-title">
+                            <a style="text-decoration: none;" href="/news/get/${data.news[i].id}">${data.news[i].title}</a>
+                        </div>
+                    </div>`
+                )
         }
         div.innerHTML = 
         `<div class="sidebar">

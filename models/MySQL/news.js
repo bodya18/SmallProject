@@ -58,9 +58,9 @@ class News{
         }
     }
 
-    async create(post_text, postUrl, categoryId, title) {
+    async create(timepost, post_text, postUrl, categoryId, title) {
         try{
-            await pool.query('Insert into news (post_text, postUrl, categoryId, title) values (?, ?, ?, ?)', [post_text, postUrl.path, categoryId, title])
+            await pool.query('Insert into news (time, post_text, postUrl, categoryId, title) values (?, ?, ?, ?, ?)', [timepost, post_text, postUrl.path, categoryId, title])
         }
         catch (e){
             console.log(e) 

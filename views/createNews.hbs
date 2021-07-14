@@ -19,17 +19,25 @@
                     <option value="{{this.id}}">{{this.category}}</option>
                 {{/each}}
             </select><br><br>
-            <select class="form-select" name="timeout">
-                <option disabled selected>Выберите на сколько отложить публикацию статьи</option>
-                <option value="1">1 час</option>
-                <option value="2">2 часа</option>
-                <option value="4">4 часа</option>
-                <option value="8">8 часов</option>
-                <option value="24">24 часа</option>
-                <option value="48">2 дня</option>
-            </select><br><br>
-            <input type="submit" class="btn btn-secondary" value="Отправить">
             
+            <div class="container">
+                <form class="form-horizontal" >
+                    <div class="form-group">
+                        <label for="dtp_input1" class="control-label">Выберите дату и время публикации</label>
+                        <div class="input-group date form_datetime col-md-5" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+                        <input type="hidden" name="timeout" id="dtp_input1" value="" /><br/>
+                    </div>
+                </form>
+            </div><br><br>
+            
+            <input type="submit" class="btn btn-secondary" value="Отправить">
+            <script>
+                
+            </script>
         </div>
     </form>
 

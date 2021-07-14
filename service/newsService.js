@@ -62,7 +62,7 @@ class News{
         return true
     }
 
-    async CreateNews(title, postText, selectCategoryId, filedata) {
+    async CreateNews(timepost, title, postText, selectCategoryId, filedata) {
         if(title.length < 5)
         return {
             isCreate: false,
@@ -82,7 +82,11 @@ class News{
             file.inFile = false
             return {perm: false, error: 'Аватар пользователя должен быть фотографией'}
         }
-        await this.news.create(postText, filedata, selectCategoryId, title)
+        if (!timepost) {
+            let data = new Date()
+            timepost = Date.UTC(data.getFullYear(), data.getMonth()+1, data.getDate(), data.getHours(), data.getMinutes())
+        }
+        await this.news.create(timepost, postText, filedata, selectCategoryId, title)
         return{isCreate:true}
         
     }

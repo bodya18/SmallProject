@@ -110,21 +110,3 @@ class Accordion {
     this.el.style.height = this.el.style.overflow = '';
   }
 }
-// let isDetail = true
-
-// document.addEventListener('scroll',()=>{
-//     let pix = document.body.scrollHeight - window.innerHeight - $(this).scrollTop()
-    
-//     if(pix > 460 && pix < 500 && isDetail === true ){
-//         setTimeout(() => {
-//             isDetail = true
-//         }, 100);
-//         document.querySelectorAll('details').forEach((el) => {
-//             new Accordion(el);
-//         });
-//         isDetail = false
-//     }
-// })
-// document.querySelectorAll('details').forEach((el) => {
-//     new Accordion(el);
-// });

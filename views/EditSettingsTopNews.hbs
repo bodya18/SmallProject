@@ -17,23 +17,15 @@
                 <select class="js-example-basic-multiple" data-placeholder="Выберите новость" name="selectTitleId" style="width: 610px;">
                     <option></option>
                     {{#each Allnews}}
-                        <option value="{{this.title}}">{{this.title}}</option>
+                        {{#if_eq this.time @root.nowDate}}
+                            <option value="{{this.title}}">{{this.title}}</option>
+                        {{/if_eq}}
                     {{/each}}
                 </select>
                 <button type="submit" class="btn btn-lg btn-default">
                     <i class="fa fa-search"></i>
                 </button><BR>
 
-                {{!-- <div class="form-group">
-                    <div class="input-group input-group-lg" style="width: 800px;">
-                        <input type="search" class="form-control form-control-lg" name="title" placeholder="Введите название статьи" autocomplete="off">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-lg btn-default">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div> --}}
             </form>
 
             <form method="POST" action="/news/editSettings">
@@ -78,16 +70,17 @@
 
                                     {{#each @root.news}}
                                         {{#ifeq this.categoryId ../this.id}}
-
-                                            <div class="col-md-3" style=" margin-block-end: 15px;">
-                                                <div class="cn-img">
-                                                    <img class="show-Posts" src="/{{this.postUrl}}" />
-                                                    <div class="cn-title">
-                                                        <a style="text-decoration: none;" href="/news/get/{{this.id}}">{{this.title}}</a>
-                                                        <input class="form-check-input" type="checkbox" value="{{this.id}}" name="checkNews">
+                                            {{#if_eq this.time @root.nowDate}}
+                                                <div class="col-md-3" style=" margin-block-end: 15px;">
+                                                    <div class="cn-img">
+                                                        <img class="show-Posts" src="/{{this.postUrl}}" />
+                                                        <div class="cn-title">
+                                                            <a style="text-decoration: none;" href="/news/get/{{this.id}}">{{this.title}}</a>
+                                                            <input class="form-check-input" type="checkbox" value="{{this.id}}" name="checkNews">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            {{/if_eq}}
                                         {{/ifeq}}
                                     {{/each}}
 

@@ -9,7 +9,7 @@
                         <img class="single-img"  src="/{{news.postUrl}}">
                     </div>
                     <div class="sn-content">
-                        <h1 class="sn-title">
+                        <h1 class="sn-title" style="word-wrap: break-word;">
                             {{news.title}}
                             {{#each permissionsList}}
                                 {{#ifeq this 'GIVE'}}
@@ -83,27 +83,6 @@
                 </div>
             </div>
             <div id="in_this_category" ></div>
-            {{!-- <div class="col-lg-4">
-                <div class="sidebar">
-                    <div class="sidebar-widget">
-                        <h2 class="sw-title">В этой категории</h2>
-                        <div class="news-list">
-                            {{#each dataNews}}
-                                {{#ifeq this.categoryId @root.categories}}
-                                    <div class="nl-item">
-                                        <div class="nl-img">
-                                            <img width="100" height="64" style="object-fit: cover;" src="/{{this.postUrl}}" />
-                                        </div>
-                                        <div class="nl-title">
-                                            <a style="text-decoration: none;" href="/news/get/{{this.id}}">{{this.title}}</a>
-                                        </div>
-                                    </div>
-                                {{/ifeq}}
-                            {{/each}}
-                        </div> 
-                    </div>
-                </div>
-            </div> --}}
             <div id="ListNews" value="{{categories}}"></div>
         </div>
     </div>

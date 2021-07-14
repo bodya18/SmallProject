@@ -7,14 +7,16 @@
                     <div class="row">{{!-- <div class="row cn-slider"> --}}
                         {{#each @root.news}}
                             {{#ifeq this.categoryId ../this.id}}
-                                <div class="col-md-3">
-                                    <div class="cn-img">
-                                        <img class="show-Posts" src="/{{this.postUrl}}" />
-                                        <div class="cn-title">
-                                            <a style="text-decoration: none;" href="/news/get/{{this.id}}">{{this.title}}</a>
+                                {{#if_eq this.time @root.nowDate}}
+                                    <div class="col-md-3">
+                                        <div class="cn-img">
+                                            <img class="show-Posts" src="/{{this.postUrl}}" />
+                                            <div class="cn-title">
+                                                <a style="text-decoration: none;" href="/news/get/{{this.id}}">{{this.title}}</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                {{/if_eq}}
                             {{/ifeq}}
                         {{/each}}
                     </div><br><br>

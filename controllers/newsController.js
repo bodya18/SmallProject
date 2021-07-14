@@ -5,6 +5,8 @@ const config = require('../middleware/config');
 exports.GetNews = async (req,res) => {
     const rbac = new RBAC
     const news = await rbac.news.GetNews()
+    const data = new Date()
+    const nowDate = Date.UTC(data.getFullYear(), data.getMonth()+1, data.getDate(), data.getHours(), data.getMinutes())
     const categoriesId = await rbac.news.GetCategoriesInSettings('SelectedCategories')
     const TopLeft = await rbac.news.GetCategoriesInSettings('TopLeftNewsSlider')
     const TopRight = await rbac.news.GetCategoriesInSettings('TopRightNewsSlider')
@@ -42,6 +44,7 @@ exports.GetNews = async (req,res) => {
                     RightNews[0] = await rbac.news.GetNewsById(right) 
                 }
                 res.render('./bootstrap-news-template/index.hbs', {
+                    nowDate,
                     title: 'Новости',
                     isNews: true,
                     RightNews,
@@ -80,7 +83,9 @@ exports.CreateSettings = async (req, res) => {
 exports.GetThisPost = async (req,res) => {
     const rbac = new RBAC
     const news = await rbac.news.GetNewsById(req.params.id)
-    if(!news)
+    const data = new Date()
+    const nowDate = Date.UTC(data.getFullYear(), data.getMonth()+1, data.getDate(), data.getHours(), data.getMinutes())
+    if(!news || nowDate < news.time)
         return res.redirect('/news')
     const views = await rbac.news.GetViews(req.params.id)
     var dataNews = await rbac.news.GetNewsByCategoryNoThisPost(news.categoryId, req.params.id)
@@ -164,18 +169,18 @@ exports.editSettings = async (req, res) => {
 }
 
 exports.CreateNews = async (req, res) => {
-    let timeout = 0
-    if(req.body.timeout)
-        timeout = req.body.timeout * 60 * 60 * 1000
-    setTimeout(async () => {
-        const rbac = new RBAC
-        const data = await rbac.news.CreateNews(req.body.title, req.body.postText, req.body.selectCategoryId, req.file)
-        if(data.isCreate === false){
-            req.flash('error', data.error)
-            return res.redirect(`/news/create/post`)
-        }
-    }, timeout);
-    
+    let year = req.body.timeout.substr(0, 4)
+    let month = req.body.timeout.substr(5, 2)
+    let date = req.body.timeout.substr(8, 2)
+    let hours = req.body.timeout.substr(11, 2)
+    let minutes = req.body.timeout.substr(14, 2)
+    let timePost = Date.UTC(year, month, date, hours, minutes)
+    const rbac = new RBAC
+    const data = await rbac.news.CreateNews(timePost, req.body.title, req.body.postText, req.body.selectCategoryId, req.file)
+    if(data.isCreate === false){
+        req.flash('error', data.error)
+        return res.redirect(`/news/create/post`)
+    } 
     return res.redirect('/news')
 }
 
@@ -240,7 +245,8 @@ exports.GetEditSettings = async (req,res) => {
         })
     }
     else{
-        
+        const data = new Date()
+        const nowDate = Date.UTC(data.getFullYear(), data.getMonth()+1, data.getDate(), data.getHours(), data.getMinutes())
         var category = req.query.category
         const title = req.query.title
         const categoriesSelect = await rbac.category.GetCategories()
@@ -250,6 +256,7 @@ exports.GetEditSettings = async (req,res) => {
                 const news = await rbac.news.GetNews()
                 const categories = await rbac.category.GetCategories()
                 return res.render('EditSettingsTopNews.hbs', {
+                    nowDate,
                     title: 'Редактирование настройки',
                     settings,
                     categories,
@@ -275,6 +282,7 @@ exports.GetEditSettings = async (req,res) => {
                 }
                 
                 return res.render('EditSettingsTopNews.hbs', {
+                    nowDate,
                     title: 'Редактирование настройки',
                     settings,
                     categories,
@@ -292,6 +300,7 @@ exports.GetEditSettings = async (req,res) => {
                 var SelectTitle = await rbac.news.GetNewsByTitle(title)
                 const categories = await rbac.category.GetCategories()
                 return res.render('EditSettingsTopNews.hbs', {
+                    nowDate,
                     title: 'Редактирование настройки',
                     settings,
                     categories,
@@ -306,6 +315,7 @@ exports.GetEditSettings = async (req,res) => {
             else{
                 var SelectTitle = await rbac.news.GetNewsByTitle(title)
                 return res.render('EditSettingsTopNews.hbs', {
+                    nowDate,
                     title: 'Редактирование настройки',
                     settings,
                     categoriesSelect,
