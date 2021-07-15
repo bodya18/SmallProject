@@ -4,5 +4,5 @@ module.exports = {
     sessionSecretKey: 'some secret value',
     database: 'MySQL',
     dirname: '',
-    site: 'http://localhost'
+    site: 'http://localhost:3000'
 }
