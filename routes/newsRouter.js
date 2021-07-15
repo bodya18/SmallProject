@@ -19,6 +19,7 @@ router.get('/categories', isAdmin, auth, newsController.GetCategories)
 router.get('/GetEditSettings/:key', isAdmin, auth, newsController.GetEditSettings)
 router.get('/watchLater', auth, urlencodedParser, newsController.GetWatchLater)
 
+router.post('/search', urlencodedParser, newsController.search)
 router.post('/SetViews', jsonParser, newsController.SetViews)
 router.post('/watchLater', auth, jsonParser, urlencodedParser, newsController.watchLater)
 router.post('/like', auth, jsonParser, urlencodedParser, newsController.like)

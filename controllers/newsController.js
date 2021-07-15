@@ -433,3 +433,9 @@ exports.SetViews = async(req, res) =>{
     await rbac.news.SetViews(req.body.newsId, ++count)
     res.json(count)
 }
+
+exports.search = async(req, res) =>{
+    const rbac = new RBAC
+    const data = await rbac.news.search(req.body.search)
+    console.log(data);
+}

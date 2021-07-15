@@ -335,6 +335,18 @@ class News{
     async updateLike(newsId, likes){
         await pool.query('update news set likes=? where id=?', [likes, newsId])
     }
+
+    async search(search){
+        var temp
+        await pool.query(`select * from news where title like '%${search}%'`)
+            .then(data => {
+                temp = data[0]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
+    }
 }
 
 module.exports = News

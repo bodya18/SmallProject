@@ -7,7 +7,11 @@
         <meta content="Bootstrap News Template - Free HTML Templates" name="keywords">
         <meta content="Bootstrap News Template - Free HTML Templates" name="description">
 
-<link href="../../public/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+        <link href="../../public/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
         
         <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
@@ -119,6 +123,14 @@
                             </div>
                         {{/if}}
                     </div>
+
+                    <div class="search-container">
+                        <form action="/news/search" method="POST">
+                            <input type="text" placeholder="Поиск по сайту" name="search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+
                 </nav>
             </div>
         </div>
@@ -392,27 +404,11 @@
                     
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-widget">
-                            {{!-- <h3 class="title">Useful Links</h3>
-                            <ul>
-                                <li><a href="#">Lorem ipsum</a></li>
-                                <li><a href="#">Pellentesque</a></li>
-                                <li><a href="#">Aenean vulputate</a></li>
-                                <li><a href="#">Vestibulum sit amet</a></li>
-                                <li><a href="#">Nam dignissim</a></li>
-                            </ul> --}}
                         </div>
                     </div>
 
                     <div class="col-lg-2 col-md-6">
                         <div class="footer-widget">
-                            {{!-- <h3 class="title">Quick Links</h3>
-                            <ul>
-                                <li><a href="#">Lorem ipsum</a></li>
-                                <li><a href="#">Pellentesque</a></li>
-                                <li><a href="#">Aenean vulputate</a></li>
-                                <li><a href="#">Vestibulum sit amet</a></li>
-                                <li><a href="#">Nam dignissim</a></li>
-                            </ul> --}}
                         </div>
                     </div>
                     

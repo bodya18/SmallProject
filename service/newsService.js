@@ -238,6 +238,10 @@ class News{
     async SetViews(newsId, count){
         await this.news.SetViews(newsId, count)
     }
+
+    async search(search){
+        return await this.news.search(search)
+    }
 }
 
 module.exports = News
