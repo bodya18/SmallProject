@@ -338,7 +338,7 @@ class News{
 
     async search(search){
         var temp
-        await pool.query(`select * from news where title like '%${search}%'`)
+        await pool.query(`select * from news where title like '%${search}%' or post_text like '%${search}%'`)
             .then(data => {
                 temp = data[0]
             })
@@ -346,6 +346,22 @@ class News{
                 return console.log(e);
             })
         return temp
+    }
+
+    async getTags(tag){
+        var temp
+        await pool.query(`select * from tags where tag = ?`, [tag])
+            .then(data => {
+                temp = data[0][0]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
+    }
+
+    async createTag(tag){
+        await pool.query('insert into tags (tag) values (?)', [tag])
     }
 }
 

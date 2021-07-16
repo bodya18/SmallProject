@@ -242,6 +242,16 @@ class News{
     async search(search){
         return await this.news.search(search)
     }
+    async newTag(tag){
+        if(tag.length < 2)
+            return 'Длина тэга должна быть не менее 2 символов'
+        if(tag.length > 30)
+            return 'Длина тэга должна быть не более 30 символов'
+        const data = await this.news.getTags(tag)
+        if (data) 
+            return 'Данный тэг уже создан'
+        await this.news.createTag(tag)
+    }
 }
 
 module.exports = News

@@ -1,0 +1,16 @@
+<div align='center'>
+    <h1>Создание тэгов</h1>
+    {{#if error}}
+        <font color='red'>{{error}}</font>
+    {{/if}}
+    <form method="POST" action="/news/create/tag">
+        <div class="col-sm-6">
+            
+            <input name="tag" type="text" class="form-control" placeholder="Название тэга" maxlength="30" minlength="2" autocomplete="off">
+            
+            <input type="submit" class="btn btn-secondary" value="Создать">
+
+        </div>
+    </form>
+
+</div>

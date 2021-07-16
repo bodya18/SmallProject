@@ -452,3 +452,21 @@ exports.GetSearch = async(req, res) =>{
         nowDate
     })
 }
+
+exports.GetNewTag = async(req, res) =>{
+    res.render('createTags.hbs',{
+        title: 'Создание тэга',
+        isAdmin: true,
+        isCreateTag: true,
+        error: req.flash('error')
+    })
+}
+
+exports.CreateTag = async(req, res) =>{
+    const rbac = new RBAC
+    const error = await rbac.news.newTag(req.body.tag)
+    if(error){
+        req.flash('error', error)
+    }
+    return res.redirect(`/news/newTag`)
+}
