@@ -62,7 +62,7 @@ class News{
         return true
     }
 
-    async CreateNews(timepost, title, postText, selectCategoryId, filedata) {
+    async CreateNews(tags, timepost, title, postText, selectCategoryId, filedata) {
         if(title.length < 5)
         return {
             isCreate: false,
@@ -78,15 +78,34 @@ class News{
                 isCreate: false,
                 error: 'Статья должна быть длиннее 100 символов'
             }
-        if((!filedata) && (file.inFile === true)){
+        if((!filedata) || (file.inFile === true)){
             file.inFile = false
-            return {perm: false, error: 'Аватар пользователя должен быть фотографией'}
+            return {
+                isCreate: false, 
+                error: 'Изображение статьи должно быть фотографией'
+            }
         }
         if (!timepost) {
             let data = new Date()
             timepost = Date.UTC(data.getFullYear(), data.getMonth()+1, data.getDate(), data.getHours(), data.getMinutes())
+        }else{
+            let year = req.body.timeout.substr(0, 4)
+            let month = req.body.timeout.substr(5, 2)
+            let date = req.body.timeout.substr(8, 2)
+            let hours = req.body.timeout.substr(11, 2)
+            let minutes = req.body.timeout.substr(14, 2)
+            timepost = Date.UTC(year, month, date, hours, minutes)
         }
         await this.news.create(timepost, postText, filedata, selectCategoryId, title)
+        const newsId = await this.news.LAST_INSERT_ID();
+        
+        if(tags){
+            if (typeof tags === "object")
+                for (let i = 0; i < tags.length; i++)
+                    await this.news.addTag(tags[i], newsId)
+            else
+                await this.news.addTag(tags, newsId)
+        }
         return{isCreate:true}
         
     }
@@ -242,15 +261,21 @@ class News{
     async search(search){
         return await this.news.search(search)
     }
+    async SearchTag(search){
+        return await this.news.SearchTag(search)
+    }
     async newTag(tag){
         if(tag.length < 2)
             return 'Длина тэга должна быть не менее 2 символов'
         if(tag.length > 30)
             return 'Длина тэга должна быть не более 30 символов'
-        const data = await this.news.getTags(tag)
+        const data = await this.news.isTag(tag)
         if (data) 
             return 'Данный тэг уже создан'
         await this.news.createTag(tag)
+    }
+    async getTags(){
+        return await this.news.getTags()
     }
 }
 

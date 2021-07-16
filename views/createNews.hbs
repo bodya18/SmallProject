@@ -15,26 +15,26 @@
                 {{/each}}
             </select><br><br>
             
-            {{!-- <div class="container"> --}}
-                <form class="form-horizontal">
-                    <div class="form-group" style="text-align: left !important;">
-                        <label for="dtp_input1" class="control-label">&nbsp;&nbsp;&nbsp;&nbsp;Выберите дату и время публикации</label>
-                        <div class="input-group date form_datetime col-md-5" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-                            <input class="form-control" size="16" type="text" value="" readonly style="background-color: #f4f6f9;">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-                        </div>
+            <form class="form-horizontal">
+                <div class="form-group" style="text-align: left !important;">
+                    <label for="dtp_input1" class="control-label">&nbsp;&nbsp;&nbsp;&nbsp;Выберите дату и время публикации</label>
+                    <div class="input-group date form_datetime col-md-5" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                        <input class="form-control" size="16" type="text" value="" readonly style="background-color: #f4f6f9;">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                     </div>
-                </form>
-            {{!-- </div><br> --}}
+                </div>
+            </form>
 
             <h2>Seo настройки</h2><br>
 
             <input name="h1" type="text" class="form-control" placeholder="Поле h1" maxlength="100" minlength="5" autocomplete="off">
 
             <div align="left">
-                <select class="js-example-basic-multiple form-control" data-placeholder="Выберите тэги" name="selectRuleId" multiple="multiple" >
-                    <option></option>
+                <select class="js-example-basic-multiple form-control" data-placeholder="Выберите тэги" name="selectTagId" multiple="multiple" >
+                    {{#each tags}}
+                        <option value="{{this.tag}}">{{this.tag}}</option>
+                    {{/each}}
                 </select>
             </div><br>
             <textarea name="meta_description" class="form-control" maxlength="255" minlength="130" rows="4" placeholder="meta description"></textarea>

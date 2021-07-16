@@ -348,7 +348,19 @@ class News{
         return temp
     }
 
-    async getTags(tag){
+    async SearchTag(search){
+        var temp
+        await pool.query(`select * from tag_news where tag like '%${search}%'`)
+            .then(data => {
+                temp = data[0]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
+    }
+
+    async isTag(tag){
         var temp
         await pool.query(`select * from tags where tag = ?`, [tag])
             .then(data => {
@@ -362,6 +374,34 @@ class News{
 
     async createTag(tag){
         await pool.query('insert into tags (tag) values (?)', [tag])
+    }
+
+    async getTags(){
+        var temp
+        await pool.query(`select * from tags`)
+            .then(data => {
+                temp = data[0]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
+    }
+
+    async LAST_INSERT_ID(){
+        var temp
+        await pool.query(`SELECT  LAST_INSERT_ID();`)
+            .then(data => {
+                temp = data[0][0]['LAST_INSERT_ID()']
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
+    }
+
+    async addTag(tag, newsId){
+        await pool.query('insert into tag_news (tag, newsId) values (?, ?)', [tag, newsId])
     }
 }
 

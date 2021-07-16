@@ -118,8 +118,10 @@ exports.GetThisPost = async (req,res) => {
 exports.GetCreate = async (req,res) => {
     const rbac = new RBAC
     const data = await rbac.news.GetCreate()
+    const tags = await rbac.news.getTags()
     res.render('createNews.hbs', {
         categories: data,
+        tags: tags,
         title: 'Создание статьи',
         isAdmin: true,
         isCreate: true,
@@ -169,19 +171,15 @@ exports.editSettings = async (req, res) => {
 }
 
 exports.CreateNews = async (req, res) => {
-    let year = req.body.timeout.substr(0, 4)
-    let month = req.body.timeout.substr(5, 2)
-    let date = req.body.timeout.substr(8, 2)
-    let hours = req.body.timeout.substr(11, 2)
-    let minutes = req.body.timeout.substr(14, 2)
-    let timePost = Date.UTC(year, month, date, hours, minutes)
     const rbac = new RBAC
-    const data = await rbac.news.CreateNews(timePost, req.body.title, req.body.postText, req.body.selectCategoryId, req.file)
+    const data = await rbac.news.CreateNews(req.body.selectTagId ,req.body.timeout, req.body.title, req.body.postText, req.body.selectCategoryId, req.file)
     if(data.isCreate === false){
         req.flash('error', data.error)
         return res.redirect(`/news/create/post`)
-    } 
-    return res.redirect('/news')
+    }
+    setTimeout(() => {
+        return res.redirect('/news')
+    }, 100);
 }
 
 exports.DeleteNews = async (req, res) => {
@@ -444,6 +442,23 @@ exports.search = async(req, res) =>{
 exports.GetSearch = async(req, res) =>{
     const rbac = new RBAC
     const news = await rbac.news.search(req.params.search)
+
+
+    const request = req.params.search.split(' ')
+    let date = []
+    for (let i = 0; i < request.length; i++) {
+        date[i] = await rbac.news.SearchTag(request[i])
+    }
+    date = [].concat(...date)
+    
+    var map = new Object();
+    for(var i in date){ map[date[i].newsId] = date[i]; }
+    var newArr = [];
+    for(var i in map){ newArr.push(map[i]); }
+
+    console.log(date);//игры жесть
+    console.log(newArr);
+
     const data = new Date()
     const nowDate = Date.UTC(data.getFullYear(), data.getMonth()+1, data.getDate(), data.getHours(), data.getMinutes())
     res.render('search.hbs',{
