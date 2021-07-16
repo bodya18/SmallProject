@@ -435,7 +435,20 @@ exports.SetViews = async(req, res) =>{
 }
 
 exports.search = async(req, res) =>{
+    if (req.body.search === '') {
+        return res.redirect(req.header(`Referer`))
+    }
+    res.redirect(`/news/getSearch/${req.body.search}`)
+}
+
+exports.GetSearch = async(req, res) =>{
     const rbac = new RBAC
-    const data = await rbac.news.search(req.body.search)
-    console.log(data);
+    const news = await rbac.news.search(req.params.search)
+    const data = new Date()
+    const nowDate = Date.UTC(data.getFullYear(), data.getMonth()+1, data.getDate(), data.getHours(), data.getMinutes())
+    res.render('search.hbs',{
+        title: req.params.search,
+        news,
+        nowDate
+    })
 }

@@ -1,0 +1,29 @@
+
+<div class="cat-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    {{#each news}}
+                        {{#if_eq this.time @root.nowDate}}
+                            <div class="col-md-3">
+                                <div class="cn-img">
+                                    <img class="show-Posts" src="/{{this.postUrl}}">
+                                    <div class="cn-title">
+                                        <a style="text-decoration: none;" href="/news/get/{{this.id}}">{{this.title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/if_eq}}
+                    {{/each}}
+                    {{#ifeq news.length 0}}
+                        <h3 style="text-align:center;">
+                            <br><br><br><br><br>
+                            Увы, новостей по данному запросу не найдено
+                        </h3>
+                    {{/ifeq}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div><br><br>

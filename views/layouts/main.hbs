@@ -123,11 +123,10 @@
                             </div>
                         {{/if}}
                     </div>
-
-                    <div class="search-container">
+                    <div class="form-outline">
                         <form action="/news/search" method="POST">
-                            <input type="text" placeholder="Поиск по сайту" name="search">
-                            <button type="submit"><i class="fa fa-search"></i></button>
+                            <input type="search" name="search" class="form-control" placeholder="Поиск по сайту"
+                            aria-label="Search" />
                         </form>
                     </div>
 
@@ -135,7 +134,6 @@
             </div>
         </div>
         <!-- Nav Bar End -->
-        
         {{#if isAdmin}}
             <div class="wrapper">
                 <aside class="main-sidebar sidebar-dark-primary elevation-4">

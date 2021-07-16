@@ -10,6 +10,7 @@ const jsonParser = express.json();
 router.get('/', newsController.GetNews)
 router.get('/get/:id', newsController.GetThisPost)
 
+router.get('/getSearch/:search', urlencodedParser, newsController.GetSearch)
 router.get('/settings', isAdmin, auth, newsController.GetSettings)
 // router.get('/settings/create', isAdmin, auth, newsController.GetCreateSettings)
 router.get('/create/post', isAdmin, auth, newsController.GetCreate)
