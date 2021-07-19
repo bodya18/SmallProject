@@ -259,7 +259,27 @@ class News{
     }
 
     async search(search){
-        return await this.news.search(search)
+        let news = await this.news.search(search)
+        const request = search.split(' ')
+        let date = []
+        for (let i = 0; i < request.length; i++) {
+            date[i] = await this.news.SearchTag(request[i])
+        }
+        date = [].concat(...date)
+        
+        var map = new Object();
+        for(var i in date){ map[date[i].newsId] = date[i]; }
+        var newArr = [];
+        for(var i in map){ newArr.push(map[i]); }
+
+        for (let i = 0; i < newArr.length; i++)
+            news.push(await this.news.getById(newArr[i].newsId))
+
+        map = new Object();
+        for(var i in news){ map[news[i].id] = news[i]; }
+        news = [];
+        for(var i in map){ news.push(map[i]); }
+        return news
     }
     async SearchTag(search){
         return await this.news.SearchTag(search)

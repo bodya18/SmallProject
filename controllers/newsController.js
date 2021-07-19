@@ -441,24 +441,7 @@ exports.search = async(req, res) =>{
 
 exports.GetSearch = async(req, res) =>{
     const rbac = new RBAC
-    const news = await rbac.news.search(req.params.search)
-
-
-    const request = req.params.search.split(' ')
-    let date = []
-    for (let i = 0; i < request.length; i++) {
-        date[i] = await rbac.news.SearchTag(request[i])
-    }
-    date = [].concat(...date)
-    
-    var map = new Object();
-    for(var i in date){ map[date[i].newsId] = date[i]; }
-    var newArr = [];
-    for(var i in map){ newArr.push(map[i]); }
-
-    console.log(date);//игры жесть
-    console.log(newArr);
-
+    let news = await rbac.news.search(req.params.search)
     const data = new Date()
     const nowDate = Date.UTC(data.getFullYear(), data.getMonth()+1, data.getDate(), data.getHours(), data.getMinutes())
     res.render('search.hbs',{
