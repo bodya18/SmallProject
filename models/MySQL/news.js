@@ -35,7 +35,7 @@ class News{
             })
         return temp
     }
-    async edit(post_text, postUrl, categoryId, title, id) {
+    async edit(h1, meta_description, post_text, postUrl, categoryId, title, id) {
         try{
             if(postUrl){
                 await pool.query('Select postUrl from news where id=?', [id]) 
@@ -46,10 +46,10 @@ class News{
                     .catch(e => {
                         return console.log(e)
                     })
-                await pool.query('update news set post_text=?, categoryId=?, title=?, postUrl=? where id=?', [post_text, categoryId, title, postUrl.path, id])
+                await pool.query('update news set h1=?, meta_description=?, post_text=?, categoryId=?, title=?, postUrl=? where id=?', [h1, meta_description, post_text, categoryId, title, postUrl.path, id])
             }
             else{
-                await pool.query('update news set post_text=?, categoryId=?, title=? where id=?', [post_text, categoryId, title, id])
+                await pool.query('update news set h1=?, meta_description=?, post_text=?, categoryId=?, title=? where id=?', [h1, meta_description, post_text, categoryId, title, id])
             }
             
         }
@@ -58,9 +58,9 @@ class News{
         }
     }
 
-    async create(timepost, post_text, postUrl, categoryId, title) {
+    async create(h1, meta_description, timepost, post_text, postUrl, categoryId, title) {
         try{
-            await pool.query('Insert into news (time, post_text, postUrl, categoryId, title) values (?, ?, ?, ?, ?)', [timepost, post_text, postUrl.path, categoryId, title])
+            await pool.query('Insert into news (h1, meta_description, time, post_text, postUrl, categoryId, title) values (?, ?, ?, ?, ?, ?, ?)', [h1, meta_description, timepost, post_text, postUrl.path, categoryId, title])
         }
         catch (e){
             console.log(e) 
@@ -379,6 +379,17 @@ class News{
     async getTags(){
         var temp
         await pool.query(`select * from tags`)
+            .then(data => {
+                temp = data[0]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
+    }
+    async getSelectTags(id){
+        var temp
+        await pool.query(`select * from tag_news where newsId=?`,[id])
             .then(data => {
                 temp = data[0]
             })

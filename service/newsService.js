@@ -62,12 +62,12 @@ class News{
         return true
     }
 
-    async CreateNews(tags, timepost, title, postText, selectCategoryId, filedata) {
+    async CreateNews(h1, meta_description, tags, timepost, title, postText, selectCategoryId, filedata) {
         if(title.length < 5)
-        return {
-            isCreate: false,
-            error: 'Название статьи должно быть длиннее 5 символов'
-        }
+            return {
+                isCreate: false,
+                error: 'Название статьи должно быть длиннее 5 символов'
+            }
         if(title.length > 100)
             return {
                 isCreate: false,
@@ -85,6 +85,21 @@ class News{
                 error: 'Изображение статьи должно быть фотографией'
             }
         }
+        if(h1.length < 5)
+            return {
+                isCreate: false,
+                error: 'Заголовок статьи должен быть длиннее 5 символов'
+            }
+        if(meta_description.length < 140)
+            return {
+                isCreate: false,
+                error: 'Описание статьи должно быть не менее 140 символов'
+            }
+        if(meta_description.length > 255)
+            return {
+                isCreate: false,
+                error: 'Описание статьи должно быть не более 255 символов'
+            }
         if (!timepost) {
             let data = new Date()
             timepost = Date.UTC(data.getFullYear(), data.getMonth()+1, data.getDate(), data.getHours(), data.getMinutes())
@@ -96,7 +111,7 @@ class News{
             let minutes = req.body.timeout.substr(14, 2)
             timepost = Date.UTC(year, month, date, hours, minutes)
         }
-        await this.news.create(timepost, postText, filedata, selectCategoryId, title)
+        await this.news.create(h1, meta_description, timepost, postText, filedata, selectCategoryId, title)
         const newsId = await this.news.LAST_INSERT_ID();
         
         if(tags){
@@ -114,17 +129,7 @@ class News{
         return await this.category.GetCategories()
     }
 
-    async GetEdit (perm, id){
-        for (let i = 0; i < perm.length; i++) {
-            if(perm[i] === "GIVE"){
-                this.is = true
-                break;
-            }
-        }
-        if(!this.is){
-            return false
-        }
-        
+    async GetEdit (id){        
         const categories = await this.category.GetCategories()
         const news = await this.news.getById(id)
         return {
@@ -133,12 +138,12 @@ class News{
         }
     }
 
-    async EditNews(title, postText, selectCategoryId, filedata, id){
+    async EditNews(h1, meta_description, tags, title, postText, selectCategoryId, filedata, id){
         if(title.length < 5)
-        return {
-            isCreate: false,
-            error: 'Название статьи должно быть длиннее 5 символов'
-        }
+            return {
+                isCreate: false,
+                error: 'Название статьи должно быть длиннее 5 символов'
+            }
         if(title.length > 100)
             return {
                 isCreate: false,
@@ -153,7 +158,29 @@ class News{
             file.inFile = false
             return {isCreate: false, error: 'Аватар пользователя должен быть фотографией'}
         }
-        await this.news.edit(postText, filedata, selectCategoryId, title, id)
+        if(h1.length < 5)
+            return {
+                isCreate: false,
+                error: 'Заголовок статьи должен быть длиннее 5 символов'
+            }
+        if(meta_description.length < 140)
+            return {
+                isCreate: false,
+                error: 'Описание статьи должно быть не менее 140 символов'
+            }
+        if(meta_description.length > 255)
+            return {
+                isCreate: false,
+                error: 'Описание статьи должно быть не более 255 символов'
+            }
+        await this.news.edit(h1, meta_description, postText, filedata, selectCategoryId, title, id)
+        if(tags){
+            if (typeof tags === "object")
+                for (let i = 0; i < tags.length; i++)
+                    await this.news.addTag(tags[i], id)
+            else
+                await this.news.addTag(tags, id)
+        }
         return{isCreate:true}
     }
     
@@ -296,6 +323,9 @@ class News{
     }
     async getTags(){
         return await this.news.getTags()
+    }
+    async getSelectTags(id){
+        return await this.news.getSelectTags(id)
     }
 }
 

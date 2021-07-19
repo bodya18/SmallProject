@@ -88,30 +88,17 @@ exports.GetThisPost = async (req,res) => {
     if(!news || nowDate < news.time)
         return res.redirect('/news')
     const views = await rbac.news.GetViews(req.params.id)
-    var dataNews = await rbac.news.GetNewsByCategoryNoThisPost(news.categoryId, req.params.id)
     const categories = await rbac.category.GetCategoriesById(news.categoryId)
-
-    const comments = await rbac.news.GetComments(req.params.id)
-    const users = await rbac.user.GetUsers()
-
     const isLike = await rbac.news.isLike(req.params.id, req.session.userIden)
-
+    console.log(news);
     const isSave = await rbac.news.isSave(req.session.userIden, req.params.id)
-    if(dataNews.length > 5){
-        dataNews = dataNews.slice(0, 5)
-    }
     res.render('./bootstrap-news-template/single-page.hbs', {
         title: news.title,
         news: news,
-        users,
         views,
-        dataNews: dataNews,
-        comments,
         categories: categories.id,
-        error: req.flash('error'),
         isLike,
         isSave,
-        EditComment: req.flash('comment')[0]
     })
 }
 
@@ -131,12 +118,18 @@ exports.GetCreate = async (req,res) => {
 
 exports.GetEdit = async (req,res) => {
     const rbac = new RBAC
-    const data = await rbac.news.GetEdit(req.session.Perm, req.params.id)
-    if(data === false)
-        return res.redirect('/news')
+    const data = await rbac.news.GetEdit(req.params.id)
+    const tags = await rbac.news.getTags()
+    const selectTags = await rbac.news.getSelectTags(req.params.id)
+    for (let i = 0; i < tags.length; i++)
+        for (let j = 0; j < selectTags.length; j++)
+            if (selectTags[j].tag === tags[i].tag)
+                tags.splice(i, 1)
     res.render('editNews.hbs', {
         categories: data.categories,
+        selectTags,
         news: data.news,
+        tags,
         title: 'Редактирование статьи',
         error: req.flash('error'),
         isAdmin: true
@@ -145,7 +138,7 @@ exports.GetEdit = async (req,res) => {
 
 exports.EditNews = async (req, res) => {
     const rbac = new RBAC
-    const data = await rbac.news.EditNews(req.body.title, req.body.postText, req.body.selectCategoryId, req.file, req.body.id)
+    const data = await rbac.news.EditNews(req.body.h1, req.body.meta_description, req.body.selectTagId, req.body.title, req.body.postText, req.body.selectCategoryId, req.file, req.body.id)
     if(data.isCreate === false){
         req.flash('error', data.error)
         return res.redirect(`/news/edit/${req.body.id}`)
@@ -172,7 +165,7 @@ exports.editSettings = async (req, res) => {
 
 exports.CreateNews = async (req, res) => {
     const rbac = new RBAC
-    const data = await rbac.news.CreateNews(req.body.selectTagId ,req.body.timeout, req.body.title, req.body.postText, req.body.selectCategoryId, req.file)
+    const data = await rbac.news.CreateNews(req.body.h1, req.body.meta_description, req.body.selectTagId, req.body.timeout, req.body.title, req.body.postText, req.body.selectCategoryId, req.file)
     if(data.isCreate === false){
         req.flash('error', data.error)
         return res.redirect(`/news/create/post`)

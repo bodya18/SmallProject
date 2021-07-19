@@ -9,22 +9,38 @@
             <input type="hidden" value="{{news.id}}" name="id">
             <input value="{{news.title}}" name="title" type="text" class="form-control" placeholder="Название статьи" maxlength="100" minlength="5" autocomplete="off">
             <textarea name="postText" class="form-control" id="exampleFormControlTextarea1" rows="15" placeholder="Введите статью">{{news.post_text}}</textarea>
-   
+ 
+            <select class="form-select" name="selectCategoryId">
+                {{#each categories}}
+                    <option value="{{this.id}}">{{this.category}}</option>
+                {{/each}}
+            </select><br>
+
+            <h2>Seo настройки</h2><br>
+
+            <input name="h1" type="text" value="{{news.h1}}" class="form-control" placeholder="Поле h1" maxlength="100" minlength="5" autocomplete="off">
+
+            <div align="left">
+                <select class="js-example-basic-multiple form-control" data-placeholder="Выберите тэги" name="selectTagId" multiple="multiple" >
+                    {{#each tags}}
+                        <option value="{{this.tag}}">{{this.tag}}</option>
+                    {{/each}}
+                    {{#each selectTags}}
+                        <option value="{{this.tag}}" selected="selected">{{this.tag}}</option>
+                    {{/each}}
+                </select>
+            </div><br>
+            <textarea name="meta_description" class="form-control" maxlength="255" minlength="140" rows="4" placeholder="meta description">{{news.meta_description}}</textarea>
+
             <div class="input-group mb-3">
                 <input type="file" name="postUrl" class="form-control" id="inputGroupFile02">
                 <label class="input-group-text" for="inputGroupFile02">Изображение статьи</label>
             </div><br>
 
-            <select class="form-select" name="selectCategoryId">
-                {{#each categories}}
-                    <option value="{{this.id}}">{{this.category}}</option>
-                {{/each}}
-            </select><br><br><br><br>
-
             <input type="submit" class="btn btn-secondary" value="Отправить">
-
         </div>
     </form><br><br>
+
     <form action="/news/delete/post/{{news.id}}" method="post">
         <input type="submit" class="btn btn-danger" value="Удалить новость">
     </form>

@@ -24,7 +24,11 @@ exports.route = async (req,res) =>{
 
 exports.news = async (req,res) =>{
     const rbac = new RBAC
-    const news = await rbac.news.GetNewsByCategoryNoThisPost(req.body.categoryId, req.body.newsId)
+    let news = await rbac.news.GetNewsByCategoryNoThisPost(req.body.categoryId, req.body.newsId)
+    if(news.length>5 && (typeof news)=='object'){
+        const shuffled = news.sort(() => 0.5 - Math.random());
+        news = shuffled.slice(0, 5);
+    }
     const users = await rbac.user.GetUsers()
     const TopNews = await rbac.news.GetNewsById(req.body.newsId)
     const isLike = await rbac.news.isLike(req.body.newsId, req.session.userIden)
