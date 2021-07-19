@@ -93,6 +93,8 @@ exports.GetThisPost = async (req,res) => {
     const isSave = await rbac.news.isSave(req.session.userIden, req.params.id)
     res.render('./bootstrap-news-template/single-page.hbs', {
         title: news.title,
+        description: news.meta_description,
+        h1: news.h1,
         news: news,
         views,
         categories: categories.id,
