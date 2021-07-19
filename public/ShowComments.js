@@ -1,6 +1,6 @@
 let countComments = 0;
 let CommentsLength = 0;
-let CountShowComments = 5
+let CountShowComments = 15
 
 addEventListener('load', function (e){
     const div = document.getElementById('in_this_category')

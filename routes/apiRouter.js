@@ -8,6 +8,6 @@ router.post('/UserSession', apiController.UserSession)
 router.post('/news',jsonParser, apiController.news)
 router.post('/newsCategory',jsonParser, apiController.newsCategory)
 router.post('/ThisNews', jsonParser, apiController.ThisNews)
-router.post('/route', jsonParser, apiController.route)
+router.post('/search', jsonParser, apiController.search)
 
 module.exports = router

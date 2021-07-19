@@ -308,6 +308,7 @@ class News{
         for(var i in map){ news.push(map[i]); }
         return news
     }
+    
     async SearchTag(search){
         return await this.news.SearchTag(search)
     }

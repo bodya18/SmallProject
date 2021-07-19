@@ -338,7 +338,7 @@ class News{
 
     async search(search){
         var temp
-        await pool.query(`select * from news where title like '%${search}%' or post_text like '%${search}%'`)
+        await pool.query(`select * from news where title like '%${search}%' or post_text like '%${search}%' or h1 like '%${search}%' or meta_description like '%${search}%'`)
             .then(data => {
                 temp = data[0]
             })

@@ -18,8 +18,13 @@ exports.newsCategory = async (req,res) =>{
     const TopNews = await rbac.news.GetNewsByCategory(req.body.categoryId)
     return res.json(TopNews)
 }
-exports.route = async (req,res) =>{
-   
+exports.search = async (req,res) =>{
+    const rbac = new RBAC
+    let news = await rbac.news.search(req.body.search)
+    let data = new Date()
+    const nowDate = Date.UTC(data.getFullYear(), data.getMonth()+1, data.getDate(), data.getHours(), data.getMinutes())
+    data = {nowDate, news}
+    res.json(data)
 }
 
 exports.news = async (req,res) =>{

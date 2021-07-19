@@ -6,6 +6,7 @@
                 <div class="row">
                     {{#each news}}
                         {{#if_eq this.time @root.nowDate}}
+                        <div class="block_addition">
                             <div class="col-md-3">
                                 <div class="cn-img">
                                     <img class="show-Posts" src="/{{this.postUrl}}">
@@ -14,6 +15,10 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6 show_search">
+                                {{this.meta_description}}
+                            </div>
+                        </div>
                         {{/if_eq}}
                     {{/each}}
                     {{#ifeq news.length 0}}
@@ -22,8 +27,14 @@
                             Увы, новостей по данному запросу не найдено
                         </h3>
                     {{/ifeq}}
+                    <div id="showPosts"></div>
+                    {{#if isMore}}
+                        <button id="btn_more_search" onclick="AddMoreSearch(event)" class="btn btn-info btn-list-request">Загрузить еще</button>
+                    {{/if}}
                 </div>
+                <input type="hidden" id="search_request" value="{{title}}">
             </div>
         </div>
     </div>
-</div><br><br>
+</div>
+<script src="../../public/search.js"></script>

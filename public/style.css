@@ -94,3 +94,15 @@ pre {
 .form-outline{
     margin-top: 14px !important;
 }
+
+.show_search{
+    margin-top: 40px;
+    text-align: justify;
+}
+
+.btn-list-request{
+    margin-left: 26px;
+    margin-top: 10px !important;
+    margin-bottom: 10px;
+    width: 150px !important;
+}

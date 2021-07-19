@@ -90,7 +90,6 @@ exports.GetThisPost = async (req,res) => {
     const views = await rbac.news.GetViews(req.params.id)
     const categories = await rbac.category.GetCategoriesById(news.categoryId)
     const isLike = await rbac.news.isLike(req.params.id, req.session.userIden)
-    console.log(news);
     const isSave = await rbac.news.isSave(req.session.userIden, req.params.id)
     res.render('./bootstrap-news-template/single-page.hbs', {
         title: news.title,
@@ -435,12 +434,17 @@ exports.search = async(req, res) =>{
 exports.GetSearch = async(req, res) =>{
     const rbac = new RBAC
     let news = await rbac.news.search(req.params.search)
+    news = news.slice(0,10)
+    let isMore = false
+    if(news.length === 10)
+        isMore = true
     const data = new Date()
     const nowDate = Date.UTC(data.getFullYear(), data.getMonth()+1, data.getDate(), data.getHours(), data.getMinutes())
     res.render('search.hbs',{
         title: req.params.search,
         news,
-        nowDate
+        nowDate,
+        isMore
     })
 }
 
