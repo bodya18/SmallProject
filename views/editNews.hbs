@@ -21,7 +21,7 @@
             <input name="h1" type="text" value="{{news.h1}}" class="form-control" placeholder="Поле h1" maxlength="100" minlength="5" autocomplete="off">
 
             <div align="left">
-                <select class="js-example-basic-multiple form-control" data-placeholder="Выберите тэги" name="selectTagId" multiple="multiple" >
+                <select class="js-example-basic-multiple form-control" data-placeholder="Выберите тэги" style="width: 777px;" name="selectTagId" multiple="multiple" >
                     {{#each tags}}
                         <option value="{{this.tag}}">{{this.tag}}</option>
                     {{/each}}

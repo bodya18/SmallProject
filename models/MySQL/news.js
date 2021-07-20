@@ -414,6 +414,9 @@ class News{
     async addTag(tag, newsId){
         await pool.query('insert into tag_news (tag, newsId) values (?, ?)', [tag, newsId])
     }
+    async deleteTagsByNewsId(newsId){
+        await pool.query('delete from tag_news where newsId = ?', [newsId])
+    }
 }
 
 module.exports = News

@@ -174,6 +174,7 @@ class News{
                 error: 'Описание статьи должно быть не более 255 символов'
             }
         await this.news.edit(h1, meta_description, postText, filedata, selectCategoryId, title, id)
+        await this.news.deleteTagsByNewsId(id)
         if(tags){
             if (typeof tags === "object")
                 for (let i = 0; i < tags.length; i++)

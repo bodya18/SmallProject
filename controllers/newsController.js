@@ -123,9 +123,11 @@ exports.GetEdit = async (req,res) => {
     const tags = await rbac.news.getTags()
     const selectTags = await rbac.news.getSelectTags(req.params.id)
     for (let i = 0; i < tags.length; i++)
-        for (let j = 0; j < selectTags.length; j++)
+        for (let j = 0; j < selectTags.length; j++){
             if (selectTags[j].tag === tags[i].tag)
                 tags.splice(i, 1)
+        }
+            
     res.render('editNews.hbs', {
         categories: data.categories,
         selectTags,
