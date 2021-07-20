@@ -58,6 +58,8 @@
         <link href="/views/bootstrap-news-template/lib/slick/slick.css" rel="stylesheet">
         <link href="/views/bootstrap-news-template/lib/slick/slick-theme.css" rel="stylesheet">
 
+        <link type="text/css" href="../../public/ckeditor5-build-classic/sample/css/sample.css" rel="stylesheet" media="screen" />
+
         <link rel="stylesheet" href="../../public/style.css">
         <link rel="stylesheet" href="../../public/style.scss">
 
@@ -501,6 +503,22 @@
         {{!-- / --}}
         
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->        
+<script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+<script src="../../public/ckeditor5-build-classic/ckeditor.js"></script>
+
+<script>
+	ClassicEditor
+		.create( document.querySelector( '#editor' ), {
+			// toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+		} )
+		.then( editor => {
+			window.editor = editor;
+		} )
+		.catch( err => {
+			console.error( err.stack );
+		} );
+</script>
+
 
         <!-- Bootstrap 4 -->
         <script src="/views/AdminLTE-3.1.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

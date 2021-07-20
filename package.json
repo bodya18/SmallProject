@@ -4,6 +4,7 @@
     "dev": "nodemon app.js"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^29.0.0",
     "ajax": "0.0.4",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -24,7 +25,6 @@
   },
   "version": "1.0.0",
   "main": "app.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bodya18/SmallProject.git"
