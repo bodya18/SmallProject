@@ -106,3 +106,10 @@ pre {
     margin-bottom: 10px;
     width: 150px !important;
 }
+.ck-classic {
+    display: none;
+}
+
+.ck-classic-min {
+    display: none;
+}

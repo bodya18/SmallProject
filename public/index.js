@@ -60,3 +60,7 @@ function sub(e){
 
     request.send(JSON.stringify({email: email}))
 }
+
+document.getElementById('create_news').addEventListener('click', ()=>{
+    console.log(ckEditor("tbxQuestion").getData()); 
+ })
