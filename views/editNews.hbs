@@ -18,7 +18,7 @@
 
             <h2>Seo настройки</h2><br>
 
-            <input name="h1" type="text" value="{{news.h1}}" class="form-control" placeholder="Поле h1" maxlength="100" minlength="5" autocomplete="off">
+            <input name="h1" type="text" value="{{news.h1}}" class="form-control" placeholder="Заголовок h1" autocomplete="off">
 
             <div align="left">
                 <select class="js-example-basic-multiple form-control" data-placeholder="Выберите тэги" style="width: 777px;" name="selectTagId" multiple="multiple" >
@@ -30,7 +30,7 @@
                     {{/each}}
                 </select>
             </div><br>
-            <textarea name="meta_description" class="form-control" maxlength="255" minlength="140" rows="4" placeholder="meta description">{{news.meta_description}}</textarea>
+            <textarea name="meta_description" class="form-control" rows="4" placeholder="meta description">{{news.meta_description}}</textarea>
 
             <div class="input-group mb-3">
                 <input type="file" name="postUrl" class="form-control" id="inputGroupFile02">

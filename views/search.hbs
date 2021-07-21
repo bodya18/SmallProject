@@ -6,19 +6,26 @@
                 <div class="row">
                     {{#each news}}
                         {{#if_eq this.time @root.nowDate}}
-                        <div class="block_addition">
-                            <div class="col-md-3">
-                                <div class="cn-img">
-                                    <img class="show-Posts" src="/{{this.postUrl}}">
-                                    <div class="cn-title">
-                                        <a style="text-decoration: none;" href="/news/get/{{this.id}}">{{this.title}}</a>
+                            <div class="block_addition">
+                                <div class="col-md-3">
+                                    <div class="cn-img">
+                                        <img class="show-Posts" src="/{{this.postUrl}}">
+                                        <div class="cn-title">
+                                            <a style="text-decoration: none;" href="/news/get/{{this.id}}">{{this.title}}</a>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6 show_search">
+                                    {{#if this.meta_description}}
+                                        {{this.meta_description}}
+                                    {{else}}
+                                    <div class="truncate">
+                                        {{this.post_text}}
+                                    </div>
+                                        
+                                    {{/if}}
+                                </div>
                             </div>
-                            <div class="col-md-6 show_search">
-                                {{this.meta_description}}
-                            </div>
-                        </div>
                         {{/if_eq}}
                     {{/each}}
                     {{#ifeq news.length 0}}

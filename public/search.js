@@ -31,7 +31,12 @@ function AddMoreSearch(e){
                             </div>
                         </div>
                         <div class="col-md-6 show_search">
-                            ${thisNews[i].meta_description}
+                        ${thisNews[i].meta_description 
+                            ?`${thisNews[i].meta_description}`
+                            :`<div class="truncate">
+                                ${thisNews[i].post_text}
+                              </div>`
+                        }
                         </div>
                     </div>`
                 )

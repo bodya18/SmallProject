@@ -63,4 +63,6 @@ function sub(e){
 
 document.getElementById('create_news').addEventListener('click', ()=>{
     console.log(ckEditor("tbxQuestion").getData()); 
+    let a = ckEditor("tbxQuestion").getData()
+    document.getElementById("11111").insertAdjacentHTML('beforeend',a)
  })

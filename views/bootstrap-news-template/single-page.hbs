@@ -10,7 +10,11 @@
                     </div>
                     <div class="sn-content">
                         <h1 class="sn-title" style="word-wrap: break-word;">
-                            {{news.h1}}
+                            {{#if news.h1}}
+                                {{news.h1}}
+                            {{else}}
+                                {{news.title}}
+                            {{/if}}
                             {{#each permissionsList}}
                                 {{#ifeq this 'GIVE'}}
                                     <a style="text-decoration: none;" href="/news/edit/{{@root.news.id}}">

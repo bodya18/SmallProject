@@ -14,8 +14,8 @@
                     <option value="{{this.id}}">{{this.category}}</option>
                 {{/each}}
             </select><br><br>
-
-            <input type="text" name="tbxQuestion" class="ck-classic"/>
+            {{!-- <div id="11111"></div>
+            <input type="text" name="tbxQuestion" class="ck-classic"/> --}}
             <form class="form-horizontal">
                 <div class="form-group" style="text-align: left !important;">
                     <label for="dtp_input1" class="control-label">&nbsp;&nbsp;&nbsp;&nbsp;Выберите дату и время публикации</label>
@@ -29,7 +29,7 @@
 
             <h2>Seo настройки</h2><br>
 
-            <input name="h1" type="text" class="form-control" placeholder="Поле h1" maxlength="100" minlength="5" autocomplete="off">
+            <input name="h1" type="text" class="form-control" placeholder="Заголовок h1" autocomplete="off">
 
             <div align="left">
                 <select class="js-example-basic-multiple form-control" data-placeholder="Выберите тэги" name="selectTagId" multiple="multiple" >
@@ -38,7 +38,7 @@
                     {{/each}}
                 </select>
             </div><br>
-            <textarea name="meta_description" class="form-control" maxlength="255" minlength="140" rows="4" placeholder="meta description"></textarea>
+            <textarea name="meta_description" class="form-control" rows="4" placeholder="meta description"></textarea>
 
             <div class="input-group mb-3">
                 <input type="file" name="postUrl" class="form-control" id="inputGroupFile02">
@@ -49,6 +49,6 @@
         </div>
     </form>
     
-<button id="create_news">button</button>
+{{!-- <button id="create_news">button</button> --}}
 
 </div>

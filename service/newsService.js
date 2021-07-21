@@ -85,21 +85,6 @@ class News{
                 error: 'Изображение статьи должно быть фотографией'
             }
         }
-        if(h1.length < 5)
-            return {
-                isCreate: false,
-                error: 'Заголовок статьи должен быть длиннее 5 символов'
-            }
-        if(meta_description.length < 140)
-            return {
-                isCreate: false,
-                error: 'Описание статьи должно быть не менее 140 символов'
-            }
-        if(meta_description.length > 255)
-            return {
-                isCreate: false,
-                error: 'Описание статьи должно быть не более 255 символов'
-            }
         if (!timepost) {
             let data = new Date()
             timepost = Date.UTC(data.getFullYear(), data.getMonth()+1, data.getDate(), data.getHours(), data.getMinutes())
@@ -158,21 +143,6 @@ class News{
             file.inFile = false
             return {isCreate: false, error: 'Аватар пользователя должен быть фотографией'}
         }
-        if(h1.length < 5)
-            return {
-                isCreate: false,
-                error: 'Заголовок статьи должен быть длиннее 5 символов'
-            }
-        if(meta_description.length < 140)
-            return {
-                isCreate: false,
-                error: 'Описание статьи должно быть не менее 140 символов'
-            }
-        if(meta_description.length > 255)
-            return {
-                isCreate: false,
-                error: 'Описание статьи должно быть не более 255 символов'
-            }
         await this.news.edit(h1, meta_description, postText, filedata, selectCategoryId, title, id)
         await this.news.deleteTagsByNewsId(id)
         if(tags){
