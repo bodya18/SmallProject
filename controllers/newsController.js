@@ -168,14 +168,19 @@ exports.editSettings = async (req, res) => {
 
 exports.CreateNews = async (req, res) => {
     const rbac = new RBAC
-    const data = await rbac.news.CreateNews(req.body.h1, req.body.meta_description, req.body.selectTagId, req.body.timeout, req.body.title, req.body.postText, req.body.selectCategoryId, req.file)
-    if(data.isCreate === false){
-        req.flash('error', data.error)
-        return res.redirect(`/news/create/post`)
+    if(req.body.post_text){
+        await rbac.news.setText(req.body.post_text)
+    }
+    else{
+        const data = await rbac.news.CreateNews(req.body.h1, req.body.meta_description, req.body.selectTagId, req.body.timeout, req.body.title, ' ', req.body.selectCategoryId, req.file)
+        if(data.isCreate === false){
+            req.flash('error', data.error)
+            return res.redirect(`/news/create/post`)
+        }
     }
     setTimeout(() => {
         return res.redirect('/news')
-    }, 100);
+    }, 200);
 }
 
 exports.DeleteNews = async (req, res) => {
@@ -439,6 +444,9 @@ exports.GetSearch = async(req, res) =>{
     const rbac = new RBAC
     let news = await rbac.news.search(req.params.search)
     news = news.slice(0,10)
+    for (let i = 0; i < news.length; i++) {
+        news[i].post_text = news[i].post_text.replace(/<.*?>/g, "").replace(/&.*?;/g, "")
+    }
     let isMore = false
     if(news.length === 10)
         isMore = true

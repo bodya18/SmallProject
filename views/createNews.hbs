@@ -7,20 +7,21 @@
         <div class="col-sm-6">
             
             <input name="title" type="text" class="form-control" placeholder="Название статьи" maxlength="100" minlength="5" autocomplete="off">
-            <textarea name="postText" class="form-control" id="exampleFormControlTextarea1" rows="15" placeholder="Введите статью"></textarea>
+            {{!-- <textarea name="postText" class="form-control" id="exampleFormControlTextarea1" rows="15" placeholder="Введите статью"></textarea> --}}
 
             <select class="form-select" name="selectCategoryId">
                 {{#each categories}}
                     <option value="{{this.id}}">{{this.category}}</option>
                 {{/each}}
             </select><br><br>
-            {{!-- <div id="11111"></div>
-            <input type="text" name="tbxQuestion" class="ck-classic"/> --}}
+            
+            <input type="text" name="tbxQuestion" class="ck-classic"/>
+            
             <form class="form-horizontal">
                 <div class="form-group" style="text-align: left !important;">
                     <label for="dtp_input1" class="control-label">&nbsp;&nbsp;&nbsp;&nbsp;Выберите дату и время публикации</label>
                     <div class="input-group date form_datetime col-md-5" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-                        <input class="form-control" size="16" type="text" value="" readonly style="background-color: #ffffff;">
+                        <input class="form-control" name="timeout" size="16" type="text" value="" readonly style="background-color: #ffffff;">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                     </div>
@@ -45,7 +46,7 @@
                 <label class="input-group-text" for="inputGroupFile02">Изображение статьи</label>
             </div><br>
 
-            <br><input type="submit" class="btn btn-secondary" value="Отправить">
+            <br><input type="submit" id="create_news" class="btn btn-secondary" value="Отправить">
         </div>
     </form>
     

@@ -56,3 +56,9 @@ exports.ThisNews = async (req,res) =>{
     const data = {comments: comments, isLike: isLike, isSave: isSave, views: views}
     return res.json(data)
 }
+
+exports.GetNewsById = async (req, res) =>{
+    const rbac = new RBAC
+    const data = await rbac.news.GetNewsById(req.body.newsId)
+    return res.json(data)
+}

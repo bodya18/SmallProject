@@ -14,6 +14,7 @@ pre {
     overflow-x:hidden;
     white-space:pre-wrap;
     word-wrap:break-word;
+    font-size: 17px !important;
 }
 
 .single-img {
@@ -121,3 +122,4 @@ pre {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+

@@ -18,6 +18,7 @@ function AddMoreSearch(e){
         document.getElementById('btn_more_search').remove()
         let div = document.getElementById('showPosts')
         for (let i = 0; i < thisNews.length; i++) {
+            thisNews[i].post_text = thisNews[i].post_text.replace(/<.*?>/g, "").replace(/&.*?;/g, "")
             if(thisNews[i].time<data.nowDate)
                 div.insertAdjacentHTML(
                     'beforeend', 

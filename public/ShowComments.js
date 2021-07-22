@@ -188,3 +188,21 @@ function addMore(e){
     
     request.send(newsId);    
 }
+
+addEventListener('load', ()=>{
+    const pre = document.getElementById('show_post_text')
+
+    let request = new XMLHttpRequest();
+    let newsId = document.getElementById('newsId').value
+    let news = JSON.stringify({newsId: newsId});
+
+    request.open("post", "/api/GetNewsById", true)
+    
+    request.setRequestHeader("Content-Type", "application/json");
+    
+    request.addEventListener("load", function () {
+        let data = JSON.parse(request.response)
+        pre.insertAdjacentHTML('beforeend' , data.post_text)
+    })
+    request.send(news)
+})

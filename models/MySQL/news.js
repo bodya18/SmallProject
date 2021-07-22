@@ -66,6 +66,9 @@ class News{
             console.log(e) 
         }
     }
+    async setText(newsId, post_text){
+        await pool.query('update news set post_text=? where id=?', [post_text, newsId])
+    }
     async DeleteNews(id){
         await pool.query('Select postUrl from news where id=?', [id])
             .then(data => {

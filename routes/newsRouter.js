@@ -33,7 +33,7 @@ router.post('/settings/serch',isAdmin, auth, urlencodedParser, newsController.Ge
 router.post('/editSettings', isAdmin, auth, urlencodedParser, newsController.editSettings)
 // router.post('/newSettings', isAdmin, auth, urlencodedParser, newsController.CreateSettings)
 router.post('/newCategory', isAdmin, auth, urlencodedParser, newsController.CreateCategory)
-router.post('/newPost', isAdmin, auth, urlencodedParser, file.upload.single("postUrl"), newsController.CreateNews)
+router.post('/newPost', isAdmin, auth, jsonParser, urlencodedParser, file.upload.single("postUrl"), newsController.CreateNews)
 router.post('/edit', isAdmin, auth, urlencodedParser, file.upload.single("postUrl"), newsController.EditNews)
 router.post('/delete/post/:id', isAdmin, auth, urlencodedParser, newsController.DeleteNews)
 router.post('/delete/category/:id', isAdmin, auth, urlencodedParser, newsController.DeleteCategory)

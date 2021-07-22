@@ -54,7 +54,10 @@ window.addEventListener('scroll', (e)=>{
                         </div>
                         <div class="sn-content">
                             <h1 class="sn-title">
-                                ${AllNews.news[i].title}
+                                ${AllNews.news[i].h1
+                                    ? `${AllNews.news[i].h1}`
+                                    : `${AllNews.news[i].title}`
+                                }
                                 ${isPerm 
                                     ? `<a style="text-decoration: none;" href="/news/edit/${AllNews.news[i].id}">
                                         <button type="button" class="btn btn-dark">&#9998;</button>
@@ -62,7 +65,7 @@ window.addEventListener('scroll', (e)=>{
                                     : ``
                                 }
                             </h1>
-                            <pre>${AllNews.news[i].post_text}</pre>
+                            <pre id="show_post_text${AllNews.news[i].id}"></pre>
                             <div class="block_addition">
                                 ${AllNews.isAuth 
                                     ? `<form name="registerForm${AllNews.news[i].id}">
@@ -125,16 +128,14 @@ window.addEventListener('scroll', (e)=>{
             
             
             a.appendChild(div)
-
-            
+            const pre = document.getElementById(`show_post_text${AllNews.news[i].id}`)
+            pre.insertAdjacentHTML('beforeend' , AllNews.news[i].post_text)
         })
         request1.send(newsId);
         
         setTimeout(() => {
             ThisNewsId = JSON.parse(newsId).newsId
-            addMoreList(e, ThisNewsId, 0)
-            
-                
+            addMoreList(e, ThisNewsId, 0)   
         }, 100);
         
                 
