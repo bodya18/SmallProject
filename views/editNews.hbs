@@ -8,7 +8,8 @@
         <div class="col-sm-6">
             <input type="hidden" value="{{news.id}}" name="id">
             <input value="{{news.title}}" name="title" type="text" class="form-control" placeholder="Название статьи" maxlength="100" minlength="5" autocomplete="off">
-            <textarea name="postText" class="form-control" id="exampleFormControlTextarea1" rows="15" placeholder="Введите статью">{{news.post_text}}</textarea>
+            <input type="hidden" id="edit_post_text" value="{{news.post_text}}">
+            <input type="text" name="tbxQuestion" class="ck-classic"/>
  
             <select class="form-select" name="selectCategoryId">
                 {{#each categories}}
@@ -45,3 +46,4 @@
         <input type="submit" class="btn btn-danger" value="Удалить новость">
     </form>
 </div>
+<script src="../../public/editNews.js"></script>

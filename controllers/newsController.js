@@ -141,7 +141,10 @@ exports.GetEdit = async (req,res) => {
 
 exports.EditNews = async (req, res) => {
     const rbac = new RBAC
-    const data = await rbac.news.EditNews(req.body.h1, req.body.meta_description, req.body.selectTagId, req.body.title, req.body.postText, req.body.selectCategoryId, req.file, req.body.id)
+    if(req.body.post_text){
+        await rbac.news.setTextId(req.body.post_text, req.body.id)
+    }
+    const data = await rbac.news.EditNews(req.body.h1, req.body.meta_description, req.body.selectTagId, req.body.title, ' ', req.body.selectCategoryId, req.file, req.body.id)
     if(data.isCreate === false){
         req.flash('error', data.error)
         return res.redirect(`/news/edit/${req.body.id}`)
