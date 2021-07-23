@@ -8,16 +8,16 @@
         <div class="col-sm-6">
             <input type="hidden" value="{{news.id}}" name="id">
             <input value="{{news.title}}" name="title" type="text" class="form-control" placeholder="Название статьи" maxlength="100" minlength="5" autocomplete="off">
-            <input type="hidden" id="edit_post_text" value="{{news.post_text}}">
-            <input type="text" name="tbxQuestion" class="ck-classic"/>
- 
+            
             <select class="form-select" name="selectCategoryId">
                 {{#each categories}}
                     <option value="{{this.id}}">{{this.category}}</option>
                 {{/each}}
             </select><br>
 
-            <h2>Seo настройки</h2><br>
+            <textarea type="text" name="tbxQuestion" class="ck-classic">{{news.post_text}}</textarea>
+
+            <br><h2>Seo настройки</h2>
 
             <input name="h1" type="text" value="{{news.h1}}" class="form-control" placeholder="Заголовок h1" autocomplete="off">
 
@@ -38,7 +38,7 @@
                 <label class="input-group-text" for="inputGroupFile02">Изображение статьи</label>
             </div><br>
 
-            <input type="submit" class="btn btn-secondary" value="Отправить">
+            <input type="submit" id="edit_news" class="btn btn-secondary" value="Редактировать">
         </div>
     </form><br><br>
 
@@ -46,4 +46,3 @@
         <input type="submit" class="btn btn-danger" value="Удалить новость">
     </form>
 </div>
-<script src="../../public/editNews.js"></script>

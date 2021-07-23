@@ -7,21 +7,19 @@
         <div class="col-sm-6">
             
             <input name="title" type="text" class="form-control" placeholder="Название статьи" maxlength="100" minlength="5" autocomplete="off">
-            {{!-- <textarea name="postText" class="form-control" id="exampleFormControlTextarea1" rows="15" placeholder="Введите статью"></textarea> --}}
 
             <select class="form-select" name="selectCategoryId">
                 {{#each categories}}
                     <option value="{{this.id}}">{{this.category}}</option>
                 {{/each}}
-            </select><br><br>
+            </select><br>
             
-            <input type="text" name="tbxQuestion" class="ck-classic"/>
+            <textarea type="text" name="tbxQuestion" class="ck-classic"></textarea><br>
             
             <form class="form-horizontal">
                 <div class="form-group" style="text-align: left !important;">
-                    <label for="dtp_input1" class="control-label">&nbsp;&nbsp;&nbsp;&nbsp;Выберите дату и время публикации</label>
-                    <div class="input-group date form_datetime col-md-5" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-                        <input class="form-control" name="timeout" size="16" type="text" value="" readonly style="background-color: #ffffff;">
+                    <div class="input-group date form_datetime col-md-6" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                        <input placeholder="Выберите дату и время публикации" class="form-control" name="timeout" size="16" type="text" value="" readonly style="background-color: #ffffff; margin-left:-15px">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                     </div>
@@ -51,4 +49,3 @@
     </form>
     
 </div>
-<script src="../../public/createNews.js"></script>

@@ -26,7 +26,7 @@ $(document).ready(function() {
         ClassicEditor
             .create(allHtmlElements[i], ckEditorClassicOptions)
             .then(editor => {
-                allCkEditors.push(editor);
+                allCkEditors.push(editor);                
             })
             .catch(error => {
                 console.error(error);
