@@ -169,19 +169,13 @@ exports.editSettings = async (req, res) => {
 
 exports.CreateNews = async (req, res) => {
     const rbac = new RBAC
-    // if(req.body.post_text){
-    //     await rbac.news.setText(req.body.post_text)
-    // }
-    // else{
-        const data = await rbac.news.CreateNews(req.body.h1, req.body.meta_description, req.body.selectTagId, req.body.timeout, req.body.title, req.body.tbxQuestion, req.body.selectCategoryId, req.file)
-        if(data.isCreate === false){
-            req.flash('error', data.error)
-            return res.redirect(`/news/create/post`)
-        }
-    // }
-    // setTimeout(() => {
-        return res.redirect('/news')
-    // }, 200);
+    const data = await rbac.news.CreateNews(req.body.h1, req.body.meta_description, req.body.selectTagId, req.body.timeout, req.body.title, req.body.tbxQuestion, req.body.selectCategoryId, req.file)
+    if(data.isCreate === false){
+        req.flash('error', data.error)
+        return res.redirect(`/news/create/post`)
+    }
+    return res.redirect('/news')
+
 }
 
 exports.DeleteNews = async (req, res) => {
