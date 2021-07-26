@@ -62,7 +62,6 @@ app.use(varMiddleware)
 
 app.use('/subscribe', subscribeRouter)
 app.use('/users', indexRouter)
-// app.use('/sort', sortRouter)
 app.use('/delete', deleteRouter)
 app.use('/edit', editRouter)
 app.use('/user', userRouter)

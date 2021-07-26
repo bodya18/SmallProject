@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rss version="2.0">
+  <channel>
+    <title>Новостная лента</title>
+    <link>http://localhost:3000</link>
+    <description>Самые последние и горячие новости</description>
+    <language>ru</language>
+    <item>
+      <title>Demon’s Souls</title>
+      <description>Римейк классической игры Demon’s Souls для PlayStation от игровых студий PlayStation Studios и Bluep</description>
+      <link>http://localhost:3000/news/get/40</link>
+      <guid>http://localhost:3000/news/get/40</guid>
+    </item>
+    <item>
+      <title>MORTAL KOMBAT</title>
+      <description>MortalKombat возвращается! И это лучшая версия культовой франшизы.Стандартное издание MortalKombat11</description>
+      <link>http://localhost:3000/news/get/38</link>
+      <guid>http://localhost:3000/news/get/38</guid>
+    </item>
+    <item>
+      <title>dota 2</title>
+      <description>После разрушения Безумной луны на наш мир обрушились её осколки, имеющие собственную волю: руда Свет</description>
+      <link>http://localhost:3000/news/get/33</link>
+      <guid>http://localhost:3000/news/get/33</guid>
+    </item>
+    <item>
+      <title>C++ компилируемый язык программирования</title>
+      <description>C++ компилируемый язык программирования общего назначения, сочетает свойства как высокоуровневых, та</description>
+      <link>http://localhost:3000/news/get/32</link>
+      <guid>http://localhost:3000/news/get/32</guid>
+    </item>
+    <item>
+      <title>FTB Infinity Evolved v.2</title>
+      <description>FTB Infinity Evolved - одна из самых популярных сборок от FTB. В ней насчитывается около 170 модов! </description>
+      <link>http://localhost:3000/news/get/18</link>
+      <guid>http://localhost:3000/news/get/18</guid>
+    </item>
+    <item>
+      <title>Military Kingdoms - RPG Сборка [1.12.2]</title>
+      <description>Сборка с огромной военной индустрией. Создайте персонажа, изучайте специализации и профессии, осажда</description>
+      <link>http://localhost:3000/news/get/15</link>
+      <guid>http://localhost:3000/news/get/15</guid>
+    </item>
+    <item>
+      <title>Sea of Thieves</title>
+      <description>Игра была анонсирована на E3 2015 эксклюзивно для Xbox One. Но уже на конференции gamescom того же г</description>
+      <link>http://localhost:3000/news/get/13</link>
+      <guid>http://localhost:3000/news/get/13</guid>
+    </item>
+    <item>
+      <title>Red Dead Redemption 2</title>
+      <description>Включает в себя сюжетный режим Red Dead Redemption 2 и Red Dead Online.&#xD;
+Игра Red Dead Redemption 2,</description>
+      <link>http://localhost:3000/news/get/12</link>
+      <guid>http://localhost:3000/news/get/12</guid>
+    </item>
+    <item>
+      <title>Кто я</title>
+      <description>Бенджамин – самый незаметный человек в Берлине. Еще в школе на него перестали обращать внимание свер</description>
+      <link>http://localhost:3000/news/get/10</link>
+      <guid>http://localhost:3000/news/get/10</guid>
+    </item>
+    <item>
+      <title>Гнев человеческий</title>
+      <description>Таинственный британец «Эйч» устраивается в инкассаторскую службу, перевозящую по Лос-Анджелесу сотни</description>
+      <link>http://localhost:3000/news/get/9</link>
+      <guid>http://localhost:3000/news/get/9</guid>
+    </item>
+    <item>
+      <title>Баран бо Одар, один из лучших режиссеров времени?</title>
+      <description>Режиссер Баран бо Одар — человек, который любит говорить «нет»; благодаря этому умению он привлекал </description>
+      <link>http://localhost:3000/news/get/8</link>
+      <guid>http://localhost:3000/news/get/8</guid>
+    </item>
+    <item>
+      <title>Один из лучших сериалов про время? Самый лучший!</title>
+      <description>   Сериал рассказывает о четырёх семьях, живущих в вымышленном немецком городке Виндене, расположенн</description>
+      <link>http://localhost:3000/news/get/7</link>
+      <guid>http://localhost:3000/news/get/7</guid>
+    </item>
+    <item>
+      <title>Что нужно знать о третьем сезоне сериала "Половое воспитание"</title>
+      <description>Ровно год назад, в феврале 2020 года, Netflix обьявили, что третьему сезону "Полового воспитания" бы</description>
+      <link>http://localhost:3000/news/get/5</link>
+      <guid>http://localhost:3000/news/get/5</guid>
+    </item>
+    <item>
+      <title>Мы больше не в Хоукинсе</title>
+      <description>12 июля 2019 года исполнительница роли Карен Уилер Кара Буоно в интервью порталу "Poland In"сообщила</description>
+      <link>http://localhost:3000/news/get/4</link>
+      <guid>http://localhost:3000/news/get/4</guid>
+    </item>
+    <item>
+      <title>Detroit: Become Human</title>
+      <description>В Detroit полно очень крутых моментов, из-за которых ее тут же хочется признать лучшей и наградить в</description>
+      <link>http://localhost:3000/news/get/2</link>
+      <guid>http://localhost:3000/news/get/2</guid>
+    </item>
+    <item>
+      <title>Valheim — это игра</title>
+      <description>Valheim — это игра, в которой вам предстоит исследовать огромный фэнтезийный мир, пропитанный сканди</description>
+      <link>http://localhost:3000/news/get/1</link>
+      <guid>http://localhost:3000/news/get/1</guid>
+    </item>
+  </channel>
+</rss>

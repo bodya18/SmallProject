@@ -1,7 +1,4 @@
 const pool = require('../../middleware/pool')
-const fs = require('fs')
-const config = require('../../middleware/config');
-
 class News{
     
     async isSave(userId, newsId){
@@ -38,14 +35,6 @@ class News{
     async edit(h1, meta_description, post_text, postUrl, categoryId, title, id) {
         try{
             if(postUrl){
-                await pool.query('Select postUrl from news where id=?', [id]) 
-                    .then(data =>{ 
-                        if(data[0][0].postUrl !== null)
-                            fs.unlinkSync(`${config.dirname}/`+data[0][0].postUrl)
-                    }) 
-                    .catch(e => {
-                        return console.log(e)
-                    })
                 await pool.query('update news set h1=?, meta_description=?, post_text=?, categoryId=?, title=?, postUrl=? where id=?', [h1, meta_description, post_text, categoryId, title, postUrl.path, id])
             }
             else{
@@ -70,15 +59,6 @@ class News{
         await pool.query('update news set post_text=? where id=?', [post_text, newsId])
     }
     async DeleteNews(id){
-        await pool.query('Select postUrl from news where id=?', [id])
-            .then(data => {
-                if(data[0][0].postUrl !== null)
-                    fs.unlinkSync(`${config.dirname}/`+data[0][0].postUrl)
-            })
-            .catch(e => {
-                return console.log(e)
-            })
-
         await pool.query('delete from news where id=?', [id])
     }
 
