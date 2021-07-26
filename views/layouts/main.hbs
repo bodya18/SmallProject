@@ -69,6 +69,8 @@
     </head>
     <body style="background-color: rgb(228, 228, 228);">
         <!-- Nav Bar Start -->
+        {{#if navbar}}
+        {{else}}
         <div class="nav-bar">
             <div class="container"> 
                 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -138,6 +140,7 @@
                 </nav>
             </div>
         </div>
+        {{/if}}
         <!-- Nav Bar End -->
         {{#if isAdmin}}
             <div class="wrapper">
@@ -395,7 +398,8 @@
         <!-- Back to Top -->
 
         <a href="#" class="btn btn-dark back-to-top"><i class="fa fa-chevron-up"></i></a>
-        
+        {{#if footer}}
+        {{else}}
         <!-- Footer Start -->
         <div class="footer">
             <div class="container">
@@ -448,6 +452,7 @@
                 </div>
             </div>
         </div>
+        {{/if}}
         <script type="text/javascript" src="../../public/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
         <script type="text/javascript" src="../../public/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
         <script type="text/javascript">

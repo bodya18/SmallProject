@@ -3,6 +3,8 @@ const router = express.Router()
 const apiController = require('../controllers/apiController')
 const jsonParser = express.json()
 
+router.get('/photo/:id', apiController.photo)
+
 router.post('/comments', jsonParser, apiController.comment)
 router.post('/UserSession', apiController.UserSession)
 router.post('/news',jsonParser, apiController.news)

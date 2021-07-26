@@ -1,5 +1,14 @@
 const RBAC = require('../service/RBAC_Service')
 
+exports.photo = async (req,res) =>{
+    res.render('photo.hbs', {
+        title:'photo',
+        image: req.params.id,
+        navbar: 1,
+        footer: 1
+    })
+}
+
 exports.comment = async (req,res) =>{
     const rbac = new RBAC
     const comments = await rbac.news.GetComments(req.body.id)
