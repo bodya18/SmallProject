@@ -166,6 +166,22 @@ class News{
         return(temp)
     }
 
+    async GetOneNewsByCategory(categoryId){
+        function randomInteger(min, max) {
+            let rand = min + Math.random() * (max + 1 - min);
+            return Math.floor(rand);
+        }          
+        var temp
+        await pool.query('Select * from news where categoryId = ?', [categoryId])
+            .then(data => {
+                temp = data[0][randomInteger(0, data[0].length)]
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return(temp)
+    }
+
     async GetNewsByCategoryNoThisPost(categoryId, newsId){
         var temp
         await pool.query('Select * from news where categoryId = ? and id != ?', [categoryId, newsId])

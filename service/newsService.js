@@ -171,6 +171,9 @@ class News{
     async GetNewsByCategory(categoryId){
         return await this.news.GetNewsByCategory(categoryId)
     }
+    async GetOneNewsByCategory(categoryId){
+        return await this.news.GetOneNewsByCategory(categoryId)
+    }
     async GetNewsByCategoryNoThisPost(categoryId, newsId){
         return await this.news.GetNewsByCategoryNoThisPost(categoryId, newsId)
     }

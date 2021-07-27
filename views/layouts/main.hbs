@@ -98,6 +98,11 @@
                                     <a href="/news/watchLater" class="nav-item nav-link">Избранное</a>
                                 {{/if}}
                             {{/if}}
+                            {{#if isListCategories}}
+                                <a href="/news/listCategories" class="nav-item nav-link active">Категории</a>
+                            {{else}}
+                                <a href="/news/listCategories" class="nav-item nav-link">Категории</a>
+                            {{/if}}
                         </div>
                         <div class="navbar-nav">
                             {{#if isAuth}}

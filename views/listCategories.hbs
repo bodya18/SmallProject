@@ -1,0 +1,16 @@
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            {{#each categories}}
+            <a style="text-decoration: none" href="/news/getInCategory/{{this.id}}">
+                <ul class="list-group" style="margin-top: 10px;">
+                    <li class="list-group-item">
+                        {{this.category}}
+                    </li>
+                </ul>
+            </a>
+            {{/each}}
+        </div>
+    </div>
+</div>

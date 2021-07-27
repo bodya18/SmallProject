@@ -9,6 +9,7 @@ const jsonParser = express.json();
 
 router.get('/', newsController.GetNews)
 router.get('/get/:id', newsController.GetThisPost)
+router.get('/getInCategory/:id', newsController.getInCategory)
 
 router.get('/getSearch/:search', urlencodedParser, newsController.GetSearch)
 router.get('/settings', auth, isAdmin, newsController.GetSettings)
@@ -21,6 +22,8 @@ router.get('/GetEditSettings/:key', auth, isAdmin, newsController.GetEditSetting
 router.get('/watchLater', auth, urlencodedParser, newsController.GetWatchLater)
 router.get('/newTag', auth, isAdmin, newsController.GetNewTag)
 router.get('/rss', newsController.AllRss)
+router.get('/rss/:id', newsController.RssInCategory)
+router.get('/listCategories', newsController.listCategories)
 
 router.post('/create/tag', auth, isAdmin, urlencodedParser, newsController.CreateTag)
 router.post('/search', urlencodedParser, newsController.search)

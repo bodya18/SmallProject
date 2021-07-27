@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <rss version="2.0">
   <channel>
-    <title>Новостная лента</title>
+    <title>Новостная лента по категории GameNews</title>
     <link>http://localhost:3000</link>
     <description>Самые последние и горячие новости</description>
     <language>ru</language>

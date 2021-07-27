@@ -123,3 +123,10 @@ pre {
     overflow: hidden;
 }
 
+.rss-category{
+    position: fixed;
+    bottom: 15px;
+    left: 10px;
+    height: 40px !important;
+    width: 40px !important;
+}

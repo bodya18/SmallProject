@@ -106,6 +106,30 @@ exports.GetThisPost = async (req,res) => {
     })
 }
 
+exports.getInCategory = async (req,res) => {
+    const rbac = new RBAC
+    const news = await rbac.news.GetOneNewsByCategory(req.params.id)
+    console.log(news);
+    const data = new Date()
+    const nowDate = Date.UTC(data.getFullYear(), data.getMonth()+1, data.getDate(), data.getHours(), data.getMinutes())
+    if(!news || nowDate < news.time)
+        return res.redirect('/news')
+    const views = await rbac.news.GetViews(news.id)
+    const categories = await rbac.category.GetCategoriesById(news.categoryId)
+    const isLike = await rbac.news.isLike(news.id, req.session.userIden)
+    const isSave = await rbac.news.isSave(req.session.userIden, news.id)
+    res.render('./bootstrap-news-template/single-page.hbs', {
+        title: news.title,
+        description: news.meta_description,
+        h1: news.h1,
+        news: news,
+        views,
+        categories: categories.id,
+        isLike,
+        isSave,
+    })
+}
+
 exports.GetCreate = async (req,res) => {
     const rbac = new RBAC
     const data = await rbac.news.GetCreate()
@@ -250,7 +274,7 @@ exports.CreateCategory = async (req, res) => {
 `<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
     <channel>
-        <title>Новостная лента</title>
+        <title>Новостная лента по категории ${req.body.title}</title>
         <link>${config.site}</link>
         <description>Самые последние и горячие новости</description>
         <language>ru</language>
@@ -536,4 +560,20 @@ exports.CreateTag = async(req, res) =>{
 
 exports.AllRss = async(req, res)=>{
     res.sendFile(config.dirname + "/xml/all.xml");
+}
+
+exports.RssInCategory = async(req, res)=>{
+    const rbac = new RBAC
+    const categories = await rbac.category.GetCategoriesById(req.params.id)
+    res.sendFile(config.dirname + `/xml/${categories.category}.xml`);
+}
+
+exports.listCategories = async(req, res)=>{
+    const rbac = new RBAC
+    const categories = await rbac.category.GetCategories()
+    res.render('listCategories.hbs', {
+        categories,
+        title: 'Список категорий',
+        isListCategories: true
+    })    
 }
