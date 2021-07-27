@@ -6,6 +6,24 @@
     <description>Самые последние и горячие новости</description>
     <language>ru</language>
     <item>
+      <title>кракен</title>
+      <description>Кра́кен (англ.The Kraken[1], дат. krake, также kraxe, krabbe)— легендарное мифическое морское чудовище гигантских размеров, головоногий моллюск, известный по описаниям исландских моряков, из языка кот</description>
+      <link>http://localhost:3000/news/get/43</link>
+      <guid>http://localhost:3000/news/get/43</guid>
+    </item>
+    <item>
+      <title>Мегалодон Sea of thieves</title>
+      <description>Мегалодон — огромная и весьма опасная акула, которая бороздит воды Sea of Thieves и нападает на корабли игроков. Существует пять разновидностей мегалодонов, различающиеся окраской и частотой появления</description>
+      <link>http://localhost:3000/news/get/42</link>
+      <guid>http://localhost:3000/news/get/42</guid>
+    </item>
+    <item>
+      <title>Кракен Sea of thieves</title>
+      <description>Кракен — огромное, обладающее множеством щупалец, похожее на кальмара или осьминога существо, которое в Sea of Thieves может напасть на корабль любого размера. Кракен существовал в изначальной версии </description>
+      <link>http://localhost:3000/news/get/41</link>
+      <guid>http://localhost:3000/news/get/41</guid>
+    </item>
+    <item>
       <title>Demon’s Souls</title>
       <description>Римейк классической игры Demon’s Souls для PlayStation от игровых студий PlayStation Studios и Bluep</description>
       <link>http://localhost:3000/news/get/40</link>

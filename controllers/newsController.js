@@ -1,27 +1,10 @@
 const RBAC = require('../service/RBAC_Service');
 const fs = require('fs');
 const config = require('../middleware/config');
-// var xml2js = require('xml2js');
+var xml2js = require('xml2js');
 
 exports.GetNews = async (req,res) => {
-    // let parser = new xml2js.Parser()
-    // let xmlBuilder = new xml2js.Builder();
-    // let dir = config.dirname+'/xml/all.xml'
-    // let obj = {title: [123], description: ['Описание новости1'], link: ['http://localhost:3000/news/get/40'], guid: ['http://localhost:3000/news/get/40']}
-
-    // fs.readFile(dir, function(err, data) {
-    //     parser.parseString(data, function (err, result) {
-    //         result.rss.channel[0].item.unshift(obj);
-            
-    //         var xml = xmlBuilder.buildObject(result);
-    //         console.log(xml);
-    //         console.log(dir);
-    //         fs.writeFile(dir, xml, (e)=>{
-    //             if(e) console.error(e);
-    //         });
-
-    //     });
-    // });
+    
 
     const rbac = new RBAC
     const news = await rbac.news.GetNews()
@@ -193,9 +176,28 @@ exports.CreateNews = async (req, res) => {
     if(data.isCreate === false){
         req.flash('error', data.error)
         return res.redirect(`/news/create/post`)
-    }
-    return res.redirect('/news')
+    }else{
+        let parser = new xml2js.Parser()
+        let xmlBuilder = new xml2js.Builder();
+        let dir = config.dirname+'/xml/all.xml'
+        let description = req.body.tbxQuestion.replace(/<.*?>/g, "").replace(/&.*?;/g, "").slice(0, 200)
+        if(req.body.meta_description)
+            description = req.body.meta_description
+        const id = await rbac.news.LAST_INSERT_ID()
+        let obj = {title: [req.body.title], description: [description], link: [`http://localhost:3000/news/get/${id}`], guid: [`http://localhost:3000/news/get/${id}`]}
+        
+        fs.readFile(dir, function(err, data) {
+            parser.parseString(data, function (err, result) {
+                result.rss.channel[0].item.unshift(obj);
+                var xml = xmlBuilder.buildObject(result);
+                fs.writeFile(dir, xml, (e)=>{
+                    if(e) console.error(e);
+                });
+            });
+        });
 
+        return res.redirect('/news')
+    }
 }
 
 exports.DeleteNews = async (req, res) => {

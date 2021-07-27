@@ -303,6 +303,9 @@ class News{
     async getSelectTags(id){
         return await this.news.getSelectTags(id)
     }
+    async LAST_INSERT_ID(){
+        return await this.news.LAST_INSERT_ID();
+    }
 }
 
 module.exports = News
