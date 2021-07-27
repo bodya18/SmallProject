@@ -130,7 +130,6 @@ exports.GetEdit = async (req,res) => {
             if (selectTags[j].tag === tags[i].tag)
                 tags.splice(i, 1)
         }
-            
     res.render('editNews.hbs', {
         categories: data.categories,
         selectTags,
@@ -195,7 +194,20 @@ exports.CreateNews = async (req, res) => {
                     if(e) console.error(e);
                 });
             });
-        });  
+        });
+        setTimeout(async() => {
+            const category = await rbac.category.GetCategoriesById(req.body.selectCategoryId)
+            dir = config.dirname+`/xml/${category.category}.xml`
+            fs.readFile(dir, function(err, data) {
+                parser.parseString(data, function (err, result) {
+                    result.rss.channel[0].item.unshift(obj);
+                    var xml = xmlBuilder.buildObject(result);
+                    fs.writeFile(dir, xml, (e)=>{
+                        if(e) console.error(e);
+                    });
+                });
+            });
+        }, 1000);
     }
 }
 
@@ -207,9 +219,16 @@ exports.DeleteNews = async (req, res) => {
 
 exports.DeleteCategory = async (req, res) => {
     const rbac = new RBAC
+    const category = await rbac.category.GetCategoriesById(req.params.id)
     const data = await rbac.category.DeleteCategory(req.params.id)
     if(data === false)
         req.flash('error', 'Чтобы удалить категорию требуется удалить ВСЕ новости в данной категории!')
+    else{
+        let dir = config.dirname+`/xml/${category.category}.xml`
+        fs.unlink(dir, (err) => {
+              if (err) console.log(err);
+        });
+    }
     return res.redirect('/news/categories')
 }
 
@@ -226,6 +245,27 @@ exports.CreateCategory = async (req, res) => {
     const rbac = new RBAC
     const data = await rbac.category.CreateCategory(req.body.title)
     if(data === true){
+        let dir = config.dirname+`/xml/${req.body.title}.xml`
+        const xml = 
+`<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Новостная лента</title>
+        <link>${config.site}</link>
+        <description>Самые последние и горячие новости</description>
+        <language>ru</language>
+        <item>
+            <title></title>
+            <description></description>
+            <link></link>
+            <guid></guid>
+        </item>
+    </channel>
+</rss>`
+        fs.writeFile(dir, xml, (e)=>{
+            if(e) console.error(e);
+        });
+
         return res.redirect('/news/categories')
     }
     req.flash('error', data.error)
