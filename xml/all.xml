@@ -6,6 +6,12 @@
     <description>Самые последние и горячие новости</description>
     <language>ru</language>
     <item>
+      <title>Корабль скелетов</title>
+      <description>Корабль скелетов — в Sea of Thieves — корабль, команду которого составляют скелеты.КомандаГалеоны и шлюпы скелетов можно встретить в любой точке мира. Их легко узнать по синему и зелёному свету фонаре</description>
+      <link>http://localhost:3000/news/get/44</link>
+      <guid>http://localhost:3000/news/get/44</guid>
+    </item>
+    <item>
       <title>кракен</title>
       <description>Кра́кен (англ.The Kraken[1], дат. krake, также kraxe, krabbe)— легендарное мифическое морское чудовище гигантских размеров, головоногий моллюск, известный по описаниям исландских моряков, из языка кот</description>
       <link>http://localhost:3000/news/get/43</link>

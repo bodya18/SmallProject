@@ -16,6 +16,10 @@ addEventListener('load', function (e){
     
     request.addEventListener("load", function () {
         let data = JSON.parse(request.response)
+        if(data.news.length>5 && (typeof data.news)=='object'){
+            const shuffled = data.news.sort(() => 0.5 - Math.random());
+            data.news = shuffled.slice(0, 5);
+        }
         div.className = 'col-lg-4 in_this_category'
         let a = document.createElement('div')
         a.className = 'news-list'

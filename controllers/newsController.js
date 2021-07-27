@@ -177,6 +177,7 @@ exports.CreateNews = async (req, res) => {
         req.flash('error', data.error)
         return res.redirect(`/news/create/post`)
     }else{
+        res.redirect('/news')
         let parser = new xml2js.Parser()
         let xmlBuilder = new xml2js.Builder();
         let dir = config.dirname+'/xml/all.xml'
@@ -194,9 +195,7 @@ exports.CreateNews = async (req, res) => {
                     if(e) console.error(e);
                 });
             });
-        });
-
-        return res.redirect('/news')
+        });  
     }
 }
 
