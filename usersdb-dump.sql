@@ -29,7 +29,7 @@ CREATE TABLE `All_Views` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `newsId` (`newsId`),
   CONSTRAINT `All_Views_ibfk_1` FOREIGN KEY (`newsId`) REFERENCES `news` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `All_Views` (
 
 LOCK TABLES `All_Views` WRITE;
 /*!40000 ALTER TABLE `All_Views` DISABLE KEYS */;
-INSERT INTO `All_Views` VALUES (1,5,153),(2,9,0),(3,7,80),(4,13,271),(5,4,65),(7,2,12),(8,10,28),(9,12,10),(10,1,15),(11,8,9),(12,15,0),(15,18,0),(29,32,0),(34,38,17),(35,33,0),(37,40,10),(38,41,1),(39,42,2),(40,44,0);
+INSERT INTO `All_Views` VALUES (1,5,153),(2,9,0),(3,7,80),(4,13,271),(5,4,65),(7,2,12),(8,10,28),(9,12,10),(10,1,16),(11,8,9),(12,15,0),(15,18,0),(29,32,0),(34,38,17),(35,33,0),(37,40,10),(38,41,1),(39,42,2),(40,44,0);
 /*!40000 ALTER TABLE `All_Views` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,7 +54,7 @@ CREATE TABLE `Categories` (
   `id` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   UNIQUE KEY `category` (`category`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -342,7 +342,7 @@ CREATE TABLE `news` (
   PRIMARY KEY (`id`),
   KEY `categoryId` (`categoryId`),
   CONSTRAINT `news_ibfk_1` FOREIGN KEY (`categoryId`) REFERENCES `Categories` (`id`) ON DELETE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -401,7 +401,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('Z0SPU_15dA47nKHpSm_Ht2CIjZN1h6BG',1627460930,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"user\":{\"id\":\"aaea565f-cad7-4843-b41e-8baa1a272a1f\",\"name\":\"bodya18\",\"email\":\"bodya18x@mail.ru\",\"age\":19,\"avatarURL\":\"images/6f862357da761e7314d6ef317ad59f0e\",\"password\":\"$2a$10$m6eqTAEXLaOsv0fbssuVye.49DR7FFHAOKI51EBbiPP/WDY8Id2Nq\",\"time\":\"2021-07-02 16:58:46.126\",\"status\":2,\"token\":\"01b19cc336fa585f59f0ed05ef9167124d5f57c269ef610a1b1d11d29400db9f\"},\"isAuthenticated\":true,\"userIden\":\"aaea565f-cad7-4843-b41e-8baa1a272a1f\",\"Perm\":[\"EDIT\",\"GIVE\",\"DELETE\"]}');
+INSERT INTO `sessions` VALUES ('Z0SPU_15dA47nKHpSm_Ht2CIjZN1h6BG',1627472075,'{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{},\"user\":{\"id\":\"aaea565f-cad7-4843-b41e-8baa1a272a1f\",\"name\":\"bodya18\",\"email\":\"bodya18x@mail.ru\",\"age\":19,\"avatarURL\":\"images/6f862357da761e7314d6ef317ad59f0e\",\"password\":\"$2a$10$m6eqTAEXLaOsv0fbssuVye.49DR7FFHAOKI51EBbiPP/WDY8Id2Nq\",\"time\":\"2021-07-02 16:58:46.126\",\"status\":2,\"token\":\"01b19cc336fa585f59f0ed05ef9167124d5f57c269ef610a1b1d11d29400db9f\"},\"isAuthenticated\":true,\"userIden\":\"aaea565f-cad7-4843-b41e-8baa1a272a1f\",\"Perm\":[\"EDIT\",\"GIVE\",\"DELETE\"]}');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -554,4 +554,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-27 11:29:34
+-- Dump completed on 2021-07-27 14:36:22

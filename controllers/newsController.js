@@ -533,3 +533,7 @@ exports.CreateTag = async(req, res) =>{
     }
     return res.redirect(`/news/newTag`)
 }
+
+exports.AllRss = async(req, res)=>{
+    res.sendFile(config.dirname + "/xml/all.xml");
+}

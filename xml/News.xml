@@ -1,15 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <rss version="2.0">
-    <channel>
-        <title>Новостная лента</title>
-        <link>http://localhost:3000</link>
-        <description>Самые последние и горячие новости</description>
-        <language>ru</language>
-        <item>
-            <title></title>
-            <description></description>
-            <link></link>
-            <guid></guid>
-        </item>
-    </channel>
+  <channel>
+    <title>Новостная лента</title>
+    <link>http://localhost:3000</link>
+    <description>Самые последние и горячие новости</description>
+    <language>ru</language>
+    <item>
+      <title>кракен</title>
+      <description>Кра́кен (англ.The Kraken[1], дат. krake, также kraxe, krabbe)— легендарное мифическое морское чудовище гигантских размеров, головоногий моллюск, известный по описаниям исландских моряков, из языка кот</description>
+      <link>http://localhost:3000/news/get/43</link>
+      <guid>http://localhost:3000/news/get/43</guid>
+    </item>
+    <item>
+      <title>C++ компилируемый язык программирования</title>
+      <description>C++ компилируемый язык программирования общего назначения, сочетает свойства как высокоуровневых, так и низкоуровневых языков программирования. В сравнении с его предшественником, языком программирова</description>
+      <link>http://localhost:3000/news/get/32</link>
+      <guid>http://localhost:3000/news/get/32</guid>
+    </item>
+    <item>
+      <title/>
+      <description/>
+      <link/>
+      <guid/>
+    </item>
+  </channel>
 </rss>

@@ -1,15 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <rss version="2.0">
-    <channel>
-        <title>Новостная лента</title>
-        <link>http://localhost:3000</link>
-        <description>Самые последние и горячие новости</description>
-        <language>ru</language>
-        <item>
-            <title></title>
-            <description></description>
-            <link></link>
-            <guid></guid>
-        </item>
-    </channel>
+  <channel>
+    <title>Новостная лента</title>
+    <link>http://localhost:3000</link>
+    <description>Самые последние и горячие новости</description>
+    <language>ru</language>
+    <item>
+      <title>Кто я</title>
+      <description>Бенджамин – самый незаметный человек в Берлине. Еще в школе на него перестали обращать внимание сверстники, а уж во взрослой жизни он и вовсе слывет пустым местом. Но лишь до тех пор, пока Бенджамин н</description>
+      <link>http://localhost:3000/news/get/10</link>
+      <guid>http://localhost:3000/news/get/10</guid>
+    </item>
+    <item>
+      <title>Гнев человеческий</title>
+      <description>Таинственный британец «Эйч» устраивается в инкассаторскую службу, перевозящую по Лос-Анджелесу сотни миллионов долларов. Инкассаторам часто угрожают грабители, но молчаливый Эйч ждет встречи с ними. О</description>
+      <link>http://localhost:3000/news/get/9</link>
+      <guid>http://localhost:3000/news/get/9</guid>
+    </item>
+    <item>
+      <title>Баран бо Одар, один из лучших режиссеров времени?</title>
+      <description>После «Тишины» Variety включила Одара в список самых перспективных режиссеров мира. Этот фильм кажется прототипом «Тьмы», хоть и поставлен по чужому роману — по книге Жана Костина Вагнера из серии про финского детектива Киммо Йонта</description>
+      <link>http://localhost:3000/news/get/8</link>
+      <guid>http://localhost:3000/news/get/8</guid>
+    </item>
+    <item>
+      <title>Один из лучших сериалов про время? Самый лучший!</title>
+      <description>   Сериал рассказывает о четырёх семьях, живущих в вымышленном немецком городке Виндене, расположенном рядом с атомной электростанцией (АЭС). В городе начинают пропадать дети, и запускается цепочка со</description>
+      <link>http://localhost:3000/news/get/7</link>
+      <guid>http://localhost:3000/news/get/7</guid>
+    </item>
+    <item>
+      <title>Что нужно знать о третьем сезоне сериала "Половое воспитание"</title>
+      <description>Ровно год назад, в феврале 2020 года, Netflix обьявили, что третьему сезону "Полового воспитания" быть. Напомним, первый сезон искрометного шоу о сексуальном воспитании подростков вышел в 2019 году. Д</description>
+      <link>http://localhost:3000/news/get/5</link>
+      <guid>http://localhost:3000/news/get/5</guid>
+    </item>
+    <item>
+      <title>Мы больше не в Хоукинсе</title>
+      <description>25 марта 2020 года Девид Харбор в своей трансляции в Instagram сообщил, что изначально сезон должен был выйти в начале 2021 года, однако, как заметил актер, из-за заморозки производства, дата входа вероятно будет передвинута на более поздний срок.</description>
+      <link>http://localhost:3000/news/get/4</link>
+      <guid>http://localhost:3000/news/get/4</guid>
+    </item>
+    <item>
+      <title>Valheim — это игра</title>
+      <description>Valheim — это игра, в которой вам предстоит исследовать огромный фэнтезийный мир, пропитанный скандинавской мифологией и культурой викингов. Ваше приключение начнется в самом сердце Вальхейма, месте д</description>
+      <link>http://localhost:3000/news/get/1</link>
+      <guid>http://localhost:3000/news/get/1</guid>
+    </item>
+    <item>
+      <title/>
+      <description/>
+      <link/>
+      <guid/>
+    </item>
+  </channel>
 </rss>

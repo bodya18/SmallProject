@@ -20,6 +20,7 @@ router.get('/categories', auth, isAdmin, newsController.GetCategories)
 router.get('/GetEditSettings/:key', auth, isAdmin, newsController.GetEditSettings)
 router.get('/watchLater', auth, urlencodedParser, newsController.GetWatchLater)
 router.get('/newTag', auth, isAdmin, newsController.GetNewTag)
+router.get('/rss', newsController.AllRss)
 
 router.post('/create/tag', auth, isAdmin, urlencodedParser, newsController.CreateTag)
 router.post('/search', urlencodedParser, newsController.search)
