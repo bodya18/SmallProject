@@ -382,8 +382,10 @@ exports.GetEditSettings = async (req,res) => {
             }
         }
         else{
+            let SelectTitle = await rbac.news.search(title)
             if (category === undefined || category === 'undefined') {
-                var SelectTitle = await rbac.news.GetNewsByTitle(title)
+                // let news = await rbac.news.search(title)
+                // var SelectTitle = await rbac.news.GetNewsByTitle(title)
                 const categories = await rbac.category.GetCategories()
                 return res.render('EditSettingsTopNews.hbs', {
                     nowDate,
@@ -399,7 +401,7 @@ exports.GetEditSettings = async (req,res) => {
                 })
             }
             else{
-                var SelectTitle = await rbac.news.GetNewsByTitle(title)
+                // var SelectTitle = await rbac.news.GetNewsByTitle(title)
                 return res.render('EditSettingsTopNews.hbs', {
                     nowDate,
                     title: 'Редактирование настройки',
@@ -434,7 +436,7 @@ exports.GetCreateSettings = async (req, res) =>{
 }
 
 exports.GetSearchNews = async(req, res) =>{
-    res.redirect(`/news/GetEditSettings/${req.body.key}?category=${req.body.SelectCategory}&title=${req.body.selectTitleId}`)
+    res.redirect(`/news/GetEditSettings/${req.body.key}?category=${req.body.SelectCategory}&title=${req.body.search}`)
 }
 
 exports.newComment = async(req, res) =>{
