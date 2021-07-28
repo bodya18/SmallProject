@@ -139,6 +139,12 @@ window.addEventListener('scroll', (e)=>{
             addMoreList(e, ThisNewsId, 0)   
         }, 100);
         
+        let request3 = new XMLHttpRequest();
+        request3.open("post", "/news/SetViews", true)
+        request3.setRequestHeader("Content-Type", "application/json");
+        
+        request3.addEventListener("load", function () {})
+        request3.send(newsId)
                 
         isNews = false
     }	

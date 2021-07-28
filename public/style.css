@@ -88,7 +88,7 @@ pre {
 .in_this_category{
     position:fixed; 
     top:78px; 
-    left:1300px;
+    right:150px;
     width: 500px !important;
 }
 

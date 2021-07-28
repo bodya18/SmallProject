@@ -109,7 +109,6 @@ exports.GetThisPost = async (req,res) => {
 exports.getInCategory = async (req,res) => {
     const rbac = new RBAC
     const news = await rbac.news.GetOneNewsByCategory(req.params.id)
-    console.log(news);
     const data = new Date()
     const nowDate = Date.UTC(data.getFullYear(), data.getMonth()+1, data.getDate(), data.getHours(), data.getMinutes())
     if(!news || nowDate < news.time)
