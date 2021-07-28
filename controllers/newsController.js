@@ -4,10 +4,7 @@ const config = require('../middleware/config');
 var xml2js = require('xml2js');
 
 exports.GetNews = async (req,res) => {
-    
-
     const rbac = new RBAC
-    const news = await rbac.news.GetNews()
     const data = new Date()
     const nowDate = Date.UTC(data.getFullYear(), data.getMonth()+1, data.getDate(), data.getHours(), data.getMinutes())
     const categoriesId = await rbac.news.GetCategoriesInSettings('SelectedCategories')
@@ -46,6 +43,17 @@ exports.GetNews = async (req,res) => {
                 }else{
                     RightNews[0] = await rbac.news.GetNewsById(right) 
                 }
+                let news1 = []
+                let news = []
+                for (let i = 0; i < categories.length; i++) {
+                    news1.push(await rbac.news.GetNewsByCategory(categories[i].id))
+                    if(news1[0].length > 8)
+                        news1[0]=news1[0].slice(0,8)
+                    news.push(news1[0])
+                    news1 = []
+                }
+                news = [].concat(...news)
+                news = news.sort(() => Math.random() - 0.5);
                 res.render('./bootstrap-news-template/index.hbs', {
                     nowDate,
                     title: 'Новости',
