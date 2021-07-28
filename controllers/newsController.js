@@ -215,7 +215,7 @@ exports.CreateNews = async (req, res) => {
         if(req.body.meta_description)
             description = req.body.meta_description
         const id = await rbac.news.LAST_INSERT_ID()
-        let obj = {title: [req.body.title], description: [description], link: [`http://localhost:3000/news/get/${id}`], guid: [`http://localhost:3000/news/get/${id}`]}
+        let obj = {title: [req.body.title], description: [description], link: [`http://${config.site}/news/get/${id}`], guid: [`http://${config.site}/news/get/${id}`]}
         
         fs.readFile(dir, function(err, data) {
             parser.parseString(data, function (err, result) {
@@ -384,8 +384,6 @@ exports.GetEditSettings = async (req,res) => {
         else{
             let SelectTitle = await rbac.news.search(title)
             if (category === undefined || category === 'undefined') {
-                // let news = await rbac.news.search(title)
-                // var SelectTitle = await rbac.news.GetNewsByTitle(title)
                 const categories = await rbac.category.GetCategories()
                 return res.render('EditSettingsTopNews.hbs', {
                     nowDate,
@@ -401,7 +399,6 @@ exports.GetEditSettings = async (req,res) => {
                 })
             }
             else{
-                // var SelectTitle = await rbac.news.GetNewsByTitle(title)
                 return res.render('EditSettingsTopNews.hbs', {
                     nowDate,
                     title: 'Редактирование настройки',

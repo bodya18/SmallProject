@@ -73,11 +73,6 @@ class News{
                 isCreate: false,
                 error: 'Название статьи должно быть не длиннее 100 символов'
             }
-        // if(postText.length < 100)
-        //     return {
-        //         isCreate: false,
-        //         error: 'Статья должна быть длиннее 100 символов'
-        //     }
         if((!filedata) || (file.inFile === true)){
             file.inFile = false
             return {
