@@ -9,7 +9,7 @@ addEventListener('load', ()=>{
 
         request.addEventListener("load", function () {
             AllNews = JSON.parse(request.response);
-            AllNews.news = AllNews.news.sort(() => Math.random() - 0.5);
+            AllNews.news = AllNews.news.reverse()
         })
         request.send(categoryId);
 })

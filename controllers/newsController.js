@@ -47,13 +47,13 @@ exports.GetNews = async (req,res) => {
                 let news = []
                 for (let i = 0; i < categories.length; i++) {
                     news1.push(await rbac.news.GetNewsByCategory(categories[i].id))
+                    news1[0] = news1[0].reverse()
                     if(news1[0].length > 8)
                         news1[0]=news1[0].slice(0,8)
                     news.push(news1[0])
                     news1 = []
                 }
                 news = [].concat(...news)
-                news = news.sort(() => Math.random() - 0.5);
                 res.render('./bootstrap-news-template/index.hbs', {
                     nowDate,
                     title: 'Новости',
