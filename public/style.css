@@ -130,3 +130,20 @@ pre {
     height: 40px !important;
     width: 40px !important;
 }
+
+.search-settings-btn{
+    position: absolute;
+    top: 66px;
+    left: 460px;
+}
+
+.search-settings-inp{
+    position: absolute;
+    left: 0px;
+    width: 500px !important;
+}
+
+.btn-default.hover, .btn-default:active, .btn-default:hover {
+    background-color: transparent !important;
+    color: #2b2b2b;
+}
