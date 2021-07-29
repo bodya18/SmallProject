@@ -124,7 +124,7 @@
                             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                                 <div class="image">
                                     {{#if ThisUser.avatarURL}}
-                                        <img src="/{{ThisUser.avatarURL}}" style="margin-top: 15px; width: 30px; height: 30px;" class="img-circle elevation-2">
+                                        <img src="/{{ThisUser.avatarURL}}" style="margin-top: 15px;" class="img-circle elevation-2 user-img">
                                     {{else}}
                                         <img src="/images/no_avatar.png" style="margin-top: 15px;" class="img-circle elevation-2">
                                     {{/if}}
@@ -156,7 +156,7 @@
                         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                             <div class="image">
                                 {{#if ThisUser.avatarURL}}
-                                    <img src="/{{ThisUser.avatarURL}}" style="width: 30px; height: 30px;" class="img-circle elevation-2">
+                                    <img src="/{{ThisUser.avatarURL}}" class="img-circle elevation-2 user-img">
                                 {{else}}
                                     <img src="/images/no_avatar.png" class="img-circle elevation-2">
                                 {{/if}}

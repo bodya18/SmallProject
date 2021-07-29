@@ -1,4 +1,4 @@
-<a class="btn btn-dark" href="/news/GetEditSettings/{{settings._key}}" style="float: left; margin-top:20px">Убрать выбор</a>
+<a class="btn btn-dark settings-rmChoice" href="/news/GetEditSettings/{{settings._key}}">Убрать выбор</a>
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -7,7 +7,7 @@
                 <input type="hidden" value="{{settings._key}}" name="key">
                 <div class="form-group">
                     <br>
-                    <select class="js-example-basic-multiple" multiple="multiple" name="SelectCategory" data-placeholder="Выберите категории показа" style="width: 500px;">
+                    <select class="js-example-basic-multiple selectCategory-settings" multiple="multiple" name="SelectCategory" data-placeholder="Выберите категории показа" >
                         {{#each categoriesSelect}}
                             <option value="{{this.id}}">{{this.category}}</option>
                         {{/each}}
@@ -27,7 +27,7 @@
                     <font color='red'>{{error}}</font>
                 {{/if}}<br>
                 <h1>{{settings.label}}</h1>
-                <input type="submit" class="btn btn-success" value="ЗАДАТЬ НАСТРОЙКУ" style="width: 475px; font-weight: 1000">
+                <input type="submit" class="btn btn-success set-setting" value="ЗАДАТЬ НАСТРОЙКУ" >
                 <input type="hidden" value="{{settings.label}}" name="label">
                 <input type="hidden" value="{{settings.id}}" name="id">
                 <input type="hidden" value="{{settings._key}}" name="key">
@@ -38,11 +38,11 @@
                         <div class="row">
                             {{#each @root.news}}
                                 {{#if_eq this.time @root.nowDate}}
-                                    <div class="col-md-3" style=" margin-block-end: 15px;">
+                                    <div class="col-md-3">
                                         <div class="cn-img">
                                             <img class="show-Posts" src="/{{this.postUrl}}" />
                                             <div class="cn-title">
-                                                <a style="text-decoration: none;" href="/news/get/{{this.id}}">{{this.title}}</a>
+                                                <a style="none-decloration" href="/news/get/{{this.id}}">{{this.title}}</a>
                                                 <input class="form-check-input" type="checkbox" value="{{this.id}}" name="checkNews">
                                             </div>
                                         </div>

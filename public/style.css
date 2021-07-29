@@ -147,3 +147,112 @@ pre {
     background-color: transparent !important;
     color: #2b2b2b;
 }
+
+.user-img{
+    width: 30px;
+    height: 30px;
+}
+
+.edit-user-select{
+    width: 200px;
+    max-height: 30px;
+    padding-top: 1px;
+}
+.edit-input-link{
+    width:200px;
+    height: 30px;
+    margin-left: 30px;
+}
+.edit-addInp-btn{
+    max-height: 30px;
+    margin-left: 40px
+}
+
+.editNews-select{
+    width: 777px;
+}
+
+.selectCategory-settings{
+    width: 500px;
+}
+
+.settings-rmChoice{
+    float: left;
+    margin-top:20px
+}
+
+.set-setting{
+    width: 475px;
+    font-weight: 1000
+}
+.none-decloration{
+    text-decoration: none;
+}
+.list-categories{
+    margin-top: 10px;
+}
+
+.login-recoveryPass{
+    margin-left: 300px;
+    margin-top: -100px;
+}
+.align-center{
+    text-align: center;
+}
+.user-ico-margin-right{
+    margin-right: 10px;
+}
+.float-left{
+    float: left;
+}
+.user-allRoles-select{
+    width: 610px;
+}
+.hr-ShowNews{
+    margin-left:15px !important;
+    margin-top:20px !important;
+    width:63% !important;
+}
+
+.Watch-later{
+    margin-left: 500px;
+}
+.img-index-p{
+    object-fit: cover;
+    width: 450px;
+    height: 380px;
+}
+.single-news-h1{
+    word-wrap: break-word;
+}
+
+.comment-user-img{
+    width: 50px;
+    height: 50px !important;
+}
+.addComment{
+    width: auto;
+    height: 50px;
+}
+.Edit-comment{
+    margin-left:400px;
+    margin-right: 20px;
+}
+.delComment{
+    margin-left:562px;
+}
+.img-inTHis-category{
+    width:100px;
+    height: 64px;
+    object-fit: cover;
+}
+.add-input{
+    width: 187px;
+    max-height: 30px;
+    padding-top: 1px;
+}
+.del-input{
+    height: 30px;
+    width:35px;
+    margin-left: 40px
+}

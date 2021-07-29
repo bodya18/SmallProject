@@ -21,9 +21,9 @@ function editComment(id, e){
             <font id="errorEdit" color="red"></font>
             <form name="editThisComm">
                 <div class="d-flex flex-row add-comment-section mt-4 mb-4">
-                    <img class="img-fluid img-responsive rounded-circle mr-2" src="../../${user.user.avatarURL}" style="width: 50px; height: 50px;">
+                    <img class="img-fluid img-responsive rounded-circle mr-2 comment-user-img" src="../../${user.user.avatarURL}">
                     <textarea id="texrow${commentId}" name="comment" type="text" class="form-control mr-3" placeholder="Редактировать комментарий" rows="4" maxlength="1000" minlength="1">${comment}</textarea>   
-                    <button id="EditComentThis" onclick="editThisComment(${commentId}, ${id}, event)" class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
+                    <button id="EditComentThis" onclick="editThisComment(${commentId}, ${id}, event)" class="btn btn-primary addComment" type="submit">
                         Редактировать
                     </button>
                 </div>
@@ -63,7 +63,7 @@ function editThisComment(id, idd, e){
             <div class="commented-section mt-2" id="comment${countComments}">
                 <div class="bg-white p-2">
                     <div class="d-flex flex-row user-info">
-                        <img id="UserAvatar" class="rounded-circle" src="/${receivedUser.user.avatarURL}" style="width: 50px; height: 50px;">
+                        <img id="UserAvatar" class="rounded-circle comment-user-img" src="/${receivedUser.user.avatarURL}">
                         <div class="d-flex flex-column justify-content-start ml-2">
                             <span class="d-block font-weight-bold name">${receivedUser.user.name}</span>
                             <span class="date text-black-50">${receivedUser.comment.date}</span>
@@ -72,7 +72,7 @@ function editThisComment(id, idd, e){
                         <form name="editComment${countComments}">
                             <input type="hidden" id="commentId${countComments}" name="id" value="${receivedUser.comment.id}">
                             <input type="hidden" id="ThisComment${countComments}" name="comment" value="${receivedUser.comment.comment}">
-                            <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
+                            <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" type="submit" class="btn btn-dark Edit-comment">Редактировать</button>
                         </form>
                         <form name="DeleteComment${countComments}">
                             <input id="commentId${countComments}" type="hidden" value="${receivedUser.comment.id}">
@@ -80,7 +80,7 @@ function editThisComment(id, idd, e){
                         </form>
                     </div>
                     <div class="mt-2">
-                        <p style="height: 45px" class="comment-text">${receivedUser.comment.comment}</p>
+                        <p class="comment-text">${receivedUser.comment.comment}</p>
                     </div>
                     <hr>
                 </div>

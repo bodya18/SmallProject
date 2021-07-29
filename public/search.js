@@ -27,7 +27,7 @@ function AddMoreSearch(e){
                             <div class="cn-img">
                                 <img class="show-Posts" src="/${thisNews[i].postUrl}">
                                 <div class="cn-title">
-                                    <a style="text-decoration: none;" href="/news/get/${thisNews[i].id}">${thisNews[i].title}</a>
+                                    <a class="none-decloration" href="/news/get/${thisNews[i].id}">${thisNews[i].title}</a>
                                 </div>
                             </div>
                         </div>

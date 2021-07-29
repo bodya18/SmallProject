@@ -32,8 +32,8 @@ function addComment(newsId, e){
                 <div class="bg-white p-2">
                     <div class="d-flex flex-row user-info">
                     ${receivedUser.user.avatarURL 
-                        ? `<img id="UserAvatar" class="rounded-circle" src="/${receivedUser.user.avatarURL}" style="width: 50px; height: 50px;">` 
-                        : `<img id="UserAvatar" class="rounded-circle" src="/images/no_avatar.png" style="width: 50px; height: 50px;">`}
+                        ? `<img id="UserAvatar" class="rounded-circle comment-user-img" src="/${receivedUser.user.avatarURL}">` 
+                        : `<img id="UserAvatar" class="rounded-circle comment-user-img" src="/images/no_avatar.png">`}
                         
                         <div class="d-flex flex-column justify-content-start ml-2">
                             <span class="d-block font-weight-bold name">${receivedUser.user.name}</span>
@@ -43,7 +43,7 @@ function addComment(newsId, e){
                         <form name="editComment${countComments}">
                             <input type="hidden" id="commentId${countComments}" name="id" value="${receivedUser.comment.id}">
                             <input type="hidden" id="ThisComment${countComments}" name="comment" value="${receivedUser.comment.comment}">
-                            <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
+                            <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" type="submit" class="btn btn-dark Edit-comment">Редактировать</button>
                         </form>
                         <form name="DeleteComment${countComments}">
                             <input id="commentId${countComments}" type="hidden" value="${receivedUser.comment.id}">
@@ -51,7 +51,7 @@ function addComment(newsId, e){
                         </form>
                     </div>
                     <div class="mt-2">
-                        <p class="comment-text" style="height: 45px">${receivedUser.comment.comment}</p>
+                        <p class="comment-text" >${receivedUser.comment.comment}</p>
                     </div>
                     <hr>
                 </div>`

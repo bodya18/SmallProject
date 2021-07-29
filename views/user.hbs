@@ -20,7 +20,7 @@
                   <hr class="my-4">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                            <h6 class="mb-0"><img src="/images/vk.png" width="24" height="24" style="margin-right: 10px;">Vk</h6>
+                            <h6 class="mb-0"><img src="/images/vk.png" width="24" height="24" class="user-ico-margin-right">Vk</h6>
                             {{#if netw.vk}}
                               <span class="text-secondary"><a href="{{netw.vk}}" class="nav-link p-2 active" target="_blank">Поросмотреть профиль</a></span>
                             {{else}}
@@ -28,7 +28,7 @@
                             {{/if}}
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                            <h6 class="mb-0"><img src="/images/telegram.png" width="24" height="24" style="margin-right: 10px;">Telegram</h6>
+                            <h6 class="mb-0"><img src="/images/telegram.png" width="24" height="24" class="user-ico-margin-right">Telegram</h6>
                             {{#if netw.telegram}}
                               <span class="text-secondary">{{netw.telegram}}</span>
                             {{else}}
@@ -108,7 +108,7 @@
                     <div class="col-sm-9 text-secondary">
                       {{#each rules_users}}
                           {{#ifeq this.id @root.users.id}}
-                              <p style="float: left;">{{this.rule}}&nbsp;&nbsp;&nbsp;</p>
+                              <p class="float-left">{{this.rule}}&nbsp;&nbsp;&nbsp;</p>
                           {{/ifeq}}
                       {{/each}}
                     </div>
@@ -117,24 +117,24 @@
                   <div class="row">
                     <div class="col-sm-12">
                         {{#ifeq thisUserId userId}}
-                            <a class="btn btn-info " href="/edit/{{users.id}}" style="float: left;">Edit</a>
+                            <a class="btn btn-info float-left" href="/edit/{{users.id}}">Edit</a>
                             <form action="/delete/{{@root.users.id}}" method="POST">
-                                <input type="submit" class="btn btn-danger" value="Delete" style="float: left;">
+                                <input type="submit" class="btn btn-danger float-left" value="Delete">
                             </form>
                             <form action="/delete/avatar/{{@root.users.id}}" method="POST">
-                                <input type="submit" class="btn btn-warning" value="Delete avatar" style="float: left;">
+                                <input type="submit" class="btn btn-warning float-left" value="Delete avatar">
                             </form>
                         {{else}}
                             {{#each permissionsList}}
                                 {{#ifeq this 'EDIT'}}
-                                    <a class="btn btn-info " href="/edit/{{@root.users.id}}" style="float: left;">Edit</a>
+                                    <a class="btn btn-info float-left" href="/edit/{{@root.users.id}}">Edit</a>
                                 {{/ifeq}}
                                 {{#ifeq this 'DELETE'}}
                                     <form action="/delete/{{@root.users.id}}" method="POST">
-                                        <input type="submit" class="btn btn-danger" value="Delete" style="float: left;">
+                                        <input type="submit" class="btn btn-danger float-left" value="Delete">
                                     </form>                                
                                     <form action="/delete/avatar/{{@root.users.id}}" method="POST">
-                                        <input type="submit" class="btn btn-warning" value="Delete avatar" style="float: left;">
+                                        <input type="submit" class="btn btn-warning float-left" value="Delete avatar">
                                     </form>
                                 {{/ifeq}}
                             {{/each}}
@@ -148,7 +148,7 @@
                         <div class="row">
                           <div class="col-sm-9">
                             <h6 class="mb-0">
-                              <select class="js-example-basic-multiple" name="selectRuleId" multiple="multiple" style="width: 610px;">
+                              <select class="js-example-basic-multiple user-allRoles-select" name="selectRuleId" multiple="multiple">
                                 {{#each @root.SelectRules}}
                                   <option value="{{this.id}}" selected="selected">{{this.rule}}</option>
                                 {{/each}}

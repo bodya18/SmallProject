@@ -27,7 +27,7 @@
 							<hr class="my-4">
 							<div id="block">
 								<div class="block_addition" id="input1">
-									<select name="netw" class="form-select" style="width: 200px; max-height: 30px; padding-top: 1px;">
+									<select name="netw" class="form-select edit-user-select">
 										<option disabled selected></option>
 										<option {{netw.vk}}>Vk</option>
 										<option {{netw.telegram}}>Telegram</option>
@@ -36,9 +36,9 @@
 										<option {{netw.instagram}}>Instagram</option>
 										<option {{netw.facebook}}>Facebook</option>
 									</select>
-									<input class="form-control" placeholder="Ссылка" style="width:200px; height: 30px; margin-left: 30px" name="link">
+									<input class="form-control edit-input-link" placeholder="Ссылка" name="link">
 									
-									<button class="btn btn-dark" type="button" style="max-height: 30px; margin-left: 40px" onclick="addInput()">+</button>
+									<button class="btn btn-dark edit-addInp-btn" type="button" onclick="addInput()">+</button>
 								</div>
 							</div>
 						</div>

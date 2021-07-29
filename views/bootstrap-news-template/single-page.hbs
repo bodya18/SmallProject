@@ -8,7 +8,7 @@
                         <img class="single-img"  src="/{{news.postUrl}}">
                     </div>
                     <div class="sn-content">
-                        <h1 class="sn-title" style="word-wrap: break-word;">
+                        <h1 class="sn-title single-news-h1">
                             {{#if news.h1}}
                                 {{news.h1}}
                             {{else}}
@@ -16,7 +16,7 @@
                             {{/if}}
                             {{#each permissionsList}}
                                 {{#ifeq this 'GIVE'}}
-                                    <a style="text-decoration: none;" href="/news/edit/{{@root.news.id}}">
+                                    <a href="/news/edit/{{@root.news.id}}">
                                         <button type="button" class="btn btn-dark">&#9998;</button>
                                     </a>
                                 {{/ifeq}}
@@ -35,7 +35,7 @@
                                         <button id="submitLike{{news.id}}" onclick="likePost({{news.id}}, event)" class="btn btn-danger" type="submit">Нравится&nbsp;&nbsp; {{news.likes}}</button>
                                     {{/if}}
                                 </form>
-                                <form name="Watch{{news.id}}" style="margin-left: 500px;">
+                                <form name="Watch{{news.id}}" class="Watch-later">
                                     <input type="hidden" name="userId" value="{{ThisUser.id}}">
                                     <input type="hidden" name="newsId" value="{{news.id}}">
                                     {{#if isSave}}
@@ -65,12 +65,12 @@
                                         <input type="hidden" name="newsId" value="{{news.id}}">
                                         <div class="d-flex flex-row add-comment-section mt-4 mb-4">
                                             {{#if ThisUser.avatarURL}}
-                                                <img class="img-fluid img-responsive rounded-circle mr-2" src="/{{ThisUser.avatarURL}}" style="width: 50px; height: 50px;">
+                                                <img class="img-fluid img-responsive rounded-circle mr-2 comment-user-img" src="/{{ThisUser.avatarURL}}" >
                                             {{else}}
-                                                <img class="img-fluid img-responsive rounded-circle mr-2" src="../../images/no_avatar.png" style="width: 50px; height: 50px;">
+                                                <img class="img-fluid img-responsive rounded-circle mr-2 comment-user-img" src="../../images/no_avatar.png">
                                             {{/if}}
                                             <textarea id="texrow{{news.id}}" name="comments" type="text" class="form-control mr-3" placeholder="Добавить комментарий" rows="4" maxlength="1000" minlength="1"></textarea>   
-                                            <button id="comment{{news.id}}" onclick="addComment({{news.id}}, event)" class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
+                                            <button id="comment{{news.id}}" onclick="addComment({{news.id}}, event)" class="btn btn-primary addComment" type="submit">
                                                 Комментировать
                                             </button>
                                         </div>

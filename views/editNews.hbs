@@ -21,7 +21,7 @@
             <input name="h1" type="text" value="{{news.h1}}" class="form-control" placeholder="Заголовок h1" autocomplete="off">
 
             <div align="left">
-                <select class="js-example-basic-multiple form-control" data-placeholder="Выберите тэги" style="width: 777px;" name="selectTagId" multiple="multiple" >
+                <select class="js-example-basic-multiple form-control editNews-select" data-placeholder="Выберите тэги" name="selectTagId" multiple="multiple" >
                     {{#each tags}}
                         <option value="{{this.tag}}">{{this.tag}}</option>
                     {{/each}}
@@ -43,5 +43,5 @@
 
     <form action="/news/delete/post/{{news.id}}" method="post">
         <input type="submit" class="btn btn-danger" value="Удалить новость">
-    </form>
+    </form><br>
 </div>

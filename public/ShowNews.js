@@ -47,7 +47,7 @@ window.addEventListener('scroll', (e)=>{
             div.id ="news"+ listValue
             div.className="row"
             div.innerHTML = `
-                <hr style="margin-left:15px; margin-top:20px; width:63%;">
+                <hr class="hr-ShowNews">
                 <div class="col-lg-8">
                     <div class="sn-container">
                         <div class="single-img">
@@ -60,7 +60,7 @@ window.addEventListener('scroll', (e)=>{
                                     : `${AllNews.news[i].title}`
                                 }
                                 ${isPerm 
-                                    ? `<a style="text-decoration: none;" href="/news/edit/${AllNews.news[i].id}">
+                                    ? `<a href="/news/edit/${AllNews.news[i].id}">
                                         <button type="button" class="btn btn-dark">&#9998;</button>
                                     </a>` 
                                     : ``
@@ -77,7 +77,7 @@ window.addEventListener('scroll', (e)=>{
                                             : `<button id="submitLike${AllNews.news[i].id}" onclick="likePost(${AllNews.news[i].id}, event)" class="btn btn-danger" type="submit">Нравится&nbsp;&nbsp; ${AllNews.news[i].likes}</button>`
                                         }
                                     </form>
-                                    <form name="Watch${AllNews.news[i].id}" style="margin-left: 500px;">
+                                    <form name="Watch${AllNews.news[i].id}" class="Watch-later">
                                         <input type="hidden" name="userId" value="${AllNews.user.id}">
                                         <input type="hidden" name="newsId" value="${AllNews.news[i].id}">
                                         ${ThisNews.isSave 
@@ -105,11 +105,11 @@ window.addEventListener('scroll', (e)=>{
                                             <div class="d-flex flex-row add-comment-section mt-4 mb-4">
                                             ${
                                                 AllNews.user.avatarURL 
-                                                ? `<img class="img-fluid img-responsive rounded-circle mr-2" src="/${AllNews.user.avatarURL}" style="width: 50px; height: 50px;">` 
-                                                : `<img class="img-fluid img-responsive rounded-circle mr-2" src="../../images/no_avatar.png" style="width: 50px; height: 50px;">`
+                                                ? `<img class="img-fluid img-responsive rounded-circle mr-2 comment-user-img" src="/${AllNews.user.avatarURL}">` 
+                                                : `<img class="img-fluid img-responsive rounded-circle mr-2 comment-user-img" src="../../images/no_avatar.png">`
                                             }
                                                 <textarea id="texrow${AllNews.news[i].id}" name="comments" type="text" class="form-control mr-3" placeholder="Добавить комментарий" rows="4" maxlength="1000" minlength="1"></textarea>   
-                                                <button id="comment${AllNews.news[i].id}" onclick="addComment(${AllNews.news[i].id}, event)" class="btn btn-primary" type="submit" style="width: auto; height: 50px;">
+                                                <button id="comment${AllNews.news[i].id}" onclick="addComment(${AllNews.news[i].id}, event)" class="btn btn-primary addComment" type="submit">
                                                     Комментировать
                                                 </button>
                                             </div>
@@ -185,7 +185,7 @@ function addMoreList(e, ThisNewsId, ThisCommentsLength){
                                 div.innerHTML =`
                                 <div class="bg-white p-2">
                                     <div class="d-flex flex-row user-info">   
-                                        <img id="UserAvatar" class="rounded-circle" src="../../${session.users[j].avatarURL}" style="width: 50px; height: 50px;">
+                                        <img id="UserAvatar" class="rounded-circle comment-user-img" src="../../${session.users[j].avatarURL}">
                                         <div class="d-flex flex-column justify-content-start ml-2">
                                             <span class="d-block font-weight-bold name">${session.users[j].name}</span>
                                             <span class="date text-black-50">${session.comments[i].date}</span>
@@ -193,7 +193,7 @@ function addMoreList(e, ThisNewsId, ThisCommentsLength){
                                             <form name="editComment${countComments}">
                                                 <input type="hidden" id="commentId${countComments}" name="id" value="${session.comments[i].id}">
                                                 <input type="hidden" id="ThisComment${countComments}" name="comment" value="${session.comments[i].comment}">
-                                                <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
+                                                <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" type="submit" class="btn btn-dark Edit-comment">Редактировать</button>
                                             </form>
                                             <form name="DeleteComment${countComments}">
                                                 <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
@@ -213,14 +213,14 @@ function addMoreList(e, ThisNewsId, ThisCommentsLength){
                                         div.innerHTML =`
                                         <div class="bg-white p-2">
                                             <div class="d-flex flex-row user-info">   
-                                                <img id="UserAvatar" class="rounded-circle" src="../../${session.users[j].avatarURL}" style="width: 50px; height: 50px;">
+                                                <img id="UserAvatar" class="rounded-circle comment-user-img" src="../../${session.users[j].avatarURL}">
                                                 <div class="d-flex flex-column justify-content-start ml-2">
                                                     <span class="d-block font-weight-bold name">${session.users[j].name}</span>
                                                     <span class="date text-black-50">${session.comments[i].date}</span>
                                                 </div>
                                                     <form name="DeleteComment${countComments}">
                                                         <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
-                                                        <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" style="margin-left:562px;" class="btn btn-danger">Удалить</button>
+                                                        <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" class="btn btn-danger delComment">Удалить</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -235,7 +235,7 @@ function addMoreList(e, ThisNewsId, ThisCommentsLength){
                                     div.innerHTML =`
                                         <div class="bg-white p-2">
                                             <div class="d-flex flex-row user-info">   
-                                                <img id="UserAvatar" class="rounded-circle" src="../../${session.users[j].avatarURL}" style="width: 50px; height: 50px;">
+                                                <img id="UserAvatar" class="rounded-circle comment-user-img" src="../../${session.users[j].avatarURL}">
                                                 <div class="d-flex flex-column justify-content-start ml-2">
                                                     <span class="d-block font-weight-bold name">${session.users[j].name}</span>
                                                     <span class="date text-black-50">${session.comments[i].date}</span>
@@ -252,7 +252,7 @@ function addMoreList(e, ThisNewsId, ThisCommentsLength){
                             div.innerHTML =`
                                 <div class="bg-white p-2">
                                     <div class="d-flex flex-row user-info">   
-                                        <img id="UserAvatar" class="rounded-circle" src="../../${session.users[j].avatarURL}" style="width: 50px; height: 50px;">
+                                        <img id="UserAvatar" class="rounded-circle comment-user-img" src="../../${session.users[j].avatarURL}">
                                         <div class="d-flex flex-column justify-content-start ml-2">
                                             <span class="d-block font-weight-bold name">${session.users[j].name}</span>
                                             <span class="date text-black-50">${session.comments[i].date}</span>

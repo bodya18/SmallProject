@@ -31,10 +31,10 @@ addEventListener('load', function (e){
                     'beforeend', 
                     `<div class="nl-item">
                         <div class="nl-img">
-                            <img width="100" height="64" style="object-fit: cover;" src="/${data.news[i].postUrl}" />
+                            <img class="img-inTHis-category" src="/${data.news[i].postUrl}" />
                         </div>
                         <div class="nl-title">
-                            <a style="text-decoration: none;" href="/news/get/${data.news[i].id}">${data.news[i].title}</a>
+                            <a class="none-decloration" href="/news/get/${data.news[i].id}">${data.news[i].title}</a>
                         </div>
                     </div>`
                 )
@@ -90,7 +90,7 @@ function addMore(e){
                                 div.innerHTML =`
                                 <div class="bg-white p-2">
                                     <div class="d-flex flex-row user-info">   
-                                        <img id="UserAvatar" class="rounded-circle" src="../../${session.users[j].avatarURL}" style="width: 50px; height: 50px;">
+                                        <img id="UserAvatar" class="rounded-circle comment-user-img" src="../../${session.users[j].avatarURL}">
                                         <div class="d-flex flex-column justify-content-start ml-2">
                                             <span class="d-block font-weight-bold name">${session.users[j].name}</span>
                                             <span class="date text-black-50">${session.comments[i].date}</span>
@@ -98,7 +98,7 @@ function addMore(e){
                                             <form name="editComment${countComments}">
                                                 <input type="hidden" id="commentId${countComments}" name="id" value="${session.comments[i].id}">
                                                 <input type="hidden" id="ThisComment${countComments}" name="comment" value="${session.comments[i].comment}">
-                                                <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" style="margin-left:400px; margin-right: 20px;" type="submit" class="btn btn-dark">Редактировать</button>
+                                                <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" type="submit" class="btn btn-dark Edit-comment">Редактировать</button>
                                             </form>
                                             <form name="DeleteComment${countComments}">
                                                 <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
@@ -118,14 +118,14 @@ function addMore(e){
                                                 div.innerHTML =`
                                                 <div class="bg-white p-2">
                                                     <div class="d-flex flex-row user-info">   
-                                                        <img id="UserAvatar" class="rounded-circle" src="../../${session.users[j].avatarURL}" style="width: 50px; height: 50px;">
+                                                        <img id="UserAvatar" class="rounded-circle comment-user-img" src="../../${session.users[j].avatarURL}">
                                                         <div class="d-flex flex-column justify-content-start ml-2">
                                                             <span class="d-block font-weight-bold name">${session.users[j].name}</span>
                                                             <span class="date text-black-50">${session.comments[i].date}</span>
                                                         </div>
                                                             <form name="DeleteComment${countComments}">
                                                                 <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
-                                                                <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" style="margin-left:562px;" class="btn btn-danger">Удалить</button>
+                                                                <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" class="btn btn-danger delComment">Удалить</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -140,7 +140,7 @@ function addMore(e){
                                             div.innerHTML =`
                                                 <div class="bg-white p-2">
                                                     <div class="d-flex flex-row user-info">   
-                                                        <img id="UserAvatar" class="rounded-circle" src="../../${session.users[j].avatarURL}" style="width: 50px; height: 50px;">
+                                                        <img id="UserAvatar" class="rounded-circle comment-user-img" src="../../${session.users[j].avatarURL}">
                                                         <div class="d-flex flex-column justify-content-start ml-2">
                                                             <span class="d-block font-weight-bold name">${session.users[j].name}</span>
                                                             <span class="date text-black-50">${session.comments[i].date}</span>
@@ -157,7 +157,7 @@ function addMore(e){
                             div.innerHTML =`
                                 <div class="bg-white p-2">
                                     <div class="d-flex flex-row user-info">   
-                                        <img id="UserAvatar" class="rounded-circle" src="../../${session.users[j].avatarURL}" style="width: 50px; height: 50px;">
+                                        <img id="UserAvatar" class="rounded-circle comment-user-img" src="../../${session.users[j].avatarURL}">
                                         <div class="d-flex flex-column justify-content-start ml-2">
                                             <span class="d-block font-weight-bold name">${session.users[j].name}</span>
                                             <span class="date text-black-50">${session.comments[i].date}</span>

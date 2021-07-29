@@ -11,7 +11,7 @@ function addInput() {
     div.className = 'block_addition'
     div.id = 'input' + ++x;
     div.innerHTML = `
-    <select name="netw" class="form-select" style="width: 187px; max-height: 30px; padding-top: 1px;">
+    <select name="netw" class="form-select add-input">
         <option></option>
         <option {{netw.vk}}>Vk</option>
         <option {{netw.telegram}}>Telegram</option>
@@ -20,8 +20,8 @@ function addInput() {
         <option {{netw.instagram}}>Instagram</option>
         <option {{netw.facebook}}>Facebook</option>
     </select>
-    <input class="form-control" placeholder="Ссылка" style="width:200px; height: 30px; margin-left: 30px" name="link">
-    <button class="btn btn-danger" type="button" style="height: 30px; width:35px; margin-left: 40px" onclick="delInput(${x})">-</button>
+    <input class="form-control edit-input-link" placeholder="Ссылка"  name="link">
+    <button class="btn btn-danger del-input" type="button" onclick="delInput(${x})">-</button>
     <hr class="my-4">
     `;
     profile.appendChild(div);
