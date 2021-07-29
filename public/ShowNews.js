@@ -50,9 +50,7 @@ window.addEventListener('scroll', (e)=>{
                 <hr class="hr-ShowNews">
                 <div class="col-lg-8">
                     <div class="sn-container">
-                        <div class="single-img">
-                            <img class="single-img"  src="/${AllNews.news[i].postUrl}">
-                        </div>
+                        <img class="single-img"  src="/${AllNews.news[i].postUrl}">
                         <div class="sn-content">
                             <h1 class="sn-title">
                                 ${AllNews.news[i].h1

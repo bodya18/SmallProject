@@ -173,12 +173,12 @@ button.btn:hover {
     display: none;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .top-bar .tb-contact,
     .top-bar .tb-menu {
         text-align: center;
     }
-}
+} */
 
 
 /**********************************/
@@ -242,7 +242,7 @@ button.btn:hover {
     color: #ffffff;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
     .brand {
         max-height: 90px;
     }
@@ -259,7 +259,7 @@ button.btn:hover {
     .brand .b-search {
         margin-bottom: 0;
     }
-}
+} */
 
 
 /**********************************/
@@ -304,7 +304,7 @@ button.btn:hover {
     background: #f8f9fa;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
     .nav-bar,
     .nav-bar .navbar {
         background: #FF6F61;
@@ -319,9 +319,9 @@ button.btn:hover {
         font-size: 15px;
         text-transform: uppercase;
     }
-}
+} */
 
-@media (max-width: 768px) {   
+/* @media (max-width: 768px) {   
     .nav-bar,
     .nav-bar .navbar {
         padding: 3px 0;
@@ -339,7 +339,7 @@ button.btn:hover {
     .nav-bar .social {
         display: none;
     }
-}
+} */
 
 .nav-bar .social {
     font-size: 0;
@@ -1357,9 +1357,9 @@ button.btn:hover {
     color: #ffffff;
 }
 
-@media (max-width: 768.98px) {
+/* @media (max-width: 768.98px) {
     .footer-bottom .copyright,
     .footer-bottom .template-by {
         text-align: center; 
     } 
-}
+} */
