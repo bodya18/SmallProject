@@ -24,7 +24,7 @@ function editComment(id, e){
                     <img class="img-fluid img-responsive rounded-circle mr-2 comment-user-img" src="../../${user.user.avatarURL}">
                     <textarea id="texrow${commentId}" name="comment" type="text" class="form-control mr-3" placeholder="Редактировать комментарий" rows="4" maxlength="1000" minlength="1">${comment}</textarea>   
                     <button id="EditComentThis" onclick="editThisComment(${commentId}, ${id}, event)" class="btn btn-primary addComment" type="submit">
-                        Редактировать
+                    &#9998;
                     </button>
                 </div>
             </form>
@@ -72,11 +72,11 @@ function editThisComment(id, idd, e){
                         <form name="editComment${countComments}">
                             <input type="hidden" id="commentId${countComments}" name="id" value="${receivedUser.comment.id}">
                             <input type="hidden" id="ThisComment${countComments}" name="comment" value="${receivedUser.comment.comment}">
-                            <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" type="submit" class="btn btn-dark Edit-comment">Редактировать</button>
+                            <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" type="submit" class="btn btn-dark Edit-comment">&#9998;</button>
                         </form>
                         <form name="DeleteComment${countComments}">
                             <input id="commentId${countComments}" type="hidden" value="${receivedUser.comment.id}">
-                            <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" class="btn btn-danger">Удалить</button>
+                            <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                         </form>
                     </div>
                     <div class="mt-2">

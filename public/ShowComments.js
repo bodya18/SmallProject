@@ -98,11 +98,11 @@ function addMore(e){
                                             <form name="editComment${countComments}">
                                                 <input type="hidden" id="commentId${countComments}" name="id" value="${session.comments[i].id}">
                                                 <input type="hidden" id="ThisComment${countComments}" name="comment" value="${session.comments[i].comment}">
-                                                <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" type="submit" class="btn btn-dark Edit-comment">Редактировать</button>
+                                                <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" type="submit" class="btn btn-dark Edit-comment">&#9998;</button>
                                             </form>
                                             <form name="DeleteComment${countComments}">
                                                 <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
-                                                <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" class="btn btn-danger">Удалить</button>
+                                                <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                             </form>
                                         </div>
                                     </div>
@@ -125,7 +125,7 @@ function addMore(e){
                                                         </div>
                                                             <form name="DeleteComment${countComments}">
                                                                 <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
-                                                                <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" class="btn btn-danger delComment">Удалить</button>
+                                                                <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" class="btn btn-danger delComment"><i class="fas fa-trash"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>

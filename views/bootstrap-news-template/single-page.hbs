@@ -61,7 +61,7 @@
                                     <form name="NewComment{{news.id}}">
                                         <input type="hidden" name="userId" value="{{ThisUser.id}}">
                                         <input type="hidden" name="newsId" value="{{news.id}}">
-                                        <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+                                        <div class="d-flex add-comment-section mt-4 mb-4 phone-display-comment">
                                             {{#if ThisUser.avatarURL}}
                                                 <img class="img-fluid img-responsive rounded-circle mr-2 comment-user-img" src="/{{ThisUser.avatarURL}}" >
                                             {{else}}

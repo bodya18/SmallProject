@@ -40,7 +40,7 @@ pre {
 }
 
 .block_addition { 
-    display: flex;
+    display: flex !important;
 }
 
 
@@ -239,7 +239,7 @@ pre {
     margin-right: 20px;
 }
 .delComment{
-    margin-left:562px;
+    margin-left:458px;
 }
 .img-inTHis-category{
     width:100px;
@@ -266,10 +266,16 @@ pre {
 }
 .phone-avatar{
     position: relative;
-
 }
 .menu{
     margin-right: 130px !important;
+}
+.user-profile-nav{
+    margin-top: -8px !important;
+    display: flex;
+}
+.phone-display-comment{
+    flex-direction: row;
 }
 @media screen and (max-width:1700px) {
     .in_this_category{
@@ -294,7 +300,7 @@ pre {
         margin-left: 295px;
     }
     .delComment {
-        margin-left: 457px;
+        margin-left: 355px;
     }
     .Watch-later {
         margin-left: 426px;
@@ -312,7 +318,7 @@ pre {
         margin-left: 166px;
     }
     .delComment {
-        margin-left: 325px;
+        margin-left: 224px;
     }
     .navbar-dark{
         width: 738px !important;
@@ -324,7 +330,7 @@ pre {
         margin-left: 386px;
     }
     .Edit-comment {
-        margin-left: 255px;
+        margin-left: 378px;
     }
     .delComment {
         margin-left: 411px;
@@ -335,15 +341,35 @@ pre {
 }
 @media screen and (min-width: 10px) and (max-width:767.97px){
     .phone-menu{
-        display: block;
+        display: flex;
     }
     .Watch-later {
         margin-left: 0px;
     }
     .Edit-comment {
-        margin-left: 255px;
+        margin-left: 0px;
     }
     .delComment {
-        margin-left: 411px;
+        margin-left: 0px;
+    }
+    .phone-display-comment{
+        flex-direction: column !important;
+    }
+    .comment-user-img{
+        display: none;
+    }
+    .phone-right-news{
+        display: none;
+    }
+}
+@media screen and (min-width: 10px) and (max-width:449.97px){
+    .user-profile-nav{
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 10px) and (max-width:299.97px){
+    .searchbar{
+        width: 150px !important;
     }
 }

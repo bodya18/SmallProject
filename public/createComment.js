@@ -43,11 +43,11 @@ function addComment(newsId, e){
                         <form name="editComment${countComments}">
                             <input type="hidden" id="commentId${countComments}" name="id" value="${receivedUser.comment.id}">
                             <input type="hidden" id="ThisComment${countComments}" name="comment" value="${receivedUser.comment.comment}">
-                            <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" type="submit" class="btn btn-dark Edit-comment">Редактировать</button>
+                            <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" type="submit" class="btn btn-dark Edit-comment">&#9998;</button>
                         </form>
                         <form name="DeleteComment${countComments}">
                             <input id="commentId${countComments}" type="hidden" value="${receivedUser.comment.id}">
-                            <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" class="btn btn-danger">Удалить</button>
+                            <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                         </form>
                     </div>
                     <div class="mt-2">

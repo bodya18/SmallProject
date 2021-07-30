@@ -100,7 +100,7 @@ window.addEventListener('scroll', (e)=>{
                                         <form name="NewComment${AllNews.news[i].id}">
                                             <input type="hidden" name="userId" value="${AllNews.user.id}">
                                             <input type="hidden" name="newsId" value="${AllNews.news[i].id}">
-                                            <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+                                            <div class="d-flex add-comment-section mt-4 mb-4 phone-display-comment">
                                             ${
                                                 AllNews.user.avatarURL 
                                                 ? `<img class="img-fluid img-responsive rounded-circle mr-2 comment-user-img" src="/${AllNews.user.avatarURL}">` 
@@ -191,11 +191,11 @@ function addMoreList(e, ThisNewsId, ThisCommentsLength){
                                             <form name="editComment${countComments}">
                                                 <input type="hidden" id="commentId${countComments}" name="id" value="${session.comments[i].id}">
                                                 <input type="hidden" id="ThisComment${countComments}" name="comment" value="${session.comments[i].comment}">
-                                                <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" type="submit" class="btn btn-dark Edit-comment">Редактировать</button>
+                                                <button id='Editcom${countComments}' onclick="editComment(${countComments}, event)" type="submit" class="btn btn-dark Edit-comment">&#9998;</button>
                                             </form>
                                             <form name="DeleteComment${countComments}">
                                                 <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
-                                                <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" class="btn btn-danger">Удалить</button>
+                                                <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                             </form>
                                         </div>
                                     </div>
@@ -218,7 +218,7 @@ function addMoreList(e, ThisNewsId, ThisCommentsLength){
                                                 </div>
                                                     <form name="DeleteComment${countComments}">
                                                         <input id="commentId${countComments}" type="hidden" value="${session.comments[i].id}">
-                                                        <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" class="btn btn-danger delComment">Удалить</button>
+                                                        <button onclick="DelComment(${countComments}, event)" id="DelComm${countComments}" type="submit" class="btn btn-danger delComment"><i class="fas fa-trash"></i></button>
                                                     </form>
                                                 </div>
                                             </div>
