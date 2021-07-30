@@ -277,6 +277,12 @@ pre {
 .phone-display-comment{
     flex-direction: row;
 }
+.create-news-tags{
+    max-width:100%;
+}
+.user-role-select{
+    max-width:100%; 
+}
 @media screen and (max-width:1700px) {
     .in_this_category{
         display: none;
@@ -378,4 +384,13 @@ pre {
     .footer-block{
         display: none;
     }
+}
+@media (max-width: 330px){
+    .create-news-tags{
+        max-width: 180px;
+    }
+}
+
+.select2-container{
+    max-width: 100%;
 }
