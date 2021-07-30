@@ -31,7 +31,7 @@ function AddMoreSearch(e){
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 show_search">
+                        <div class="col-md-6 show_search phone-right-news">
                         ${thisNews[i].meta_description 
                             ?`${thisNews[i].meta_description}`
                             :`<div class="truncate">

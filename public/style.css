@@ -373,3 +373,9 @@ pre {
         width: 150px !important;
     }
 }
+
+@media (max-width:991.97px) {
+    .footer-block{
+        display: none;
+    }
+}
