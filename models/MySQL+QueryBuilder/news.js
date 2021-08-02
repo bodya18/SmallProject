@@ -44,7 +44,7 @@ class News{
 
     async create(h1, meta_description, timepost, post_text, postUrl, categoryId, title) {
         const qb = await pool.get_connection();
-        await qb.insert('news', {h1, meta_description, time, post_text, postUrl, categoryId, title}, (err, res)=>{
+        await qb.insert('news', {h1, meta_description, 'time': timepost, post_text, postUrl: postUrl.path, categoryId, title}, (err, res)=>{
             qb.release();
             console.log(res);
             return res.insert_id
@@ -129,7 +129,7 @@ class News{
             .select('*')
             .get('news');
         qb.release();
-        return response[0]
+        return response
     }
 
     async GetNewsByCategory(categoryId){

@@ -6,6 +6,12 @@
     <description>Самые последние и горячие новости</description>
     <language>ru</language>
     <item>
+      <title>dfasdadfassfdas</title>
+      <description>dfasfadfasdfasfdsadfasad</description>
+      <link>http://http://localhost:3000/news/get/undefined</link>
+      <guid>http://http://localhost:3000/news/get/undefined</guid>
+    </item>
+    <item>
       <title>Кто я</title>
       <description>Бенджамин – самый незаметный человек в Берлине. Еще в школе на него перестали обращать внимание сверстники, а уж во взрослой жизни он и вовсе слывет пустым местом. Но лишь до тех пор, пока Бенджамин н</description>
       <link>http://localhost:3000/news/get/10</link>

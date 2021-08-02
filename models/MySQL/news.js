@@ -54,6 +54,15 @@ class News{
         catch (e){
             console.log(e) 
         }
+        var temp
+        await pool.query(`SELECT  LAST_INSERT_ID();`)
+            .then(data => {
+                temp = data[0][0]['LAST_INSERT_ID()']
+            })
+            .catch(e =>{
+                return console.log(e);
+            })
+        return temp
     }
     async setText(newsId, post_text){
         await pool.query('update news set post_text=? where id=?', [post_text, newsId])

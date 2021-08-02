@@ -6,6 +6,12 @@
     <description>Самые последние и горячие новости</description>
     <language>ru</language>
     <item>
+      <title>dfasdadfassfdas</title>
+      <description>dfasfadfasdfasfdsadfasad</description>
+      <link>http://http://localhost:3000/news/get/undefined</link>
+      <guid>http://http://localhost:3000/news/get/undefined</guid>
+    </item>
+    <item>
       <title>Корабль скелетов</title>
       <description>Корабль скелетов — в Sea of Thieves — корабль, команду которого составляют скелеты.КомандаГалеоны и шлюпы скелетов можно встретить в любой точке мира. Их легко узнать по синему и зелёному свету фонаре</description>
       <link>http://localhost:3000/news/get/44</link>
