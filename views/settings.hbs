@@ -6,7 +6,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Название</th>
-                        <th scope="col">Ключ</th>
+                        <th scope="col" class="show-settings-table">Ключ</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -15,10 +15,15 @@
                         <tr>
                             <th>{{this.id}}</th>
                             <td>{{this.label}}</td>
-                            <td>{{this._key}}</td>
-                            <td>
+                            <td class="show-settings-table">{{this._key}}</td>
+                            <td class="show-settings-table">
                                 <a href="/news/GetEditSettings/{{this._key}}">
                                     <button class="btn btn-secondary">Редактировать</button>
+                                </a>
+                            </td>
+                            <td class="mobile-show-settings-table">
+                                <a href="/news/GetEditSettings/{{this._key}}">
+                                    <button class="btn btn-secondary">&#9998;</button>
                                 </a>
                             </td>
                         </tr>

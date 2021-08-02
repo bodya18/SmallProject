@@ -4,8 +4,8 @@
         <div class="btn-group" role="group" aria-label="Basic outlined example">
             <th width="200">Имя</th>
         </div>
-        <th width="250">Email</th>
-        <th>Роль</th>
+        <th class="table-list-users" width="250">Email</th>
+        <th class="table-list-users">Роль</th>
     </tr>
     {{#each users}}
         <tr> 
@@ -17,8 +17,8 @@
                 {{/if}}
             </div>
             <td><h5>{{this.name}}</h5></td>
-            <td><h5>{{this.email}}</h5></td>
-            <td>
+            <td class="table-list-users"><h5>{{this.email}}</h5></td>
+            <td class="table-list-users">
                 {{#each @root.rules_users}}
                     {{#ifeq this.id ../this.id}}
                         <h5 class="float-left">{{this.rule}}&nbsp;&nbsp;&nbsp;</h5>

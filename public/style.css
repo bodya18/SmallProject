@@ -138,6 +138,7 @@ pre {
 }
 
 .search-settings-inp{
+    max-width: 100%;
     position: absolute;
     left: 0px;
     width: 500px !important;
@@ -283,6 +284,18 @@ pre {
 .user-role-select{
     max-width:100%; 
 }
+.select2-container{
+    max-width: 100%;
+}
+.mobile-admin-panel{
+    display: none;
+}
+.mobile-show-settings-table{
+    display: none;
+}
+/* .edit-settings-search-inp{
+    max-width: 100%;
+} */
 @media screen and (max-width:1700px) {
     .in_this_category{
         display: none;
@@ -367,6 +380,12 @@ pre {
     .phone-right-news{
         display: none;
     }
+    .table-list-users{
+        display: none;
+    }
+    .set-setting{
+        width: 100%;
+    }
 }
 @media screen and (min-width: 10px) and (max-width:449.97px){
     .user-profile-nav{
@@ -384,13 +403,31 @@ pre {
     .footer-block{
         display: none;
     }
+    .admin-panel{
+        display: none;
+    }
+    .mobile-admin-panel{
+        display: block;
+    }
 }
 @media (max-width: 330px){
     .create-news-tags{
         max-width: 180px;
     }
 }
-
-.select2-container{
-    max-width: 100%;
+@media (max-width: 500px){
+    .show-settings-table{
+        display: none;
+    }
+    .mobile-show-settings-table{
+        display: block;
+    }
+}
+@media (max-width: 700px) {
+    .search-settings-btn{
+        position:absolute;
+        right: 20px;
+        top: 66px;
+        left:auto;
+    }
 }

@@ -201,7 +201,7 @@
         <!-- Nav Bar End -->
         {{#if isAdmin}}
             <div class="wrapper">
-                <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                <aside class="main-sidebar sidebar-dark-primary elevation-4 admin-panel">
                     <!-- Sidebar -->
                     <div class="sidebar">
                     <!-- Sidebar user panel (optional) -->
@@ -440,7 +440,68 @@
                 <div class="content-wrapper">
                     <section class="content">
                     <div class="container-fluid">
-                        
+                        <div class="mobile-admin-panel">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Админ панель
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a href="/admin" class="dropdown-item">
+                                            <p>Новости</p>
+                                        </a>
+
+                                        <a href="/news/categories" class="dropdown-item">
+                                            <p>Категории</p>
+                                        </a>
+
+                                        <a href="/news/create/post" class="dropdown-item">
+                                            <p>Создание поста</p>
+                                        </a>
+
+                                        <a href="/news/create/category" class="dropdown-item">
+                                            <p>Создание категории</p>
+                                        </a>
+
+                                        <a href="/users" class="dropdown-item">
+                                            <p>Пользователи</p>
+                                        </a>
+
+                                        <a href="/rules/role" class="dropdown-item">
+                                            <p>Роли</p>
+                                        </a>
+
+                                        <a href="/rules/permission" class="dropdown-item">
+                                            <p>Разрешения</p>
+                                        </a>
+
+                                        <a href="/rules/roles/create" class="dropdown-item">
+                                            <p>Создание роли</p>
+                                        </a>
+
+                                        <a href="/rules/permission/create" class="dropdown-item">
+                                            <p>Создание разрешения</p>
+                                        </a>
+
+                                        <a href="/rules/give/role" class="dropdown-item">
+                                            <p>Выдача ролей</p>
+                                        </a>
+
+                                        <a href="/rules/give/permission" class="dropdown-item">
+                                            <p>Выдача разрешений</p>
+                                        </a>
+
+                                        <a href="/news/settings" class="dropdown-item">
+                                            <p>Настройки</p>
+                                        </a>
+
+                                        <a href="/news/newTag" class="dropdown-item">
+                                            <p>Создание тэгов</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </ul>
+                        </div>
                         {{{body}}}
 
                     </div>
