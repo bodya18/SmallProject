@@ -1,0 +1,203 @@
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item menu-open">
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    {{#if isAdminPanel}}
+                        <a href="/admin" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Новости</p>
+                        </a>
+                    {{else}}
+                        <a href="/admin" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Новости</p>
+                        </a>
+                    {{/if}}
+                </li>
+                <li class="nav-item">
+                    {{#if isCategories}}
+                        <a href="/news/categories" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Категории</p>
+                        </a>
+                    {{else}}
+                        <a href="/news/categories" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Категории</p>
+                        </a>
+                    {{/if}}
+                </li>
+                <li class="nav-item">
+                    {{#if isCreate}}
+                        <a href="/news/create/post" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Создание поста</p>
+                        </a>
+                    {{else}}
+                        <a href="/news/create/post" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Создание поста</p>
+                        </a>
+                    {{/if}}
+                </li>
+                <li class="nav-item">
+                    {{#if isCreateCategory}}
+                        <a href="/news/create/category" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Создание категории</p>
+                        </a>
+                    {{else}}
+                        <a href="/news/create/category" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Создание категории</p>
+                        </a>
+                    {{/if}}
+                </li>
+                <li class="nav-item">
+                    {{#if isUsers}}
+                        <a href="/users" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Пользователи</p>
+                        </a>
+                    {{else}}
+                        <a href="/users" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Пользователи</p>
+                        </a>
+                    {{/if}}
+                </li>
+                <li class="nav-item">
+                    {{#if isRole}}
+                        <a href="/rules/role" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Роли</p>
+                        </a>
+                    {{else}}
+                        <a href="/rules/role" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Роли</p>
+                        </a>
+                    {{/if}}
+                </li>
+                <li class="nav-item">
+                    {{#if isPermission}}
+                        <a href="/rules/permission" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Разрешения</p>
+                        </a>
+                    {{else}}
+                        <a href="/rules/permission" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Разрешения</p>
+                        </a>
+                    {{/if}}
+                </li>
+                <li class="nav-item">
+                    {{#if isRoleCreate}}
+                        <a href="/rules/roles/create" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Создание роли</p>
+                        </a>
+                    {{else}}
+                        <a href="/rules/roles/create" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Создание роли</p>
+                        </a>
+                    {{/if}}
+                </li>
+                <li class="nav-item">
+                    {{#if isPermissionCreate}}
+                        <a href="/rules/permission/create" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Создание разрешения</p>
+                        </a>
+                    {{else}}
+                        <a href="/rules/permission/create" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Создание разрешения</p>
+                        </a>
+                    {{/if}}
+                </li>
+                {{!-- <li class="nav-item">
+                    {{#if isConnection}}
+                        <a href="/rules" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>All connection</p>
+                        </a>
+                    {{else}}
+                        <a href="/rules" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>All connection</p>
+                        </a>
+                    {{/if}}
+                </li> --}}
+                <li class="nav-item">
+                    {{#if isGiveRole}}
+                        <a href="/rules/give/role" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Выдача ролей</p>
+                        </a>
+                    {{else}}
+                        <a href="/rules/give/role" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Выдача ролей</p>
+                        </a>
+                    {{/if}}
+                </li>
+                <li class="nav-item">
+                    {{#if isGivePermission}}
+                        <a href="/rules/give/permission" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Выдача разрешений</p>
+                        </a>
+                    {{else}}
+                        <a href="/rules/give/permission" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Выдача разрешений</p>
+                        </a>
+                    {{/if}}
+                </li>
+                <li class="nav-item">
+                    {{#if isSettings}}
+                        <a href="/news/settings" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Настройки</p>
+                        </a>
+                    {{else}}
+                        <a href="/news/settings" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Настройки</p>
+                        </a>
+                    {{/if}}
+                </li>
+                <li class="nav-item">
+                    {{#if isCreateTag}}
+                        <a href="/news/newTag" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Создание тэгов</p>
+                        </a>
+                    {{else}}
+                        <a href="/news/newTag" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Создание тэгов</p>
+                        </a>
+                    {{/if}}
+                </li>
+                {{!-- <li class="nav-item">
+                    {{#if isCreateSettings}}
+                        <a href="/news/settings/create" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Create settings</p>
+                        </a>
+                    {{else}}
+                        <a href="/news/settings/create" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Create settings</p>
+                        </a>
+                    {{/if}}
+                </li> --}}
+            </ul>
+        </li>
+    </ul>
+</nav>

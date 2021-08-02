@@ -1,0 +1,126 @@
+<div class="nav-bar">
+    <div class="container"> 
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav mr-auto">
+                    {{#if @root.isNews}}
+                        <a href="/news" class="nav-item nav-link active">Новости</a>
+                    {{else}}
+                        <a href="/news" class="nav-item nav-link">Новости</a>
+                    {{/if}}
+                    {{#if isAuth}}
+                        {{#each permissionsList}}
+                            {{#ifeq this 'GIVE'}}
+                                {{#if @root.isAdmin}}
+                                    <a href="/admin" class="nav-item nav-link active">Админ панель</a>
+                                {{else}}
+                                    <a href="/admin" class="nav-item nav-link">Админ панель</a>
+                                {{/if}}
+                            {{/ifeq}}
+                        {{/each}}
+
+                        {{#if isWatchLater}}
+                            <a href="/news/watchLater" class="nav-item nav-link active">Избранное</a>
+                        {{else}}
+                            <a href="/news/watchLater" class="nav-item nav-link">Избранное</a>
+                        {{/if}}
+                    {{/if}}
+                    {{#if isListCategories}}
+                        <a href="/news/listCategories" class="nav-item nav-link active">Категории</a>
+                    {{else}}
+                        <a href="/news/listCategories" class="nav-item nav-link">Категории</a>
+                    {{/if}}
+                </div>
+                <div class="navbar-nav">
+                    {{#if isAuth}}
+                        <a href="/logout"class="nav-item nav-link">Выйти</a>
+                    {{else}}
+                        {{#if @root.isRegister}}
+                            <a href="/register" class="nav-item nav-link active">Регистрация</a>
+                            {{else}}
+                            <a href="/register" class="nav-item nav-link">Регистрация</a>
+                        {{/if}}
+                        {{#if @root.isLogin}}
+                            <a href="/login" class="nav-item nav-link active">Войти</a>
+                            {{else}}
+                            <a href="/login" class="nav-item nav-link">Войти</a>
+                        {{/if}}        
+                    {{/if}}
+                </div>
+                {{#if isAuth}}
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                            {{#if ThisUser.avatarURL}}
+                                <img src="/{{ThisUser.avatarURL}}" style="margin-top: 15px;" class="img-circle elevation-2 user-img">
+                            {{else}}
+                                <img src="/images/no_avatar.png" style="margin-top: 15px;" class="img-circle elevation-2">
+                            {{/if}}
+                        </div>
+                        <div class="info">
+                            <a href="/user/{{ThisUser.id}}" style="margin-top: 10px;" class="nav-link p-2 active">{{ThisUser.name}}</a>
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+            <div class="form-outline">
+                <form action="/news/search" method="POST">
+                    <input type="search" name="search" class="form-control searchbar" placeholder="Поиск по сайту"
+                    aria-label="Search" />
+                </form>
+            </div>
+            <div class="phone-menu">
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Меню
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/news">Новости</a></li>
+                        <li>
+                            {{#if isAuth}}
+                                {{#each permissionsList}}
+                                    {{#ifeq this 'GIVE'}}
+                                        <a class="dropdown-item" href="/admin">Админ панель</a>
+                                    {{/ifeq}}
+                                {{/each}}
+                                    
+                            {{/if}}
+                        </li>
+                        <li>
+                            {{#if isAuth}}
+                                <a href="/news/watchLater" class="dropdown-item">Избранное</a>
+                            {{/if}}
+                        </li>
+                        <li>
+                            {{#if isAuth}}
+                                <a href="/news/listCategories" class="dropdown-item">Категории</a>
+                            {{/if}}
+                        </li>
+                        <li>
+                            {{#if isAuth}}
+                                <a href="/logout"class="dropdown-item">Выйти</a>
+                            {{else}}
+                                <a href="/register" class="dropdown-item">Регистрация</a>
+                                <a href="/login" class="dropdown-item">Войти</a>      
+                            {{/if}}
+                        </li>
+                    </ul>
+                </ul>
+                {{#if isAuth}}
+                    <div class="user-panel pb-3 mb-3 user-profile-nav">
+                        <div class="image">
+                            {{#if ThisUser.avatarURL}}
+                                <img src="/{{ThisUser.avatarURL}}" style="margin-top: 15px;" class="img-circle elevation-2 user-img">
+                            {{else}}
+                                <img src="/images/no_avatar.png" style="margin-top: 15px;" class="img-circle elevation-2">
+                            {{/if}}
+                        </div>
+                        <div class="info">
+                            <a href="/user/{{ThisUser.id}}" style="margin-top: 10px;" class="nav-link p-2 active">{{ThisUser.name}}</a>
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+        </nav>
+    </div>
+</div>
