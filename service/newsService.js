@@ -91,8 +91,7 @@ class News{
             let minutes = req.body.timeout.substr(14, 2)
             timepost = Date.UTC(year, month, date, hours, minutes)
         }
-        await this.news.create(h1, meta_description, timepost, postText, filedata, selectCategoryId, title)
-        const newsId = await this.news.LAST_INSERT_ID();
+        const newsId = await this.news.create(h1, meta_description, timepost, postText, filedata, selectCategoryId, title)
         
         if(tags){
             if (typeof tags === "object")
@@ -101,12 +100,12 @@ class News{
             else
                 await this.news.addTag(tags, newsId)
         }
-        return{isCreate:true}
+        return{isCreate:true, newsId}
         
     }
 
-    async setText(post_text){
-        const newsId = await this.news.LAST_INSERT_ID();
+    async setText(newsId, post_text){
+        // const newsId = await this.news.LAST_INSERT_ID();
         await this.news.setText(newsId, post_text)
     }
     
@@ -301,9 +300,9 @@ class News{
     async getSelectTags(id){
         return await this.news.getSelectTags(id)
     }
-    async LAST_INSERT_ID(){
-        return await this.news.LAST_INSERT_ID();
-    }
+    // async LAST_INSERT_ID(){
+    //     return await this.news.LAST_INSERT_ID();
+    // }
 }
 
 module.exports = News

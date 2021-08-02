@@ -110,7 +110,7 @@ exports.GetThisPost = async (req,res) => {
         views,
         categories: categories.id,
         isLike,
-        isSave,
+        isSave
     })
 }
 
@@ -214,7 +214,7 @@ exports.CreateNews = async (req, res) => {
         let description = req.body.tbxQuestion.replace(/<.*?>/g, "").replace(/&.*?;/g, "").slice(0, 200)
         if(req.body.meta_description)
             description = req.body.meta_description
-        const id = await rbac.news.LAST_INSERT_ID()
+        const id = data.newsId
         let obj = {title: [req.body.title], description: [description], link: [`http://${config.site}/news/get/${id}`], guid: [`http://${config.site}/news/get/${id}`]}
         
         fs.readFile(dir, function(err, data) {
