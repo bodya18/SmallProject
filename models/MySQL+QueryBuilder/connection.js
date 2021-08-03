@@ -3,35 +3,31 @@ const pool = require('../../middleware/pool')
 class Connection{
 
     async AddRuleToUser(userId, ruleId){
-        try {
-            await pool.query('Insert into Rule_User (ruleId, userId) values (?, ?)', [ruleId, userId])
-        } catch (e) {
-            console.log(e)
-        }
+        const qb = await pool.get_connection();
+        await qb
+            .insert('Rule_User', {ruleId, userId})
+        qb.release();
     }
 
     async deleteFromUser(id){
-        try {
-            await pool.query('delete from Rule_User where id=?', [id])
-        } catch (e) {
-            console.log(e)
-        }
+        const qb = await pool.get_connection();
+        await qb
+            .delete('Rule_User', {id})
+        qb.release();
     }
 
     async DeletePermissionFromRule(id){
-        try {
-            await pool.query('delete from Rule_Permission where id=?', [id])
-        } catch (e) {
-            console.log(e)
-        }
+        const qb = await pool.get_connection();
+        await qb
+            .delete('Rule_Permission', {id})
+        qb.release();
     }
 
     async GivePermission(permissionId, ruleId){
-        try {
-            await pool.query('Insert into Rule_Permission (ruleId, permissionId) values (?, ?)', [ruleId, permissionId])
-        } catch (e) {
-            console.log(e)
-        }
+        const qb = await pool.get_connection();
+        await qb
+            .insert('Rule_Permission', {ruleId, permissionId})
+        qb.release();
     }
 
     async GetAllConnection(){
@@ -78,22 +74,24 @@ class Connection{
     }
 
     async GetRuleID(id, title){
-        var temp
-        await pool.query(`Select Rule_User.id from Rule_User, Rules where Rule_User.userId = ? AND Rules.rule = ? AND Rules.id = Rule_User.ruleId`, [id, title])
-            .then(data => {
-                temp = data[0][0]
-            })
-            .catch(e =>{
-                return console.log(e);
-            })
-        return(temp)
+        const qb = await pool.get_connection();
+        const request = await qb
+            .from('Rule_User')
+            .select('Rule_User.id')
+            .join('Rules', 'Rules.id=Rule_User.ruleId')
+            .where('Rules.rule', title)
+            .where('Rule_User.userId', id)
+        qb.release()
+        return request[0]
     }
     
     async UpdateRuleFromUser(id, value){
-        await pool.query(`DELETE from Rule_User where userId = ?`, [id])
+        const qb = await pool.get_connection();
+        await qb.delete('Rule_User', {userId: id})
         for (let i = 0; i < value.length; i++) {
-            await pool.query('Insert into Rule_User (ruleId, userId) values (?, ?)', [value[i], id])
+            await qb.insert('Rule_User', {ruleId: value[i], userId: id})
         }
+        qb.release();
     }
 }
 

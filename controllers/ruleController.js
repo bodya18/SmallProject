@@ -163,6 +163,7 @@ exports.UpdateRole = async (req, res) =>{
     const rbac = new RBAC
     await rbac.role.UpdateRuleFromUser(req.body.selectNameId, req.body.selectRuleId)
     const data = await rbac.permission.ShowAllPermissions(req.body.selectNameId)
+    console.log(data);
     if(req.session.userIden === req.body.selectNameId)
         req.session.Perm = data
     return res.redirect('/user/' + req.body.selectNameId) 

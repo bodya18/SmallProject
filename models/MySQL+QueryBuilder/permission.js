@@ -27,7 +27,8 @@ class Permission{
     async ShowAllPermissions(id){
         const qb = await pool.get_connection();
         var temp = []
-        await qb
+        var p2 = new Promise(async function(resolve, reject) {
+            await qb
             .distinct()
             .from('Rules')
             .select('Permissions.permission')
@@ -40,8 +41,15 @@ class Permission{
                 for(let i = 0;i<data.length;i++){
                     temp[i] = data[i].permission
                 }
+                resolve(temp);
             });
-        qb.release()
+            qb.release()
+            
+        });
+        temp = await p2.then(function(value) {
+            temp = value
+            return value
+        })
         return temp;
     }
 

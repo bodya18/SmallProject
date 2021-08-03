@@ -136,7 +136,6 @@ class User{
                 return {isAuth: false, error: 'Неверный пароль'}
             
             const permissions = await this.permission.ShowAllPermissions(id)
-
             return {
                 isAuth: true,
                 user: data,
