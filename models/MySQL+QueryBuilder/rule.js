@@ -13,41 +13,40 @@ class Rule{
     
     async delete(id){
         var temp = true
-        await pool.query('select * from Rule_User where ruleId=?', [id])
-            .then(data =>{
-                if (!data[0][0])
-                    pool.query('delete from Rules where id=?', [id])
-                else 
-                    temp = false
-            })
-            .catch (e => {
-                console.log(e)
-            })
+        const qb = await pool.get_connection();
+        const response = await qb
+            .select('*')
+            .where({ruleId: id})
+            .get('Rule_User');
+        if(!response[0])
+            await qb.delete('Rules', {id})
+        else
+            temp = false
+        qb.release();
         return temp
     }
 
     async GetRoles(){
-        var temp
-        await pool.query('Select * from Rules')
-            .then(rule => {
-                temp = rule[0]
-            })
-            .catch(e =>{
-                return console.log(e);
-            })
-        return(temp)
+        const qb = await pool.get_connection();
+        const response = await qb
+            .select('*')
+            .get('Rules');
+        qb.release();
+        return response
     }
 
     async GetRoleBy(what, value){
-        var temp
-        await pool.query(`SELECT * FROM Rules where ${what} = ?`, [value])
-            .then(data =>{
-                temp = data[0][0]
-            })
-            .catch(e =>{
-                return console.log(e)
-            })
-        return temp;
+        let data = {what: value}
+        data = JSON.stringify(data)
+        data = data.replace(/".*?"/, `"${what}"`)
+        data = JSON.parse(data)
+        const qb = await pool.get_connection();
+        const response = await qb
+            .select('*')
+            .where(data)
+            .get('Rules');
+        qb.release();
+        return response[0]
     }
 }
 
