@@ -79,7 +79,8 @@ class News{
 
     async getSubscribers(){
         const qb = await pool.get_connection();
-        const response = await qb.select('email')
+        const response = await qb
+            .select('email')
             .get('Subscribers');
         qb.release();
         return response

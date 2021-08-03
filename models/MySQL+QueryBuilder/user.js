@@ -3,176 +3,187 @@ const pool = require('../../middleware/pool')
 class User{
 
     async delPassToken(token){
-        await pool.query('delete from recovery where token=?', [token])
+        const qb = await pool.get_connection();
+        await qb.delete('recovery', {category: token})
+        qb.release();
     }
 
     async SetPass(hashPassword, token){
-        await pool.query('update users set password=? where token=?', [hashPassword, token])
+        const qb = await pool.get_connection();
+        await qb.update('users', {password: hashPassword}, {token})
+        qb.release();
     }
     
     async getByToken(token){
-        var temp;
-        await pool.query('Select * from users where token=?', [token])
-            .then(data => {
-                temp = data[0][0];
-            })
-            .catch(e =>{
-                return console.log(e);
-            })
-        return temp
+        const qb = await pool.get_connection();
+        const response = await qb
+            .select('*')
+            .where({token})
+            .get('users');
+        qb.release();
+        return response[0]
     }
 
     async GetRecToken(token){
-        var temp;
-        await pool.query('Select * from recovery where token=?', [token])
-            .then(data => {
-                temp = data[0][0];
-            })
-            .catch(e =>{
-                return console.log(e);
-            })
-        return temp
+        const qb = await pool.get_connection();
+        const response = await qb
+            .select('*')
+            .where({token})
+            .get('recovery');
+        qb.release();
+        return response[0]
     }
 
     async recoveryPass(email, token, date){
-        await pool.query('insert into recovery (email, token, date) values (?, ?, ?)', [email, token, date])
+        const qb = await pool.get_connection();
+        await qb.insert('recovery', {email, token, date})
+        qb.release();
     }
     async SetStatus(token, num){
-        await pool.query('update users set status=? where token=?', [num, token])
+        const qb = await pool.get_connection();
+        await qb.update('users', {status: num}, {token})
+        qb.release();
     }
 
     async SetSocialNetw(vk, instagram, facebook, twitter, GitHub, telegram, id){
-        await pool.query('update Social_Network set vk=?, instagram=?, facebook=?, twitter=?, GitHub=?, telegram=? where userId=?', [vk, instagram, facebook, twitter, GitHub, telegram, id])
+        const qb = await pool.get_connection();
+        await qb.update('Social_Network', {vk, instagram, facebook, twitter, GitHub, telegram}, {userId: id})
+        qb.release();
     }
 
     async SetSocialNetwBy(netw, link, id) {
-        await pool.query(`update Social_Network set ${netw}=? where userId=?`, [link, id])
+        let data = {netw: link}
+        data = JSON.stringify(data)
+        data = data.replace(/".*?"/, `"${netw}"`)
+        data = JSON.parse(data)
+        const qb = await pool.get_connection();
+        await qb.update('Social_Network', data, {userId: id})
+        qb.release();
     }
 
     async CreateSocialNetwork(id){
-        await pool.query('insert into Social_Network (userId) values (?)', [id])
+        const qb = await pool.get_connection();
+        await qb.insert('Social_Network', {userId: id})
+        qb.release();
     }
     async GetSocialNetw(id){
-        var temp;
-        await pool.query('Select * from Social_Network where userId=?', [id])
-            .then(data => {
-                temp = data[0][0];
-            })
-            .catch(e =>{
-                return console.log(e);
-            })
-        return temp
+        const qb = await pool.get_connection();
+        const response = await qb
+            .select('*')
+            .where({userId: id})
+            .get('Social_Network');
+        qb.release();
+        return response[0]
     }
 
     async edit(id, age, avatarURL, name) {
+        const qb = await pool.get_connection();        
         try{
             if(avatarURL){
-                await pool.query('update users set name=?, age=?, avatarURL=? where id=?', [name, age, avatarURL, id])
+                await qb.update('users', {name, age, avatarURL}, {id})
             }
             else{
-                await pool.query('update users set name=?, age=? where id=?', [name, age, id])
+                await qb.update('users', {name, age}, {id})
             }
             
         }
         catch (e){
             console.log(e)
         }
+        finally{
+            qb.release();
+        }
+        
     }
 
     async create(password, email, name, age, id, token) {
         try{
+            const qb = await pool.get_connection();
             const time = new Date
-            await pool.query('Insert into users (password, email, name, age, id, time, avatarURL, token) values (?, ?, ?, ?, ?, ?, ?, ?)', [password, email, name, age, id, time, null, token])
+            await qb.insert('users', {password, email, name, age, id, time, avatarURL: null, token})
+            qb.release()
         }
         catch (e){
             console.log(e) 
         }
     }
     async delete(id){
-        await pool.query('delete from users where id=?', [id])
+        const qb = await pool.get_connection();
+        await qb.delete('users', {id})
+        qb.release();
     }
 
     async deleteAvatar(id){
-        await pool.query('Select avatarURL from users where id=?', [id])
-            .then(data => {
-                if(data[0][0].avatarURL !== null){
-                    pool.query('update users set avatarURL=? where id=?', [null, id])
-                }
-            })
-            .catch(e => {
-                return console.log(e)
-            })
+        const qb = await pool.get_connection();
+        const response = await qb
+            .select('avatarURL')
+            .where({id})
+            .get('users');
+        if(response[0].avatarURL !== null){
+            await qb.update('users', {avatarURL: null}, {id})
+        }
+        qb.release();
     }
 
     async getById(id){
-        var temp;
-        await pool.query('Select * from users where id=?', [id])
-            .then(data => {
-                temp = data[0][0];
-            })
-            .catch(e =>{
-                return console.log(e);
-            })
-        return temp
+        const qb = await pool.get_connection();
+        const response = await qb
+            .select('*')
+            .where({id})
+            .get('users');
+        qb.release();
+        return response[0]
     }
     
     async getByEmail(email){
-        var temp;
-        await pool.query('Select * from users where email=?', [email])
-            .then(data => {
-                temp = data[0][0];
-            })
-            .catch(e =>{
-                return console.log(e);
-            })
-        return temp
+        const qb = await pool.get_connection();
+        const response = await qb
+            .select('*')
+            .where({email})
+            .get('users');
+        qb.release();
+        return response[0]
     }
     async SelectOrderBy(what, desc = ''){
-        var temp
-        await pool.query(`SELECT * FROM users ORDER BY ${what} ${desc}`)
-            .then(data =>{
-                temp = data[0]
-            })
-            .catch(e =>{
-                return console.log(e)
-            })
-        return temp;
+        const qb = await pool.get_connection();
+        const response = await qb
+            .order_by(`${what}`, `${desc}`)
+            .get('users');
+        qb.release();
+        return response
     }
     
     async SelectWhere(what, how){
-        var temp
-        await pool.query(`SELECT * FROM users where ${what} = ?`, [how])
-            .then(data =>{
-                temp = data[0][0]
-            })
-            .catch(e =>{
-                return console.log(e)
-            })
-        return temp;
+        let data = {what: how}
+        data = JSON.stringify(data)
+        data = data.replace(/".*?"/, `"${what}"`)
+        data = JSON.parse(data)
+        const qb = await pool.get_connection();
+        const response = await qb
+            .select('*')
+            .where(data)
+            .get('users');
+        qb.release();
+        return response[0]
     }
 
     async GetUsers(){
-        var temp
-        await pool.query('Select * from users')
-            .then(data => {
-                temp = data[0]
-            })
-            .catch(e =>{
-                return console.log(e);
-            })
-        return(temp)
+        const qb = await pool.get_connection();
+        const response = await qb
+            .select('*')
+            .get('users');
+        qb.release();
+        return response
     }
 
     async GetUserRoles(id){
-        var temp
-        await pool.query('Select ruleId from Rule_User where userId = ?', [id])
-            .then(data => {
-                temp = data[0]
-            })
-            .catch(e =>{
-                return console.log(e);
-            })
-        return(temp)
+        const qb = await pool.get_connection();
+        const response = await qb
+            .select('ruleId')
+            .where({userId: id})
+            .get('Rule_User');
+        qb.release();
+        return response
     }
 
 }

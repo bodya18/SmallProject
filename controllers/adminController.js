@@ -3,7 +3,6 @@ const RBAC = require("../service/RBAC_Service")
 exports.GetAdmin = async (req,res) => {
     const rbac = new RBAC
     const news = await rbac.news.GetNews()
-    console.log(news);
     let data = new Date()
     let nowDate = Date.UTC(data.getFullYear(), data.getMonth()+1, data.getDate(), data.getHours(), data.getMinutes())
     
