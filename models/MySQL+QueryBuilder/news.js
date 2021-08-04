@@ -306,11 +306,12 @@ class News{
         const qb = await pool.get_connection()        
         const response = await qb
             .select('*')
-            .like('title', search)
-            .like('post_text', search)
-            .like('h1', search)
-            .like('meta_description', search)
+            .or_like('title', search)
+            .or_like('post_text', search)
+            .or_like('h1', search)
+            .or_like('meta_description', search)
             .get('news');
+        console.log(qb.last_query());
         qb.release()
         return response
     }
