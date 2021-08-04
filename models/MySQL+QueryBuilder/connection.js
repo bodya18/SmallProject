@@ -31,46 +31,59 @@ class Connection{
     }
 
     async GetAllConnection(){
-        var temp
-        await pool.query(`Select Rules.rule, Permissions.permission, users.name, Rule_User.id 
-                    from Rules, Permissions, users, Rule_Permission, Rule_User 
-                    where Rule_Permission.ruleId = Rules.id AND Rule_Permission.permissionId = Permissions.id 
-                    AND Rule_User.userId = users.id AND Rule_User.ruleId = Rules.id`)
-            .then(data => {
-                temp = data[0]
-            })
-            .catch(e =>{
-                return console.log(e);
-            })
-        return(temp)
+        const qb = await pool.get_connection();
+        var p2 = new Promise(async function(resolve, reject) {
+            await qb
+            .from('Rules')
+            .select('Rules.rule, Permissions.permission, users.name, Rule_User.id')
+            .join('Rule_Permission', 'Rule_Permission.ruleId=Rules.id')
+            .join('Permissions', 'Rule_Permission.permissionId=Permissions.id')
+            .join('Rule_User', 'Rule_User.ruleId=Rules.id')
+            .join('users', 'Rule_User.userId=users.id')
+            .get((err, data)=>{
+                resolve(data);
+            });
+            qb.release()
+        });
+        return await p2.then(function(value) {
+            return value
+        })
     }
 
     async GetRulePermission(){
-        var temp
-        await pool.query(`Select Rules.rule, Permissions.permission, Rule_Permission.id 
-                    from Rules, Permissions, Rule_Permission 
-                    where Rule_Permission.ruleId = Rules.id AND Rule_Permission.permissionId = Permissions.id`)
-            .then(data => {
-                temp = data[0]
-            })
-            .catch(e =>{
-                return console.log(e);
-            })
-        return(temp)
+        const qb = await pool.get_connection();
+        var p2 = new Promise(async function(resolve, reject) {
+            await qb
+            .from('Rules')
+            .select('Rules.rule, Permissions.permission, Rule_Permission.id')
+            .join('Rule_Permission', 'Rule_Permission.ruleId=Rules.id')
+            .join('Permissions', 'Rule_Permission.permissionId=Permissions.id')
+            .get((err, data)=>{
+                resolve(data);
+            });
+            qb.release()
+        });
+        return await p2.then(function(value) {
+            return value
+        })
     }
 
     async GetRuleUser(){
-        var temp
-        await pool.query(`Select users.name, Rules.rule, users.id
-                    from users, Rule_User, Rules 
-                    where Rule_User.userId = users.id AND Rule_User.ruleId = Rules.id`)
-            .then(data => {
-                temp = data[0]
-            })
-            .catch(e =>{
-                return console.log(e);
-            })
-        return(temp)
+        const qb = await pool.get_connection();
+        var p2 = new Promise(async function(resolve, reject) {
+            await qb
+            .from('Rule_User')
+            .select('users.name, Rules.rule, users.id')
+            .join('users', 'Rule_User.userId=users.id')
+            .join('Rules', 'Rule_User.ruleId=Rules.id')
+            .get((err, data)=>{
+                resolve(data);
+            });
+            qb.release()
+        });
+        return await p2.then(function(value) {
+            return value
+        })
     }
 
     async GetRuleID(id, title){

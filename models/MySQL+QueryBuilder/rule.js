@@ -3,12 +3,9 @@ const pool = require('../../middleware/pool')
 class Rule{
 
     async create(rule) {
-        try{
-            await pool.query('Insert into Rules (rule) values (?)', [rule])
-        }
-        catch (e){
-            console.log(e)
-        }
+        const qb = await pool.get_connection();
+        await qb.insert('Rules', {rule})
+        qb.release()
     }
     
     async delete(id){
