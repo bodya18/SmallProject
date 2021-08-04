@@ -311,7 +311,6 @@ class News{
             .or_like('h1', search)
             .or_like('meta_description', search)
             .get('news');
-        console.log(qb.last_query());
         qb.release()
         return response
     }

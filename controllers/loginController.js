@@ -18,7 +18,6 @@ exports.loginLogic = async(req,res) => {
 
     const rbac = new RBAC
     const UserData = await rbac.user.loginLogic(req.body.email, req.body.password)
-
     if (!UserData.isAuth) {
         req.flash('error', UserData.error)
         return res.redirect(`/login`)

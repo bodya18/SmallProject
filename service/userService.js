@@ -123,7 +123,6 @@ class User{
     async loginLogic(email, passwordBody){
 
         const data = await this.user.SelectWhere('email', email)
-
         if(!data)
             return {isAuth: false, error: 'Данного email не существует'}
         else {

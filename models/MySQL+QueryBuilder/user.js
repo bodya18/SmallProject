@@ -3,77 +3,117 @@ const pool = require('../../middleware/pool')
 class User{
 
     async delPassToken(token){
-        const qb = await pool.get_connection();
-        await qb.delete('recovery', {token})
-        qb.release();
+        try {
+            const qb = await pool.get_connection();
+            await qb.delete('recovery', {token})
+            qb.release();
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     async SetPass(hashPassword, token){
-        const qb = await pool.get_connection();
-        await qb.update('users', {password: hashPassword}, {token})
-        qb.release();
+        try {
+            const qb = await pool.get_connection();
+            await qb.update('users', {password: hashPassword}, {token})
+            qb.release();
+        } catch (e) {
+            console.log(e);
+        }
     }
     
     async getByToken(token){
-        const qb = await pool.get_connection();
-        const response = await qb
-            .select('*')
-            .where({token})
-            .get('users');
-        qb.release();
-        return response[0]
+        try {
+            const qb = await pool.get_connection();
+            const response = await qb
+                .select('*')
+                .where({token})
+                .get('users');
+            qb.release();
+            return response[0]
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     async GetRecToken(token){
-        const qb = await pool.get_connection();
-        const response = await qb
-            .select('*')
-            .where({token})
-            .get('recovery');
-        qb.release();
-        return response[0]
+        try {
+            const qb = await pool.get_connection();
+            const response = await qb
+                .select('*')
+                .where({token})
+                .get('recovery');
+            qb.release();
+            return response[0]
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     async recoveryPass(email, token, date){
-        const qb = await pool.get_connection();
-        await qb.insert('recovery', {email, token, date})
-        qb.release();
+        try {
+            const qb = await pool.get_connection();
+            await qb.insert('recovery', {email, token, date})
+            qb.release();
+        } catch (e) {
+            console.log(e);
+        }
     }
     async SetStatus(token, num){
-        const qb = await pool.get_connection();
-        await qb.update('users', {status: num}, {token})
-        qb.release();
+        try {
+            const qb = await pool.get_connection();
+            await qb.update('users', {status: num}, {token})
+            qb.release();
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     async SetSocialNetw(vk, instagram, facebook, twitter, GitHub, telegram, id){
-        const qb = await pool.get_connection();
-        await qb.update('Social_Network', {vk, instagram, facebook, twitter, GitHub, telegram}, {userId: id})
-        qb.release();
+        try {
+            const qb = await pool.get_connection();
+            await qb.update('Social_Network', {vk, instagram, facebook, twitter, GitHub, telegram}, {userId: id})
+            qb.release();
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     async SetSocialNetwBy(netw, link, id) {
-        let data = {netw: link}
-        data = JSON.stringify(data)
-        data = data.replace(/".*?"/, `"${netw}"`)
-        data = JSON.parse(data)
-        const qb = await pool.get_connection();
-        await qb.update('Social_Network', data, {userId: id})
-        qb.release();
+        try {
+            let data = {netw: link}
+            data = JSON.stringify(data)
+            data = data.replace(/".*?"/, `"${netw}"`)
+            data = JSON.parse(data)
+            const qb = await pool.get_connection();
+            await qb.update('Social_Network', data, {userId: id})
+            qb.release();
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     async CreateSocialNetwork(id){
-        const qb = await pool.get_connection();
-        await qb.insert('Social_Network', {userId: id})
-        qb.release();
+        try {
+            const qb = await pool.get_connection();
+            await qb.insert('Social_Network', {userId: id})
+            qb.release();
+        } catch (e) {
+            console.log(e);
+        }
     }
     async GetSocialNetw(id){
-        const qb = await pool.get_connection();
-        const response = await qb
-            .select('*')
-            .where({userId: id})
-            .get('Social_Network');
-        qb.release();
-        return response[0]
+        try {
+            const qb = await pool.get_connection();
+            const response = await qb
+                .select('*')
+                .where({userId: id})
+                .get('Social_Network');
+            qb.release();
+            return response[0]
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     async edit(id, age, avatarURL, name) {
@@ -108,82 +148,114 @@ class User{
         }
     }
     async delete(id){
-        const qb = await pool.get_connection();
-        await qb.delete('users', {id})
-        qb.release();
+        try {
+            const qb = await pool.get_connection();
+            await qb.delete('users', {id})
+            qb.release();
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     async deleteAvatar(id){
-        const qb = await pool.get_connection();
-        const response = await qb
-            .select('avatarURL')
-            .where({id})
-            .get('users');
-        if(response[0].avatarURL !== null){
-            await qb.update('users', {avatarURL: null}, {id})
+        try {
+            const qb = await pool.get_connection();
+            const response = await qb
+                .select('avatarURL')
+                .where({id})
+                .get('users');
+            if(response[0].avatarURL !== null){
+                await qb.update('users', {avatarURL: null}, {id})
+            }
+            qb.release();
+        } catch (e) {
+            console.log(e);
         }
-        qb.release();
     }
 
     async getById(id){
-        const qb = await pool.get_connection();
-        const response = await qb
-            .select('*')
-            .where({id})
-            .get('users');
-        qb.release();
-        return response[0]
+        try {
+            const qb = await pool.get_connection();
+            const response = await qb
+                .select('*')
+                .where({id})
+                .get('users');
+            qb.release();
+            return response[0]
+        } catch (e) {
+            console.log(e);
+        }
     }
     
     async getByEmail(email){
-        const qb = await pool.get_connection();
-        const response = await qb
-            .select('*')
-            .where({email})
-            .get('users');
-        qb.release();
-        return response[0]
+        try {
+            const qb = await pool.get_connection();
+            const response = await qb
+                .select('*')
+                .where({email})
+                .get('users');
+            qb.release();
+            return response[0]
+        } catch (e) {
+            console.log(e);
+        }
     }
     async SelectOrderBy(what, desc = ''){
-        const qb = await pool.get_connection();
-        const response = await qb
-            .order_by(`${what}`, `${desc}`)
-            .get('users');
-        qb.release();
-        return response
+        try {
+            const qb = await pool.get_connection();
+            const response = await qb
+                .order_by(`${what}`, `${desc}`)
+                .get('users');
+            qb.release();
+            return response
+        } catch (e) {
+            console.log(e);
+        }
     }
     
     async SelectWhere(what, how){
-        let data = {what: how}
-        data = JSON.stringify(data)
-        data = data.replace(/".*?"/, `"${what}"`)
-        data = JSON.parse(data)
-        const qb = await pool.get_connection();
-        const response = await qb
-            .select('*')
-            .where(data)
-            .get('users');
-        qb.release();
-        return response[0]
+        try {
+            let data = {what: how}
+            data = JSON.stringify(data)
+            data = data.replace(/".*?"/, `"${what}"`)
+            data = JSON.parse(data)
+            const qb = await pool.get_connection();
+            const response = await qb
+                .select('*')
+                .where(data)
+                .get('users');
+            qb.release();
+            return response[0]
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     async GetUsers(){
-        const qb = await pool.get_connection();
-        const response = await qb
-            .select('*')
-            .get('users');
-        qb.release();
-        return response
+        try {
+            const qb = await pool.get_connection();
+            const response = await qb
+                .select('*')
+                .get('users');
+            qb.release();
+            return response
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     async GetUserRoles(id){
-        const qb = await pool.get_connection();
-        const response = await qb
-            .select('ruleId')
-            .where({userId: id})
-            .get('Rule_User');
-        qb.release();
-        return response
+        try {
+            const qb = await pool.get_connection();
+            const response = await qb
+                .select('ruleId')
+                .where({userId: id})
+                .get('Rule_User');
+            qb.release();
+            return response
+        } catch (e) {
+            console.log(e);
+        }
     }
 
 }
