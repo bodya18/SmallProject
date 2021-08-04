@@ -11,7 +11,7 @@ router.get('/permission', isAdmin, auth, ruleController.GetPermissions)
 
 router.get('/roles/create', isAdmin, auth, ruleController.GetCreateRole)
 router.get('/permission/create', isAdmin, auth, ruleController.GetCreatePermission)
-router.get('/give/role', isAdmin, auth, ruleController.GetGiveRole)
+// router.get('/give/role', isAdmin, auth, ruleController.GetGiveRole)
 router.get('/give/permission', isAdmin, auth, ruleController.GetGivePermission)
 
 router.post('/updateFromUser', isAdmin, urlencodedParser, auth, ruleController.UpdateRole)

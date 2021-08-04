@@ -4,7 +4,7 @@ class User{
 
     async delPassToken(token){
         const qb = await pool.get_connection();
-        await qb.delete('recovery', {category: token})
+        await qb.delete('recovery', {token})
         qb.release();
     }
 
