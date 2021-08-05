@@ -32,68 +32,47 @@ class Connection{
 
     async GetAllConnection(){
         const qb = await pool.get_connection();
-        var p2 = new Promise(async function(resolve, reject) {
-            await qb
-            .from('Rules')
+        const request = await qb
             .select('Rules.rule, Permissions.permission, users.name, Rule_User.id')
             .join('Rule_Permission', 'Rule_Permission.ruleId=Rules.id')
             .join('Permissions', 'Rule_Permission.permissionId=Permissions.id')
             .join('Rule_User', 'Rule_User.ruleId=Rules.id')
             .join('users', 'Rule_User.userId=users.id')
-            .get((err, data)=>{
-                resolve(data);
-            });
+            .get('Rules')
             qb.release()
-        });
-        return await p2.then(function(value) {
-            return value
-        })
+        return request
     }
 
     async GetRulePermission(){
         const qb = await pool.get_connection();
-        var p2 = new Promise(async function(resolve, reject) {
-            await qb
-            .from('Rules')
+            const request = await qb
             .select('Rules.rule, Permissions.permission, Rule_Permission.id')
             .join('Rule_Permission', 'Rule_Permission.ruleId=Rules.id')
             .join('Permissions', 'Rule_Permission.permissionId=Permissions.id')
-            .get((err, data)=>{
-                resolve(data);
-            });
+            .get('Rules')
             qb.release()
-        });
-        return await p2.then(function(value) {
-            return value
-        })
+        return request
     }
 
     async GetRuleUser(){
         const qb = await pool.get_connection();
-        var p2 = new Promise(async function(resolve, reject) {
-            await qb
-            .from('Rule_User')
+        const request = await qb
             .select('users.name, Rules.rule, users.id')
             .join('users', 'Rule_User.userId=users.id')
             .join('Rules', 'Rule_User.ruleId=Rules.id')
-            .get((err, data)=>{
-                resolve(data);
-            });
+            .get('Rule_User')
             qb.release()
-        });
-        return await p2.then(function(value) {
-            return value
-        })
+        return request
     }
 
     async GetRuleID(id, title){
         const qb = await pool.get_connection();
         const request = await qb
-            .from('Rule_User')
             .select('Rule_User.id')
             .join('Rules', 'Rules.id=Rule_User.ruleId')
             .where('Rules.rule', title)
             .where('Rule_User.userId', id)
+            .get('Rule_User')
         qb.release()
         return request[0]
     }

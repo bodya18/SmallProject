@@ -26,30 +26,20 @@ class Permission{
 
     async ShowAllPermissions(id){
         const qb = await pool.get_connection();
-        var temp = []
-        var p2 = new Promise(async function(resolve, reject) {
-            await qb
+        let temp = []
+        var response = await qb
             .distinct()
-            .from('Rules')
             .select('Permissions.permission')
             .join('Rule_Permission', 'Rule_Permission.ruleId=Rules.id')
             .join('Permissions', 'Rule_Permission.permissionId=Permissions.id ')
             .join('Rule_User', 'Rule_User.ruleId=Rules.id')
             .join('users', 'Rule_User.userId=users.id')
             .where('users.id', id)
-            .get((err, data)=>{
-                for(let i = 0;i<data.length;i++){
-                    temp[i] = data[i].permission
-                }
-                resolve(temp);
-            });
-            qb.release()
-            
-        });
-        temp = await p2.then(function(value) {
-            temp = value
-            return value
-        })
+            .get('Rules');
+        qb.release()
+        for(let i = 0;i<response.length;i++){
+            temp[i] = response[i].permission
+        }
         return temp;
     }
 
