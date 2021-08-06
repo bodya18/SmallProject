@@ -337,10 +337,14 @@ exports.GetEditSettings = async (req,res) => {
         var category = req.query.category
         const title = req.query.title
         const categoriesSelect = await rbac.category.GetCategories()
-        const Allnews = await rbac.news.GetNews()
+        let Allnews = await rbac.news.GetNews()
+
         if(title === undefined || title === ''){
             if (category === undefined || category === 'undefined') {
-                const news = await rbac.news.GetNews()
+                let news = await rbac.news.GetNews()
+                news = news.reverse()
+                if(news.length > 60)
+                    news = news.splice(0, 59)
                 const categories = await rbac.category.GetCategories()
                 return res.render('EditSettingsTopNews.hbs', {
                     nowDate,
@@ -363,6 +367,9 @@ exports.GetEditSettings = async (req,res) => {
                     SelectCategories.push((await rbac.news.GetNewsByCategory(category[i])))
                 }
                 var newNews = [].concat(...SelectCategories);
+                newNews = news.reverse()
+                if(newNews.length > 60)
+                    newNews = newNews.splice(0, 59)
                 var categories = [];
                 for (let i = 0; i < category.length; i++) {
                     categories.push(await rbac.category.GetCategoriesById(category[i]))
@@ -384,6 +391,9 @@ exports.GetEditSettings = async (req,res) => {
         }
         else{
             let SelectTitle = await rbac.news.search(title)
+            SelectTitle = SelectTitle.reverse()
+            if(SelectTitle.length > 60)
+                SelectTitle = SelectTitle.splice(0, 59)
             if (category === undefined || category === 'undefined') {
                 const categories = await rbac.category.GetCategories()
                 return res.render('EditSettingsTopNews.hbs', {
