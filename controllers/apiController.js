@@ -68,3 +68,9 @@ exports.GetNewsById = async (req, res) =>{
     const data = await rbac.news.GetNewsById(req.body.newsId)
     return res.json(data)
 }
+
+exports.GetNewsByCategoryId = async (req, res) =>{
+    const rbac = new RBAC
+    const data = await rbac.news.GetNewsByCategory(req.body.categoryId)
+    return res.json(data)
+}

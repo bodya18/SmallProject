@@ -12,5 +12,6 @@ router.post('/newsCategory',jsonParser, apiController.newsCategory)
 router.post('/ThisNews', jsonParser, apiController.ThisNews)
 router.post('/search', jsonParser, apiController.search)
 router.post('/GetNewsById', jsonParser, apiController.GetNewsById)
+router.post('/GetNewsByCategoryId', jsonParser, apiController.GetNewsByCategoryId)
 
 module.exports = router

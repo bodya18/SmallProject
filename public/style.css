@@ -296,6 +296,9 @@ pre {
 /* .edit-settings-search-inp{
     max-width: 100%;
 } */
+.admin-panel{
+    z-index: 998;
+}
 @media screen and (max-width:1700px) {
     .in_this_category{
         display: none;

@@ -4,24 +4,30 @@
             {{#each categories}}
                 <div class="col-md-12">
                     <div align="center"><h2>{{this.category}}</h2></div>
-                    <div class="row">{{!-- <div class="row cn-slider"> --}}
+                    <div class="row" id="AddAdminInCategory-{{this.id}}">
                         {{#each @root.news}}
                             {{#ifeq this.categoryId ../this.id}}
-                                {{#if_eq this.time @root.nowDate}}
-                                    <div class="col-md-3">
-                                        <div class="cn-img">
-                                            <img class="show-Posts" src="/{{this.postUrl}}" />
-                                            <div class="cn-title">
-                                                <a class="none-decloration" href="/news/get/{{this.id}}">{{this.title}}</a>
-                                            </div>
+                                <div class="col-md-3">
+                                    <div class="cn-img">
+                                        <img class="show-Posts" src="/{{this.postUrl}}" />
+                                        <div class="cn-title">
+                                            <a class="none-decloration" href="/news/get/{{this.id}}">{{this.title}}</a>
                                         </div>
                                     </div>
-                                {{/if_eq}}
+                                </div>
                             {{/ifeq}}
                         {{/each}}
-                    </div><br><br>
+                    </div>
+                    <br>
+                    {{#ifeq this.isMore true}}
+                        <button class="btn btn-secondary" onclick="AddAdminInCategory(event, {{this.id}}, 8, 8)" id="btn-addNews-{{this.id}}">Загрузить еще</button>
+                    {{/ifeq}}
+                    <br>
+                    
                 </div>
             {{/each}}
         </div>
     </div>
 </div>
+
+<script src="../../public/ListAdminNews.js"></script>

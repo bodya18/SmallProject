@@ -50,7 +50,6 @@ function AddMoreSearch(e){
             var t = document.createTextNode("Загрузить еще");
             btn.appendChild(t)
             div.after(btn)
-            console.log(div);
         }
         
         
