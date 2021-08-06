@@ -10,6 +10,7 @@
             <input value="{{news.title}}" name="title" type="text" class="form-control" placeholder="Название статьи" maxlength="100" minlength="5" autocomplete="off">
             
             <select class="form-select" name="selectCategoryId">
+                <option value="{{ThisCategory.id}}" selected>{{ThisCategory.category}}</option>
                 {{#each categories}}
                     <option value="{{this.id}}">{{this.category}}</option>
                 {{/each}}

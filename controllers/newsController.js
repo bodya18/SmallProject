@@ -163,6 +163,7 @@ exports.GetEdit = async (req,res) => {
         }
     res.render('editNews.hbs', {
         categories: data.categories,
+        ThisCategory: data.ThisCategory,
         selectTags,
         news: data.news,
         tags,

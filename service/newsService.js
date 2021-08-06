@@ -118,11 +118,16 @@ class News{
     }
 
     async GetEdit (id){        
-        const categories = await this.category.GetCategories()
+        let categories = await this.category.GetCategories()
         const news = await this.news.getById(id)
+        const ThisCategory = await this.category.GetCategoriesById(news.categoryId)
+        for (let i = 0; i< categories.length; i++)
+            if (categories[i].id === ThisCategory.id)    
+                categories.splice(i, 1)
         return {
             news,
-            categories
+            categories,
+            ThisCategory
         }
     }
 
