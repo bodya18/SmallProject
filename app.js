@@ -46,8 +46,8 @@ app.use(express.static(__dirname))
 var options = {
     host: configMiggleware.host,
     user: 'root',
-    password: 'ZAQwsxz1.',
-    database: 'usersdb'
+    password: 'zaqwsxz1.',
+    database: 'news'
 }
 
 app.use(session({

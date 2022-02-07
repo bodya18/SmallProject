@@ -2,11 +2,10 @@ const configMiggleware = require('./config')
 
 const settings = {
     host: configMiggleware.host,
-    database: 'usersdb',
+    database: 'news',
     user: 'root',
-    password: 'ZAQwsxz1.'
+    password: 'zaqwsxz1.',
 };
-
 if(configMiggleware.database === 'MySQL'){
     const mysql = require('mysql2')
     module.exports = mysql.createConnection(settings).promise()
